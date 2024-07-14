@@ -1,11 +1,13 @@
 package com.cmc.purithm.feature.login
 
+import android.util.Log
 import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.cmc.purithm.common.ui.base.BaseFragment
+import com.cmc.purithm.common.ui.base.NavigationAction
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.model.OAuthToken
@@ -33,7 +35,10 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 else -> showToast(getString(R.string.error_kakao_default_msg))
             }
         } else if(token != null) {
-            // TODO : ViewModel에서 UseCase 실행
+            Log.d(TAG, "kakaoCallback : token = $token")
+            // FIXME : 임시용
+            showToast("카카오 로그인 성공")
+            viewModel.joinKakao(token.accessToken)
         }
     }
 
@@ -43,7 +48,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 launch {
                     viewModel.action.collect { action ->
                         when(action){
-                            is LoginAction.JoinKakao -> {
+                            LoginAction.JoinKakao -> {
                                 loginKakaoTalk()
                             }
                         }
@@ -52,13 +57,28 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                 launch {
                     viewModel.state.collect { state ->
-
+                        when(state){
+                            LoginState.Initial -> {}
+                            LoginState.Success -> {
+                                dismissLoadingDialog()
+                            }
+                            is LoginState.Error -> {
+                                dismissLoadingDialog()
+                                showSnackBar(state.message ?: getString(com.cmc.purithm.design.R.string.error_common))
+                            }
+                            LoginState.Loading -> {
+                                showLoadingDialog()
+                            }
+                        }
                     }
                 }
 
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
-
+                        when(sideEffect){
+                            LoginSideEffects.NavigateToJoin -> (activity as NavigationAction).navigateLoginToJoin()
+                            LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateLoginToMain()
+                        }
                     }
                 }
             }
@@ -66,11 +86,15 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     private fun loginKakaoTalk() {
+        Log.d(TAG, "loginKakaoTalk: start")
         if(UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())){
+            Log.d(TAG, "loginKakaoTalk: kakaotalk is installed")
             UserApiClient.instance.loginWithKakaoTalk(requireContext(), callback = kakaoCallback)
         } else {
+            Log.d(TAG, "loginKakaoTalk: kakaotalk is not installed")
             UserApiClient.instance.loginWithKakaoAccount(requireContext(), callback = kakaoCallback)
         }
+        Log.d(TAG, "loginKakaoTalk: start")
     }
 
     override fun initBinding() {
@@ -78,4 +102,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
     }
 
     override fun initView() {}
+
+    companion object {
+        private const val TAG = "LoginFragment"
+    }
 }

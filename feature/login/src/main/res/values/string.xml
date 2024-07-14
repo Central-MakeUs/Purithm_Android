@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_splash">감성사진을 위한 필터 커머스, 퓨리즘</string>
+
     <string name="error_kakao_access_denied_msg">접근 거부(동의 취소)</string>
     <string name="error_kakao_invalid_client_msg">유효하지 않는 앱</string>
     <string name="error_kakao_invalid_grant_msg">인증 수단이 유효하지 않음</string>

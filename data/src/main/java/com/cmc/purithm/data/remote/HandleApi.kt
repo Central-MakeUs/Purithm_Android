@@ -17,11 +17,11 @@ internal object HandleApi {
         throw createException(errorResponse.code)
     } catch (e: Exception) {
         e.printStackTrace()
-        throw Exception("알수없는에러")
+        throw Exception("알 수 없는 에러")
     }
 
     // TODO : 서버에서 정의한 코드에 따라 예외처리
     fun createException(code: String) = when (code) {
-        else -> Exception("알수없는에러")
+        else -> Exception("알 수 없는 에러")
     }
 }

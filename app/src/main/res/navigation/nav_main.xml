@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_main">
+    android:id="@+id/nav_main"
+    app:startDestination="@id/nav_splash">
+
+    <include app:graph="@navigation/nav_splash" />
+    <include app:graph="@navigation/nav_login" />
+
+    <action
+        android:id="@+id/action_splash_to_login"
+        app:destination="@id/nav_login"
+        app:popUpTo="@navigation/nav_splash"
+        app:popUpToInclusive="true" />
+
 
 </navigation>

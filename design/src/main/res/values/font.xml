@@ -1,4 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- BASE FONT -->
+    <style name="en_font_semi_bold">
+        <item name="android:fontFamily">@font/garamond_semi_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
 
+    <style name="en_font_medium">
+        <item name="android:fontFamily">@font/garamond_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="kr_font_semi_bold">
+        <item name="android:fontFamily">@font/pretendard_semi_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="kr_font_medium">
+        <item name="android:fontFamily">@font/pretendart_medium</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <!-- COLOR -->
+    <style name="kr_semi_bold_purple_500" parent="kr_font_semi_bold">
+        <item name="android:textColor">@color/purple_500</item>
+    </style>
+
+    <!-- SIZE -->
+    <style name="kr_semi_bold_purple_500_17sp" parent="kr_semi_bold_purple_500">
+        <item name="android:textSize">17sp</item>
+    </style>
 </resources>

@@ -1,12 +1,19 @@
 package com.cmc.purithm.feature.splash
 
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
+import android.view.View
+import android.view.ViewTreeObserver
 import androidx.fragment.app.viewModels
 import com.cmc.purithm.common.ui.base.BaseFragment
 import com.cmc.purithm.common.ui.base.NavigationAction
 import com.cmc.purithm.feature.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
@@ -19,9 +26,27 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun initBinding() {}
 
     override fun initView() {
-        // FIXME : 토큰 유효성 검증 등 확인 로직 이후로 변경
-        Handler(Looper.getMainLooper()).postDelayed({
-            (activity as NavigationAction).navigateSplashToLogin()
-        }, 2000)
+        CoroutineScope(Dispatchers.Main).launch {
+            // FIXME : 임시 Splash
+            launch {
+                delay(3000)
+                viewModel.test()
+            }
+        }
+
+        val content = activity?.findViewById<View>(android.R.id.content)
+        content?.viewTreeObserver?.addOnPreDrawListener(object :
+            ViewTreeObserver.OnPreDrawListener {
+            override fun onPreDraw(): Boolean {
+                return if(viewModel.state.value){
+                    // content is ready
+                    content.viewTreeObserver.removeOnPreDrawListener(this)
+                    (activity as NavigationAction).navigateSplashToLogin()
+                    true
+                }else {
+                    false
+                }
+            }
+        })
     }
 }

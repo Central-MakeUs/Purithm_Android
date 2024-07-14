@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="vm"
             type="com.cmc.purithm.feature.login.LoginViewModel" />
@@ -34,6 +35,17 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.34" />
 
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/kr_semi_bold_purple_500_17sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/title_splash"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_logo" />
+
         <ImageButton
             android:id="@+id/btn_kakao_login"
             android:layout_width="wrap_content"
@@ -41,8 +53,8 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
             android:background="@color/transparent"
-            app:clickEvent="@{() -> vm.startLoginKakao()}"
             android:src="@drawable/bg_kakao_btn"
+            app:clickEvent="@{() -> vm.startLoginKakao()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

@@ -27,9 +27,16 @@ class LoginViewModel @Inject constructor(
     val sideEffects: SharedFlow<LoginSideEffects> = _sideEffects.asSharedFlow()
 
     // TODO : 서버 API 나온 후 작업 진행
-    fun joinKakao(accessToken : String) {
+    fun joinKakao(accessToken: String) {
         viewModelScope.launch {
-            loginForKakaoUseCase
+            _state.emit(LoginState.Loading)
+            kotlin.runCatching {
+                loginForKakaoUseCase(accessToken)
+            }.onSuccess {
+                _state.emit(LoginState.Success)
+            }.onFailure {
+                _state.emit(LoginState.Error(it.message))
+            }
         }
     }
 
@@ -60,7 +67,7 @@ sealed interface LoginAction {
  * */
 sealed interface LoginState {
     data object Initial : LoginState
-    data object Error : LoginState
+    data class Error(val message : String?) : LoginState
     data object Loading : LoginState
     data object Success : LoginState
 }

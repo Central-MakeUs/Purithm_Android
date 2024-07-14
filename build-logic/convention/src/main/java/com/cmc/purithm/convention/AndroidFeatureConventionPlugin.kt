@@ -32,7 +32,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             extensions.configure<LibraryExtension> {
                 configureCommonAndroid(this)
                 defaultConfig{
-                    manifestPlaceholders["KAKAO_NATIVE_MANIFEST_KEY"] = properties["KAKAO_NATIVE_MANIFEST_KEY"].toString()
+                    manifestPlaceholders["KAKAO_NATIVE_APP_MANIFEST_KEY"] = properties["KAKAO_NATIVE_APP_MANIFEST_KEY"].toString()
                 }
             }
 

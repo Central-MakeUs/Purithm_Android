@@ -23,6 +23,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project>{
             pluginManager.apply {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
+                apply("com.google.firebase.crashlytics")
                 apply("com.google.gms.google-services")
                 apply("kotlin-parcelize")
                 apply("purithm.hilt")
@@ -59,6 +60,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project>{
                 dependencies {
                     add("implementation", project(":domain"))
                     add("implementation", project(":data"))
+                    add("implementation", project(":feature:login"))
+                    add("implementation", project(":feature:splash"))
                     add("implementation", project(":common-ui"))
                     add("implementation", project(":design"))
 
@@ -99,6 +102,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project>{
 
                     // Data Store
                     add("implementation", libs.findBundle("datastore").get())
+
+                    // Splash Screen
+                    add("implementation", libs.findLibrary("androidx-core-splashscreen").get())
                 }
             }
         }

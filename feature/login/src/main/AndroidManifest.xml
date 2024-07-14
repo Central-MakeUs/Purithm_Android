@@ -10,7 +10,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data android:host="oauth"
-                    android:scheme="kakao${KAKAO_NATIVE_MANIFEST_KEY}" />
+                    android:scheme="kakao${KAKAO_NATIVE_APP_MANIFEST_KEY}" />
             </intent-filter>
         </activity>
     </application>

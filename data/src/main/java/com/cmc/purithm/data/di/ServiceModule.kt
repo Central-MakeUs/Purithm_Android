@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
@@ -14,7 +15,7 @@ internal object ServiceModule {
     @Provides
     @Singleton
     fun provideAuthService(
-        retrofit: Retrofit
+        @Named("purithm") retrofit: Retrofit
     ): AuthService {
         return retrofit.create(AuthService::class.java)
     }

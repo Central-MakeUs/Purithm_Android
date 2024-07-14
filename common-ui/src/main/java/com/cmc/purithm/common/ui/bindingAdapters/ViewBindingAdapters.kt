@@ -11,7 +11,7 @@ import com.cmc.purithm.common.ui.view.DelayClickEventListener
  * @author Yu Seung Woo
  * @since 2024-07-05
  * */
-object ButtonBindingAdapters {
+object ViewBindingAdapters {
     /**
      * 클릭 이벤트 (default로 Delay 설정)
      *
@@ -19,7 +19,8 @@ object ButtonBindingAdapters {
      * */
     @JvmStatic
     @BindingAdapter("clickEvent")
-    fun Button.addButtonClickEvent(listener : View.OnClickListener){
+    fun View.addButtonClickEvent(listener : View.OnClickListener){
         this.setOnClickListener(DelayClickEventListener(onClickListener = listener))
     }
+
 }

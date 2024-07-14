@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.cmc.purithm.common.ui.dialog.LoadingDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -35,7 +36,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     abstract fun initView()
 
     private val mLoadingDialog by lazy {
-        //TODO 로딩다이얼로그 구현
+        LoadingDialogFragment()
     }
 
     private var mToast: Toast? = null
@@ -72,14 +73,18 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 dismiss
      * */
     protected fun dismissLoadingDialog() {
-        // TODO 로딩 다이얼로그 dismiss
+        if(mLoadingDialog.isAdded){
+            mLoadingDialog.dismissAllowingStateLoss()
+        }
     }
 
     /**
      * 로딩 다이얼로그 show
      * */
     protected fun showLoadingDialog() {
-        // TODO 로딩 다이얼로그 show
+        if(mLoadingDialog.isHidden){
+            mLoadingDialog.show(childFragmentManager, LoadingDialogFragment::class.java.simpleName)
+        }
     }
 
     /**
