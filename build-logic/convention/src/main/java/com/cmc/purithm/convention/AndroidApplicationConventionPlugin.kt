@@ -9,6 +9,7 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
+import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
 import java.util.Properties
 
 /**
@@ -17,9 +18,9 @@ import java.util.Properties
  * @author Yu Seung Woo
  * @since 2024-07-05
  * */
-class AndroidApplicationConventionPlugin : Plugin<Project>{
+class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        with(target){
+        with(target) {
             pluginManager.apply {
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
@@ -43,6 +44,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project>{
                     versionCode = 20240704
                     versionName = "1.0.0"
 
+                    setProperty("archivesBaseName", "purithm_v$versionName($versionCode)")
+
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
                     targetSdk = 34
@@ -53,7 +56,35 @@ class AndroidApplicationConventionPlugin : Plugin<Project>{
                         buildConfig = true
                     }
 
-                    buildConfigField("String", "KAKAO_NATIVE_APP_KEY", properties["KAKAO_NATIVE_APP_KEY"].toString())
+                    buildConfigField(
+                        "String",
+                        "KAKAO_NATIVE_APP_KEY",
+                        properties["KAKAO_NATIVE_APP_KEY"].toString()
+                    )
+                }
+
+                signingConfigs {
+                    create("release") {
+                        storeFile = file(properties["PURITHM_STORE_FILE"].toString())
+                        storePassword = properties["PURITHM_STORE_PASSWORD"].toString()
+                        keyAlias = properties["PUTITHM_KEY_ALIAS"].toString()
+                        keyPassword = properties["PURITHM_KEY_PASSWORD}"].toString()
+                    }
+                }
+
+                buildTypes {
+                    release {
+                        isMinifyEnabled = true
+                        isDebuggable = false
+                        signingConfig = signingConfigs.getByName("release")
+                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                    }
+
+                    debug {
+                        isMinifyEnabled = false
+                        isDebuggable = true
+                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                    }
                 }
 
                 val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

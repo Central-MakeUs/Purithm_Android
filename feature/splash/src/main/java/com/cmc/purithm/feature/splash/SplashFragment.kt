@@ -29,7 +29,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         CoroutineScope(Dispatchers.Main).launch {
             // FIXME : 임시 Splash
             launch {
-                delay(3000)
                 viewModel.test()
             }
         }
