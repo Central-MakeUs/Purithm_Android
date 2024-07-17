@@ -1,4 +1,4 @@
-package com.cmc.purithm.feature.join
+package com.cmc.purithm.feature.home
 
 import org.junit.Test
 

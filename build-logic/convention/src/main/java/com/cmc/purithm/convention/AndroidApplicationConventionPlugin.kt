@@ -10,6 +10,9 @@ import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.util.Locale
 import java.util.Properties
 
 /**
@@ -41,10 +44,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 defaultConfig {
                     applicationId = "com.cmc.purithm"
-                    versionCode = 2
+                    versionCode = 1
                     versionName = "1.0.0"
 
-                    setProperty("archivesBaseName", "purithm_v$versionName($versionCode)")
+                    setProperty("archivesBaseName", "purithm_v$versionName(${LocalDate.now()})")
 
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
