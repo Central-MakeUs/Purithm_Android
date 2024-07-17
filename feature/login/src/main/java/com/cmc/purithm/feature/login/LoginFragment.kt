@@ -35,9 +35,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 else -> showToast(getString(R.string.error_kakao_default_msg))
             }
         } else if(token != null) {
-            Log.d(TAG, "kakaoCallback : token = $token")
-            // FIXME : 임시용
-            showToast("카카오 로그인 성공")
+            Log.d(TAG, "kakaoCallback : token = ${token.accessToken}")
             viewModel.joinKakao(token.accessToken)
         }
     }

@@ -39,8 +39,8 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             override fun onPreDraw(): Boolean {
                 return if(viewModel.state.value){
                     // content is ready
-                    content.viewTreeObserver.removeOnPreDrawListener(this)
                     (activity as NavigationAction).navigateSplashToLogin()
+                    content.viewTreeObserver.removeOnPreDrawListener(this)
                     true
                 }else {
                     false

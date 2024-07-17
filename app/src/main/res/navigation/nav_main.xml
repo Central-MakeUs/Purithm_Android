@@ -7,11 +7,11 @@
     <include app:graph="@navigation/nav_splash" />
     <include app:graph="@navigation/nav_login" />
 
+    <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
     <action
         android:id="@+id/action_splash_to_login"
         app:destination="@id/nav_login"
-        app:popUpTo="@navigation/nav_splash"
+        app:popUpTo="@id/splashFragment"
         app:popUpToInclusive="true" />
-
 
 </navigation>

@@ -6,7 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 internal interface AuthService {
-    @POST("auth/code/kakao")
+    @POST("oauth2/authorization/kakao")
     suspend fun joinKakao(
         @Body data : String
     ) : BaseResponse<ResponseAuthKakao>
