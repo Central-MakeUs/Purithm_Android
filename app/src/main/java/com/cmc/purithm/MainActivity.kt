@@ -1,6 +1,8 @@
 package com.cmc.purithm
 
+import android.os.Build.VERSION_CODES.P
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -10,6 +12,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.ui.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
+import com.cmc.purithm.design.component.appbar.PurithmAppbarType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -68,19 +71,31 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     ) {
         when (destination.id) {
             com.cmc.purithm.feature.splash.R.id.splashFragment -> {
+                setAppbarVisibility(false)
                 setBottomNavVisibility(false)
             }
 
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
+                setAppbarVisibility(false)
                 setBottomNavVisibility(false)
             }
+
             com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment -> {
+                setAppbarVisibility(false)
                 setBottomNavVisibility(false)
             }
         }
     }
 
+    private fun setAppbarVisibility(isVisible: Boolean) {
+        binding?.viewAppbar?.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
     private fun setBottomNavVisibility(isVisible: Boolean) {
         binding?.bnvMain?.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
     }
 }

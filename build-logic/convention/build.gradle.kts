@@ -34,6 +34,10 @@ gradlePlugin {
             id = "purithm.library"
             implementationClass = "com.cmc.purithm.convention.AndroidLibraryConventionPlugin"
         }
+        register("AndroidDesign") {
+            id = "purithm.design"
+            implementationClass = "com.cmc.purithm.convention.AndroidDesignConventionPlugin"
+        }
         register("AndroidCommon"){
             id = "purithm.common"
             implementationClass = "com.cmc.purithm.convention.AndroidCommonConventionPlugin"
