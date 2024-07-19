@@ -6,6 +6,9 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
+/**
+ * TODO : 현재 사용안함, API 구현 후 사용
+ * */
 internal class RefreshTokenInterceptor @Inject constructor(
     private val authDataStore: AuthDataStore
 ) : Interceptor{

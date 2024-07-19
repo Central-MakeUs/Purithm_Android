@@ -9,7 +9,9 @@ package com.cmc.purithm.common.ui.base
  * @since 2024-07-05
  * */
 interface NavigationAction {
-    fun navigateSplashToLogin()
-    fun navigateLoginToMain()
-    fun navigateLoginToJoin()
+    fun navigateLogin()
+    fun navigateOnBoarding()
+    fun navigateMain()
+    fun navigateHome()
+    fun navigateTerm()
 }

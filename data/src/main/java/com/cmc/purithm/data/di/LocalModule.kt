@@ -2,6 +2,7 @@ package com.cmc.purithm.data.di
 
 import android.content.Context
 import com.cmc.purithm.data.local.datasource.AuthDataStore
+import com.cmc.purithm.data.local.datasource.MemberDataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,4 +18,10 @@ internal object LocalModule {
     fun provideAuthDataStore(
         @ApplicationContext context : Context
     ) = AuthDataStore(context)
+
+    @Provides
+    @Singleton
+    fun provideMemberDataStore(
+        @ApplicationContext context : Context
+    ) = MemberDataStore(context)
 }

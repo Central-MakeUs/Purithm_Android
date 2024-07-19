@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin_grid_side">20dp</dimen>
+    <dimen name="margin_screen_side">20dp</dimen>
+
     <dimen name="margin_grid_4column">12dp</dimen>
     <dimen name="margin_grid_6column">20dp</dimen>
 </resources>

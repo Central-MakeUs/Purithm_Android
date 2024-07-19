@@ -1,7 +1,9 @@
 package com.cmc.purithm.data.di
 
 import com.cmc.purithm.data.repository.AuthRepositoryImpl
+import com.cmc.purithm.data.repository.MemberRepositoryImpl
 import com.cmc.purithm.domain.repository.AuthRepository
+import com.cmc.purithm.domain.repository.MemberRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -15,4 +17,8 @@ internal abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindAuthRepository(authRepositoryImpl: AuthRepositoryImpl): AuthRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindMemberRepository(memberRepositoryImpl: MemberRepositoryImpl): MemberRepository
 }

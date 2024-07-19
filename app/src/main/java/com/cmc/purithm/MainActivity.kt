@@ -10,7 +10,6 @@ import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.ui.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,17 +32,27 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         navHostFragment.navController.addOnDestinationChangedListener(this)
     }
 
-    override fun navigateSplashToLogin() {
+    override fun navigateLogin() {
         with(navHostFragment.navController) {
-            navigate(R.id.action_splash_to_login)
+            navigate(R.id.navigate_login)
         }
     }
 
-    override fun navigateLoginToMain() {
+    override fun navigateOnBoarding() {
+        with(navHostFragment.navController) {
+            navigate(R.id.navigate_onboarding)
+        }
+    }
+
+    override fun navigateMain() {
 
     }
 
-    override fun navigateLoginToJoin() {
+    override fun navigateHome() {
+
+    }
+
+    override fun navigateTerm() {
 
     }
 
@@ -63,6 +72,9 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             }
 
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
+                setBottomNavVisibility(false)
+            }
+            com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment -> {
                 setBottomNavVisibility(false)
             }
         }

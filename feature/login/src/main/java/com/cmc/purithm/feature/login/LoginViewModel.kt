@@ -26,7 +26,6 @@ class LoginViewModel @Inject constructor(
     private val _sideEffects: MutableSharedFlow<LoginSideEffects> = MutableSharedFlow()
     val sideEffects: SharedFlow<LoginSideEffects> = _sideEffects.asSharedFlow()
 
-    // TODO : 서버 API 나온 후 작업 진행
     fun joinKakao(accessToken: String) {
         viewModelScope.launch {
             _state.emit(LoginState.Loading)
@@ -51,7 +50,7 @@ class LoginViewModel @Inject constructor(
  * 사용자가 정하는 것이 아닌 앱에서 나오는 부수효과
  * */
 sealed interface LoginSideEffects {
-    data object NavigateToJoin : LoginSideEffects
+    data object NavigateToTerm : LoginSideEffects
     data object NavigateToMain : LoginSideEffects
 }
 

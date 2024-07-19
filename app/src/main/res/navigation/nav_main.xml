@@ -6,12 +6,19 @@
 
     <include app:graph="@navigation/nav_splash" />
     <include app:graph="@navigation/nav_login" />
+    <include app:graph="@navigation/nav_onboarding" />
 
     <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
     <action
-        android:id="@+id/action_splash_to_login"
+        android:id="@+id/navigate_login"
         app:destination="@id/nav_login"
         app:popUpTo="@id/splashFragment"
         app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/navigate_onboarding"
+        app:destination="@id/nav_onboarding"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true"/>
 
 </navigation>

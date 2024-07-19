@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.remote
 
 import com.cmc.purithm.data.remote.dto.BaseResponse
+import com.cmc.purithm.domain.exception.AuthException
 import com.google.gson.Gson
 import retrofit2.HttpException
 
@@ -9,19 +10,17 @@ internal object HandleApi {
     inline fun <T> callApi(
         mapper: () -> T
     ) = try {
-        // TODO : Response 형식에 따라서 준비
         mapper.invoke()
     } catch (e: HttpException) {
-        val errorBody = e.response()?.errorBody().toString()
-        val errorResponse = gson.fromJson(errorBody, BaseResponse::class.java)
-        throw createException(errorResponse.code)
+        e.printStackTrace()
+        throw createException(e.code())
     } catch (e: Exception) {
         e.printStackTrace()
         throw Exception("알 수 없는 에러")
     }
 
-    // TODO : 서버에서 정의한 코드에 따라 예외처리
-    fun createException(code: String) = when (code) {
+    fun createException(code: Int) = when (code) {
+        401 -> AuthException.InvalidTokenException("토큰이 유효하지 않습니다")
         else -> Exception("알 수 없는 에러")
     }
 }

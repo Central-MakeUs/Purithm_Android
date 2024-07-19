@@ -1,7 +1,6 @@
 package com.cmc.purithm.feature.login
 
 import android.util.Log
-import androidx.core.content.ContentProviderCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -9,7 +8,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.cmc.purithm.common.ui.base.BaseFragment
 import com.cmc.purithm.common.ui.base.NavigationAction
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
-import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
@@ -74,8 +72,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
                         when(sideEffect){
-                            LoginSideEffects.NavigateToJoin -> (activity as NavigationAction).navigateLoginToJoin()
-                            LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateLoginToMain()
+                            LoginSideEffects.NavigateToTerm -> (activity as NavigationAction).navigateTerm()
+                            LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateMain()
                         }
                     }
                 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_login_btn">로그인</string>
+
+    <string-array name="title_banner">
+        <item>다양한 감성 필터</item>
+        <item>쉬운 필터 탐색</item>
+        <item>상세 보정값 무료 열람</item>
+        <item>후기 남기고 프리미엄 필터 열람</item>
+    </string-array>
+
+    <string-array name="content_banner">
+        <item>색감, 장소, 시간 등 다양한 상황에\n어울리는 필터를 찾을 수 있어요.</item>
+        <item>다양한 예시 사진과 원본 비교 기능으로\n원하는 분위기의 필터를 쉽게 찾을 수 있어요.</item>
+        <item>필터에 쓰인 상세 보정값을 무료로 열람하고\n내 사진에 바로 적용해 보세요.</item>
+        <item>전달받은 보정값을 사진에 적용해보고\n후기를 남기면 더 다양한 필터의 보정값을 알 수 있어요.</item>
+    </string-array>
+</resources>

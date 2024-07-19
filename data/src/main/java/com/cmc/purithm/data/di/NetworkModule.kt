@@ -39,8 +39,7 @@ internal object NetworkModule {
         .readTimeout(5000, TimeUnit.MILLISECONDS)
         .connectTimeout(5000, TimeUnit.MILLISECONDS)
         .addInterceptor(httpLoggingInterceptor())
-        .addInterceptor(RefreshTokenInterceptor(authDataStore)) // first
-        .addNetworkInterceptor(AddTokenInterceptor(authDataStore)) // second
+        .addNetworkInterceptor(AddTokenInterceptor(authDataStore))
         .build()
 
     @Singleton
