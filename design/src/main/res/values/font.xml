@@ -11,6 +11,11 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <style name="kr_font_bold">
+        <item name="android:fontFamily">@font/pretendard_bold</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
     <style name="kr_font_semi_bold">
         <item name="android:fontFamily">@font/pretendard_semi_bold</item>
         <item name="android:includeFontPadding">false</item>
@@ -24,7 +29,7 @@
     <!-- EN FONT -->
     <style name="en_title_1" parent="en_font_medium">
         <item name="android:textSize">36sp</item>
-        <item name="android:lineSpacingExtra">11sp</item>
+        <item name="android:lineSpacingExtra">12sp</item>
         <item name="android:letterSpacing">-0.02777777777777778</item>
     </style>
 
@@ -36,24 +41,25 @@
 
     <style name="en_title_3" parent="en_font_medium">
         <item name="android:textSize">24sp</item>
-        <item name="android:lineSpacingExtra">7sp</item>
+        <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:letterSpacing">-0.04166666666666667</item>
     </style>
 
     <style name="en_title_4" parent="en_font_medium">
         <item name="android:textSize">21sp</item>
-        <item name="android:lineSpacingExtra">6sp</item>
+        <item name="android:lineSpacingExtra">3sp</item>
         <item name="android:letterSpacing">-0.04761904761904762</item>
     </style>
 
     <style name="en_body_1" parent="en_font_semi_bold">
         <item name="android:textSize">18sp</item>
-        <item name="android:lineSpacingExtra">5sp</item>
+        <item name="android:lineSpacingExtra">6sp</item>
         <item name="android:letterSpacing">-0.05555555555555556</item>
     </style>
 
     <!-- KR FONT -->
-    <style name="kr_title_1" parent="kr_font_semi_bold">
+
+    <style name="kr_title_1" parent="kr_font_bold">
         <item name="android:textSize">24sp</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <item name="android:letterSpacing">-0.025</item>
@@ -65,7 +71,7 @@
         <item name="android:letterSpacing">-0.03</item>
     </style>
 
-    <style name="kr_body_1" parent="kr_font_semi_bold">
+    <style name="kr_body_1" parent="kr_font_bold">
         <item name="android:textSize">18sp</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <item name="android:letterSpacing">-0.03333333333333333</item>
@@ -77,13 +83,19 @@
         <item name="android:letterSpacing">-0.0375</item>
     </style>
 
-    <style name="kr_body_3" parent="kr_font_semi_bold">
+    <style name="kr_body_3" parent="kr_font_medium">
+        <item name="android:textSize">16sp</item>
+        <item name="android:lineSpacingExtra">10sp</item>
+        <item name="android:letterSpacing">-0.04285714285714286</item>
+    </style>
+
+    <style name="kr_body_4" parent="kr_font_semi_bold">
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingExtra">3sp</item>
         <item name="android:letterSpacing">-0.04285714285714286</item>
     </style>
 
-    <style name="kr_body_4" parent="kr_font_medium">
+    <style name="kr_body_5" parent="kr_font_medium">
         <item name="android:textSize">14sp</item>
         <item name="android:lineSpacingExtra">8sp</item>
         <item name="android:letterSpacing">-0.04285714285714286</item>

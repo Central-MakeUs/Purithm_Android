@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmc.purithm.domain.exception.AuthException
 import com.cmc.purithm.domain.usecase.auth.CheckAccessTokenUseCase
-import com.cmc.purithm.domain.usecase.member.InitializeFirstRunUseCase
+import com.cmc.purithm.domain.usecase.member.CheckFirstRunUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val initializeFirstRunUseCase: InitializeFirstRunUseCase,
+    private val checkFirstRunUseCase: CheckFirstRunUseCase,
     private val checkAccessTokenUseCase: CheckAccessTokenUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<SplashState> = MutableStateFlow(SplashState.Initialize)
@@ -26,20 +26,15 @@ class SplashViewModel @Inject constructor(
     private val _sideEffect : MutableSharedFlow<SplashSideEffect> = MutableSharedFlow()
     val sideEffect : SharedFlow<SplashSideEffect> get() = _sideEffect.asSharedFlow()
 
-    suspend fun initializeFirstRun() {
+    suspend fun checkFirstRun() {
         viewModelScope.launch {
-            _state.emit(SplashState.Loading)
             runCatching {
-                initializeFirstRunUseCase()
-            }.onSuccess { firstRunFlag ->
-                if(firstRunFlag){
-                    _state.emit(SplashState.IsFirstRun)
-                    _sideEffect.emit(SplashSideEffect.NavigateToOnBoarding)
-                } else {
-                    checkAccessToken()
-                }
+                checkFirstRunUseCase()
+            }.onSuccess {
+                _state.emit(SplashState.IsFirstRun)
+                _sideEffect.emit(SplashSideEffect.NavigateToOnBoarding)
             }.onFailure {
-                _state.emit(SplashState.Error(it.message.toString()))
+                _state.emit(SplashState.Error(""))
             }
         }
     }

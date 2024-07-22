@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tool="http://schemas.android.com/apk/res-auto">
+    <style name="style_bottom_navigation" parent="Widget.Design.BottomNavigationView">
+        <item name="backgroundTint">@color/white</item>
+        <item name="itemIconTint">@color/selector_menu_bottom_color</item>
+        <item name="itemPaddingBottom">@dimen/size_bottom_navigation_padding_bottom</item>
+        <item name="labelVisibilityMode">unlabeled</item>
+    </style>
+
+    <style name="style_seekbar">
+        <item name="android:progressDrawable">@color/white</item>
+        <item name="android:thumb">@drawable/ic_seekbar_thumb</item>
+    </style>
+</resources>

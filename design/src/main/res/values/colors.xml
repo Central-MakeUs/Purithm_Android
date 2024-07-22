@@ -7,6 +7,7 @@
     <color name="white">#FFFFFF</color>
     <color name="white_trans50">#80FFFFFF</color>
     <color name="white_trans20">#33FFFFFF</color>
+    <color name="white_gradient_end">#F1F3F6</color>
 
     <color name="transparent">#00000000</color>
 
@@ -23,9 +24,13 @@
     <color name="blue_100">#BAC0D6</color>
     <color name="blue_500_trans80">#CC616FAA</color>
     <color name="blue_400_trans80">#CC7F92E5</color>
+    <color name="blue_gradient_start">#8F9FE2</color>
+    <color name="blue_gradient_end">#E0C4F6</color>
 
     <color name="purple_500">#AC79ED</color>
     <color name="purple_400">#BB9EF8</color>
+    <color name="purple_500_trans80">#CCAC79ED</color>
+    <color name="purple_gradient_end">#546093</color>
 
     <color name="red_500">#C53030</color>
 

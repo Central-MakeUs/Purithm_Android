@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <!--
+            android:tint는 21버전부터 지원
+            해당 앱은 24이므로 적용 가능
+         -->
+        <ImageView
+            android:id="@+id/img_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_review_1"
+            tools:tint="@color/purple_500" />
+
+        <TextView
+            android:id="@+id/tv_review_intensity"
+            style="@style/en_body_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/img_review"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_review"
+            app:layout_constraintTop_toTopOf="@id/img_review"
+            tools:text="100%"
+            tools:textColor="@color/purple_500" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

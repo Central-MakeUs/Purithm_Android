@@ -8,4 +8,8 @@
     <string name="content_search_description">검색</string>
     <string name="content_like_description">찜</string>
     <string name="content_question_description">도움말</string>
+
+    <!-- rating bar -->
+    <string name="content_seekbar_minimum">아쉬워요</string>
+    <string name="content_seekbar_maximum">만족해요</string>
 </resources>

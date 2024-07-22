@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/selector_menu_home"
+        android:checked="true"
+        android:title="" />
+
+    <item
+        android:id="@+id/artistFragment"
+        android:icon="@drawable/selector_menu_artist"
+        android:checked="true"
+        android:title="" />
+
+    <item
+        android:id="@+id/feedFragment"
+        android:icon="@drawable/selector_menu_feed"
+        android:checked="true"
+        android:title="" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/selector_menu_profile"
+        android:checked="true"
+        android:title="" />
+</menu>

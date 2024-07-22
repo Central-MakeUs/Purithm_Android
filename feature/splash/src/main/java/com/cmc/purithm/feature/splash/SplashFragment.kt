@@ -31,7 +31,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             }
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> viewModel.initializeFirstRun()
+                            SplashState.Initialize -> viewModel.checkAccessToken()
                             else -> {}
                         }
                     }

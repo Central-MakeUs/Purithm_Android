@@ -10,4 +10,11 @@
     <!-- appbar -->
     <dimen name="size_appbar_height">98dp</dimen>
 
+    <!-- bottom navigation -->
+    <dimen name="size_bottom_navigation_height">80dp</dimen>
+    <dimen name="size_bottom_navigation_padding_bottom">200dp</dimen>
+
+    <!-- image -->
+    <dimen name="radius_image_rectangle_default">16dp</dimen>
+    <dimen name="radius_image_rectangle_small">12dp</dimen>
 </resources>

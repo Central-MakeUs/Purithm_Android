@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <SeekBar
+            android:id="@+id/seekbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_rating_minimum"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/content_seekbar_minimum"
+            android:textColor="@color/grey_300"
+            app:layout_constraintStart_toStartOf="@id/seekbar_main"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_main" />
+
+        <TextView
+            android:id="@+id/tv_rating_maximum"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/content_seekbar_maximum"
+            android:textColor="@color/blue_400"
+            app:layout_constraintEnd_toEndOf="@id/seekbar_main"
+            app:layout_constraintTop_toBottomOf="@id/seekbar_main" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
