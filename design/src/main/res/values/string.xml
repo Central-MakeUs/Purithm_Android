@@ -16,5 +16,5 @@
     <!-- edit text -->
     <string name="content_edit_text_multiple_status">/%d (최소 %d자)</string>
     <string name="content_edit_text_multiple_error">%d자 이상 입력해주세요</string>
-    <string name="content_edit_text_single_status">%d/%d</string>
+    <string name="content_edit_text_single_status">/%d</string>
 </resources>

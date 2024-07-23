@@ -8,8 +8,8 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
         android:id="@+id/layout_main"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/size_edit_text_multiple_height"
         android:background="@drawable/bg_edit_text_default"
         android:padding="@dimen/size_edit_text_multiple_padding">

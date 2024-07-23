@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,6 +10,69 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/kr_body_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="닉네임" />
+
+        <EditText
+            android:id="@+id/edit_main"
+            style="@style/kr_body_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_edit_text_single_height"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_edit_text_default"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="19dp"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="닉네임닉네임닉네임닉네임닉네임닉네임닉네임닉네임닉네임닉네임닉네임" />
+
+        <TextView
+            android:id="@+id/tv_desc"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toStartOf="@id/tv_count"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edit_main"
+            tools:text="테스트" />
+
+        <TextView
+            android:id="@+id/tv_count"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_400"
+            app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+            app:layout_constraintEnd_toStartOf="@id/tv_max_count"
+            app:layout_constraintTop_toTopOf="@id/tv_desc"
+            tools:text="5" />
+
+        <TextView
+            android:id="@+id/tv_max_count"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_300"
+            app:layout_constraintBottom_toBottomOf="@id/tv_desc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_desc"
+            tools:text="/12" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
