@@ -17,4 +17,7 @@
     <!-- image -->
     <dimen name="radius_image_rectangle_default">16dp</dimen>
     <dimen name="radius_image_rectangle_small">12dp</dimen>
+
+    <!-- seekbar -->
+    <dimen name="size_seekbar_progress_height">6dp</dimen>
 </resources>

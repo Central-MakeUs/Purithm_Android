@@ -3,6 +3,7 @@
     <color name="black">#000000</color>
     <color name="black_trans50">#80000000</color>
     <color name="black_trans20">#33000000</color>
+    <color name="black_trans10">#1A000000</color>
 
     <color name="white">#FFFFFF</color>
     <color name="white_trans50">#80FFFFFF</color>
@@ -33,5 +34,4 @@
     <color name="purple_gradient_end">#546093</color>
 
     <color name="red_500">#C53030</color>
-
 </resources>

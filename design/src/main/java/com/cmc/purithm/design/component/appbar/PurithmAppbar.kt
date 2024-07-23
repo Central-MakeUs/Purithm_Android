@@ -162,11 +162,10 @@ class PurithmAppbar @JvmOverloads constructor(
         }
         binding.layoutAppbar.layoutParams = layoutParams
     }
+    enum class PurithmAppbarType {
+        ENG_DEFAULT, ENG_LIKE, KR_DEFAULT, KR_BUTTON
+    }
     companion object {
         private const val TAG = "PurithmAppbar"
     }
-}
-
-enum class PurithmAppbarType {
-    ENG_DEFAULT, ENG_LIKE, KR_DEFAULT, KR_BUTTON
 }

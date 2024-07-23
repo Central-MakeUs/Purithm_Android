@@ -31,7 +31,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             }
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> viewModel.checkAccessToken()
+                            SplashState.Initialize -> {
+                                // FIXME : 임시용
+                                (activity as NavigationAction).navigateLogin()
+                            }
                             else -> {}
                         }
                     }
@@ -58,6 +61,11 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             override fun onPreDraw(): Boolean {
                 // 토큰 검증에 성공했거나, 첫 실행이라면 화면 전환
                 return when(viewModel.state.value){
+                    // FIXME : 테스트용
+                    SplashState.Initialize -> {
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    }
                     SplashState.IsFirstRun -> {
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true

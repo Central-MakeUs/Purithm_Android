@@ -1,11 +1,13 @@
 package com.cmc.purithm
 
-import android.os.Build.VERSION_CODES.P
+
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -33,6 +35,20 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         binding?.lifecycleOwner = this
 
         navHostFragment.navController.addOnDestinationChangedListener(this)
+
+        setTransparentStatusBar()
+    }
+
+    private fun setTransparentStatusBar() {
+        window.apply {
+            setFlags(
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+            )
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            WindowCompat.setDecorFitsSystemWindows(window, false)
+        }
     }
 
     override fun navigateLogin() {
@@ -76,7 +92,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             }
 
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
-                setAppbarVisibility(false)
+                setAppbarVisibility(true)
                 setBottomNavVisibility(false)
             }
 

@@ -9,7 +9,7 @@ import androidx.databinding.DataBindingUtil
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewReviewIntensityBinding
 
-class ReviewIntensityView @JvmOverloads constructor(
+class PurithmReviewIntensityView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
