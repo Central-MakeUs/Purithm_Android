@@ -2,10 +2,13 @@
 <resources>
     <color name="black">#000000</color>
     <color name="black_trans50">#80000000</color>
+    <color name="black_trans40">#66000000</color>
     <color name="black_trans20">#33000000</color>
     <color name="black_trans10">#1A000000</color>
+    <color name="black_trans5">#0D000000</color>
 
     <color name="white">#FFFFFF</color>
+    <color name="white_trans60">#99FFFFFF</color>
     <color name="white_trans50">#80FFFFFF</color>
     <color name="white_trans20">#33FFFFFF</color>
     <color name="white_gradient_end">#F1F3F6</color>
@@ -25,6 +28,10 @@
     <color name="blue_100">#BAC0D6</color>
     <color name="blue_500_trans80">#CC616FAA</color>
     <color name="blue_400_trans80">#CC7F92E5</color>
+    <color name="blue_400_trans40">#667F92E5</color>
+    <color name="blue_400_trans30">#4D7F92E5</color>
+    <color name="blue_400_trans20">#337F92E5</color>
+    <color name="blue_400_trans10">#1A7F92E5</color>
     <color name="blue_gradient_start">#8F9FE2</color>
     <color name="blue_gradient_end">#E0C4F6</color>
 

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:id="@+id/layout_main"
+        android:layout_height="@dimen/size_edit_text_multiple_height"
+        android:background="@drawable/bg_edit_text_default"
+        android:padding="@dimen/size_edit_text_multiple_padding">
+
+        <EditText
+            android:id="@+id/edit_main"
+            style="@style/kr_body_3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/white"
+            android:gravity="start"
+            android:inputType="textMultiLine"
+            android:textColor="@color/grey_500"
+            app:layout_constraintBottom_toTopOf="@id/tv_error_msg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/layout_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="@id/tv_error_msg"
+            app:layout_constraintEnd_toEndOf="@id/tv_error_msg"
+            app:layout_constraintStart_toStartOf="@id/tv_error_msg"
+            app:layout_constraintTop_toTopOf="@id/tv_error_msg">
+
+            <TextView
+                android:id="@+id/tv_text_count"
+                style="@style/kr_body_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue_400" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                style="@style/kr_body_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/grey_300" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_error_msg"
+            style="@style/kr_body_5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

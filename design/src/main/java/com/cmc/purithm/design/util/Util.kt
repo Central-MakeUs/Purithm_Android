@@ -3,6 +3,7 @@ package com.cmc.purithm.design.util
 import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
+import androidx.core.content.res.ResourcesCompat
 
 object Util {
     inline val Int.dp: Int
@@ -14,4 +15,6 @@ object Util {
         get() = TypedValue.applyDimension(
             TypedValue.COMPLEX_UNIT_DIP, this, Resources.getSystem().displayMetrics
         )
+
+    fun Context.getColorResource(id : Int) = ResourcesCompat.getColor(resources, id, null)
 }

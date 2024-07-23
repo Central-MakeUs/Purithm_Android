@@ -20,4 +20,19 @@
 
     <!-- seekbar -->
     <dimen name="size_seekbar_progress_height">6dp</dimen>
+
+    <!-- button -->
+    <dimen name="radius_button_default">12dp</dimen>
+    <dimen name="radius_button_small">10dp</dimen>
+    <dimen name="size_button_stroke">1dp</dimen>
+
+    <!-- edit text -->
+    <dimen name="size_edit_text_multiple_height">196dp</dimen>
+    <dimen name="size_edit_text_single_height">60dp</dimen>
+    <dimen name="size_edit_text_multiple_padding">20dp</dimen>
+    <dimen name="radius_edit_text_background">12dp</dimen>
+
+    <!-- snack bar -->
+    <dimen name="radius_snack_bar">12dp</dimen>
+    <dimen name="size_snack_bar_height">64dp</dimen>
 </resources>

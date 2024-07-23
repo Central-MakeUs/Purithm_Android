@@ -9,7 +9,12 @@
     <string name="content_like_description">찜</string>
     <string name="content_question_description">도움말</string>
 
-    <!-- rating bar -->
+    <!-- seek bar -->
     <string name="content_seekbar_minimum">아쉬워요</string>
     <string name="content_seekbar_maximum">만족해요</string>
+
+    <!-- edit text -->
+    <string name="content_edit_text_multiple_status">/%d (최소 %d자)</string>
+    <string name="content_edit_text_multiple_error">%d자 이상 입력해주세요</string>
+    <string name="content_edit_text_single_status">%d/%d</string>
 </resources>
