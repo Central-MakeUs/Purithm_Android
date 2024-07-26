@@ -6,8 +6,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.cmc.purithm.common.ui.base.BaseFragment
-import com.cmc.purithm.common.ui.base.NavigationAction
+import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.feature.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,10 +31,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             }
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> {
-                                // FIXME : 임시용
-                                (activity as NavigationAction).navigateLogin()
-                            }
+                            SplashState.Initialize -> viewModel.checkFirstRun()
                             else -> {}
                         }
                     }
@@ -61,11 +58,6 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             override fun onPreDraw(): Boolean {
                 // 토큰 검증에 성공했거나, 첫 실행이라면 화면 전환
                 return when(viewModel.state.value){
-                    // FIXME : 테스트용
-                    SplashState.Initialize -> {
-                        content.viewTreeObserver.removeOnPreDrawListener(this)
-                        true
-                    }
                     SplashState.IsFirstRun -> {
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true

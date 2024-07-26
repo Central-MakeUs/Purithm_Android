@@ -12,18 +12,18 @@ import java.lang.reflect.Member
 import javax.inject.Inject
 
 internal class MemberDataStore @Inject constructor(
-    @ApplicationContext private val context : Context
-){
+    @ApplicationContext private val context: Context
+) {
     private val Context.dataStore by preferencesDataStore(name = MEMBER_PREFS)
     private val firstRunDataStore = booleanPreferencesKey(MEMBER_FIRST_RUN)
 
-    suspend fun setFirstRun(){
+    suspend fun setFirstRun(flag: Boolean) {
         context.dataStore.edit {
-            it[firstRunDataStore] = false
+            it[firstRunDataStore] = flag
         }
     }
 
-    suspend fun getFirstRun() : Boolean{
+    suspend fun getFirstRun(): Boolean {
         return context.dataStore.data.first().let {
             it[firstRunDataStore] ?: true
         }

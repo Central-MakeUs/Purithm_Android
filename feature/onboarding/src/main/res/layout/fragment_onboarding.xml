@@ -17,40 +17,44 @@
             android:id="@+id/vp_banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/indicator_onboarding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <TextView
-            android:id="@+id/tv_desc_title"
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator_onboarding"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="40dp"
+            app:ci_animator="@animator/animator_indicator"
+            app:ci_drawable="@drawable/ic_indicator_selected"
+            app:ci_drawable_unselected="@drawable/ic_indicator_unselected"
+            app:ci_gravity="center"
+            app:ci_height="8dp"
+            app:ci_margin="6dp"
+            app:ci_width="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vp_banner" />
 
-        <TextView
-            android:id="@+id/tv_desc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc_title" />
-
         <Button
             android:id="@+id/btn_login"
+            style="@style/kr_body_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginTop="73dp"
             android:layout_marginBottom="40dp"
-            app:clickEvent="@{() -> vm.navigateToLogin()}"
+            android:background="@drawable/shape_button_fill_xl"
+            android:text="@string/content_login_btn"
+            android:textColor="@color/white"
+            app:clickEvent="@{() -> vm.clickLoginButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_desc"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@id/indicator_onboarding"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_goneMarginTop="73dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

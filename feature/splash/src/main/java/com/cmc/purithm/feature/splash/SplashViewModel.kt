@@ -30,9 +30,13 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             runCatching {
                 checkFirstRunUseCase()
-            }.onSuccess {
-                _state.emit(SplashState.IsFirstRun)
-                _sideEffect.emit(SplashSideEffect.NavigateToOnBoarding)
+            }.onSuccess {isFirstRun ->
+                if(isFirstRun){
+                    _state.emit(SplashState.IsFirstRun)
+                    _sideEffect.emit(SplashSideEffect.NavigateToOnBoarding)
+                } else {
+                    checkAccessToken()
+                }
             }.onFailure {
                 _state.emit(SplashState.Error(""))
             }

@@ -8,10 +8,11 @@ internal class MemberRepositoryImpl @Inject constructor(
     private val memberDataStore: MemberDataStore
 ) : MemberRepository {
     override suspend fun getFirstRun(): Boolean {
-        TODO("Not yet implemented")
+        return memberDataStore.getFirstRun()
     }
 
-    override suspend fun setFirstRun() {
-        TODO("Not yet implemented")
+    override suspend fun setFirstRun(flag: Boolean) {
+        return memberDataStore.setFirstRun(flag)
     }
+
 }

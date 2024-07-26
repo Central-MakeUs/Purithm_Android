@@ -3,8 +3,10 @@ package com.cmc.purithm
 
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
@@ -12,9 +14,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
-import com.cmc.purithm.common.ui.base.NavigationAction
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
-import com.cmc.purithm.design.component.appbar.PurithmAppbarType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -109,6 +110,19 @@ class MainActivity : AppCompatActivity(), NavigationAction,
 
     private fun setBottomNavVisibility(isVisible: Boolean) {
         binding?.bnvMain?.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onBackPressed() {
+        when (navHostFragment.navController.currentDestination?.id) {
+            com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
+            com.cmc.purithm.feature.splash.R.id.splashFragment,
+            com.cmc.purithm.feature.login.R.id.loginFragment -> {
+                finish()
+            }
+
+            else -> super.onBackPressed()
+        }
     }
 
     companion object {
