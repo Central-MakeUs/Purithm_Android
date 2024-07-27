@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_term_of_service"
+    app:startDestination="@id/termOfServiceFragment">
+
+    <fragment
+        android:id="@+id/termOfServiceFragment"
+        android:name="com.cmc.purithm.feature.term.ui.TermOfServiceFragment"
+        android:label="TermOfServiceFragment"
+        tools:layout="@layout/fragment_term_of_service">
+        <action
+            android:id="@+id/action_termOfServiceFragment_to_joinCompleteFragment"
+            app:destination="@id/joinCompleteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/joinCompleteFragment"
+        android:name="com.cmc.purithm.feature.term.ui.JoinCompleteFragment"
+        android:label="JoinCompleteFragment"
+        tools:layout="@layout/fragment_join_complete" />
+</navigation>

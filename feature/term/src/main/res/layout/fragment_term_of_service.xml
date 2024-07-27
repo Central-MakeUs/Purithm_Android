@@ -8,15 +8,67 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100"
+        android:paddingHorizontal="@dimen/margin_screen_side">
 
         <TextView
-            android:id="@+id/tv"
+            android:id="@+id/tv_description"
+            style="@style/kr_body_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/shape_white_background"
+            android:padding="20dp"
+            android:text="@string/content_term_of_service"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <CheckBox
+            android:id="@+id/btn_term_of_service_agreement"
+            style="@style/kr_body_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:button="@drawable/selector_ic_checkbox"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/category_term_of_service"
+            android:theme="@style/style_checkbox"
+            app:layout_constraintEnd_toStartOf="@id/btn_term_of_service"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="이용약관!"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_description" />
+
+        <ImageButton
+            android:id="@+id/btn_term_of_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_arrow_right_grey"
+            app:layout_constraintBottom_toBottomOf="@id/btn_term_of_service_agreement"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_term_of_service_agreement"
+            app:layout_constraintTop_toTopOf="@id/btn_term_of_service_agreement" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_join_complete"
+            style="@style/kr_body_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_button_fill_xl"
+            android:gravity="center"
+            android:paddingVertical="18dp"
+            android:text="@string/content_join_complete"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_term_of_service_agreement"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

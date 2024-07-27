@@ -73,7 +73,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                     viewModel.sideEffects.collect { sideEffect ->
                         when(sideEffect){
                             LoginSideEffects.NavigateToTerm -> (activity as NavigationAction).navigateTerm()
-                            LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateMain()
+                            LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateHome()
                         }
                     }
                 }

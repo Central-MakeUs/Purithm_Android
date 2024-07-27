@@ -26,6 +26,7 @@ googleService = "4.4.2"
 firebaseBom = "33.1.1"
 firebaseCrashlytics = "2.9.9"
 splashScreen = "1.0.1"
+navigationCommonKtx = "2.7.7"
 
 [libraries]
 # Plugin
@@ -98,6 +99,7 @@ androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-kt
 
 # SplashScreen
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashScreen"}
+androidx-navigation-common-ktx = { group = "androidx.navigation", name = "navigation-common-ktx", version.ref = "navigationCommonKtx" }
 
 [bundles]
 kotlinx-coroutine = ["kotlin-coroutine-core", "kotlin-coroutine-android"]
@@ -113,3 +115,4 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "jetbrainsKotlinJvm" }
 google-services = { id = "com.google.gms.google-services", version.ref = "googleService" }
 google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebaseCrashlytics" }
+androidx-navigation-safe-args = { id = "androidx.navigation.safeargs", version.ref = "navigation" }

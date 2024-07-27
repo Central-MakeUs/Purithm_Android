@@ -6,7 +6,7 @@
         android:width="@dimen/size_button_stroke"/>
 
     <solid
-        android:color="@color/color_button_blue_transparent"/>
+        android:color="@color/color_button_trans_primary"/>
 
     <corners
         android:radius="@dimen/radius_button_default"/>

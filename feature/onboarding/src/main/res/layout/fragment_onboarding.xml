@@ -46,7 +46,7 @@
 
         <TextView
             android:id="@+id/tv_content"
-            style="@style/kr_body_4"
+            style="@style/kr_body_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
@@ -76,7 +76,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
-            style="@style/kr_body_3"
+            style="@style/kr_body_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"

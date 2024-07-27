@@ -24,6 +24,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 apply("org.jetbrains.kotlin.android")
                 apply("kotlin-parcelize")
                 apply("purithm.hilt")
+                apply("androidx.navigation.safeargs.kotlin")
             }
 
             val properties = Properties()

@@ -6,13 +6,11 @@ import com.cmc.purithm.convention.base.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.getByType
-import org.jetbrains.kotlin.gradle.plugin.mpp.pm20.util.archivesName
-import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.util.Locale
 import java.util.Properties
 
 /**
@@ -30,6 +28,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("com.google.firebase.crashlytics")
                 apply("com.google.gms.google-services")
                 apply("kotlin-parcelize")
+                apply("androidx.navigation.safeargs.kotlin")
                 apply("purithm.hilt")
             }
             // local.properties 정보를 가져오기 위함

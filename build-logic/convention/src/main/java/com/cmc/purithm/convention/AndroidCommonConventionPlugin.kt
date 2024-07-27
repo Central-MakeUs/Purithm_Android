@@ -18,19 +18,25 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
             pluginManager.apply {
                 apply("kotlin-kapt")
                 apply("purithm.library")
+                apply("androidx.navigation.safeargs.kotlin")
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
             dependencies {
+                add("implementation", project(":design"))
+
                 add("implementation", libs.findLibrary("androidx-core").get())
                 add("implementation", libs.findLibrary("androidx-appcompat").get())
                 add("implementation", libs.findLibrary("android-material").get())
 
                 add("implementation", libs.findLibrary("glide-glide").get())
                 add("implementation", libs.findLibrary("glide-compiler").get())
+                
+                add("implementation", libs.findBundle("androidx-navigation").get())
 
                 add("implementation", libs.findBundle("lifecycle").get())
                 add("implementation", libs.findBundle("kotlinx-coroutine").get())
+
             }
         }
     }

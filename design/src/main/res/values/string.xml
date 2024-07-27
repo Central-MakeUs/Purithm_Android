@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="error_common">잘못된 접근입니다.</string>
-
     <!-- appbar -->
+    <string name="title_term_of_service">이용약관</string>
     <string name="content_appbar_registration">등록</string>
     <string name="content_back_description">뒤로가기</string>
     <string name="content_search_description">검색</string>
@@ -17,4 +16,8 @@
     <string name="content_edit_text_multiple_status">/%d (최소 %d자)</string>
     <string name="content_edit_text_multiple_error">%d자 이상 입력해주세요</string>
     <string name="content_edit_text_single_status">/%d</string>
+
+    <!-- common -->
+    <string name="error_common">잘못된 접근입니다.</string>
+    <string name="content_cancel">취소</string>
 </resources>

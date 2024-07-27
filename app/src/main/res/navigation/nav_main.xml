@@ -7,6 +7,7 @@
     <include app:graph="@navigation/nav_splash" />
     <include app:graph="@navigation/nav_login" />
     <include app:graph="@navigation/nav_onboarding" />
+    <include app:graph="@navigation/nav_term_of_service" />
 
     <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
     <action
@@ -16,5 +17,9 @@
     <action
         android:id="@+id/navigate_onboarding"
         app:destination="@id/nav_onboarding" />
+
+    <action
+        android:id="@+id/navigate_term_of_service"
+        app:destination="@id/nav_term_of_service"/>
 
 </navigation>

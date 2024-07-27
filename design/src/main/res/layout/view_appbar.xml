@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_appbar_height"
-        android:background="@color/white">
+        android:background="@color/grey_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layout_appbar"
@@ -30,7 +30,7 @@
                 android:layout_marginStart="@dimen/margin_screen_side"
                 android:background="@color/transparent"
                 android:contentDescription="@string/content_back_description"
-                android:src="@drawable/ic_left"
+                android:src="@drawable/ic_arrow_left"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:textColor="@color/grey_500"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/layout_side"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -54,13 +55,11 @@
                 style="@style/kr_body_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginStart="10dp"
                 android:textColor="@color/grey_500"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/layout_side"
-                app:layout_constraintStart_toEndOf="@id/btn_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Filters" />
 
@@ -122,7 +121,7 @@
 
                 <TextView
                     android:id="@+id/tv_registration"
-                    style="@style/kr_body_2"
+                    style="@style/kr_body_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/content_appbar_registration"

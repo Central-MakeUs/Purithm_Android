@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/tv_rating_minimum"
-            style="@style/kr_body_5"
+            style="@style/kr_body_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/content_seekbar_minimum"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/tv_rating_maximum"
-            style="@style/kr_body_5"
+            style="@style/kr_body_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/content_seekbar_maximum"

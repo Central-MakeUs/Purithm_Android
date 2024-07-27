@@ -16,7 +16,7 @@
 
         <EditText
             android:id="@+id/edit_main"
-            style="@style/kr_body_3"
+            style="@style/kr_body_4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
@@ -41,14 +41,14 @@
 
             <TextView
                 android:id="@+id/tv_text_count"
-                style="@style/kr_body_5"
+                style="@style/kr_body_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue_400" />
 
             <TextView
                 android:id="@+id/tv_status"
-                style="@style/kr_body_5"
+                style="@style/kr_body_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/grey_300" />
@@ -57,7 +57,7 @@
 
         <TextView
             android:id="@+id/tv_error_msg"
-            style="@style/kr_body_5"
+            style="@style/kr_body_6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/red_500"

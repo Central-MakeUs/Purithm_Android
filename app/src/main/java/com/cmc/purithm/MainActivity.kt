@@ -15,7 +15,9 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.databinding.ActivityMainBinding
+import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -27,6 +29,8 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     private val navHostFragment by lazy {
         supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
     }
+
+    private var mCommonDialog : CommonDialogFragment? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,11 +69,13 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     override fun navigateHome() {
-
+        Log.d(TAG, "navigateHome: on")
     }
 
     override fun navigateTerm() {
-
+        with(navHostFragment.navController) {
+            navigate(R.id.navigate_term_of_service)
+        }
     }
 
     override fun onDestroy() {
@@ -89,11 +95,40 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             }
 
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
-                setAppbarVisibility(true)
+                setAppbarVisibility(false)
                 setBottomNavVisibility(false)
             }
 
             com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment -> {
+                setAppbarVisibility(false)
+                setBottomNavVisibility(false)
+            }
+
+            com.cmc.purithm.feature.term.R.id.termOfServiceFragment -> {
+                setAppbarVisibility(true)
+                binding?.viewAppbar?.setAppBar(
+                    type = PurithmAppbar.PurithmAppbarType.KR_BACK,
+                    title = getString(com.cmc.purithm.design.R.string.title_term_of_service),
+                    backClickListener = {
+                        CommonDialogFragment.showDialog(
+                            title = getString(com.cmc.purithm.feature.term.R.string.content_term_of_service_cancel_description),
+                            negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                            negativeClickEvent = {
+                                CommonDialogFragment.dismissDialog()
+                            },
+                            positiveText = getString(com.cmc.purithm.feature.term.R.string.content_term_of_service_cancel),
+                            positiveClickEvent = {
+                                CommonDialogFragment.dismissDialog()
+                                navigateLogin()
+                            },
+                            fragmentManager = supportFragmentManager
+                        )
+                    }
+                )
+                setBottomNavVisibility(false)
+            }
+
+            com.cmc.purithm.feature.term.R.id.joinCompleteFragment -> {
                 setAppbarVisibility(false)
                 setBottomNavVisibility(false)
             }
@@ -120,6 +155,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             else -> super.onBackPressed()
         }
     }
+
 
     companion object {
         private const val TAG = "MainActivity"

@@ -35,4 +35,7 @@
     <!-- snack bar -->
     <dimen name="radius_snack_bar">12dp</dimen>
     <dimen name="size_snack_bar_height">64dp</dimen>
+
+    <!---->
+    <dimen name="radius_dialog_background">16dp</dimen>
 </resources>

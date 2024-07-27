@@ -1,5 +1,6 @@
 package com.cmc.purithm.common.base
 
+import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,9 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.common.dialog.LoadingDialogFragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -26,10 +30,12 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * ViewModel에서 State나 Action을 observe
      * */
     abstract fun initObserving()
+
     /**
      * DataBinding에 필요한 변수 설정
      * */
     abstract fun initBinding()
+
     /**
      * XML이 아닌 코드에서 View를 설정
      * */
@@ -40,7 +46,8 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     private var mToast: Toast? = null
-    private var mSnackBar : Snackbar? = null
+    private var mSnackBar: Snackbar? = null
+    private var mCommonDialog: CommonDialogFragment? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -73,7 +80,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 dismiss
      * */
     protected fun dismissLoadingDialog() {
-        if(mLoadingDialog.isAdded){
+        if (mLoadingDialog.isAdded) {
             mLoadingDialog.dismissAllowingStateLoss()
         }
     }
@@ -82,7 +89,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 show
      * */
     protected fun showLoadingDialog() {
-        if(mLoadingDialog.isHidden){
+        if (mLoadingDialog.isHidden) {
             mLoadingDialog.show(childFragmentManager, LoadingDialogFragment::class.java.simpleName)
         }
     }
@@ -100,14 +107,25 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     /**
+     * 프래그먼트 navigate
+     *
+     * @param direction 다음 프래그먼트로 이동할 Direction
+     * */
+    protected fun navigate(direction: NavDirections) {
+        val controller = findNavController()
+        controller.navigate(direction)
+    }
+
+    /**
      * 스낵바 메시지 출력
      *
      * @param message 스낵바를 생성할 메시지
      * */
     protected fun showSnackBar(message: String) {
         mSnackBar?.dismiss()
-        mSnackBar = Snackbar.make(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT).apply {
-            show()
-        }
+        mSnackBar =
+            Snackbar.make(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT).apply {
+                show()
+            }
     }
 }

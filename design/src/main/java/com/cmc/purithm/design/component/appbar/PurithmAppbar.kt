@@ -25,8 +25,8 @@ class PurithmAppbar @JvmOverloads constructor(
     fun setAppBar(
         type: PurithmAppbarType,
         title: String = "",
-        likeCnt : Int = 0,
-        backClickListener: (() -> Unit),
+        likeCnt: Int = 0,
+        backClickListener: (() -> Unit)? = null,
         searchClickListener: (() -> Unit)? = null,
         likeClickListener: (() -> Unit)? = null,
         questionClickListener: (() -> Unit)? = null,
@@ -35,6 +35,8 @@ class PurithmAppbar @JvmOverloads constructor(
         Log.d(TAG, "setAppBar: start")
         Log.d(TAG, "setAppBar: type = $type")
         Log.d(TAG, "setAppBar: title = $title")
+
+        clearAppbar()
         when (type) {
             PurithmAppbarType.ENG_DEFAULT -> setEngDefaultAppbar(
                 title,
@@ -44,15 +46,16 @@ class PurithmAppbar @JvmOverloads constructor(
             PurithmAppbarType.ENG_LIKE -> setEngLikeAppbar(title, likeCnt, likeClickListener)
             PurithmAppbarType.KR_DEFAULT -> setKrDefaultAppbar(title, questionClickListener)
             PurithmAppbarType.KR_BUTTON -> setKrButtonAppbar(title, registrationClickListener)
+            PurithmAppbarType.KR_BACK -> setKrBackAppbar(title)
         }
         binding.btnBack.setOnClickListener {
-            backClickListener()
+            backClickListener?.invoke()
         }
         Log.d(TAG, "setAppBar: end")
     }
 
-    fun setLikeCnt(cnt : Int) {
-        with(binding.tvLikeCnt){
+    fun setLikeCnt(cnt: Int) {
+        with(binding.tvLikeCnt) {
             visibility = View.VISIBLE
             text = cnt.toString()
         }
@@ -60,24 +63,52 @@ class PurithmAppbar @JvmOverloads constructor(
 
     private fun clearAppbar() {
         with(binding) {
-            tvTitleEn.visibility = View.GONE
-            tvTitleKr.visibility = View.GONE
-
-            btnSearch.visibility = View.GONE
-            btnLike.visibility = View.GONE
-            btnQuestion.visibility = View.GONE
-
-            tvRegistration.visibility = View.GONE
-            tvLikeCnt.visibility = View.GONE
+            with(tvTitleEn) {
+                text = ""
+                visibility = View.GONE
+            }
+            with(tvTitleKr) {
+                text = ""
+                visibility = View.GONE
+            }
+            with(tvRegistration) {
+                text = ""
+                visibility = View.GONE
+            }
+            with(tvLikeCnt) {
+                text = ""
+                visibility = View.GONE
+            }
+            with(btnSearch) {
+                setOnClickListener(null)
+                visibility = View.GONE
+            }
+            with(btnLike) {
+                setOnClickListener(null)
+                visibility = View.GONE
+            }
+            with(btnQuestion) {
+                setOnClickListener(null)
+                visibility = View.GONE
+            }
         }
     }
 
-    private fun setEngDefaultAppbar(
+    private fun setKrBackAppbar(
+        title: String,
+    ) {
+        setAppbarTopMargin(64)
+        with(binding){
+            tvTitleKr.visibility = View.VISIBLE
+            tvTitleKr.text = title
+        }
+    }
+
+    fun setEngDefaultAppbar(
         title: String,
         searchClickListener: (() -> Unit)?,
         likeClickListener: (() -> Unit)?
     ) {
-        clearAppbar()
         setAppbarTopMargin(40)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
@@ -96,10 +127,9 @@ class PurithmAppbar @JvmOverloads constructor(
 
     private fun setEngLikeAppbar(
         title: String,
-        likeCnt : Int,
+        likeCnt: Int,
         likeClickListener: (() -> Unit)?
     ) {
-        clearAppbar()
         setAppbarTopMargin(40)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
@@ -118,7 +148,6 @@ class PurithmAppbar @JvmOverloads constructor(
         title: String,
         questionClickListener: (() -> Unit)?
     ) {
-        clearAppbar()
         setAppbarTopMargin(64)
         with(binding) {
             tvTitleKr.visibility = View.VISIBLE
@@ -135,7 +164,6 @@ class PurithmAppbar @JvmOverloads constructor(
         title: String,
         registrationClickListener: (() -> Unit)?
     ) {
-        clearAppbar()
         setAppbarTopMargin(64)
         with(binding) {
             tvTitleKr.visibility = View.VISIBLE
@@ -162,9 +190,12 @@ class PurithmAppbar @JvmOverloads constructor(
         }
         binding.layoutAppbar.layoutParams = layoutParams
     }
+
+
     enum class PurithmAppbarType {
-        ENG_DEFAULT, ENG_LIKE, KR_DEFAULT, KR_BUTTON
+        ENG_DEFAULT, ENG_LIKE, KR_DEFAULT, KR_BUTTON, KR_BACK
     }
+
     companion object {
         private const val TAG = "PurithmAppbar"
     }

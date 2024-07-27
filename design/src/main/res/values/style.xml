@@ -8,9 +8,25 @@
         <item name="labelVisibilityMode">unlabeled</item>
     </style>
 
-    <!-- seekbar -->
+    <!-- seek bar -->
     <style name="style_seekbar">
         <item name="android:progressDrawable">@color/white</item>
         <item name="android:thumb">@drawable/ic_seekbar_thumb</item>
+    </style>
+
+    <!-- check box -->
+    <style name="style_checkbox" parent="@style/Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:colorControlNormal">@color/grey_200</item>
+        <item name="android:colorControlActivated">@color/blue_400</item>
+        <item name="android:colorControlHighlight">@color/blue_400</item>
+    </style>
+
+    <!-- dialog -->
+    <style name="style_dialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
     </style>
 </resources>
