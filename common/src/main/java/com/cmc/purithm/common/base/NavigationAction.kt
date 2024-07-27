@@ -11,7 +11,6 @@ package com.cmc.purithm.common.base
 interface NavigationAction {
     fun navigateLogin()
     fun navigateOnBoarding()
-    fun navigateMain()
     fun navigateHome()
     fun navigateTerm()
 }

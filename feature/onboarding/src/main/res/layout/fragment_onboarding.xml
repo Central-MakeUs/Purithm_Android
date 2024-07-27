@@ -5,13 +5,22 @@
     <data>
 
         <variable
+            name="title"
+            type="String" />
+
+        <variable
+            name="content"
+            type="String" />
+
+        <variable
             name="vm"
             type="com.cmc.purithm.feature.onboarding.OnBoardingViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_banner"
@@ -20,7 +29,34 @@
             app:layout_constraintBottom_toTopOf="@id/indicator_onboarding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/kr_title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="@{title}"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_banner" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/kr_body_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:text="@{content}"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator_onboarding"
@@ -36,9 +72,9 @@
             app:ci_width="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vp_banner" />
+            app:layout_constraintTop_toBottomOf="@id/tv_content" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
             style="@style/kr_body_3"
             android:layout_width="match_parent"
@@ -47,6 +83,8 @@
             android:layout_marginTop="73dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_fill_xl"
+            android:gravity="center"
+            android:paddingVertical="18dp"
             android:text="@string/content_login_btn"
             android:textColor="@color/white"
             app:clickEvent="@{() -> vm.clickLoginButton()}"

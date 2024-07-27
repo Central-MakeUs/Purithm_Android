@@ -98,6 +98,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     add("implementation", project(":feature:splash"))
                     add("implementation", project(":feature:home"))
                     add("implementation", project(":feature:onboarding"))
+                    add("implementation", project(":feature:term"))
                     add("implementation", project(":common"))
                     add("implementation", project(":design"))
 

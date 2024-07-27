@@ -2,25 +2,31 @@ package com.cmc.purithm.data.remote
 
 import com.cmc.purithm.data.remote.dto.BaseResponse
 import com.cmc.purithm.domain.exception.AuthException
+import com.cmc.purithm.domain.exception.MemberException
 import com.google.gson.Gson
+import okhttp3.ResponseBody
 import retrofit2.HttpException
 
 internal object HandleApi {
     private val gson = Gson()
-    inline fun <T> callApi(
-        mapper: () -> T
+    inline fun <T> BaseResponse<T>.callApi(
+        mapper: (BaseResponse<T>) -> T
     ) = try {
-        mapper.invoke()
+        mapper.invoke(this)
     } catch (e: HttpException) {
         e.printStackTrace()
-        throw createException(e.code())
+        throw createException(e.response()?.errorBody().toString())
     } catch (e: Exception) {
         e.printStackTrace()
-        throw Exception("알 수 없는 에러")
+        throw Exception("알 수 없는 에러가 발생했습니다.")
     }
 
-    fun createException(code: Int) = when (code) {
-        401 -> AuthException.InvalidTokenException("토큰이 유효하지 않습니다")
-        else -> Exception("알 수 없는 에러")
+    // 앱에서 사용되는 Exception
+    private fun createException(errorBody: String?) : Exception {
+        val errorResponse = gson.fromJson(errorBody, BaseResponse::class.java)
+        return when(errorResponse.code){
+            ApiCode.AUTHORIZATION_FAIL -> AuthException.InvalidTokenException(errorResponse.message)
+            else -> Exception("알 수 없는 에러가 발생했습니다.")
+        }
     }
 }

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
-            name="data"
-            type="com.cmc.purithm.feature.onboarding.banner.OnBoardingBannerUiModel" />
+            name="imgRes"
+            type="int" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,38 +18,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scaleType="fitCenter"
-            app:imageRes="@{data.bannerImgRes}"
+            app:imageRes="@{imgRes}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:background="@drawable/bg_onboarding_1" />
-
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/kr_title_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@{data.title}"
-            android:textColor="@color/grey_500"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_banner"
-            tools:text="다양한 감성 필터" />
-
-        <TextView
-            android:id="@+id/tv_content"
-            style="@style/kr_body_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@{data.content}"
-            android:textColor="@color/grey_500"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title"
-            tools:text="색감, 장소, 시간 등 다양한 상황에\n어울리는 필터를 찾을 수 있어요." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

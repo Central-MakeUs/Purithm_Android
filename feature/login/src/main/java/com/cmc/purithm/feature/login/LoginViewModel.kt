@@ -2,6 +2,8 @@ package com.cmc.purithm.feature.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.cmc.purithm.domain.exception.AuthException
+import com.cmc.purithm.domain.exception.MemberException
 import com.cmc.purithm.domain.usecase.auth.LoginForKakaoUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -11,6 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.lang.reflect.Member
 import javax.inject.Inject
 
 @HiltViewModel
@@ -33,8 +36,11 @@ class LoginViewModel @Inject constructor(
                 loginForKakaoUseCase(accessToken)
             }.onSuccess {
                 _state.emit(LoginState.Success)
-            }.onFailure {
-                _state.emit(LoginState.Error(it.message))
+            }.onFailure { exception ->
+                when(exception) {
+                    is MemberException.NeedTermOfServiceException -> _sideEffects.emit(LoginSideEffects.NavigateToTerm)
+                    else -> _state.emit(LoginState.Error(exception.message))
+                }
             }
         }
     }

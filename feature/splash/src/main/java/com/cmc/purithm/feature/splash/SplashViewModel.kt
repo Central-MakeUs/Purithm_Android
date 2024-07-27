@@ -49,10 +49,9 @@ class SplashViewModel @Inject constructor(
                 checkAccessTokenUseCase()
             }.onSuccess {
                 _state.emit(SplashState.Success)
-                _sideEffect.emit(SplashSideEffect.NavigateToMain)
+                _sideEffect.emit(SplashSideEffect.NavigateToHome)
             }.onFailure { exception ->
                 when(exception){
-                    is AuthException.ExpireTokenException,
                     is AuthException.InvalidTokenException -> {
                         _state.emit(SplashState.Success)
                         _sideEffect.emit(SplashSideEffect.NavigateToLogin)
@@ -69,7 +68,7 @@ class SplashViewModel @Inject constructor(
 sealed interface SplashSideEffect {
     data object NavigateToLogin : SplashSideEffect
     data object NavigateToOnBoarding : SplashSideEffect
-    data object NavigateToMain : SplashSideEffect
+    data object NavigateToHome : SplashSideEffect
 }
 
 sealed interface SplashState {

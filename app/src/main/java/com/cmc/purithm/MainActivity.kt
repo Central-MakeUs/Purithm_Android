@@ -64,10 +64,6 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateMain() {
-
-    }
-
     override fun navigateHome() {
 
     }

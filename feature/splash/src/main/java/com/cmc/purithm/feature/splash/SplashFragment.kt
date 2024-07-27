@@ -40,7 +40,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                     viewModel.sideEffect.collect { action ->
                         when(action){
                             SplashSideEffect.NavigateToLogin -> (activity as NavigationAction).navigateLogin()
-                            SplashSideEffect.NavigateToMain -> (activity as NavigationAction).navigateMain()
+                            SplashSideEffect.NavigateToHome -> (activity as NavigationAction).navigateHome()
                             SplashSideEffect.NavigateToOnBoarding -> (activity as NavigationAction).navigateOnBoarding()
                         }
                     }

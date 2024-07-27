@@ -1,9 +1,8 @@
 package com.cmc.purithm.data.di
 
 import com.cmc.purithm.data.local.datasource.AuthDataStore
-import com.cmc.purithm.data.remote.ApiSetting
+import com.cmc.purithm.data.remote.ApiConfig
 import com.cmc.purithm.data.remote.interceptor.AddTokenInterceptor
-import com.cmc.purithm.data.remote.interceptor.RefreshTokenInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +24,7 @@ internal object NetworkModule {
     fun provideOsdsRetrofit(
         @Named("authInterceptor") interceptor : OkHttpClient
     ) : Retrofit = Retrofit.Builder()
-        .baseUrl(ApiSetting.BASE_URL)
+        .baseUrl(ApiConfig.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(interceptor)
         .build()

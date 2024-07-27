@@ -1,7 +1,7 @@
 package com.cmc.purithm.data.remote.interceptor
 
 import com.cmc.purithm.data.local.datasource.AuthDataStore
-import com.cmc.purithm.data.remote.ApiSetting
+import com.cmc.purithm.data.remote.ApiConfig
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -13,12 +13,12 @@ internal class AddTokenInterceptor @Inject constructor(
     override fun intercept(chain: Interceptor.Chain): Response {
         val builder = chain.request().newBuilder()
 
-        if(ApiSetting.ACCESS_TOKEN.isEmpty()){
+        if(ApiConfig.ACCESS_TOKEN.isEmpty()){
             runBlocking {
-                ApiSetting.ACCESS_TOKEN = authDataStore.getAccessToken()
+                ApiConfig.ACCESS_TOKEN = authDataStore.getAccessToken()
             }
         }
-        builder.addHeader("Authorization", "Bearer ${ApiSetting.ACCESS_TOKEN}")
+        builder.addHeader("Authorization", "Bearer ${ApiConfig.ACCESS_TOKEN}")
         return chain.proceed(builder.build())
     }
 }
