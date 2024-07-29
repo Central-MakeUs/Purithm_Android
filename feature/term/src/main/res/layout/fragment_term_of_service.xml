@@ -12,6 +12,14 @@
         android:background="@color/grey_100"
         android:paddingHorizontal="@dimen/margin_screen_side">
 
+        <com.cmc.purithm.design.component.appbar.PurithmAppbar
+            android:id="@+id/view_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
         <TextView
             android:id="@+id/tv_description"
             style="@style/kr_body_6"
@@ -24,7 +32,7 @@
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/view_appbar" />
 
         <CheckBox
             android:id="@+id/btn_term_of_service_agreement"
