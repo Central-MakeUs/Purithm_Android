@@ -52,7 +52,7 @@ class SplashViewModel @Inject constructor(
                 _sideEffect.emit(SplashSideEffect.NavigateToHome)
             }.onFailure { exception ->
                 when(exception){
-                    is AuthException.InvalidTokenException -> {
+                    is AuthException.InvalidTokenException, is AuthException.ExpireTokenException -> {
                         _state.emit(SplashState.Success)
                         _sideEffect.emit(SplashSideEffect.NavigateToLogin)
                     }

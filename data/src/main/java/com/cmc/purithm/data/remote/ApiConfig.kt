@@ -6,7 +6,7 @@ internal object ApiConfig {
 }
 
 internal object ApiCode {
-    const val SUCCESS = "P100"
-    const val NEED_TERM_OF_SERVICE = "P101"
-    const val AUTHORIZATION_FAIL = "P401"
+    const val NEED_TERM_OF_SERVICE = 20001
+    const val TOKEN_VALIDATE_FAIL = 40100
+    const val TOKEN_EXPIRE = 40101
 }

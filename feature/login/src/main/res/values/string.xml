@@ -1,14 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_splash">감성사진을 위한 필터 커머스, 퓨리즘</string>
-
-    <string name="error_kakao_access_denied_msg">접근 거부(동의 취소)</string>
-    <string name="error_kakao_invalid_client_msg">유효하지 않는 앱</string>
-    <string name="error_kakao_invalid_grant_msg">인증 수단이 유효하지 않음</string>
-    <string name="error_kakao_invalid_request_msg">유효하지 않는 요청</string>
-    <string name="error_kakao_mis_configured_msg">유효하지 않는 해시키</string>
-    <string name="error_kakao_server_error_msg">서버 내부 에러</string>
-    <string name="error_kakao_unauthorized_msg">앱에 권한 요청이 없음</string>
-    <string name="error_kakao_default_msg">카카오톡의 미로그인</string>
-    <string name="error_kakao_not_installed">카카오톡을 설치해주세요</string>
+    <string name="error_kakao_default_msg">로그인 중 오류가 발생했습니다.</string>
 </resources>
