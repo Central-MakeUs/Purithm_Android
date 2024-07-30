@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_premium_filter">Premium Filter</string>
+    <string name="content_premium_plus_filter">Premium+ Filter</string>
+    <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
+    <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
+
+    <string name="category_filter_popular">인기순</string>
+    <string name="category_filter_new">최신순</string>
+    <string name="category_filter_review_high">퓨어지수 높은순</string>
+
+    <string-array name="category_chip">
+        <item>보라빛</item>
+        <item>몽환적인</item>
+        <item>뉴진스</item>
+    </string-array>
+</resources>

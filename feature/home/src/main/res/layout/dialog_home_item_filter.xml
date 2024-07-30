@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_bottom_sheet_dialog">
+
+        <ImageView
+            android:id="@+id/img_top"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_bottom_sheet_dialog_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_filter_popular"
+            style="@style/kr_body_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginTop="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="18dp"
+            android:text="@string/category_filter_popular"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_top" />
+
+        <TextView
+            android:id="@+id/tv_filter_new"
+            style="@style/kr_body_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:paddingTop="20dp"
+            android:paddingBottom="18dp"
+            android:text="@string/category_filter_new"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_popular" />
+
+        <TextView
+            android:id="@+id/tv_filter_review_high"
+            style="@style/kr_body_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginBottom="80dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="18dp"
+            android:text="@string/category_filter_review_high"
+            android:textColor="@color/grey_300"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_new" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -16,9 +16,9 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             pluginManager.apply {
-                apply("kotlin-kapt")
                 apply("purithm.library")
                 apply("androidx.navigation.safeargs.kotlin")
+                apply("kotlin-kapt")
             }
 
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")

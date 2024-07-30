@@ -19,11 +19,11 @@ internal class RefreshTokenInterceptor @Inject constructor(
         if(response.code == 401){
             runBlocking {
                 kotlin.runCatching {
-                    // TODO : 토큰 갱신 API 호출
+
                 }.onSuccess {
-                    // TODO : 성공 시 ApiSetting과 dataStore 업데이트
+
                 }.onFailure {
-                    // TODO : 실패 시 빈값으로 세팅
+
                 }
             }
             response.close()

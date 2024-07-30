@@ -20,4 +20,5 @@
     <!-- common -->
     <string name="error_common">잘못된 접근입니다.</string>
     <string name="content_cancel">취소</string>
+    <string name="content_confirm">확인</string>
 </resources>

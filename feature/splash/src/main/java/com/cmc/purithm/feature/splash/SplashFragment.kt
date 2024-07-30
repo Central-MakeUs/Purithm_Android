@@ -27,9 +27,14 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                         when (state) {
                             is SplashState.Error -> {
                                 dismissLoadingDialog()
-                                // TODO : 오류 Dialog 추가해야함
-                                // FIXME : 401 에러 해결 시 navigate 삭제
-                                (activity as NavigationAction).navigateLogin()
+                                CommonDialogFragment.showDialog(
+                                    title = getString(com.cmc.purithm.design.R.string.error_common),
+                                    positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                    positiveClickEvent = {
+                                        requireActivity().finish()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
                             }
 
                             SplashState.Loading -> showLoadingDialog()
@@ -61,12 +66,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             override fun onPreDraw(): Boolean {
                 // 토큰 검증에 성공했거나, 첫 실행이라면 화면 전환
                 return when (viewModel.state.value) {
-                    // FIXME : 오류 상태 삭제(401 에러 해결 시)
-                    is SplashState.Error, SplashState.Success, SplashState.IsFirstRun -> {
+                    SplashState.Success, SplashState.IsFirstRun -> {
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
                     }
-
                     else -> false
                 }
             }

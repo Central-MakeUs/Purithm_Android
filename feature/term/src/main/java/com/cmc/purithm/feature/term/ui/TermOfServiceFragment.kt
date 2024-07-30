@@ -10,7 +10,6 @@ import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.term.R
 import com.cmc.purithm.feature.term.databinding.FragmentTermOfServiceBinding
 
-// TODO : 서버연동 필요
 class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_term_of_service
