@@ -9,7 +9,6 @@ import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
-import com.kakao.sdk.common.model.AuthErrorCause
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -68,7 +67,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
                         when (sideEffect) {
-                            LoginSideEffects.NavigateToTerm -> (activity as NavigationAction).navigateTerm()
+                            LoginSideEffects.NavigateToTerm -> (activity as NavigationAction).navigateTermOfSerivce()
                             LoginSideEffects.NavigateToMain -> (activity as NavigationAction).navigateHome()
                         }
                     }

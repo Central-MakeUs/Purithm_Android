@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.di
 
 import com.cmc.purithm.data.remote.service.AuthService
+import com.cmc.purithm.data.remote.service.MemberService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,5 +19,13 @@ internal object ServiceModule {
         @Named("purithm") retrofit: Retrofit
     ): AuthService {
         return retrofit.create(AuthService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMemberService(
+        @Named("purithm") retrofit: Retrofit
+    ) : MemberService {
+        return retrofit.create(MemberService::class.java)
     }
 }

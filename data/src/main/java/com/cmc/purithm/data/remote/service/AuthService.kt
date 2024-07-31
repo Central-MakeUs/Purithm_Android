@@ -10,5 +10,5 @@ internal interface AuthService {
     suspend fun joinKakao() : BaseResponse<String>
 
     @GET("api")
-    suspend fun checkAccessToken() : BaseResponse<Boolean>
+    suspend fun checkAccessToken() : BaseResponse<Unit?>
 }

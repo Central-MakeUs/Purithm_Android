@@ -12,5 +12,5 @@ interface NavigationAction {
     fun navigateLogin()
     fun navigateOnBoarding()
     fun navigateHome()
-    fun navigateTerm()
+    fun navigateTermOfSerivce()
 }

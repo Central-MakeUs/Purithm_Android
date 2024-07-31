@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         Log.d(TAG, "navigateHome: on")
     }
 
-    override fun navigateTerm() {
+    override fun navigateTermOfSerivce() {
         with(navHostFragment.navController) {
             navigate(R.id.navigate_term_of_service)
         }

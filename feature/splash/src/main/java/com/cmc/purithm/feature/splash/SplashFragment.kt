@@ -50,6 +50,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             SplashSideEffect.NavigateToLogin -> (activity as NavigationAction).navigateLogin()
                             SplashSideEffect.NavigateToHome -> (activity as NavigationAction).navigateHome()
                             SplashSideEffect.NavigateToOnBoarding -> (activity as NavigationAction).navigateOnBoarding()
+                            SplashSideEffect.NavigateToTermOfService -> (activity as NavigationAction).navigateTermOfSerivce()
                         }
                     }
                 }

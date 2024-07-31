@@ -1,5 +1,6 @@
 package com.cmc.purithm.data.remote.interceptor
 
+import android.util.Log
 import com.cmc.purithm.data.local.datasource.AuthDataStore
 import com.cmc.purithm.data.remote.ApiConfig
 import kotlinx.coroutines.runBlocking
@@ -15,10 +16,17 @@ internal class AddTokenInterceptor @Inject constructor(
 
         if(ApiConfig.ACCESS_TOKEN.isEmpty()){
             runBlocking {
-                ApiConfig.ACCESS_TOKEN = authDataStore.getAccessToken()
+                val accessToken = authDataStore.getAccessToken()
+                Log.d(TAG, "intercept: accessToken is empty in ApiConfig, setting value = $accessToken")
+                ApiConfig.ACCESS_TOKEN = accessToken
             }
         }
         builder.addHeader("Authorization", "Bearer ${ApiConfig.ACCESS_TOKEN}")
+        Log.d(TAG, "intercept: Header = Bearer ${ApiConfig.ACCESS_TOKEN}")
         return chain.proceed(builder.build())
+    }
+
+    companion object {
+        private const val TAG = "AddTokenInterceptor"
     }
 }

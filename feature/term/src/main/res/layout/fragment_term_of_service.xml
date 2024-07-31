@@ -4,27 +4,30 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.term.viewmodel.TermOfServiceViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_100"
-        android:paddingHorizontal="@dimen/margin_screen_side">
+        android:background="@color/grey_100">
 
         <com.cmc.purithm.design.component.appbar.PurithmAppbar
             android:id="@+id/view_appbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_description"
             style="@style/kr_body_6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_white_background"
             android:padding="20dp"
@@ -39,6 +42,7 @@
             style="@style/kr_body_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="30dp"
             android:button="@drawable/selector_ic_checkbox"
             android:gravity="center"
@@ -54,6 +58,7 @@
             android:id="@+id/btn_term_of_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_screen_side"
             android:background="@color/transparent"
             android:src="@drawable/ic_arrow_right_grey"
             app:layout_constraintBottom_toBottomOf="@id/btn_term_of_service_agreement"
@@ -66,12 +71,15 @@
             style="@style/kr_body_3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_fill_xl"
+            android:enabled="false"
             android:gravity="center"
             android:paddingVertical="18dp"
             android:text="@string/content_join_complete"
             android:textColor="@color/white"
+            app:clickEvent="@{() -> vm.clickAgreeToTermsOfService()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

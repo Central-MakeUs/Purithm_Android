@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
+import com.cmc.purithm.data.remote.ApiConfig
 import kotlinx.coroutines.flow.first
 import javax.inject.Inject
 
@@ -21,6 +22,8 @@ internal class AuthDataStore @Inject constructor(
     }
 
     suspend fun setAccessToken(accessToken : String) {
+        // FIXME : 토큰 저장은 단일로 변경해야함. 서버 안바빠지면 요청
+        ApiConfig.ACCESS_TOKEN = accessToken
         context.dataStore.edit {
             it[accessTokenPrefs] = accessToken
         }

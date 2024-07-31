@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmc.purithm.domain.exception.AuthException
 import com.cmc.purithm.domain.exception.MemberException
+import com.cmc.purithm.domain.usecase.auth.CheckAccessTokenUseCase
 import com.cmc.purithm.domain.usecase.auth.LoginForKakaoUseCase
+import com.cmc.purithm.domain.usecase.auth.SetAccessTokenUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +20,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginForKakaoUseCase: LoginForKakaoUseCase
+    private val loginForKakaoUseCase: LoginForKakaoUseCase,
+    private val checkAccessTokenUseCase: CheckAccessTokenUseCase,
+    private val setAccessTokenUseCase: SetAccessTokenUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<LoginState> = MutableStateFlow(LoginState.Initial)
     val state: StateFlow<LoginState> = _state.asStateFlow()
@@ -34,13 +38,10 @@ class LoginViewModel @Inject constructor(
             _state.emit(LoginState.Loading)
             kotlin.runCatching {
                 loginForKakaoUseCase(accessToken)
-            }.onSuccess {
-                _state.emit(LoginState.Success)
+            }.onSuccess { serviceAccessToken ->
+                checkAccessToken(serviceAccessToken)
             }.onFailure { exception ->
-                when(exception) {
-                    is MemberException.NeedTermOfServiceException -> _sideEffects.emit(LoginSideEffects.NavigateToTerm)
-                    else -> _state.emit(LoginState.Error(exception.message))
-                }
+                _state.emit(LoginState.Error(exception.message))
             }
         }
     }
@@ -48,6 +49,28 @@ class LoginViewModel @Inject constructor(
     fun startLoginKakao() {
         viewModelScope.launch {
             _action.emit(LoginAction.JoinKakao)
+        }
+    }
+
+    private suspend fun checkAccessToken(serviceAccessToken: String) {
+        // FIXME : kakao 로그인 시, 토큰을 헤더에 넣어 다시 serviceAccessToken으로 덮어야함
+        setAccessTokenUseCase(serviceAccessToken)
+        kotlin.runCatching {
+            // 인메모리에 저장된 토큰 유효성 검사
+            checkAccessTokenUseCase()
+        }.onSuccess {
+            _state.emit(LoginState.Success)
+            _sideEffects.emit(LoginSideEffects.NavigateToMain)
+        }.onFailure {
+            when (it) {
+                is MemberException.NeedTermOfServiceException -> {
+                    _state.emit(LoginState.Success)
+                    _sideEffects.emit(LoginSideEffects.NavigateToTerm)
+                }
+                else -> {
+                    _state.emit(LoginState.Error(it.message))
+                }
+            }
         }
     }
 }
@@ -72,7 +95,7 @@ sealed interface LoginAction {
  * */
 sealed interface LoginState {
     data object Initial : LoginState
-    data class Error(val message : String?) : LoginState
+    data class Error(val message: String?) : LoginState
     data object Loading : LoginState
     data object Success : LoginState
 }

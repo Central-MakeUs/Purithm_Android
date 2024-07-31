@@ -3,20 +3,78 @@ package com.cmc.purithm.feature.term.ui
 import android.content.Intent
 import android.net.Uri
 import androidx.activity.addCallback
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.term.R
 import com.cmc.purithm.feature.term.databinding.FragmentTermOfServiceBinding
+import com.cmc.purithm.feature.term.viewmodel.TermOfServiceViewModel
+import com.cmc.purithm.feature.term.viewmodel.TermsOfServiceAction
+import com.cmc.purithm.feature.term.viewmodel.TermsOfServiceSideEffects
+import com.cmc.purithm.feature.term.viewmodel.TermsOfServiceState
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_term_of_service
 
-    override fun initObserving() {}
+    private val viewModel: TermOfServiceViewModel by viewModels()
 
-    override fun initBinding() {}
+    override fun initObserving() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.action.collect {
+                        when (it) {
+                            TermsOfServiceAction.RequestAgreeToTermsOfService -> {
+                                viewModel.requestAgreeToTermsOfService()
+                            }
+                        }
+                    }
+                }
+                launch {
+                    viewModel.state.collect {
+                        when (it) {
+                            is TermsOfServiceState.Error -> {
+                                dismissLoadingDialog()
+                                CommonDialogFragment.showDialog(
+                                    title = it.message,
+                                    positiveClickEvent = {
+                                        CommonDialogFragment.dismissDialog()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
+                            }
+
+                            TermsOfServiceState.Loading -> showLoadingDialog()
+                            TermsOfServiceState.Success -> dismissLoadingDialog()
+                            else -> {}
+                        }
+                    }
+                }
+                launch {
+                    viewModel.sideEffect.collect {
+                        when (it) {
+                            TermsOfServiceSideEffects.NavigateJoinComplete -> navigate(
+                                TermOfServiceFragmentDirections.actionTermOfServiceFragmentToJoinCompleteFragment()
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    override fun initBinding() {
+        binding.vm = viewModel
+    }
 
     override fun initView() {
         with(binding) {
@@ -26,15 +84,12 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
             btnTermOfServiceAgreement.setOnCheckedChangeListener { _, isChecked ->
                 btnJoinComplete.isEnabled = isChecked
             }
-            btnJoinComplete.setOnClickListener {
-                navigate(TermOfServiceFragmentDirections.actionTermOfServiceFragmentToJoinCompleteFragment())
-            }
         }
         setBackButtonEvent()
         initAppbar()
     }
 
-    private fun setBackButtonEvent(){
+    private fun setBackButtonEvent() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             CommonDialogFragment.showDialog(
                 title = getString(R.string.content_term_of_service_cancel_description),
@@ -59,7 +114,7 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
         startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(TERM_OF_SERVICE_URL)))
     }
 
-    private fun initAppbar(){
+    private fun initAppbar() {
         binding.viewAppbar.setAppBar(
             type = PurithmAppbar.PurithmAppbarType.KR_BACK,
             title = getString(com.cmc.purithm.design.R.string.title_term_of_service),

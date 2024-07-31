@@ -2,5 +2,6 @@ package com.cmc.purithm.domain.repository
 
 interface AuthRepository {
     suspend fun joinMember(accessToken : String) : String
-    suspend fun checkAccessToken() : Boolean
+    suspend fun setAccessToken(accessToken : String)
+    suspend fun checkAccessToken()
 }

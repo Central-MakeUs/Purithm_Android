@@ -3,6 +3,7 @@ package com.cmc.purithm.feature.splash
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cmc.purithm.domain.exception.AuthException
+import com.cmc.purithm.domain.exception.MemberException
 import com.cmc.purithm.domain.usecase.auth.CheckAccessTokenUseCase
 import com.cmc.purithm.domain.usecase.member.CheckFirstRunUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.lang.reflect.Member
 import javax.inject.Inject
 
 @HiltViewModel
@@ -56,6 +58,10 @@ class SplashViewModel @Inject constructor(
                         _state.emit(SplashState.Success)
                         _sideEffect.emit(SplashSideEffect.NavigateToLogin)
                     }
+                    is MemberException.NeedTermOfServiceException -> {
+                        _state.emit(SplashState.Success)
+                        _sideEffect.emit(SplashSideEffect.NavigateToTermOfService)
+                    }
                     else -> {
                         _state.emit(SplashState.Error(exception.message.toString()))
                     }
@@ -66,6 +72,7 @@ class SplashViewModel @Inject constructor(
 }
 
 sealed interface SplashSideEffect {
+    data object NavigateToTermOfService : SplashSideEffect
     data object NavigateToLogin : SplashSideEffect
     data object NavigateToOnBoarding : SplashSideEffect
     data object NavigateToHome : SplashSideEffect
