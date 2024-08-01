@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_review"
+    app:startDestination="@id/reviewFragment">
+
+
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.cmc.purithm.feature.review.ui.ReviewFragment"
+        android:label="ReviewFragment"
+        tools:layout="@layout/fragment_review" />
+    <fragment
+        android:id="@+id/reviewWriteFragment"
+        android:name="com.cmc.purithm.feature.review.ui.ReviewWriteFragment"
+        android:label="ReviewWriteFragment"
+        tools:layout="@layout/fragment_review_write" />
+</navigation>

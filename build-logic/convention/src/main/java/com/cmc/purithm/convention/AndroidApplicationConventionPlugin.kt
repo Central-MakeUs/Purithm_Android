@@ -81,13 +81,19 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                         isMinifyEnabled = false
                         isDebuggable = false
                         signingConfig = signingConfigs.getByName("release")
-                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                        proguardFiles(
+                            getDefaultProguardFile("proguard-android-optimize.txt"),
+                            "proguard-rules.pro"
+                        )
                     }
 
                     debug {
                         isMinifyEnabled = false
                         isDebuggable = true
-                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                        proguardFiles(
+                            getDefaultProguardFile("proguard-android-optimize.txt"),
+                            "proguard-rules.pro"
+                        )
                     }
                 }
 
@@ -99,7 +105,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     add("implementation", project(":feature:splash"))
                     add("implementation", project(":feature:home"))
                     add("implementation", project(":feature:onboarding"))
-                    add("implementation", project(":feature:term"))
+                    add("implementation", project(":feature:feed"))
+                    add("implementation", project(":feature:filter"))
+                    add("implementation", project(":feature:mypage"))
+                    add("implementation", project(":feature:photographer"))
+                    add("implementation", project(":feature:review"))
                     add("implementation", project(":common"))
                     add("implementation", project(":design"))
 

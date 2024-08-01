@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_mypage"
+    app:startDestination="@id/myAccountFragment">
+
+    <fragment
+        android:id="@+id/myAccountFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.MyAccountFragment"
+        android:label="MyAccountFragment"
+        tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/myFavoriteFilterFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.MyFavoriteFilterFragment"
+        android:label="MyFavoriteFilterFragment"
+        tools:layout="@layout/fragment_favorite_filter" />
+    <fragment
+        android:id="@+id/myFilterHistoryFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.MyFilterHistoryFragment"
+        android:label="MyFilterHistoryFragment"
+        tools:layout="@layout/fragment_filter_history" />
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.MyProfileFragment"
+        android:label="MyProfileFragment"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/myReviewHistoryFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.MyReviewHistoryFragment"
+        android:label="MyReviewHistoryFragment"
+        tools:layout="@layout/fragment_review_history" />
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" />
+</navigation>

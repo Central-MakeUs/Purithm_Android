@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_filter"
+    app:startDestination="@id/filterDetailFragment">
+
+
+    <fragment
+        android:id="@+id/filterDetailFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterDetailFragment"
+        android:label="FilterDetailFragment"
+        tools:layout="@layout/fragment_filter_detail" />
+    <fragment
+        android:id="@+id/filterFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterFragment"
+        android:label="FilterFragment"
+        tools:layout="@layout/fragment_filter" />
+    <fragment
+        android:id="@+id/filterLoadingFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterLoadingFragment"
+        android:label="FilterLoadingFragment"
+        tools:layout="@layout/fragment_filter_loading" />
+    <fragment
+        android:id="@+id/filterValueFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterValueFragment"
+        android:label="FilterValueFragment"
+        tools:layout="@layout/fragment_filter_value" />
+</navigation>

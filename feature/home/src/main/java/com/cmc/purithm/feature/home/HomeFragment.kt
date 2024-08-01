@@ -9,6 +9,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(){
     override val layoutId: Int
         get() = R.layout.fragment_home
+
     override fun initObserving() {
 
     }
