@@ -44,8 +44,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 defaultConfig {
                     applicationId = "com.cmc.purithm"
-                    versionCode = 3
-                    versionName = "1.0.0.3"
+                    versionCode = 4
+                    versionName = "1.0.0.4"
 
                     setProperty("archivesBaseName", "purithm_v$versionName(${LocalDate.now()})")
 
@@ -76,8 +76,9 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 }
 
                 buildTypes {
+                    // FIXME : 실 배포는 난독화 추가
                     release {
-                        isMinifyEnabled = true
+                        isMinifyEnabled = false
                         isDebuggable = false
                         signingConfig = signingConfigs.getByName("release")
                         proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
