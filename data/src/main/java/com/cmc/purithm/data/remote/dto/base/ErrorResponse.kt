@@ -1,4 +1,4 @@
-package com.cmc.purithm.data.remote.dto
+package com.cmc.purithm.data.remote.dto.base
 
 import com.google.gson.annotations.SerializedName
 

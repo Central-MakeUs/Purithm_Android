@@ -1,8 +1,8 @@
-package com.cmc.purithm.data.remote.dto
+package com.cmc.purithm.data.remote.dto.base
 
 import com.google.gson.annotations.SerializedName
 
-open class BaseResponse<T>(
+data class BaseResponse<T>(
     @SerializedName("code")
     val code: Int,
     @SerializedName("message")

@@ -19,7 +19,6 @@ internal class AuthRepositoryImpl @Inject constructor(
         * Response에서 토큰이 정상적으로 들어온다면 업데이트 하는 방식으로 변경
         * */
         ApiConfig.ACCESS_TOKEN = accessToken
-        Log.d(TAG, "joinMember: token = $accessToken")
         return HandleApi.callApi { authService.joinKakao().toDomain() }
     }
 

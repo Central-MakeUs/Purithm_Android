@@ -1,7 +1,7 @@
 package com.cmc.purithm.data.remote
 
 import android.util.Log
-import com.cmc.purithm.data.remote.dto.ErrorResponse
+import com.cmc.purithm.data.remote.dto.base.ErrorResponse
 import com.cmc.purithm.domain.exception.AuthException
 import com.cmc.purithm.domain.exception.MemberException
 import com.google.gson.Gson
