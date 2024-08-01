@@ -11,7 +11,12 @@ import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.feature.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
@@ -67,10 +72,20 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
             override fun onPreDraw(): Boolean {
                 // 토큰 검증에 성공했거나, 첫 실행이라면 화면 전환
                 return when (viewModel.state.value) {
-                    SplashState.Success, SplashState.IsFirstRun -> {
+                    SplashState.IsFirstRun -> {
+                        // 첫 실행은 너무 빠르게 작동하여 0.5초 딜레이
+                        runBlocking {
+                            delay(500)
+                        }
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
                     }
+
+                    SplashState.Success -> {
+                        content.viewTreeObserver.removeOnPreDrawListener(this)
+                        true
+                    }
+
                     else -> false
                 }
             }
