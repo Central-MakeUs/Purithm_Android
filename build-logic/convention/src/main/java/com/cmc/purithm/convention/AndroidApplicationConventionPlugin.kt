@@ -30,6 +30,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("kotlin-parcelize")
                 apply("androidx.navigation.safeargs.kotlin")
                 apply("purithm.hilt")
+                apply("kotlin-kapt")
             }
             // local.properties 정보를 가져오기 위함
             val properties = Properties()
@@ -43,8 +44,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 defaultConfig {
                     applicationId = "com.cmc.purithm"
-                    versionCode = 1
-                    versionName = "1.0.0"
+                    versionCode = 3
+                    versionName = "1.0.0.3"
 
                     setProperty("archivesBaseName", "purithm_v$versionName(${LocalDate.now()})")
 

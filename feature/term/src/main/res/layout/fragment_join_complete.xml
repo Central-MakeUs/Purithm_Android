@@ -12,11 +12,15 @@
         android:layout_height="match_parent"
         android:background="@color/grey_100">
 
-        <ImageView
+        <TextView
             android:id="@+id/img_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:textColor="@color/grey_500"
             android:scaleType="centerCrop"
+            android:text="여기는 그래픽이 들어갑니다"
+            app:layout_constraintDimensionRatio="4.5:5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +40,10 @@
         <TextView
             android:id="@+id/tv_content"
             style="@style/kr_title_1"
-            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:gravity="center"
             android:text="@string/content_join_complete_description"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"

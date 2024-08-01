@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -69,7 +70,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     override fun navigateHome() {
-        Log.d(TAG, "navigateHome: on")
+        Toast.makeText(this, "로그인 성공, 홈화면은 나중에", Toast.LENGTH_SHORT).show()
     }
 
     override fun navigateTermOfSerivce() {
