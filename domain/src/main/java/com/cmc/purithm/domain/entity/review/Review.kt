@@ -1,4 +1,4 @@
-package com.cmc.purithm.domain.entity
+package com.cmc.purithm.domain.entity.review
 
 data class Review (
     val id : Long,

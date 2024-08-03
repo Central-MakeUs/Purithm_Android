@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.di
 
 import com.cmc.purithm.data.remote.service.AuthService
+import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.data.remote.service.MemberService
 import dagger.Module
 import dagger.Provides
@@ -25,7 +26,15 @@ internal object ServiceModule {
     @Singleton
     fun provideMemberService(
         @Named("purithm") retrofit: Retrofit
-    ) : MemberService {
+    ): MemberService {
         return retrofit.create(MemberService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFilterService(
+        @Named("purithm") retrofit: Retrofit
+    ): FilterService {
+        return retrofit.create(FilterService::class.java)
     }
 }

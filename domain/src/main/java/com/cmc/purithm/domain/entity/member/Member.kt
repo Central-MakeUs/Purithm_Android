@@ -1,4 +1,4 @@
-package com.cmc.purithm.domain.entity
+package com.cmc.purithm.domain.entity.member
 
 data class Member(
     val id: Long,

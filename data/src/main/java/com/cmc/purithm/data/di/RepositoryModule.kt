@@ -1,8 +1,10 @@
 package com.cmc.purithm.data.di
 
 import com.cmc.purithm.data.repository.AuthRepositoryImpl
+import com.cmc.purithm.data.repository.FilterRepositoryImpl
 import com.cmc.purithm.data.repository.MemberRepositoryImpl
 import com.cmc.purithm.domain.repository.AuthRepository
+import com.cmc.purithm.domain.repository.FilterRepository
 import com.cmc.purithm.domain.repository.MemberRepository
 import dagger.Binds
 import dagger.Module
@@ -21,4 +23,8 @@ internal abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindMemberRepository(memberRepositoryImpl: MemberRepositoryImpl): MemberRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindFilterRepository(filterRepositoryImpl: FilterRepositoryImpl) : FilterRepository
 }

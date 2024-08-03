@@ -1,4 +1,4 @@
-package com.cmc.purithm.domain.entity
+package com.cmc.purithm.domain.entity.photographer
 
 data class Photographer(
     val id: Long,

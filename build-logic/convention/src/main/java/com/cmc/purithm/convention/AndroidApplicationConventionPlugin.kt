@@ -108,6 +108,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     add("implementation", project(":feature:feed"))
                     add("implementation", project(":feature:filter"))
                     add("implementation", project(":feature:mypage"))
+                    add("implementation", project(":feature:term"))
                     add("implementation", project(":feature:photographer"))
                     add("implementation", project(":feature:review"))
                     add("implementation", project(":common"))
@@ -153,6 +154,10 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                     // Splash Screen
                     add("implementation", libs.findLibrary("androidx-core-splashscreen").get())
+
+                    // paging
+                    add("implementation", libs.findLibrary("androidx-paging-runtime").get())
+                    add("implementation", libs.findLibrary("androidx-paging-common").get())
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.cmc.purithm.domain.entity
+package com.cmc.purithm.domain.entity.feed
 
 data class Feed(
     val id : Long,
