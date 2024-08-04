@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- 가이드에 표시할 버튼 등 -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_guide"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- background를 blur 처리한 이미지 -->
+            <ImageView
+                android:id="@+id/img_blur_background"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/blue_400_trans30" />
+
+            <TextView
+                android:id="@+id/tv_guide_page"
+                style="@style/kr_body_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_badge_fill_blue"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="2dp"
+                android:text="@string/content_filter_guide_page"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.2" />
+
+            <ImageView
+                android:id="@+id/img_guide_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/ic_filter_guide_arrow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_guide_page" />
+
+            <TextView
+                android:id="@+id/tv_guide_page_description"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/content_filter_guide_description"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/img_guide_arrow" />
+
+            <TextView
+                android:id="@+id/tv_guide_no_filter"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|end"
+                android:text="@string/content_filter_guide_original"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/img_guide_no_filter"
+                app:layout_constraintEnd_toStartOf="@id/img_guide_no_filter"
+                app:layout_constraintTop_toTopOf="@id/img_guide_no_filter" />
+
+            <TextView
+                android:id="@+id/tv_guide_no_text"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:gravity="center_vertical|end"
+                android:text="@string/content_filter_guide_no_text"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@id/img_guide_no_text"
+                app:layout_constraintEnd_toStartOf="@id/img_guide_no_text"
+                app:layout_constraintTop_toTopOf="@id/img_guide_no_text" />
+
+            <ImageView
+                android:id="@+id/img_guide_no_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="-14dp"
+                android:src="@drawable/ic_filter_guide_button"
+                app:layout_constraintBottom_toBottomOf="@id/btn_guide_no_filter"
+                app:layout_constraintEnd_toStartOf="@id/btn_guide_no_filter"
+                app:layout_constraintTop_toTopOf="@id/btn_guide_no_filter" />
+
+            <ImageView
+                android:id="@+id/img_guide_no_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="-14dp"
+                android:src="@drawable/ic_filter_guide_button"
+                app:layout_constraintBottom_toBottomOf="@id/btn_guide_no_text"
+                app:layout_constraintEnd_toStartOf="@id/btn_guide_no_text"
+                app:layout_constraintTop_toTopOf="@id/btn_guide_no_text" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_guide_no_filter"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_screen_side"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shape_button_transparent_white"
+                android:drawableStart="@drawable/selector_filter"
+                android:drawablePadding="6dp"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:text="@string/content_original"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/btn_guide_no_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <CheckBox
+                android:id="@+id/btn_guide_no_text"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_screen_side"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/shape_button_transparent_white"
+                android:button="@color/transparent"
+                android:drawableStart="@drawable/selector_eye"
+                android:drawablePadding="6dp"
+                android:gravity="center"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="10dp"
+                android:text="@string/content_text"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/btn_guide_confirm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_guide_confirm"
+                style="@style/kr_body_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_screen_side"
+                android:layout_marginBottom="40dp"
+                android:background="@drawable/shape_button_transparent_xl"
+                android:gravity="center"
+                android:paddingVertical="18dp"
+                android:text="@string/content_confirm"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

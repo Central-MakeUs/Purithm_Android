@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_filter_guide_description">다양한 예시사진 보기</string>
+    <string name="content_filter_guide_page">1/3</string>
+    <string name="content_filter_guide_original">원본 사진과\n비교하기</string>
+    <string name="content_filter_guide_no_text">텍스트 없이\n사진만 보기</string>
+
+    <string name="content_confirm">확인</string>
+    <string name="content_text">텍스트</string>
+    <string name="content_filter_value">필터값 보기</string>
+    <string name="content_original">원본</string>
+    <string name="content_filter_satisfaction">필터 만족도 %s%</string>
+    <string name="content_filter_introduce">필터 소개</string>
+    <string name="content_filter_image_page">%d/%d</string>
+</resources>
