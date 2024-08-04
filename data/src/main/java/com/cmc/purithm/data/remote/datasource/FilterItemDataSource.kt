@@ -33,19 +33,20 @@ internal class FilterItemDataSource(
         val currentPage = params.key ?: START_PAGE_INDEX
 
         return try {
+            var isLast = false
             val filterList = HandleApi.callApi {
-                filterService.getFilterList(
+                val response = filterService.getFilterList(
                     sortedBy = this.sortedBy,
                     page = currentPage,
                     size = ApiConfig.PAGE_SIZE
-                ).toDomain()
+                )
+                isLast = response.data?.isLast ?: false
+                response.toDomain()
             }
-            // FIXME : 서버에서 Response 수정되면 진행
-            val lastPage = 30
             LoadResult.Page(
                 data = filterList,
                 prevKey = if (currentPage == START_PAGE_INDEX) null else currentPage - 1,
-                nextKey = if (currentPage == lastPage) null else currentPage + 1
+                nextKey = if (isLast) null else currentPage + 1
             )
         } catch (e: IOException) {
             LoadResult.Error(e)

@@ -81,7 +81,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("circleindicator").get())
 
                 // paging
-                add("implementation", libs.findLibrary("androidx-paging-common").get())
+                add("implementation", libs.findLibrary("androidx-paging-runtime").get())
             }
         }
     }

@@ -1,12 +1,12 @@
-package com.cmc.purithm.feature.home.view
+package com.cmc.purithm.design.component.view
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.cmc.purtihm.feature.home.R
-import com.cmc.purtihm.feature.home.databinding.ListFilterPremiumBinding
+import com.cmc.purithm.design.R
+import com.cmc.purithm.design.databinding.ListFilterPremiumBinding
 
 class FilterPremiumView @JvmOverloads constructor(
     context: Context,
@@ -20,25 +20,28 @@ class FilterPremiumView @JvmOverloads constructor(
         return ListFilterPremiumBinding.inflate(inflater, this, true)
     }
 
-    fun setViewType(type: FilterPremiumType) {
+    fun setViewType(type: FilterMembership) {
         with(binding) {
             root.visibility = View.VISIBLE
             when (type) {
-                FilterPremiumType.PREMIUM -> {
-                    imgPremium.setImageResource(com.cmc.purithm.design.R.drawable.ic_premium)
+                FilterMembership.PREMIUM -> {
+                    imgPremium.setImageResource(R.drawable.ic_premium)
                     tvPremium.text = context.getString(R.string.content_premium_filter)
                     tvPremiumDescription.text = context.getString(R.string.content_premium_filter_stamp)
                 }
-                FilterPremiumType.PREMIUM_PLUS -> {
-                    imgPremium.setImageResource(com.cmc.purithm.design.R.drawable.ic_premium_plus)
+                FilterMembership.PREMIUM_PLUS -> {
+                    imgPremium.setImageResource(R.drawable.ic_premium_plus)
                     tvPremium.text = context.getString(R.string.content_premium_plus_filter)
                     tvPremiumDescription.text = context.getString(R.string.content_premium_plus_filter_stamp)
+                }
+                FilterMembership.BASIC -> {
+                    binding.root.visibility = View.GONE
                 }
             }
         }
     }
 
-    enum class FilterPremiumType {
-        PREMIUM, PREMIUM_PLUS
+    enum class FilterMembership (val value : String){
+        BASIC("BASIC"), PREMIUM("PREMIUM"), PREMIUM_PLUS("PREMIUM_PLUS")
     }
 }

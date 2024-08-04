@@ -3,22 +3,24 @@ package com.cmc.purithm
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
-import android.widget.Toast
-import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
+import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDestination
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.cmc.purithm.common.base.NavigationAction
-import com.cmc.purithm.common.dialog.CommonDialogFragment
+import com.cmc.purithm.common.util.setupWithNavController
 import com.cmc.purithm.databinding.ActivityMainBinding
-import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,8 +33,6 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         supportFragmentManager.findFragmentById(R.id.fcv_main) as NavHostFragment
     }
 
-    private var mCommonDialog : CommonDialogFragment? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
@@ -41,8 +41,30 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         binding?.lifecycleOwner = this
 
         navHostFragment.navController.addOnDestinationChangedListener(this)
-
         setTransparentStatusBar()
+
+        if(savedInstanceState == null){
+            initBottomNavigation()
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        initBottomNavigation()
+    }
+
+    private fun initBottomNavigation(){
+        binding?.bnvMain?.setupWithNavController(
+            navGraphIds = listOf(
+                com.cmc.purtihm.feature.home.R.navigation.nav_home,
+                com.cmc.purithm.feature.photographer.R.navigation.nav_photographer,
+                com.cmc.purithm.feature.feed.R.navigation.nav_feed,
+                com.cmc.purithm.feature.mypage.R.navigation.nav_mypage
+            ),
+            fragmentManager = supportFragmentManager,
+            containerId = R.id.fcv_main,
+            intent = intent
+        )
     }
 
     private fun setTransparentStatusBar() {
@@ -70,12 +92,20 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     override fun navigateHome() {
-        Toast.makeText(this, "로그인 성공, 홈화면은 나중에", Toast.LENGTH_SHORT).show()
+        with(navHostFragment.navController) {
+            navigate(R.id.navigate_home)
+        }
     }
 
-    override fun navigateTermOfSerivce() {
+    override fun navigateTermOfService() {
         with(navHostFragment.navController) {
             navigate(R.id.navigate_term_of_service)
+        }
+    }
+
+    override fun navigateFilterItem(id: Long) {
+        with(navHostFragment.navController) {
+            deepLinkNavigate("purithm://filter/$id")
         }
     }
 
@@ -109,11 +139,31 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.term.R.id.joinCompleteFragment -> {
                 setBottomNavVisibility(false)
             }
+
+            com.cmc.purtihm.feature.home.R.id.homeFragment -> {
+                setBottomNavVisibility(true)
+            }
         }
     }
 
     private fun setBottomNavVisibility(isVisible: Boolean) {
         binding?.bnvMain?.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+    private fun NavController.deepLinkNavigate(
+        deepLinkUrl: String,
+        popUpTo: Boolean = false
+    ) {
+        val builder = NavOptions.Builder()
+        if (popUpTo) {
+            builder.setPopUpTo(graph.startDestinationId, true)
+        }
+        navigate(
+            NavDeepLinkRequest.Builder
+                .fromUri(deepLinkUrl.toUri())
+                .build(),
+            builder.build()
+        )
     }
 
     @Deprecated("Deprecated in Java")

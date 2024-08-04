@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="model"
+            type="com.cmc.purithm.feature.home.model.HomeFilterUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -28,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitCenter"
+                app:imageUrl="@{model.thumbnailUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -35,14 +39,16 @@
 
         </androidx.cardview.widget.CardView>
 
-        <com.cmc.purithm.feature.home.view.FilterPremiumView
+        <com.cmc.purithm.design.component.view.FilterPremiumView
             android:id="@+id/view_filter_premium"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@id/view_card"
             app:layout_constraintEnd_toEndOf="@id/view_card"
             app:layout_constraintStart_toStartOf="@id/view_card"
-            app:layout_constraintTop_toTopOf="@id/view_card" />
+            app:layout_constraintTop_toTopOf="@id/view_card"
+            app:membership="@{model.membership}"
+            app:canAccess="@{model.canAccess}"/>
 
         <TextView
             android:id="@+id/tv_filter_title"
@@ -53,6 +59,7 @@
             android:layout_marginEnd="2dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{model.name}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toStartOf="@id/btn_like"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -68,6 +75,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{model.photographerName}"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toStartOf="@+id/btn_like"
             app:layout_constraintHorizontal_bias="0.0"
@@ -90,9 +98,9 @@
         <TextView
             android:id="@+id/tv_like_cnt"
             style="@style/kr_caption_1"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@{model.likes}"
             android:textColor="@color/grey_200"
             app:layout_constraintBottom_toBottomOf="@id/tv_filter_maker"
             app:layout_constraintEnd_toEndOf="@id/btn_like"

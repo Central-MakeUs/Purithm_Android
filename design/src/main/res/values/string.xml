@@ -21,4 +21,10 @@
     <string name="error_common">잘못된 접근입니다.</string>
     <string name="content_cancel">취소</string>
     <string name="content_confirm">확인</string>
+
+    <!-- filter -->
+    <string name="content_premium_filter">Premium Filter</string>
+    <string name="content_premium_plus_filter">Premium+ Filter</string>
+    <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
+    <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
 </resources>

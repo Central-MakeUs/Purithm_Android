@@ -4,8 +4,9 @@ import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.filter.FilterItemResponseDto
 import com.cmc.purithm.domain.entity.filter.Filter
 
-internal fun BaseResponse<List<FilterItemResponseDto>>.toDomain(): List<Filter> {
-    return this.data?.map {
+internal fun BaseResponse<FilterItemResponseDto>.toDomain(): List<Filter> {
+    val listData = this.data?.filters ?: emptyList()
+    return listData.map {
         Filter(
             id = it.id,
             memberShip = it.membership,
@@ -17,5 +18,5 @@ internal fun BaseResponse<List<FilterItemResponseDto>>.toDomain(): List<Filter> 
             canAccess = it.canAccess,
             liked = it.liked
         )
-    } ?: emptyList()
+    }
 }

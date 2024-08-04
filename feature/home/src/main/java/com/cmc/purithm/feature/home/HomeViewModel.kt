@@ -4,8 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.cmc.purithm.domain.entity.filter.Filter
+import androidx.paging.map
 import com.cmc.purithm.domain.usecase.filter.GetFilterItemsUseCase
+import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,7 +23,7 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val getFilterItemsUseCase: GetFilterItemsUseCase
 ) : ViewModel() {
-    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
+    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState.Initialize)
     val state: StateFlow<HomeState> = _state.asStateFlow()
 
     private val _action: MutableSharedFlow<HomeAction> = MutableSharedFlow()
@@ -36,24 +37,24 @@ class HomeViewModel @Inject constructor(
         sortedBy: String = "latest"
     ) {
         viewModelScope.launch {
-            _state.update { it.copy(loading = true) }
-            getFilterItemsUseCase(tag, sortedBy)
-                .cachedIn(viewModelScope)
-                .distinctUntilChanged()
-                .collect { result ->
-                    _state.update {
-                        it.copy(
-                            loading = false,
-                            filters = result
-                        )
+            _state.emit(HomeState.Loading)
+            runCatching {
+                getFilterItemsUseCase(tag, sortedBy)
+            }.onSuccess {
+                it.cachedIn(viewModelScope)
+                    .distinctUntilChanged()
+                    .collect { result ->
+                        _state.emit(HomeState.Success(result.map { HomeFilterUiModel.toUiModel(it) }))
                     }
-                }
+            }.onFailure { exception ->
+                _state.emit(HomeState.Error(exception.message!!))
+            }
         }
     }
 }
 
 sealed interface HomeSideEffect {
-    class NavigateToFilter(id: Long) : HomeSideEffect
+    class NavigateToFilter(val id: Long) : HomeSideEffect
 }
 
 sealed interface HomeAction {
@@ -61,10 +62,9 @@ sealed interface HomeAction {
     data object ClickTag : HomeAction
 }
 
-data class HomeState(
-    var loading: Boolean = false,
-    var error: Throwable? = null,
-    var filters: PagingData<Filter>? = null,
-    var sortedBy: String = "",
-    var tag: String = ""
-)
+sealed interface HomeState {
+    data object Loading : HomeState
+    data object Initialize : HomeState
+    class Error(val msg: String) : HomeState
+    class Success(val data: PagingData<HomeFilterUiModel>) : HomeState
+}

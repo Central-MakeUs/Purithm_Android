@@ -8,6 +8,12 @@
     <include app:graph="@navigation/nav_login" />
     <include app:graph="@navigation/nav_onboarding" />
     <include app:graph="@navigation/nav_term_of_service" />
+    <include app:graph="@navigation/nav_home" />
+    <include app:graph="@navigation/nav_feed" />
+    <include app:graph="@navigation/nav_filter" />
+    <include app:graph="@navigation/nav_photographer" />
+    <include app:graph="@navigation/nav_review" />
+    <include app:graph="@navigation/nav_mypage" />
 
     <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
     <action
@@ -20,6 +26,10 @@
 
     <action
         android:id="@+id/navigate_term_of_service"
-        app:destination="@id/nav_term_of_service"/>
+        app:destination="@id/nav_term_of_service" />
+
+    <action
+        android:id="@+id/navigate_home"
+        app:destination="@id/nav_home" />
 
 </navigation>

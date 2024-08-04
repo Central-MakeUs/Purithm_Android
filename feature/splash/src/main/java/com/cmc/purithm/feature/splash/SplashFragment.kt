@@ -11,9 +11,6 @@ import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.feature.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -55,7 +52,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             SplashSideEffect.NavigateToLogin -> (activity as NavigationAction).navigateLogin()
                             SplashSideEffect.NavigateToHome -> (activity as NavigationAction).navigateHome()
                             SplashSideEffect.NavigateToOnBoarding -> (activity as NavigationAction).navigateOnBoarding()
-                            SplashSideEffect.NavigateToTermOfService -> (activity as NavigationAction).navigateTermOfSerivce()
+                            SplashSideEffect.NavigateToTermOfService -> (activity as NavigationAction).navigateTermOfService()
                         }
                     }
                 }

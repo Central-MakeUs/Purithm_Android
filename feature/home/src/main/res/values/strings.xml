@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="title_appbar">Filters</string>
+
     <string name="content_premium_filter">Premium Filter</string>
     <string name="content_premium_plus_filter">Premium+ Filter</string>
     <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>

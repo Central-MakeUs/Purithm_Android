@@ -8,11 +8,11 @@ import retrofit2.http.Query
 
 internal interface FilterService {
     @GET("api/filters")
-    fun getFilterList(
-        @Query("os") os : String = "AOS",
-        @Query("tag") tag : String = "",
-        @Query("sortedBy") sortedBy : String,
-        @Query("page") page : Int,
-        @Query("size") size : Int
-    ) : BaseResponse<List<FilterItemResponseDto>>
+    suspend fun getFilterList(
+        @Query("os") os: String = "AOS",
+        @Query("tag") tag: String? = null,
+        @Query("sortedBy") sortedBy: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): BaseResponse<FilterItemResponseDto>
 }
