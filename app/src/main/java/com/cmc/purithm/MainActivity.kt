@@ -3,7 +3,6 @@ package com.cmc.purithm
 
 import android.os.Build
 import android.os.Bundle
-import android.view.MenuItem
 import android.view.View
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
@@ -16,10 +15,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI
-import androidx.navigation.ui.setupWithNavController
 import com.cmc.purithm.common.base.NavigationAction
-import com.cmc.purithm.common.util.setupWithNavController
 import com.cmc.purithm.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

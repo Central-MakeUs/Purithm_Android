@@ -74,7 +74,6 @@
             android:drawablePadding="2dp"
             app:layout_constraintBottom_toBottomOf="@id/tv_review_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_reviewer"
-            app:pureDegree="100" />
+            app:layout_constraintTop_toTopOf="@id/tv_reviewer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

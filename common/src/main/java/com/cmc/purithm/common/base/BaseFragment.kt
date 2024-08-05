@@ -1,6 +1,5 @@
 package com.cmc.purithm.common.base
 
-import android.app.ProgressDialog.show
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
