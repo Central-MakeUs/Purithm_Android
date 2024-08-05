@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginTop="30dp"
-            android:background="@drawable/shape_white_background"
+            android:background="@drawable/shape_white_round_background"
             android:padding="20dp"
             android:text="@string/content_term_of_service"
             android:textColor="@color/grey_300"

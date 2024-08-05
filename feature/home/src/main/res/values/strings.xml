@@ -7,13 +7,17 @@
     <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
     <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
 
-    <string name="category_filter_popular">인기순</string>
-    <string name="category_filter_new">최신순</string>
-    <string name="category_filter_review_high">퓨어지수 높은순</string>
-
-    <string-array name="category_chip">
-        <item>보라빛</item>
-        <item>몽환적인</item>
-        <item>뉴진스</item>
+    <string-array name="category_filter_sort">
+        <item>인기순</item>
+        <item>최신순</item>
+        <item>퓨어지수 높은순</item>
     </string-array>
+
+    <string name="category_filter_keyword_spring">봄</string>
+    <string name="category_filter_keyword_summer">여름</string>
+    <string name="category_filter_keyword_fall">가을</string>
+    <string name="category_filter_keyword_winter">겨울</string>
+    <string name="category_filter_keyword_backlight">역광에서</string>
+    <string name="category_filter_keyword_night">night</string>
+    <string name="category_filter_keyword_daily">daily</string>
 </resources>

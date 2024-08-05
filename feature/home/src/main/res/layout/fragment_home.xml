@@ -34,37 +34,106 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
-            <!--            <com.google.android.material.chip.ChipGroup-->
-            <!--                android:id="@+id/group_filter"-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                app:chipSpacing="10dp"-->
-            <!--                app:singleSelection="true">-->
+            <RadioGroup
+                android:id="@+id/group_filter_keyword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <!--                <com.google.android.material.chip.Chip-->
-            <!--                    android:id="@+id/chip_1"-->
-            <!--                    style="@style/Widget.Material3.Chip.Filter"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    app:chipBackgroundColor="@drawable/selector_chip_background"-->
-            <!--                    app:chipIcon="@drawable/ic_question" />-->
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_spring"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_screen_side"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:gravity="center"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_spring"
+                    android:textColor="@color/selector_filter_keyword_text" />
 
-            <!--                <com.google.android.material.chip.Chip-->
-            <!--                    android:id="@+id/chip_2"-->
-            <!--                    style="@style/Widget.Material3.Chip.Filter"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    app:chipBackgroundColor="@drawable/selector_chip_background"-->
-            <!--                    app:chipIcon="@drawable/ic_question" />-->
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_summer"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_summer"
+                    android:textColor="@color/selector_filter_keyword_text" />
 
-            <!--                <com.google.android.material.chip.Chip-->
-            <!--                    android:id="@+id/chip_3"-->
-            <!--                    style="@style/Widget.Material3.Chip.Filter"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    app:chipBackgroundColor="@drawable/selector_chip_background"-->
-            <!--                    app:chipIcon="@drawable/ic_question" />-->
-            <!--            </com.google.android.material.chip.ChipGroup>-->
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_fall"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_fall"
+                    android:textColor="@color/selector_filter_keyword_text" />
+
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_winter"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_winter"
+                    android:textColor="@color/selector_filter_keyword_text" />
+
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_backlight"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_backlight"
+                    android:textColor="@color/selector_filter_keyword_text" />
+
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_night"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_night"
+                    android:textColor="@color/selector_filter_keyword_text" />
+
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_daily"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="@dimen/margin_screen_side"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_daily"
+                    android:textColor="@color/selector_filter_keyword_text" />
+            </RadioGroup>
+
         </HorizontalScrollView>
 
         <LinearLayout
@@ -75,6 +144,7 @@
             android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:clickEvent="@{() -> vm.clickFilterSort()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"

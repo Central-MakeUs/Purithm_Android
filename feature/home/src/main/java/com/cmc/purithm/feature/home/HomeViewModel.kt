@@ -51,6 +51,12 @@ class HomeViewModel @Inject constructor(
             }
         }
     }
+
+    fun clickFilterSort(){
+        viewModelScope.launch {
+            _action.emit(HomeAction.ClickFilterSort)
+        }
+    }
 }
 
 sealed interface HomeSideEffect {
@@ -59,7 +65,7 @@ sealed interface HomeSideEffect {
 
 sealed interface HomeAction {
     data object ClickFilter : HomeAction
-    data object ClickTag : HomeAction
+    data object ClickFilterSort : HomeAction
 }
 
 sealed interface HomeState {

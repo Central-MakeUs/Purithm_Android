@@ -29,4 +29,13 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:backgroundDimAmount">0.4</item>
     </style>
+
+    <!-- bottom sheet dialog -->
+    <style name="style_transparent_bottom_sheet_dialog_fragment" parent="Theme.Design.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/style_transparent_bottom_sheet_dialog_fragment_child</item>
+    </style>
+
+    <style name="style_transparent_bottom_sheet_dialog_fragment_child" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">#00000000</item>
+    </style>
 </resources>
