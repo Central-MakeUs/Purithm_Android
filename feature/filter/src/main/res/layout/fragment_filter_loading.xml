@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -7,12 +8,60 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
 
-        <TextView
-            android:text="fragment_filter_loading"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_filter_loading"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_filter_loading_icon" />
+
+        <LinearLayout
+            android:id="@+id/layout_filter_loading_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_filter_loading_description"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="55dp"
+            android:paddingTop="120dp"
+            android:paddingBottom="136dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.53333333">
+
+            <TextView
+                style="@style/en_body_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="We are preparing..."
+                android:textColor="@color/blue_400" />
+
+            <TextView
+                style="@style/en_title_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Dreamlike"
+                android:textColor="@color/blue_400" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_filter_loading_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="-48dp"
+            android:src="@drawable/ic_filter_loading"
+            app:layout_constraintBottom_toTopOf="@id/layout_filter_loading_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

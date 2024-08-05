@@ -10,6 +10,7 @@
     <color name="white">#FFFFFF</color>
     <color name="white_trans60">#99FFFFFF</color>
     <color name="white_trans50">#80FFFFFF</color>
+    <color name="white_trans40">#66FFFFFF</color>
     <color name="white_trans20">#33FFFFFF</color>
     <color name="white_gradient_end">#F1F3F6</color>
 

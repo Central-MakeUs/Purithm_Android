@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_bottom_sheet_dialog">
+        android:background="@drawable/bg_white_bottom_sheet_dialog">
 
         <ImageView
             android:id="@+id/img_top"

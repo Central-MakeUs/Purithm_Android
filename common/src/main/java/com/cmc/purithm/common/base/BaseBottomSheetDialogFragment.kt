@@ -1,19 +1,13 @@
 package com.cmc.purithm.common.base
 
-import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
-import com.cmc.purithm.common.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 /**
@@ -75,7 +69,7 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
                     behavior.state = BottomSheetBehavior.STATE_EXPANDED
                 }
             })
-            bottomSheet.setBackgroundResource(com.cmc.purithm.design.R.drawable.bg_bottom_sheet_dialog)
+            bottomSheet.setBackgroundResource(com.cmc.purithm.design.R.drawable.bg_white_bottom_sheet_dialog)
         }
     }
 

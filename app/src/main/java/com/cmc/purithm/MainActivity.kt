@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         navHostFragment.navController.addOnDestinationChangedListener(this)
         setTransparentStatusBar()
 
-        if(savedInstanceState == null){
+        if (savedInstanceState == null) {
             initBottomNavigation()
         }
     }
@@ -53,18 +53,8 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         initBottomNavigation()
     }
 
-    private fun initBottomNavigation(){
-        binding?.bnvMain?.setupWithNavController(
-            navGraphIds = listOf(
-                com.cmc.purtihm.feature.home.R.navigation.nav_home,
-                com.cmc.purithm.feature.photographer.R.navigation.nav_photographer,
-                com.cmc.purithm.feature.feed.R.navigation.nav_feed,
-                com.cmc.purithm.feature.mypage.R.navigation.nav_mypage
-            ),
-            fragmentManager = supportFragmentManager,
-            containerId = R.id.fcv_main,
-            intent = intent
-        )
+    private fun initBottomNavigation() {
+        binding?.bnvMain?.addOnItemSelectedListener(navHostFragment.navController)
     }
 
     private fun setTransparentStatusBar() {
@@ -77,6 +67,13 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             WindowCompat.setDecorFitsSystemWindows(window, false)
         }
+    }
+
+    private fun getNavigationHeight(): Int {
+        val resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android")
+
+        return if (resourceId > 0) resources.getDimensionPixelSize(resourceId)
+        else 0
     }
 
     override fun navigateLogin() {
@@ -171,6 +168,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         when (navHostFragment.navController.currentDestination?.id) {
             com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
             com.cmc.purithm.feature.splash.R.id.splashFragment,
+            com.cmc.purtihm.feature.home.R.id.homeFragment,
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
                 finish()
             }
