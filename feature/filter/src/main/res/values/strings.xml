@@ -12,4 +12,6 @@
     <string name="content_filter_satisfaction">필터 만족도 %s%</string>
     <string name="content_filter_introduce">필터 소개</string>
     <string name="content_filter_image_page">%d/%d</string>
+
+    <string name="content_photographer_shop">Shop</string>
 </resources>

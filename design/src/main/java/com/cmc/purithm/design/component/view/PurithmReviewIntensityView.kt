@@ -37,9 +37,9 @@ class PurithmReviewIntensityView @JvmOverloads constructor(
     }
 
     private fun getImgResByIntensity(rating: ReviewRating) = when (rating) {
-        ReviewRating.Outstanding, ReviewRating.Good -> R.drawable.ic_review_1
-        ReviewRating.Satisfactory -> R.drawable.ic_review_2
-        ReviewRating.NeedImprovement, ReviewRating.Poor -> R.drawable.ic_review_3
+        ReviewRating.Outstanding, ReviewRating.Good -> R.drawable.ic_review_start_3
+        ReviewRating.Satisfactory -> R.drawable.ic_review_start_2
+        ReviewRating.NeedImprovement, ReviewRating.Poor -> R.drawable.ic_review_start_1
     }
 
     private fun getColorByIntensity(rating: ReviewRating) = when (rating) {
