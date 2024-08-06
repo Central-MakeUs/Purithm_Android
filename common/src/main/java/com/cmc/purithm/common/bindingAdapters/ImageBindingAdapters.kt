@@ -3,6 +3,7 @@ package com.cmc.purithm.common.bindingAdapters
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
+import com.cmc.purithm.common.R
 
 /**
  * 이미지에 사용되는 BindingAdapter
@@ -21,6 +22,7 @@ object ImageBindingAdapters {
     fun ImageView.setImageByUrl(url: String?) {
         Glide.with(this)
             .load(url)
+            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholer)
             .into(this)
     }
 
@@ -29,6 +31,7 @@ object ImageBindingAdapters {
     fun ImageView.setImageByRes(res: Int) {
         Glide.with(this)
             .load(res)
+            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholer)
             .into(this)
     }
 }
