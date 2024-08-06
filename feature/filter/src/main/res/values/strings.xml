@@ -14,4 +14,6 @@
     <string name="content_filter_image_page">%d/%d</string>
 
     <string name="content_photographer_shop">Shop</string>
+    <string name="content_review_intensity">필터 만족도</string>
+    <string name="content_review_count">%d명이 후기를 남겼어요</string>
 </resources>
