@@ -45,35 +45,6 @@ object FilterBindingAdapter {
         setCompoundDrawablesWithIntrinsicBounds(imgDrawable, null, null, null)
     }
 
-
-    @JvmStatic
-    @BindingAdapter("reviewBackground")
-    fun ImageView.setReviewBackground(pureDegree: Int) {
-        setBackgroundResource(
-            when (pureDegree) {
-                in 100 downTo 81 -> R.drawable.bg_review_100
-                in 80 downTo 61 -> R.drawable.bg_review_80
-                in 60 downTo 41 -> R.drawable.bg_review_60
-                in 40 downTo 21 -> R.drawable.bg_review_40
-                else -> R.drawable.bg_review_20
-            }
-        )
-    }
-
-    @JvmStatic
-    @BindingAdapter("reviewIntensityBackground")
-    fun ImageView.setReviewIntensityBackground(pureDegree: Int) {
-        setBackgroundResource(
-            when (pureDegree) {
-                in 100 downTo 81 -> R.drawable.bg_review_intensity_100
-                in 80 downTo 61 -> R.drawable.bg_review_intensity_80
-                in 60 downTo 41 -> R.drawable.bg_review_intensity_60
-                in 40 downTo 21 -> R.drawable.bg_review_intensity_40
-                else -> R.drawable.bg_review_intensity_20
-            }
-        )
-    }
-
     @JvmStatic
     @BindingAdapter("reviewCount")
     fun TextView.setReviewCount(reviewCount : Int){

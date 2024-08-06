@@ -25,16 +25,26 @@ class PurithmReviewIntensityView @JvmOverloads constructor(
     }
 
     @SuppressLint("SetTextI18n")
-    fun setReviewIntensity(rating: ReviewRating) {
-        val (imgRes, color) = getImgResByIntensity(rating) to getColorByIntensity(rating)
-        with(binding){
+    fun setReviewIntensity(rating: Int) {
+        val reviewRating = getReviewIntensity(rating)
+        val (imgRes, color) = getImgResByIntensity(reviewRating) to getColorByIntensity(reviewRating)
+        with(binding) {
             imgReview.setImageResource(imgRes)
             imgReview.setColorFilter(color)
 
-            tvReviewIntensity.text = "${rating.intensity}%"
+            tvReviewIntensity.text = "${reviewRating.intensity}%"
             tvReviewIntensity.setTextColor(color)
         }
     }
+
+    private fun getReviewIntensity(rating: Int) = when (rating) {
+        in 100 downTo 81 -> ReviewRating.Outstanding
+        in 80 downTo 61 -> ReviewRating.Good
+        in 60 downTo 41 -> ReviewRating.Satisfactory
+        in 40 downTo 21 -> ReviewRating.NeedImprovement
+        else -> ReviewRating.Poor
+    }
+
 
     private fun getImgResByIntensity(rating: ReviewRating) = when (rating) {
         ReviewRating.Outstanding, ReviewRating.Good -> R.drawable.ic_review_start_3

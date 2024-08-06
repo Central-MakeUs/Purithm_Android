@@ -1,6 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_grey100_bottom_sheet_dialog"
+        android:paddingHorizontal="@dimen/margin_screen_side">
+
+        <ImageView
+            android:id="@+id/img_top"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_bottom_sheet_dialog_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/kr_title_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_screen_side"
+            android:text="@string/title_filter_intensity"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_top" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/kr_body_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/content_filter_intensity_description"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_badge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_screen_side"
+            android:background="@drawable/shape_white_round_background"
+            android:padding="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_description">
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_rating_outstanding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="18.5dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toStartOf="@id/view_rating_good"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_rating_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_rating_outstanding"
+                app:layout_constraintEnd_toStartOf="@id/view_rating_satisfactory"
+                app:layout_constraintStart_toEndOf="@id/view_rating_outstanding"
+                app:layout_constraintTop_toTopOf="@id/view_rating_outstanding" />
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_rating_satisfactory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_rating_outstanding"
+                app:layout_constraintEnd_toStartOf="@id/view_rating_need_improvement"
+                app:layout_constraintStart_toEndOf="@id/view_rating_good"
+                app:layout_constraintTop_toTopOf="@id/view_rating_outstanding" />
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_rating_need_improvement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_rating_outstanding"
+                app:layout_constraintEnd_toStartOf="@id/view_rating_poor"
+                app:layout_constraintStart_toEndOf="@id/view_rating_satisfactory"
+                app:layout_constraintTop_toTopOf="@id/view_rating_outstanding" />
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_rating_poor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="18.5dp"
+                app:layout_constraintBottom_toBottomOf="@id/view_rating_outstanding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/view_rating_need_improvement"
+                app:layout_constraintTop_toTopOf="@id/view_rating_outstanding" />
+
+            <ImageView
+                android:id="@+id/img_review_intensity_better"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_review_intensity_better"
+                app:layout_constraintEnd_toStartOf="@id/img_review_intensity_worst"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/view_rating_outstanding"
+                app:layout_constraintTop_toBottomOf="@id/view_rating_outstanding" />
+
+            <ImageView
+                android:id="@+id/img_review_intensity_worst"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_review_intensity_worst"
+                app:layout_constraintEnd_toEndOf="@id/view_rating_poor"
+                app:layout_constraintStart_toEndOf="@id/img_review_intensity_better"
+                app:layout_constraintTop_toBottomOf="@id/view_rating_outstanding" />
+
+            <TextView
+                android:id="@+id/tv_review_intensity_better"
+                style="@style/kr_body_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/content_filter_intensity_outstanding"
+                android:textColor="@color/purple_400"
+                app:layout_constraintEnd_toStartOf="@id/tv_review_intensity_worst"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintStart_toStartOf="@id/view_rating_outstanding"
+                app:layout_constraintTop_toBottomOf="@id/img_review_intensity_better" />
+
+            <TextView
+                android:id="@+id/tv_review_intensity_worst"
+                style="@style/kr_body_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/content_filter_intensity_poor"
+                android:textColor="@color/blue_100"
+                app:layout_constraintEnd_toEndOf="@id/view_rating_poor"
+                app:layout_constraintStart_toEndOf="@id/tv_review_intensity_better"
+                app:layout_constraintTop_toBottomOf="@id/img_review_intensity_worst" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_confirm"
+            style="@style/kr_body_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/shape_button_fill_xl"
+            android:gravity="center"
+            android:paddingVertical="18dp"
+            android:text="@string/content_confirm"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layout_badge" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
