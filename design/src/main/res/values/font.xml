@@ -60,12 +60,18 @@
     <!-- KR FONT -->
 
     <style name="kr_title_1" parent="kr_font_bold">
-        <item name="android:textSize">24sp</item>
-        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:textSize">30sp</item>
+        <item name="android:lineSpacingExtra">18sp</item>
         <item name="android:letterSpacing">-0.025</item>
     </style>
 
-    <style name="kr_title_2" parent="kr_font_medium">
+    <style name="kr_title_2" parent="kr_font_bold">
+        <item name="android:textSize">24sp</item>
+        <item name="android:lineSpacingExtra">4sp</item>
+        <item name="android:letterSpacing">-0.03</item>
+    </style>
+
+    <style name="kr_title_3" parent="kr_font_medium">
         <item name="android:textSize">20sp</item>
         <item name="android:lineSpacingExtra">4sp</item>
         <item name="android:letterSpacing">-0.03</item>

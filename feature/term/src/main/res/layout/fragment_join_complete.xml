@@ -39,7 +39,7 @@
 
         <TextView
             android:id="@+id/tv_content"
-            style="@style/kr_title_1"
+            style="@style/kr_title_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
