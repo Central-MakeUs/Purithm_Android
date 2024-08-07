@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_review_write">How purithm?</string>
+    <string name="content_review_write">아래 바를 조절해 만족도를 남겨주세요</string>
+
+    <string name="title_review_write_description">필터 사용 후기를 남겨주세요</string>
+    <string name="content_review_hint">여기에 남겨주세요</string>
+    <string name="title_terms_of_review">후기 약관 동의</string>
+    <string name="content_terms_of_review">작성하신 후기는 퓨리즘 및 퓨리즘 이용자에게 공개됩니다.</string>
+    <string name="content_terms_of_review_agree">(필수) 작성된 후기는 퓨리즘 홍보 컨텐츠로 사용 될 수 있습니다.</string>
+    <string name="content_upload">올리기</string>
+
+    <string name="title_review_stamp">스탬프 적립 완료!</string>
+    <string name="content_reivew_stamp">꾸준히 모으면 프리미엄 필터를 열람할 수 있어요</string>
+
+    <string name="title_my_review_appbar">남긴 후기</string>
+    <string name="content_delete">삭제</string>
+</resources>
