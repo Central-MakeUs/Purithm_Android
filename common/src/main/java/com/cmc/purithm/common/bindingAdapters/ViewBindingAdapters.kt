@@ -23,14 +23,4 @@ object ViewBindingAdapters {
     fun View.addButtonClickEvent(listener: View.OnClickListener) {
         this.setOnClickListener(DelayClickEventListener(onClickListener = listener))
     }
-
-    /**
-     * 찜 클릭
-     * */
-    @JvmStatic
-    @BindingAdapter("liked")
-    fun ImageButton.setLiked(isLiked: Boolean) {
-        setImageResource(if (isLiked) com.cmc.purithm.design.R.drawable.ic_like_pressed else com.cmc.purithm.design.R.drawable.ic_like_unpressed)
-    }
-
 }

@@ -1,5 +1,6 @@
 package com.cmc.purithm.common.bindingAdapters
 
+import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -33,5 +34,14 @@ object ImageBindingAdapters {
             .load(res)
             .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholer)
             .into(this)
+    }
+
+    /**
+     * 찜 클릭
+     * */
+    @JvmStatic
+    @BindingAdapter("liked")
+    fun ImageButton.setLiked(isLiked: Boolean) {
+        setImageResource(if (isLiked) com.cmc.purithm.design.R.drawable.ic_like_pressed else com.cmc.purithm.design.R.drawable.ic_like_unpressed)
     }
 }

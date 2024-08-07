@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
-            android:background="@drawable/shape_button_fill_xl"
+            android:background="@drawable/shape_button_solid_primary_lg"
             android:gravity="center"
             android:paddingVertical="18dp"
             android:text="@string/content_confirm"

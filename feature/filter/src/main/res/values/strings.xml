@@ -21,4 +21,28 @@
     <string name="content_filter_intensity_description">필터 만족도는 필터를 사용한 사람들의 만족도입니다.\n만족도가 높을수록 100%에 가까워요.</string>
     <string name="content_filter_intensity_outstanding">만족해요</string>
     <string name="content_filter_intensity_poor">아쉬워요</string>
+
+    <string name="content_filter_galaxy_guide">갤럭시에서 필터 적용하는 법</string>
+    <string name="title_filter_galaxy_guide">보정값은 어떻게 적용하나요?</string>
+    <string name="content_filter_galaxy_guide_1">사진첩에서 하단 \'편집\'아이콘 누르기</string>
+    <string name="content_filter_galaxy_guide_2">좌우 스와이프하며 보정값 적용하기</string>
+    <string name="content_filter_galaxy_guide_3">저장 버튼 누르면 완성!</string>
+
+
+    <string-array name="category_filter_galaxy">
+        <item>라이트밸런스</item>
+        <item>밝기</item>
+        <item>노출</item>
+        <item>대비</item>
+        <item>하이라이트</item>
+        <item>그림자</item>
+        <item>채도</item>
+        <item>틴트</item>
+        <item>색온도</item>
+        <item>선명도</item>
+        <item>명료도</item>
+    </string-array>
+
+    <string name="content_filter_like">찜 목록에 담겼어요</string>
+    <string name="content_filter_like_navigate">찜 목록 보기</string>
 </resources>
