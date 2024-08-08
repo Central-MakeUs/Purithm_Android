@@ -15,14 +15,13 @@ object TextBindingAdapters {
      * 적용할 한/영 폰트의 스타일을 넣어주면 자동으로 변경
      * */
     @JvmStatic
-    @BindingAdapter(value = ["p_text, kr_style", "en_style"], requireAll = true)
-    fun TextView.setPurithmText(text: String, krStyle: Int, enStyle: Int) {
+    @BindingAdapter(value = ["kr_style", "en_style"])
+    fun TextView.setPurithmText(krStyle: Int, enStyle: Int) {
         when {
             KOREAN_PATTERN.matches(text) -> setTextAppearance(krStyle)
             ENGLISH_PATTERN.matches(text) -> setTextAppearance(enStyle)
             MIXED_PATTERN.matches(text) -> setTextAppearance(krStyle)
             SPECIAL_PATTERN.matches(text) -> setTextAppearance(krStyle)
         }
-        this.text = text
     }
 }

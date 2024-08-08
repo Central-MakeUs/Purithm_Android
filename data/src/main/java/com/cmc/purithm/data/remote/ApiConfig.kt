@@ -2,7 +2,7 @@ package com.cmc.purithm.data.remote
 
 internal object ApiConfig {
     const val BASE_URL = "https://purithm.shop/"
-    const val PAGE_SIZE = 10
+    const val PAGE_SIZE = 4
 
     var ACCESS_TOKEN = ""
 }

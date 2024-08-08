@@ -19,7 +19,6 @@ import com.cmc.purtihm.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-// TODO : tag에 대한 정보 나오면 확인하기
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override val layoutId: Int

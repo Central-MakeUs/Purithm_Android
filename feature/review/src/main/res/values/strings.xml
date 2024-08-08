@@ -11,8 +11,10 @@
     <string name="content_upload">올리기</string>
 
     <string name="title_review_stamp">스탬프 적립 완료!</string>
-    <string name="content_reivew_stamp">꾸준히 모으면 프리미엄 필터를 열람할 수 있어요</string>
+    <string name="content_review_stamp">꾸준히 모으면 프리미엄 필터를 열람할 수 있어요</string>
 
     <string name="title_my_review_appbar">남긴 후기</string>
     <string name="content_delete">삭제</string>
+
+    <string name="content_review_satisfactory">필터 만족도</string>
 </resources>

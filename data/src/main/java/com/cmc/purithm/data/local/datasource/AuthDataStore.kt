@@ -22,7 +22,7 @@ internal class AuthDataStore @Inject constructor(
     }
 
     suspend fun setAccessToken(accessToken : String) {
-        // FIXME : 토큰 저장은 단일로 변경해야함. 서버 안바빠지면 요청
+        // Header가 카카오 토큰과 JWT 둘 다 사용해서 token 설정할때마다 변경
         ApiConfig.ACCESS_TOKEN = accessToken
         context.dataStore.edit {
             it[accessTokenPrefs] = accessToken

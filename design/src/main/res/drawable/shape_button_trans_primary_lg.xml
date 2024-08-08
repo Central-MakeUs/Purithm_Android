@@ -9,6 +9,6 @@
         android:color="@color/color_button_trans_primary"/>
 
     <corners
-        android:radius="@dimen/radius_button_default"/>
+        android:radius="@dimen/radius_button_lg"/>
 
 </shape>

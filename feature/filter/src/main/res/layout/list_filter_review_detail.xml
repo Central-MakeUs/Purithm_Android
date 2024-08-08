@@ -41,11 +41,11 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/view_profile"
             android:layout_width="40dp"
-            app:cardElevation="0dp"
             android:layout_height="40dp"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="99dp"
+            app:cardElevation="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/viewpager_pictures">
 

@@ -67,6 +67,7 @@
             app:layout_constraintTop_toBottomOf="@id/tv_reviewer"
             tools:text="Made by Ehwa" />
 
+        <!-- FIXME :  binding adpater 적용 필요 -->
         <TextView
             android:id="@+id/tv_review_intensity"
             style="@style/en_body_1"
