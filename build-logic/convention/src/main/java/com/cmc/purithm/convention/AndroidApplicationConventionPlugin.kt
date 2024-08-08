@@ -109,7 +109,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     add("implementation", project(":feature:filter"))
                     add("implementation", project(":feature:mypage"))
                     add("implementation", project(":feature:term"))
-                    add("implementation", project(":feature:photographer"))
+                    add("implementation", project(":feature:artist"))
                     add("implementation", project(":feature:review"))
                     add("implementation", project(":common"))
                     add("implementation", project(":design"))

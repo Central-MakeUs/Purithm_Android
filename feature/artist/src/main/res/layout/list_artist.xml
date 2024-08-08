@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_artist_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--
+                이미지 순서는 다음과 같음
+                1 3
+                2 4
+
+                FIXME : divider visibility 관리 필요
+            -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_picture"
+                android:layout_width="match_parent"
+                android:layout_height="400dp">
+
+                <ImageView
+                    android:id="@+id/img_artist_thumbnail_1"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@id/img_artist_thumbnail_2"
+                    app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:scaleType="centerCrop"
+                    tools:src="@drawable/bg_image_placeholder" />
+
+                <View
+                    android:id="@+id/view_divider_top"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/grey_100"
+                    app:layout_constraintBottom_toBottomOf="@id/img_artist_thumbnail_3"
+                    app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_3"
+                    app:layout_constraintTop_toTopOf="@id/img_artist_thumbnail_3" />
+
+                <ImageView
+                    android:id="@+id/img_artist_thumbnail_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_1"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:scaleType="centerCrop"
+                    tools:src="@drawable/bg_image_placeholder" />
+
+                <View
+                    android:id="@+id/view_divider_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey_100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/img_artist_thumbnail_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_artist_thumbnail_1"
+                    tools:scaleType="centerCrop"
+                    tools:src="@drawable/bg_image_placeholder" />
+
+                <View
+                    android:id="@+id/view_divider_bottom"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/grey_100"
+                    app:layout_constraintBottom_toBottomOf="@id/img_artist_thumbnail_4"
+                    app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_4"
+                    app:layout_constraintTop_toTopOf="@id/img_artist_thumbnail_4" />
+
+                <ImageView
+                    android:id="@+id/img_artist_thumbnail_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_2"
+                    app:layout_constraintTop_toBottomOf="@id/img_artist_thumbnail_3"
+                    tools:scaleType="centerCrop"
+                    tools:src="@drawable/bg_image_placeholder" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_profile"
+            android:layout_width="@dimen/size_image_profile"
+            android:layout_height="@dimen/size_image_profile"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="99dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_artist_thumbnail">
+
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_artist"
+            style="@style/en_title_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/grey_500"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintStart_toEndOf="@id/view_profile"
+            app:layout_constraintTop_toTopOf="@id/view_profile"
+            tools:text="Greta" />
+
+        <TextView
+            android:id="@+id/tv_shop"
+            style="@style/kr_body_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_home"
+            android:drawablePadding="5.26dp"
+            android:gravity="center"
+            android:text="@string/content_shop"
+            android:textColor="@color/blue_400"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@id/tv_artist"
+            app:layout_constraintTop_toTopOf="@id/view_profile" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/kr_body_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile"
+            tools:text="순간의 풍경을 담는 작가, 이화입니다." />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

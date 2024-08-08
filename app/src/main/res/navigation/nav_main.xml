@@ -11,7 +11,7 @@
     <include app:graph="@navigation/nav_home" />
     <include app:graph="@navigation/nav_feed" />
     <include app:graph="@navigation/nav_filter" />
-    <include app:graph="@navigation/nav_photographer" />
+    <include app:graph="@navigation/nav_artist" />
     <include app:graph="@navigation/nav_review" />
     <include app:graph="@navigation/nav_mypage" />
 

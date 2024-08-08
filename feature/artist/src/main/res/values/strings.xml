@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_artist_count">%s명의 작가들</string>
+    <string name="content_shop">Shop</string>
+</resources>
