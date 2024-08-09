@@ -6,8 +6,9 @@ import androidx.databinding.BindingAdapter
 import com.cmc.purithm.feature.filter.R
 
 object FilterBindingAdapter {
-    @JvmStatic
+    
     @BindingAdapter("reviewCount")
+    @JvmStatic
     fun TextView.setReviewCount(reviewCount : Int){
         text = String.format(context.getString(R.string.content_review_count), reviewCount)
     }

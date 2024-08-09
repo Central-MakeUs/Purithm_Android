@@ -7,18 +7,14 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.cmc.purithm.feature.home.HomeViewModel
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import com.cmc.purtihm.feature.home.R
 import com.cmc.purtihm.feature.home.databinding.ListFilterBinding
 
 class HomeFilterAdapter(
-    private val listener: HomeFilterItemClickListener
+    private val viewModel : HomeViewModel
 ) : PagingDataAdapter<HomeFilterUiModel, HomeFilterAdapter.HomeFilterViewHolder>(HomeFilterDiffUtil()) {
-
-    interface HomeFilterItemClickListener {
-        fun onItemClick(id : Long)
-        fun onLikeClick(id : Long)
-    }
 
     inner class HomeFilterViewHolder(private val binding: ListFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -27,11 +23,11 @@ class HomeFilterAdapter(
                 with(binding) {
                     model = data
                     root.setOnClickListener {
-                        listener.onItemClick(data.id)
+                        viewModel.clickFilterItem(data.id, data.canAccess)
                     }
 
                     btnLike.setOnClickListener {
-                        listener.onLikeClick(data.id)
+                        viewModel.clickFilterItemLike(data.id)
                     }
                 }
             }

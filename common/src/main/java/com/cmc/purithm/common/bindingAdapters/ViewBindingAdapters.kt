@@ -18,8 +18,8 @@ object ViewBindingAdapters {
      *
      * @param listener 실제 View가 클릭됐을 때, 동작되는 Listener
      * */
-    @JvmStatic
     @BindingAdapter("clickEvent")
+    @JvmStatic
     fun View.addButtonClickEvent(listener: View.OnClickListener) {
         this.setOnClickListener(DelayClickEventListener(onClickListener = listener))
     }

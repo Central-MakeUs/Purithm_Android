@@ -45,7 +45,7 @@ class CommonDialogFragment(
     companion object {
         private var INSTANCE : CommonDialogFragment? = null
         fun showDialog(
-            title: String,
+            content: String,
             negativeText: String? = null,
             positiveText: String? = null,
             negativeClickEvent: (() -> Unit)? = null,
@@ -54,7 +54,7 @@ class CommonDialogFragment(
         ) {
             dismissDialog()
             INSTANCE = CommonDialogFragment(
-                title, negativeText, positiveText, negativeClickEvent, positiveClickEvent
+                content, negativeText, positiveText, negativeClickEvent, positiveClickEvent
             ).apply {
                 show(fragmentManager, CommonDialogFragment::class.java.simpleName)
             }

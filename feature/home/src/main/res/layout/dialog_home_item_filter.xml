@@ -2,7 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data></data>
+    <data>
+
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.home.HomeViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,19 +33,21 @@
             android:layout_marginTop="20dp"
             android:paddingTop="20dp"
             android:paddingBottom="18dp"
+            android:text="@string/category_filter_sort_popular"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_top" />
 
         <TextView
-            android:id="@+id/tv_filter_new"
+            android:id="@+id/tv_filter_latest"
             style="@style/kr_body_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:paddingTop="20dp"
             android:paddingBottom="18dp"
+            android:text="@string/category_filter_sort_latest"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,11 +62,12 @@
             android:layout_marginBottom="40dp"
             android:paddingTop="20dp"
             android:paddingBottom="18dp"
+            android:text="@string/category_filter_sort_review"
             android:textColor="@color/grey_300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_filter_new" />
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_latest" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

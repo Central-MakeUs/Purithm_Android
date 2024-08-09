@@ -9,7 +9,7 @@ import javax.inject.Inject
 class GetFilterItemsUseCase @Inject constructor(
     private val filterRepository: FilterRepository
 ) {
-    suspend operator fun invoke(tag: String = "", sortedBy: String = ""): Flow<PagingData<Filter>> {
+    suspend operator fun invoke(tag: String, sortedBy: String): Flow<PagingData<Filter>> {
         return filterRepository.getFilterItems(
             tag = tag, sortedBy = sortedBy
         )

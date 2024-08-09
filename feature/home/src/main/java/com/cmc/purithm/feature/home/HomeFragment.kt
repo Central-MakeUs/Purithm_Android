@@ -10,13 +10,16 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.PagingData
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.home.adpater.HomeFilterAdapter
+import com.cmc.purithm.feature.home.dialog.HomeFilterLockBottomDialog
 import com.cmc.purithm.feature.home.dialog.HomeItemFilterDialogFragment
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import com.cmc.purtihm.feature.home.R
 import com.cmc.purtihm.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -26,55 +29,44 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    private val filterSortTypeArray by lazy { resources.getStringArray(R.array.category_filter_sort) }
     private var lastCheckedId = -1
-    private var selectedSortIndex = 0
-    private val homeFilterAdapter by lazy {
-        HomeFilterAdapter(object : HomeFilterAdapter.HomeFilterItemClickListener {
-            override fun onItemClick(id: Long) {
-                Log.e(TAG, "onItemClick: on!")
-            }
-
-            override fun onLikeClick(id: Long) {
-                Log.e(TAG, "onLikeClick: on!")
-            }
-        })
-    }
+    private val homeItemFilterDialogFragment by lazy { HomeItemFilterDialogFragment() }
+    private val homeFilterLockBottomDialog by lazy { HomeFilterLockBottomDialog() }
+    private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel) }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.action.collect { action ->
-                        when (action) {
-                            HomeAction.ClickFilter -> {}
-                            HomeAction.ClickFilterSort -> showFilterSortDialog()
+                    viewModel.state.collectLatest { state ->
+                        Log.d(TAG, "initObserving: state update")
+                        if(state.loading) {
+                            Log.d(TAG, "initObserving: loading true")
+                            showLoadingDialog()
+                        } else {
+                            Log.d(TAG, "initObserving: loading false")
+                            dismissLoadingDialog()
                         }
-                    }
-                }
-                launch {
-                    viewModel.state.collect { state ->
-                        when (state) {
-                            HomeState.Initialize -> viewModel.getFilters()
-                            HomeState.Loading -> showLoadingDialog()
-                            is HomeState.Error -> {
-                                dismissLoadingDialog()
-                                showToast(state.msg)
-                            }
-
-                            is HomeState.Success -> {
-                                dismissLoadingDialog()
-                                updateFilters(state.data)
-                            }
+                        if(state.error != null){
+                            Log.d(TAG, "initObserving: error is not null")
+                            CommonDialogFragment.showDialog(
+                                content = getString(com.cmc.purithm.design.R.string.error_common),
+                                positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                positiveClickEvent = {
+                                    requireActivity().finish()
+                                },
+                                fragmentManager = childFragmentManager
+                            )
                         }
+                        homeFilterAdapter.submitData(state.filterList)
                     }
                 }
                 launch {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
-                            is HomeSideEffect.NavigateToFilter -> (activity as NavigationAction).navigateFilterItem(
-                                sideEffect.id
-                            )
+                            is HomeSideEffect.NavigateToFilter -> (activity as NavigationAction).navigateFilterItem(sideEffect.id)
+                            HomeSideEffect.ShowFilterLockBottomSheet -> homeFilterLockBottomDialog.show(childFragmentManager, null)
+                            HomeSideEffect.ShowFilterSortedBottomSheet -> homeItemFilterDialogFragment.show(childFragmentManager, null)
                         }
                     }
                 }
@@ -93,7 +85,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 type = PurithmAppbar.PurithmAppbarType.ENG_TEXT,
                 title = getString(R.string.title_appbar)
             )
-            tvItemFilter.text = filterSortTypeArray[selectedSortIndex]
         }
         initRadioGroup()
     }
@@ -119,26 +110,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    private fun showFilterSortDialog(){
-        HomeItemFilterDialogFragment(
-            currentSortIndex = selectedSortIndex,
-            clickEvent = {selectedIndex ->
-                selectedSortIndex = selectedIndex
-                binding.tvItemFilter.text = filterSortTypeArray[selectedSortIndex]
-                viewModel.getFilters(sortedBy = FILTER_SORT_TYPE[selectedSortIndex])
-            }
-        ).show(childFragmentManager, null)
-    }
-
-    private fun updateFilters(list: PagingData<HomeFilterUiModel>) {
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeFilterAdapter.submitData(list)
-        }
-    }
-
     companion object {
         private const val TAG = "HomeFragment"
-        // FIXME : 필터 정렬 string 확인
-        private val FILTER_SORT_TYPE = arrayOf("popular", "latest", "latest")
     }
 }

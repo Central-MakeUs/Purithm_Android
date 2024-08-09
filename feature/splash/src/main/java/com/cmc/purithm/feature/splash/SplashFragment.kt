@@ -30,7 +30,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                             is SplashState.Error -> {
                                 dismissLoadingDialog()
                                 CommonDialogFragment.showDialog(
-                                    title = getString(com.cmc.purithm.design.R.string.error_common),
+                                    content = getString(com.cmc.purithm.design.R.string.error_common),
                                     positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
                                     positiveClickEvent = {
                                         requireActivity().finish()

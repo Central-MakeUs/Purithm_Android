@@ -7,10 +7,15 @@
     <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
     <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
 
+    <string name="category_filter_sort_popular">인기순</string>
+    <string name="category_filter_sort_latest">최신순</string>
+    <string name="category_filter_sort_review">퓨어지수 높은순</string>
+
+    <!-- FIXME : 서버에 요청해야하는 값 확인 -->
     <string-array name="category_filter_sort">
-        <item>인기순</item>
-        <item>최신순</item>
-        <item>퓨어지수 높은순</item>
+        <item>popular</item>
+        <item>latest</item>
+        <item>review</item>
     </string-array>
 
     <string name="category_filter_keyword_spring">봄</string>
@@ -20,6 +25,7 @@
     <string name="category_filter_keyword_backlight">역광에서</string>
     <string name="category_filter_keyword_night">night</string>
     <string name="category_filter_keyword_daily">daily</string>
+    <string name="category_filter_keyword_cat">고양이</string>
 
     <string name="title_filter_premium_lock">잠금은 어떻게 푸나요?</string>
     <string name="content_filter_premium_lock">필터를 사용해보고 후기를 남기면 스탬프가 찍히고,\n일정 개수를 모으면 프리미엄 필터를 열람할 수 있어요.</string>

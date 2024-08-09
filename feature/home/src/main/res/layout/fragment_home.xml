@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
-            android:id="@+id/scroll_filter"
+            android:id="@+id/scroll_filter_tag"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -52,7 +52,8 @@
                     android:paddingHorizontal="12dp"
                     android:paddingVertical="8dp"
                     android:text="@string/category_filter_keyword_spring"
-                    android:textColor="@color/selector_filter_keyword_text" />
+                    android:textColor="@color/selector_filter_keyword_text"
+                    app:clickEvent="@{() -> vm.clickFilterTag(@string/category_filter_keyword_spring)}" />
 
                 <RadioButton
                     android:id="@+id/btn_filter_keyword_summer"
@@ -132,55 +133,89 @@
                     android:paddingVertical="8dp"
                     android:text="@string/category_filter_keyword_daily"
                     android:textColor="@color/selector_filter_keyword_text" />
+
+                <RadioButton
+                    android:id="@+id/btn_filter_keyword_cat"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="@dimen/margin_screen_side"
+                    android:background="@drawable/selector_filter_keyword_background"
+                    android:button="@color/transparent"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"
+                    android:text="@string/category_filter_keyword_daily"
+                    android:textColor="@color/selector_filter_keyword_text" />
             </RadioGroup>
 
         </HorizontalScrollView>
 
-        <LinearLayout
-            android:id="@+id/layout_item_filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:clickEvent="@{() -> vm.clickFilterSort()}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scroll_filter">
-
-            <TextView
-                android:id="@+id/tv_item_filter"
-                style="@style/kr_body_5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/grey_400"
-                tools:text="인기순" />
-
-            <ImageView
-                android:id="@+id/img_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:src="@drawable/ic_arrow_bottom_grey" />
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_filter"
-            android:layout_width="0dp"
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_filter"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginStart="@dimen/margin_screen_side"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="7dp"
-            app:layout_constraintVertical_bias="0.0"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_item_filter"
-            app:spanCount="2" />
+            app:layout_constraintTop_toBottomOf="@id/scroll_filter_tag">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_filter"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/layout_item_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    app:clickEvent="@{() -> vm.clickFilterSortedBy()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/tv_item_filter"
+                        style="@style/kr_body_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{vm.state.sortedBy}"
+                        android:textColor="@color/grey_400"
+                        tools:text="인기순" />
+
+                    <ImageView
+                        android:id="@+id/img_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:src="@drawable/ic_arrow_bottom_grey" />
+                </LinearLayout>
+
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
+                    android:id="@+id/list_filter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_screen_side"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="7dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_item_filter"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:spanCount="2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -7,8 +7,8 @@ import com.cmc.purithm.design.R
 import com.cmc.purithm.design.component.view.FilterPremiumView
 
 object FilterBindingAdapters {
-    @JvmStatic
     @BindingAdapter(requireAll = true, value = ["membership", "canAccess"])
+    @JvmStatic
     fun FilterPremiumView.setMembership(
         membership: FilterPremiumView.FilterMembership,
         canAccess: Boolean
@@ -20,8 +20,8 @@ object FilterBindingAdapters {
         setViewType(membership)
     }
 
-    @JvmStatic
     @BindingAdapter("reviewBackground")
+    @JvmStatic
     fun ImageView.setReviewBackground(pureDegree: Int) {
         setBackgroundResource(
             when (pureDegree) {
@@ -34,8 +34,8 @@ object FilterBindingAdapters {
         )
     }
 
-    @JvmStatic
     @BindingAdapter("reviewIntensityBackground")
+    @JvmStatic
     fun ImageView.setReviewIntensityBackground(pureDegree: Int) {
         setBackgroundResource(
             when (pureDegree) {

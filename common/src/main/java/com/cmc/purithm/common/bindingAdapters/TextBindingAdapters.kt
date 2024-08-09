@@ -14,8 +14,9 @@ object TextBindingAdapters {
      *
      * 적용할 한/영 폰트의 스타일을 넣어주면 자동으로 변경
      * */
-    @JvmStatic
+    
     @BindingAdapter(value = ["kr_style", "en_style"])
+    @JvmStatic
     fun TextView.setPurithmText(krStyle: Int, enStyle: Int) {
         when {
             KOREAN_PATTERN.matches(text) -> setTextAppearance(krStyle)

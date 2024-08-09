@@ -45,7 +45,7 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
                             is TermsOfServiceState.Error -> {
                                 dismissLoadingDialog()
                                 CommonDialogFragment.showDialog(
-                                    title = it.message,
+                                    content = it.message,
                                     positiveClickEvent = {
                                         CommonDialogFragment.dismissDialog()
                                     },
@@ -92,7 +92,7 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
     private fun setBackButtonEvent() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             CommonDialogFragment.showDialog(
-                title = getString(R.string.content_term_of_service_cancel_description),
+                content = getString(R.string.content_term_of_service_cancel_description),
                 negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
                 negativeClickEvent = {
                     CommonDialogFragment.dismissDialog()
@@ -120,7 +120,7 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
             title = getString(com.cmc.purithm.design.R.string.title_term_of_service),
             backClickListener = {
                 CommonDialogFragment.showDialog(
-                    title = getString(com.cmc.purithm.feature.term.R.string.content_term_of_service_cancel_description),
+                    content = getString(com.cmc.purithm.feature.term.R.string.content_term_of_service_cancel_description),
                     negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
                     negativeClickEvent = {
                         CommonDialogFragment.dismissDialog()
