@@ -27,7 +27,12 @@ class HomeFilterAdapter(
                     }
 
                     btnLike.setOnClickListener {
-                        viewModel.clickFilterItemLike(data.id)
+                        data.liked = !data.liked
+                        if(data.liked){
+                            viewModel.deleteFilterLike(data.id)
+                        } else {
+                            viewModel.setFilterLike(data.id)
+                        }
                     }
                 }
             }

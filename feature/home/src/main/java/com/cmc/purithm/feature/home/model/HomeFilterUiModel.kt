@@ -11,7 +11,7 @@ data class HomeFilterUiModel(
     val photographerName: String,
     val likes: Int,
     val canAccess: Boolean,
-    val liked: Boolean
+    var liked: Boolean
 ) {
     companion object {
         fun toUiModel(data: Filter) = HomeFilterUiModel(

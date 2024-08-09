@@ -8,6 +8,7 @@ import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.domain.entity.filter.Filter
 import java.io.IOException
+import java.util.Collections
 
 /**
  * paging data source
@@ -48,8 +49,6 @@ internal class FilterItemDataSource(
                 prevKey = if (currentPage == START_PAGE_INDEX) null else currentPage - 1,
                 nextKey = if (isLast) null else currentPage + 1
             )
-        } catch (e: IOException) {
-            LoadResult.Error(e)
         } catch (e: Exception) {
             LoadResult.Error(e)
         }

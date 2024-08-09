@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
@@ -21,6 +22,7 @@ import com.cmc.purtihm.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -32,7 +34,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private var lastCheckedId = -1
     private val homeItemFilterDialogFragment by lazy { HomeItemFilterDialogFragment() }
     private val homeFilterLockBottomDialog by lazy { HomeFilterLockBottomDialog() }
-    private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel) }
+    private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel).apply {
+        addLoadStateListener { loadState ->
+
+        }
+    } }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -48,7 +54,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                             dismissLoadingDialog()
                         }
                         if(state.error != null){
-                            Log.d(TAG, "initObserving: error is not null")
+                            Log.e(TAG, "initObserving: error = ${state.error.message}", )
                             CommonDialogFragment.showDialog(
                                 content = getString(com.cmc.purithm.design.R.string.error_common),
                                 positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
@@ -79,6 +85,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun initView() {
+        initRadioGroup()
+        viewModel.setPageAdapterLoadStateListener(homeFilterAdapter)
         with(binding) {
             listFilter.adapter = homeFilterAdapter
             viewAppbar.setAppBar(
@@ -86,7 +94,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 title = getString(R.string.title_appbar)
             )
         }
-        initRadioGroup()
     }
 
     /**

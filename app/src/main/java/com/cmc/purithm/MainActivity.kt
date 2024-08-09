@@ -113,23 +113,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         arguments: Bundle?
     ) {
         when (destination.id) {
-            com.cmc.purithm.feature.splash.R.id.splashFragment -> {
-                setBottomNavVisibility(false)
-            }
-
-            com.cmc.purithm.feature.login.R.id.loginFragment -> {
-                setBottomNavVisibility(false)
-            }
-
-            com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment -> {
-                setBottomNavVisibility(false)
-            }
-
-            com.cmc.purithm.feature.term.R.id.termOfServiceFragment -> {
-                setBottomNavVisibility(false)
-            }
-
-            com.cmc.purithm.feature.term.R.id.joinCompleteFragment -> {
+            com.cmc.purithm.feature.term.R.id.joinCompleteFragment,
+            com.cmc.purithm.feature.term.R.id.termOfServiceFragment,
+            com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
+            com.cmc.purithm.feature.login.R.id.loginFragment,
+            com.cmc.purithm.feature.splash.R.id.splashFragment,
+            com.cmc.purithm.feature.filter.R.id.filterFragment-> {
                 setBottomNavVisibility(false)
             }
 

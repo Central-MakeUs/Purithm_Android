@@ -22,21 +22,21 @@ internal interface FilterService {
 
     @POST("api/filters/{filterId}/likes")
     suspend fun requestFilterLike(
-        @Path("filterId") filterId: String
-    ): BaseResponse<Boolean>
+        @Path("filterId") filterId: Long
+    ): BaseResponse<Unit?>
 
     @DELETE("api/filters/{filterId}/likes")
     suspend fun deleteFilterLike(
-        @Path("filterId") filterId: String
-    ): BaseResponse<Boolean>
+        @Path("filterId") filterId: Long
+    ): BaseResponse<Unit?>
 
     @GET("api/filters/{filterId}")
     suspend fun getFilterDetail(
-        @Path("filterId") filterId: String
+        @Path("filterId") filterId: Long
     ): BaseResponse<FilterDetailResponseDto>
 
     @GET("api/filters/{filterId}/reviews")
     suspend fun getFilterReview(
-        @Path("filterId") filterId: String
+        @Path("filterId") filterId: Long
     ): BaseResponse<FilterReviewResponseDto>
 }

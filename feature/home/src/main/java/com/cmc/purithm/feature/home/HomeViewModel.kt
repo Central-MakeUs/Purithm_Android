@@ -3,10 +3,14 @@ package com.cmc.purithm.feature.home
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.cmc.purithm.domain.usecase.filter.DeleteFilterLikeUseCase
 import com.cmc.purithm.domain.usecase.filter.GetFilterItemsUseCase
+import com.cmc.purithm.domain.usecase.filter.SetFilterLikeUseCase
+import com.cmc.purithm.feature.home.adpater.HomeFilterAdapter
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -15,6 +19,7 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -22,7 +27,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val getFilterItemsUseCase: GetFilterItemsUseCase
+    private val getFilterItemsUseCase: GetFilterItemsUseCase,
+    private val setFilterLikeUseCase: SetFilterLikeUseCase,
+    private val deleteFilterLikeUseCase: DeleteFilterLikeUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
@@ -56,6 +63,35 @@ class HomeViewModel @Inject constructor(
                         }
                     }
             }.onFailure { exception ->
+                exception.printStackTrace()
+                _state.update { state ->
+                    state.copy(
+                        loading = false,
+                        error = exception
+                    )
+                }
+            }
+        }
+    }
+
+    fun setFilterLike(filterId: Long) {
+        Log.d(TAG, "clickFilterItemLike: start")
+        viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    loading = true
+                )
+            }
+            runCatching {
+                setFilterLikeUseCase(filterId)
+            }.onSuccess {
+                _state.update {
+                    it.copy(
+                        loading = false
+                    )
+                }
+                getFilters()
+            }.onFailure { exception ->
                 _state.update {
                     it.copy(
                         loading = false,
@@ -66,10 +102,30 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterItemLike(filterId: Long) {
-        Log.d(TAG, "clickFilterItemLike: start")
+    fun deleteFilterLike(filterId: Long) {
+        Log.d(TAG, "deleteFilterLike: start")
         viewModelScope.launch {
-
+            _state.update {
+                it.copy(
+                    loading = true
+                )
+            }
+            runCatching {
+                deleteFilterLikeUseCase(filterId)
+            }.onSuccess {
+                _state.update {
+                    it.copy(
+                        loading = false
+                    )
+                }
+            }.onFailure { exception ->
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        error = exception
+                    )
+                }
+            }
         }
     }
 
@@ -129,6 +185,29 @@ class HomeViewModel @Inject constructor(
                 _sideEffect.emit(HomeSideEffect.NavigateToFilter(filterId))
             } else {
                 _sideEffect.emit(HomeSideEffect.ShowFilterLockBottomSheet)
+            }
+        }
+    }
+
+    /**
+     * paging adpater의 state를 viewModel에서 관리하도록 설정
+     * */
+    fun setPageAdapterLoadStateListener(adapter : HomeFilterAdapter){
+        adapter.addLoadStateListener { loadState ->
+            val errorState = when {
+                loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                else -> null
+            }
+
+            if(errorState != null){
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        error = errorState.error
+                    )
+                }
             }
         }
     }

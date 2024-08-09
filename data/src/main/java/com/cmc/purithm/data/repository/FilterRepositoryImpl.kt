@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.cmc.purithm.data.remote.ApiConfig
+import com.cmc.purithm.data.remote.HandleApi
 import com.cmc.purithm.data.remote.datasource.FilterItemDataSource
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.domain.entity.filter.Filter
@@ -31,5 +32,13 @@ internal class FilterRepositoryImpl @Inject constructor(
                 )
             }
         ).flow
+    }
+
+    override suspend fun requestFilterLike(filterId: Long) {
+        HandleApi.callApi { filterService.requestFilterLike(filterId) }
+    }
+
+    override suspend fun deleteFilterLike(filterId: Long) {
+        HandleApi.callApi { filterService.deleteFilterLike(filterId) }
     }
 }
