@@ -48,7 +48,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/btn_back"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Filters" />
+                tools:text="Daily" />
 
             <TextView
                 android:id="@+id/tv_title_kr"
@@ -97,8 +97,8 @@
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"
                         android:contentDescription="@string/content_like_description"
-                        android:src="@drawable/ic_like_unpressed"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:src="@drawable/ic_like_pressed_appbar" />
 
                     <TextView
                         android:id="@+id/tv_like_cnt"
@@ -106,7 +106,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_300"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        tools:text="3" />
 
                 </LinearLayout>
 

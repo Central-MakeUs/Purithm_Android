@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_filter"
-    app:startDestination="@id/filterDetailFragment">
+    app:startDestination="@id/filterFragment">
 
 
     <fragment
-        android:id="@+id/filterDetailFragment"
-        android:name="com.cmc.purithm.feature.filter.ui.FilterDetailFragment"
+        android:id="@+id/filterIntroductionFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterIntroductionFragment"
         android:label="FilterDetailFragment"
-        tools:layout="@layout/fragment_filter_detail" />
+        tools:layout="@layout/fragment_filter_introduction">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
     <fragment
         android:id="@+id/filterFragment"
         android:name="com.cmc.purithm.feature.filter.ui.FilterFragment"
@@ -18,18 +23,37 @@
         tools:layout="@layout/fragment_filter">
         <argument
             android:name="filterId"
-            android:defaultValue="0L"
+            app:nullable="false"
             app:argType="long" />
         <deepLink app:uri="purithm://filter/{filterId}" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterLoadingFragment"
+            app:destination="@id/filterLoadingFragment" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterIntroductionFragment"
+            app:destination="@id/filterIntroductionFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterLoadingFragment"
         android:name="com.cmc.purithm.feature.filter.ui.FilterLoadingFragment"
         android:label="FilterLoadingFragment"
-        tools:layout="@layout/fragment_filter_loading" />
+        tools:layout="@layout/fragment_filter_loading">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_filterLoadingFragment_to_filterValueFragment"
+            app:destination="@id/filterValueFragment" />
+    </fragment>
     <fragment
         android:id="@+id/filterValueFragment"
         android:name="com.cmc.purithm.feature.filter.ui.FilterValueFragment"
         android:label="FilterValueFragment"
-        tools:layout="@layout/fragment_filter_value" />
+        tools:layout="@layout/fragment_filter_value">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
 </navigation>

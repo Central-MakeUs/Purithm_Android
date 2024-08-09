@@ -16,6 +16,7 @@ internal class MemberDataStore @Inject constructor(
 ) {
     private val Context.dataStore by preferencesDataStore(name = MEMBER_PREFS)
     private val firstRunDataStore = booleanPreferencesKey(MEMBER_FIRST_RUN)
+    private val firstFilterRunDataStore = booleanPreferencesKey(MEMBER_FILTER_FIRST_RUN)
 
     suspend fun setFirstRun(flag: Boolean) {
         context.dataStore.edit {
@@ -29,8 +30,21 @@ internal class MemberDataStore @Inject constructor(
         }
     }
 
+    suspend fun setFirstFilterRun(flag: Boolean) {
+        context.dataStore.edit {
+            it[firstFilterRunDataStore] = flag
+        }
+    }
+
+    suspend fun getFirstFilterRun(): Boolean {
+        return context.dataStore.data.first().let {
+            it[firstFilterRunDataStore] ?: true
+        }
+    }
+
     companion object {
         private const val MEMBER_PREFS = "PURITHM_MEMBER_PREFS"
         private const val MEMBER_FIRST_RUN = "FIRST_RUN"
+        private const val MEMBER_FILTER_FIRST_RUN = "FILTER_FIRST_RUN"
     }
 }

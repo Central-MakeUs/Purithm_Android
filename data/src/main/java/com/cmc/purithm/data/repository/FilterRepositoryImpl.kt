@@ -6,6 +6,7 @@ import androidx.paging.PagingData
 import com.cmc.purithm.data.remote.ApiConfig
 import com.cmc.purithm.data.remote.HandleApi
 import com.cmc.purithm.data.remote.datasource.FilterItemDataSource
+import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.repository.FilterRepository
@@ -40,5 +41,9 @@ internal class FilterRepositoryImpl @Inject constructor(
 
     override suspend fun deleteFilterLike(filterId: Long) {
         HandleApi.callApi { filterService.deleteFilterLike(filterId) }
+    }
+
+    override suspend fun getFilterDetail(filterId: Long): Filter {
+        return HandleApi.callApi { filterService.getFilterDetail(filterId).toDomain() }
     }
 }

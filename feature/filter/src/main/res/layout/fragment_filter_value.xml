@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_button_solid_primary_lg"
-            android:drawableEnd="@drawable/ic_move"
+            android:drawableEnd="@drawable/ic_move_white"
             android:drawablePadding="8dp"
             android:paddingHorizontal="13dp"
             android:paddingVertical="8dp"

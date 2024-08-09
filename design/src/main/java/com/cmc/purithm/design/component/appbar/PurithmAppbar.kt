@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewAppbarBinding
 import com.cmc.purithm.design.util.Util.dp
 
@@ -26,6 +27,7 @@ class PurithmAppbar @JvmOverloads constructor(
         type: PurithmAppbarType,
         title: String = "",
         likeCnt: Int = 0,
+        likeState: Boolean = false,
         backClickListener: (() -> Unit)? = null,
         searchClickListener: (() -> Unit)? = null,
         likeClickListener: (() -> Unit)? = null,
@@ -40,16 +42,19 @@ class PurithmAppbar @JvmOverloads constructor(
         when (type) {
             PurithmAppbarType.ENG_DEFAULT -> setEngDefaultAppbar(
                 title,
+                likeState,
                 searchClickListener,
                 likeClickListener
             )
-            PurithmAppbarType.ENG_LIKE -> setEngLikeAppbar(title, likeCnt, likeClickListener)
+
+            PurithmAppbarType.ENG_LIKE -> setEngLikeAppbar(title, likeCnt, likeState, likeClickListener)
             PurithmAppbarType.KR_DEFAULT -> setKrDefaultAppbar(title, questionClickListener)
             PurithmAppbarType.KR_BUTTON -> setKrButtonAppbar(title, registrationClickListener)
             PurithmAppbarType.KR_BACK -> setKrBackAppbar(title)
             PurithmAppbarType.ENG_TEXT -> setEngTextAppbar(title)
         }
         binding.btnBack.setOnClickListener {
+            Log.d(TAG, "setAppBar: back on")
             backClickListener?.invoke()
         }
         Log.d(TAG, "setAppBar: end")
@@ -92,7 +97,7 @@ class PurithmAppbar @JvmOverloads constructor(
                 setOnClickListener(null)
                 visibility = View.GONE
             }
-            with(btnBack){
+            with(btnBack) {
                 setOnClickListener(null)
                 visibility = View.GONE
             }
@@ -103,7 +108,7 @@ class PurithmAppbar @JvmOverloads constructor(
         title: String,
     ) {
         setAppbarTopMargin(64)
-        with(binding){
+        with(binding) {
             tvTitleKr.visibility = View.VISIBLE
             tvTitleKr.text = title
 
@@ -113,6 +118,7 @@ class PurithmAppbar @JvmOverloads constructor(
 
     fun setEngDefaultAppbar(
         title: String,
+        likeState: Boolean,
         searchClickListener: (() -> Unit)?,
         likeClickListener: (() -> Unit)?
     ) {
@@ -125,6 +131,13 @@ class PurithmAppbar @JvmOverloads constructor(
             btnSearch.setOnClickListener {
                 searchClickListener?.invoke()
             }
+            btnLike.setImageResource(
+                if (likeState) {
+                    R.drawable.ic_like_pressed_appbar
+                } else {
+                    R.drawable.ic_like_unpressed_appbar
+                }
+            )
             btnLike.visibility = View.VISIBLE
             btnLike.setOnClickListener {
                 likeClickListener?.invoke()
@@ -136,6 +149,7 @@ class PurithmAppbar @JvmOverloads constructor(
     private fun setEngLikeAppbar(
         title: String,
         likeCnt: Int,
+        likeState: Boolean,
         likeClickListener: (() -> Unit)?
     ) {
         setAppbarTopMargin(40)
@@ -144,7 +158,13 @@ class PurithmAppbar @JvmOverloads constructor(
             tvTitleEn.text = title
 
             setLikeCnt(likeCnt)
-
+            btnLike.setImageResource(
+                if (likeState) {
+                    R.drawable.ic_like_pressed_appbar
+                } else {
+                    R.drawable.ic_like_unpressed_appbar
+                }
+            )
             btnLike.visibility = View.VISIBLE
             btnLike.setOnClickListener {
                 likeClickListener?.invoke()
@@ -188,10 +208,10 @@ class PurithmAppbar @JvmOverloads constructor(
     }
 
     private fun setEngTextAppbar(
-        title : String
-    ){
+        title: String
+    ) {
         setAppbarTopMargin(40)
-        with(binding){
+        with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
 

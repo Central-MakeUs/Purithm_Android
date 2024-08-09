@@ -4,6 +4,17 @@
 
     <data>
 
+        <import type="com.cmc.purithm.feature.filter.model.FilterImgType" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="filterType"
+            type="com.cmc.purithm.feature.filter.model.FilterImgType" />
+
+        <variable
+            name="filterImgUrl"
+            type="com.cmc.purithm.domain.entity.filter.FilterImg" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,10 +25,25 @@
             android:id="@+id/img_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="@{filterType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
+            app:imageUrl="@{filterImgUrl.picture}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_original"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:visibility="@{filterType == FilterImgType.ORIGINAL ? View.VISIBLE : View.GONE}"
+            app:imageUrl="@{filterImgUrl.originalPicture}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

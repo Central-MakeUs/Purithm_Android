@@ -2,13 +2,13 @@ package com.cmc.purithm.feature.filter.ui
 
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.feature.filter.R
-import com.cmc.purithm.feature.filter.databinding.FragmentFilterValueBinding
+import com.cmc.purithm.feature.filter.databinding.FragmentFilterIntroductionBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
+class FilterIntroductionFragment : BaseFragment<FragmentFilterIntroductionBinding>() {
     override val layoutId: Int
-        get() = R.layout.fragment_filter_value
+        get() = R.layout.fragment_filter_introduction
 
     override fun initObserving() {
 

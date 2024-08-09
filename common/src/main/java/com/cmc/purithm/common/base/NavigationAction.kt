@@ -15,5 +15,5 @@ interface NavigationAction {
     fun navigateOnBoarding()
     fun navigateHome()
     fun navigateTermOfService()
-    fun navigateFilterItem(id : Long)
+    fun navigateFilterItem(id: Long)
 }

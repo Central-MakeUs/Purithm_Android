@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.filter.viewmodel.FilterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -53,7 +56,7 @@
                 style="@style/kr_body_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/content_filter_satisfaction"
+                android:text="@{String.format(@string/content_filter_satisfaction, vm.state.data.pureDegree)}"
                 android:textColor="@color/grey_300"
                 tools:text="필터 만족도 80%" />
 
@@ -61,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4.5dp"
-                android:src="@drawable/ic_move" />
+                android:src="@drawable/ic_move_grey" />
         </LinearLayout>
 
         <LinearLayout
@@ -93,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4.5dp"
-                android:src="@drawable/ic_move" />
+                android:src="@drawable/ic_move_grey" />
         </LinearLayout>
 
         <androidx.viewpager2.widget.ViewPager2
@@ -114,6 +117,7 @@
             android:background="@drawable/shape_badge_fill_blue"
             android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
+            android:text="@{String.format(@string/content_filter_image_page, 1, vm.state.data.pictures.size)}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,15 +125,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.2"
             tools:text="1/3" />
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager_pictures"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_filter_satisfaction" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_guide_no_filter"

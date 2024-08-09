@@ -34,11 +34,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private var lastCheckedId = -1
     private val homeItemFilterDialogFragment by lazy { HomeItemFilterDialogFragment() }
     private val homeFilterLockBottomDialog by lazy { HomeFilterLockBottomDialog() }
-    private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel).apply {
-        addLoadStateListener { loadState ->
-
-        }
-    } }
+    private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel) }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -46,15 +42,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 launch {
                     viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: state update")
-                        if(state.loading) {
+                        if (state.loading) {
                             Log.d(TAG, "initObserving: loading true")
                             showLoadingDialog()
                         } else {
                             Log.d(TAG, "initObserving: loading false")
                             dismissLoadingDialog()
                         }
-                        if(state.error != null){
-                            Log.e(TAG, "initObserving: error = ${state.error.message}", )
+                        if (state.error != null) {
+                            Log.e(TAG, "initObserving: error = ${state.error.message}")
                             CommonDialogFragment.showDialog(
                                 content = getString(com.cmc.purithm.design.R.string.error_common),
                                 positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
@@ -70,9 +66,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 launch {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
-                            is HomeSideEffect.NavigateToFilter -> (activity as NavigationAction).navigateFilterItem(sideEffect.id)
-                            HomeSideEffect.ShowFilterLockBottomSheet -> homeFilterLockBottomDialog.show(childFragmentManager, null)
-                            HomeSideEffect.ShowFilterSortedBottomSheet -> homeItemFilterDialogFragment.show(childFragmentManager, null)
+                            is HomeSideEffect.NavigateToFilter -> (activity as NavigationAction).navigateFilterItem(
+                                sideEffect.id
+                            )
+
+                            HomeSideEffect.ShowFilterLockBottomSheet -> homeFilterLockBottomDialog.show(
+                                childFragmentManager,
+                                null
+                            )
+
+                            HomeSideEffect.ShowFilterSortedBottomSheet -> homeItemFilterDialogFragment.show(
+                                childFragmentManager,
+                                null
+                            )
                         }
                     }
                 }
@@ -107,9 +113,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         if (view.id == lastCheckedId) {
                             clearCheck()
                             lastCheckedId = -1
+                            viewModel.clickFilterTag("")
                         } else {
                             view.isChecked = true
                             lastCheckedId = view.id
+                            // FIXME : tag 나오면 수정하기
+                            viewModel.clickFilterTag("spring")
                         }
                     }
                 }

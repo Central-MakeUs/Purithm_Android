@@ -9,5 +9,7 @@ data class Filter(
     val photographerName : String = "",
     val likes : Int = 0,
     val canAccess : Boolean = false,
-    val liked : Boolean = false
+    val liked : Boolean = false,
+    val pureDegree : Int = 0,
+    val pictures : List<FilterImg> = emptyList()
 )

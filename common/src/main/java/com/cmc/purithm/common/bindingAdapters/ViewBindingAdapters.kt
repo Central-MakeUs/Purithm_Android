@@ -1,7 +1,10 @@
 package com.cmc.purithm.common.bindingAdapters
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageButton
+import android.widget.RadioButton
+import androidx.core.view.forEach
 import androidx.databinding.BindingAdapter
 import com.cmc.purithm.common.R
 import com.cmc.purithm.common.view.DelayClickEventListener

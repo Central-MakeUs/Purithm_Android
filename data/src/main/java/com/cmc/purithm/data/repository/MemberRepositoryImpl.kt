@@ -22,4 +22,12 @@ internal class MemberRepositoryImpl @Inject constructor(
         HandleApi.callApi { memberService.requestAgreeTermsOfService() }
     }
 
+    override suspend fun getFirstFilter(): Boolean {
+        return memberDataStore.getFirstFilterRun()
+    }
+
+    override suspend fun setFirstFilter(flag: Boolean) {
+        memberDataStore.setFirstFilterRun(flag)
+    }
+
 }

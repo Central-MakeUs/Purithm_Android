@@ -19,4 +19,8 @@ interface FilterRepository {
     suspend fun deleteFilterLike(
         filterId: Long
     )
+
+    suspend fun getFilterDetail(
+        filterId : Long
+    ) : Filter
 }
