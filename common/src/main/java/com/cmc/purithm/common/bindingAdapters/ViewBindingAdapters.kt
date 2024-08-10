@@ -24,18 +24,16 @@ object ViewBindingAdapters {
      *
      * @param listener 실제 View가 클릭됐을 때, 동작되는 Listener
      * */
-    @BindingAdapter("clickEvent")
+    @BindingAdapter(value = ["delayClickEvent"])
     @JvmStatic
-    fun View.addButtonClickEvent(listener: View.OnClickListener) {
+    fun View.addDelayClickEvent(listener: View.OnClickListener) {
         this.setOnClickListener(DelayClickEventListener(onClickListener = listener))
     }
 
-    @BindingAdapter("checkEvent")
+    @BindingAdapter(value = ["clickEvent"])
     @JvmStatic
-    fun CheckBox.setCheckEvent(event : () -> Unit){
-        setOnCheckedChangeListener { _, checked ->
-            event()
-        }
+    fun View.addButtonClickEvent(listener: View.OnClickListener) {
+        this.setOnClickListener(DelayClickEventListener(onClickListener = listener, delayMillis = 0))
     }
 
     @BindingAdapter("touchEvent")

@@ -172,7 +172,7 @@
                     android:layout_marginEnd="20dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    app:clickEvent="@{() -> vm.clickFilterSortedBy()}"
+                    app:delayClickEvent="@{() -> vm.clickFilterSortedBy()}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"

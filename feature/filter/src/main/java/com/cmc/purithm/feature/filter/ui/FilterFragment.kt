@@ -110,7 +110,11 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 (activity as NavigationAction).navigateHome()
             },
             likeClickListener = {
-                viewModel.requestFilterLike(filterId)
+                if(viewModel.state.value.data?.liked == true){
+                    viewModel.deleteFilterLike(filterId)
+                } else {
+                    viewModel.requestFilterLike(filterId)
+                }
             }
         )
     }
@@ -134,6 +138,11 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
             // 선택된 인덱스로 변경되야함
             binding.vpPicture.currentItem = selectedImgIndex
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.clearData()
     }
 
     companion object {

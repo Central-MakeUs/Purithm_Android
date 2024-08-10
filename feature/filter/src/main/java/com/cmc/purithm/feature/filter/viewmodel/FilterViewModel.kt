@@ -40,6 +40,19 @@ class FilterViewModel @Inject constructor(
         getFilterFirstRun()
     }
 
+    fun clearData(){
+        _state.update {
+            it.copy(
+                loading = false,
+                isFirst = true,
+                error = null,
+                noText =  false,
+                filterImgType = FilterImgType.FILTER,
+                data = null
+            )
+        }
+    }
+
     private fun getFilterFirstRun() {
         viewModelScope.launch {
             Log.d(TAG, "getFilterFirstRun: start")

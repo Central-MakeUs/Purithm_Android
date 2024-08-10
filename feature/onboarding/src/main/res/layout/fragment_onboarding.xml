@@ -85,7 +85,7 @@
             android:paddingVertical="18dp"
             android:text="@string/content_login_btn"
             android:textColor="@color/white"
-            app:clickEvent="@{() -> vm.clickLoginButton()}"
+            app:delayClickEvent="@{() -> vm.clickLoginButton()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
