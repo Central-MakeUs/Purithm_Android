@@ -21,6 +21,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val kakaoCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
+            Log.e(TAG, "kakao error > msg = ${error.message}")
             showSnackBar(getString(R.string.error_kakao_default_msg))
         } else if (token != null) {
             Log.d(TAG, "kakaoCallback : token = ${token.accessToken}")

@@ -27,7 +27,6 @@ class HomeFilterAdapter(
                     }
 
                     btnLike.setOnClickListener {
-                        data.liked = !data.liked
                         if(data.liked){
                             viewModel.deleteFilterLike(data.id)
                         } else {

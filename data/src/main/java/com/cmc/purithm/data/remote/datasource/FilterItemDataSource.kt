@@ -56,6 +56,6 @@ internal class FilterItemDataSource(
 
     companion object {
         private const val TAG = "FilterItemDataSource"
-        private const val START_PAGE_INDEX = 1
+        private const val START_PAGE_INDEX = 0
     }
 }

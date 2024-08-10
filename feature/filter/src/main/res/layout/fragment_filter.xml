@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.cmc.purithm.feature.filter.viewmodel.FilterViewModel" />
@@ -117,7 +119,7 @@
             android:background="@drawable/shape_badge_fill_blue"
             android:paddingHorizontal="8dp"
             android:paddingVertical="2dp"
-            android:text="@{String.format(@string/content_filter_image_page, 1, vm.state.data.pictures.size)}"
+            android:text="@{String.format(@string/content_filter_image_page, vm.state.selectedIndex, vm.state.data.pictures.size)}"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -127,7 +129,7 @@
             tools:text="1/3" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_guide_no_filter"
+            android:id="@+id/btn_no_filter"
             style="@style/kr_body_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -141,13 +143,14 @@
             android:paddingVertical="10dp"
             android:text="@string/content_original"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@id/btn_guide_no_text"
+            app:layout_constraintBottom_toTopOf="@id/btn_no_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:touchEvent="@{() -> vm.clickFilterImgType(vm.state.filterImgType)}" />
 
         <CheckBox
-            android:id="@+id/btn_guide_no_text"
+            android:id="@+id/btn_no_text"
             style="@style/kr_body_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -155,6 +158,7 @@
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_trans_primary_s"
             android:button="@color/transparent"
+            android:checked="@{vm.state.noText}"
             android:drawableStart="@drawable/selector_eye"
             android:drawablePadding="6dp"
             android:gravity="center"
@@ -162,10 +166,22 @@
             android:paddingVertical="10dp"
             android:text="@string/content_text"
             android:textColor="@color/white"
+            app:clickEvent="@{() -> vm.clickFilterTextVisibility()}"
             app:layout_constraintBottom_toTopOf="@id/btn_filter_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/img_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_purple"
+            android:visibility="@{vm.state.noText ? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_no_filter" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_filter_value"
@@ -179,6 +195,7 @@
             android:paddingVertical="18dp"
             android:text="@string/content_filter_value"
             android:textColor="@color/white"
+            android:visibility="@{vm.state.noText ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

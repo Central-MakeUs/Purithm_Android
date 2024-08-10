@@ -9,8 +9,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="filterType"
-            type="com.cmc.purithm.feature.filter.model.FilterImgType" />
+            name="vm"
+            type="com.cmc.purithm.feature.filter.viewmodel.FilterViewModel" />
 
         <variable
             name="filterImgUrl"
@@ -25,10 +25,11 @@
             android:id="@+id/img_picture"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:visibility="@{filterType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
+            android:scaleType="fitXY"
+            android:visibility="@{vm.state.filterImgType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
             app:imageUrl="@{filterImgUrl.picture}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,10 +38,11 @@
             android:id="@+id/img_original"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:visibility="@{filterType == FilterImgType.ORIGINAL ? View.VISIBLE : View.GONE}"
+            android:scaleType="fitXY"
+            android:visibility="@{vm.state.filterImgType == FilterImgType.ORIGINAL ? View.VISIBLE : View.GONE}"
             app:imageUrl="@{filterImgUrl.originalPicture}"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

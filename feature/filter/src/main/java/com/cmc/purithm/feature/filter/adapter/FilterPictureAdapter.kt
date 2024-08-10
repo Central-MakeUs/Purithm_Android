@@ -32,12 +32,6 @@ class FilterPictureAdapter(
         return fragmentList[position]
     }
 
-
-    fun changePicture(position: Int, type: FilterImgType) {
-        val currentFragment = fragmentList[position] as FilterPictureFragment
-        currentFragment.setVisible(type)
-    }
-
     companion object {
         private const val TAG = "FilterPictureAdapter"
     }

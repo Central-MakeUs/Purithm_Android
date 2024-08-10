@@ -9,6 +9,7 @@ import com.cmc.purithm.domain.usecase.filter.SetFilterLikeUseCase
 import com.cmc.purithm.domain.usecase.member.GetFirstFilterRunUseCase
 import com.cmc.purithm.domain.usecase.member.SetFirstFilterRunUseCase
 import com.cmc.purithm.feature.filter.model.FilterDetailUiModel
+import com.cmc.purithm.feature.filter.model.FilterImgType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -119,6 +120,40 @@ class FilterViewModel @Inject constructor(
         }
     }
 
+    fun clickFilterImgType(currentFilterType : FilterImgType) {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    filterImgType = if (currentFilterType == FilterImgType.FILTER) {
+                        FilterImgType.ORIGINAL
+                    } else {
+                        FilterImgType.FILTER
+                    }
+                )
+            }
+        }
+    }
+
+    fun clickFilterTextVisibility(){
+        viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    noText = !it.noText
+                )
+            }
+        }
+    }
+
+    fun setCurrentImgIndex(index : Int){
+        viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    selectedIndex = index
+                )
+            }
+        }
+    }
+
     fun deleteFilterLike(filterId: Long) {
         Log.d(TAG, "deleteFilterLike: start")
         viewModelScope.launch {
@@ -146,7 +181,6 @@ class FilterViewModel @Inject constructor(
             }
         }
     }
-
     companion object {
         private const val TAG = "FilterViewModel"
     }
@@ -162,7 +196,8 @@ data class FilterState(
     val loading: Boolean = false,
     val isFirst: Boolean = false,
     val error: Throwable? = null,
+    val selectedIndex : Int = 1,
     val noText: Boolean = false,
-    val original: Boolean = false,
+    val filterImgType: FilterImgType = FilterImgType.FILTER,
     val data: FilterDetailUiModel? = null,
 )

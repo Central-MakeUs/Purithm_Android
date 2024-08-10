@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.filter.ui
 
 import android.util.Log
 import android.view.View
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -28,12 +29,12 @@ import kotlinx.coroutines.launch
 class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_filter
-    private val viewModel: FilterViewModel by viewModels()
+    private val viewModel: FilterViewModel by activityViewModels()
     private val navArgs by navArgs<FilterFragmentArgs>()
 
     private val filterId by lazy { navArgs.filterId }
     private lateinit var pictureAdapter: FilterPictureAdapter
-    private var selectedImgPosition = 0
+    private var selectedImgIndex = 0
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -41,13 +42,12 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 launch {
                     viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: start")
+                        Log.d(TAG, "initObserving: noText = ${state.noText}")
                         if (state.data != null) {
-                            Log.d(TAG, "initObserving: data on")
                             initAppBar(state.data.name, state.data.liked, state.data.likes)
                             initViewPager(state.data.pictures)
                         }
                         if (state.isFirst) {
-                            Log.d(TAG, "initObserving: is first")
                             with(binding.viewGuide) {
                                 root.visibility = View.VISIBLE
                                 btnGuideConfirm.setOnClickListener {
@@ -107,28 +107,32 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
             likeState = liked,
             likeCnt = likes,
             backClickListener = {
-                Log.d(TAG, "initAppBar: back")
                 (activity as NavigationAction).navigateHome()
             },
             likeClickListener = {
-
+                viewModel.requestFilterLike(filterId)
             }
         )
     }
 
     private fun initViewPager(pictureList: List<FilterImg>) {
         Log.d(TAG, "initViewPager: start")
-        pictureAdapter = FilterPictureAdapter(requireActivity(), pictureList)
-        with(binding.vpPicture) {
-            adapter = pictureAdapter
-            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                override fun onPageSelected(position: Int) {
-                    super.onPageSelected(position)
-                    Log.d(TAG, "initViewPager: position = $position")
-                    selectedImgPosition = position
-                    binding.tvPage.text = "${position + 1}/${pictureList.size}"
-                }
-            })
+        if (!::pictureAdapter.isInitialized) {
+            pictureAdapter = FilterPictureAdapter(requireActivity(), pictureList)
+            with(binding.vpPicture) {
+                adapter = pictureAdapter
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+                        super.onPageSelected(position)
+                        Log.d(TAG, "initViewPager: position = $position")
+                        selectedImgIndex = position
+                        viewModel.setCurrentImgIndex(selectedImgIndex + 1)
+                    }
+                })
+            }
+        } else {
+            // 선택된 인덱스로 변경되야함
+            binding.vpPicture.currentItem = selectedImgIndex
         }
     }
 

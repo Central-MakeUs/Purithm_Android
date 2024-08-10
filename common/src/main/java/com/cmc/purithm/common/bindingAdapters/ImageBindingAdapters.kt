@@ -17,7 +17,7 @@ object ImageBindingAdapters {
      *
      * @param url 이미지 URL
      * */
-    
+
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun ImageView.setImageByUrl(url: String?) {
@@ -26,13 +26,10 @@ object ImageBindingAdapters {
             .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
             .into(this)
     }
-    
+
     @BindingAdapter("imageRes")
     @JvmStatic
     fun ImageView.setImageByRes(res: Int) {
-        Glide.with(this)
-            .load(res)
-            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
-            .into(this)
+        setImageResource(res)
     }
 }

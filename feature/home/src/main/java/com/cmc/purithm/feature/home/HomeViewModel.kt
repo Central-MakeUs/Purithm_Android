@@ -118,6 +118,7 @@ class HomeViewModel @Inject constructor(
                         loading = false
                     )
                 }
+                getFilters()
             }.onFailure { exception ->
                 _state.update {
                     it.copy(
