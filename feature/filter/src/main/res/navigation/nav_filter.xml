@@ -23,8 +23,8 @@
         tools:layout="@layout/fragment_filter">
         <argument
             android:name="filterId"
-            app:nullable="false"
-            app:argType="long" />
+            app:argType="long"
+            app:nullable="false" />
         <deepLink app:uri="purithm://filter/{filterId}" />
         <action
             android:id="@+id/action_filterFragment_to_filterLoadingFragment"
@@ -44,7 +44,9 @@
             app:nullable="false" />
         <action
             android:id="@+id/action_filterLoadingFragment_to_filterValueFragment"
-            app:destination="@id/filterValueFragment" />
+            app:destination="@id/filterValueFragment"
+            app:popUpTo="@id/filterFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/filterValueFragment"

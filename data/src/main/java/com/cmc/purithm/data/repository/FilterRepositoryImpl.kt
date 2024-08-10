@@ -29,7 +29,8 @@ internal class FilterRepositoryImpl @Inject constructor(
             pagingSourceFactory = {
                 FilterItemDataSource(
                     filterService = filterService,
-                    sortedBy = sortedBy
+                    sortedBy = sortedBy,
+                    tag = tag
                 )
             }
         ).flow

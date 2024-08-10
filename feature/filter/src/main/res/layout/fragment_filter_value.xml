@@ -58,72 +58,78 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/img_thumbnail">
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_lightbalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_lightness"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_lightbalance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_exposure"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_lightness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_contrast"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_exposure"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_highlight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_contrast"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_shadow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_highlight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_saturation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_shadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_tint"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_saturation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_warming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_tint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_sharpness"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_warming"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
-            <com.cmc.purithm.design.component.view.FilterValueView
-                android:id="@+id/view_clarity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_screen_side" />
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_sharpness"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
 
+                <com.cmc.purithm.design.component.view.FilterValueView
+                    android:id="@+id/view_clarity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_screen_side" />
+
+            </LinearLayout>
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

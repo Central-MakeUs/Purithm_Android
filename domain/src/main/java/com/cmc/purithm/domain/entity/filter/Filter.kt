@@ -11,5 +11,6 @@ data class Filter(
     val canAccess : Boolean = false,
     val liked : Boolean = false,
     val pureDegree : Int = 0,
+    val filterValue : FilterValue? = null,
     val pictures : List<FilterImg> = emptyList()
 )

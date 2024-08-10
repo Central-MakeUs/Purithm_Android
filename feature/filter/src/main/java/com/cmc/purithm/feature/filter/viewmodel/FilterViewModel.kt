@@ -167,6 +167,12 @@ class FilterViewModel @Inject constructor(
         }
     }
 
+    fun clickNavigateFilterLoading(filterId : Long){
+        viewModelScope.launch {
+            _sideEffect.emit(FilterSideEffects.NavigateFilterLoading(filterId))
+        }
+    }
+
     fun deleteFilterLike(filterId: Long) {
         Log.d(TAG, "deleteFilterLike: start")
         viewModelScope.launch {
@@ -200,7 +206,7 @@ class FilterViewModel @Inject constructor(
 }
 
 sealed interface FilterSideEffects {
-    class NavigateFilterValue(val filterId: Long) : FilterSideEffects
+    class NavigateFilterLoading(val filterId: Long) : FilterSideEffects
     class NavigateFilterReview(val filterId: Long) : FilterSideEffects
     class NavigateFilterIntroduction(val filterId: Long) : FilterSideEffects
 }

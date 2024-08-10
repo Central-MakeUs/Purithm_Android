@@ -117,13 +117,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                         } else {
                             view.isChecked = true
                             lastCheckedId = view.id
-                            // FIXME : tag 나오면 수정하기
-                            viewModel.clickFilterTag("spring")
+                            viewModel.clickFilterTag(convertTag(view.text.toString()))
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun convertTag(tag: String) = when (tag) {
+        "봄" -> "spring"
+        "여름" -> "summer"
+        "가을" -> "fall"
+        "겨울" -> "winter"
+        "역광에서" -> "backlight"
+        "고양이" -> "cat"
+        else -> tag
     }
 
     companion object {

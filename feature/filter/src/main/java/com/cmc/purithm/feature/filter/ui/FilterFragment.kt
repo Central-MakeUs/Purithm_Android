@@ -73,18 +73,19 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 launch {
                     // TODO : 리뷰 페이지 서버 연동 후 구현
                     viewModel.sideEffect.collect { sideEffect ->
+                        Log.d(TAG, "initObserving: sideEffect on")
                         when (sideEffect) {
-                            is FilterSideEffects.NavigateFilterIntroduction -> FilterFragmentDirections.actionFilterFragmentToFilterIntroductionFragment(
+                            is FilterSideEffects.NavigateFilterIntroduction -> navigate(FilterFragmentDirections.actionFilterFragmentToFilterIntroductionFragment(
                                 sideEffect.filterId
-                            )
+                            ))
 
                             is FilterSideEffects.NavigateFilterReview -> {
                                 TODO()
                             }
 
-                            is FilterSideEffects.NavigateFilterValue -> FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
+                            is FilterSideEffects.NavigateFilterLoading -> navigate(FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
                                 sideEffect.filterId
-                            )
+                            ))
                         }
                     }
                 }

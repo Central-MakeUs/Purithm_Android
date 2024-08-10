@@ -4,6 +4,8 @@ import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.filter.FilterDetailResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterListResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterReviewResponseDto
+import com.cmc.purithm.data.remote.dto.filter.FilterValueDto
+import com.cmc.purithm.data.remote.dto.filter.FilterValueResponseDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -39,4 +41,9 @@ internal interface FilterService {
     suspend fun getFilterReview(
         @Path("filterId") filterId: Long
     ): BaseResponse<FilterReviewResponseDto>
+
+    @GET("api/filters/{filterId}/AOS")
+    suspend fun getFilterValue(
+        @Path("filterId") filterId : Long
+    ) : BaseResponse<FilterValueResponseDto>
 }

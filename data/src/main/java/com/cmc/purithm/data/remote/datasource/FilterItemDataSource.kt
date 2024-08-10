@@ -16,6 +16,7 @@ import java.util.Collections
 internal class FilterItemDataSource(
     private val filterService: FilterService,
     private val sortedBy: String,
+    private val tag : String
 ) : PagingSource<Int, Filter>() {
     /**
      * 현재 목록을 대체할 새로운 데이터를 로드
@@ -39,6 +40,7 @@ internal class FilterItemDataSource(
                 val response = filterService.getFilterList(
                     sortedBy = this.sortedBy,
                     page = currentPage,
+                    tag = tag,
                     size = ApiConfig.PAGE_SIZE
                 )
                 isLast = response.data?.isLast ?: false
