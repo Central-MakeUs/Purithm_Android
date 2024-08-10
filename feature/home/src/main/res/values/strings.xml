@@ -11,21 +11,27 @@
     <string name="category_filter_sort_latest">최신순</string>
     <string name="category_filter_sort_review">퓨어지수 높은순</string>
 
-    <!-- FIXME : 서버에 요청해야하는 값 확인 -->
-    <string-array name="category_filter_sort">
-        <item>popular</item>
-        <item>latest</item>
-        <item>review</item>
-    </string-array>
-
-    <string name="category_filter_keyword_spring">봄</string>
+    <string name="category_filter_keyword_all">전체</string>
+    <string name="category_filter_keyword_spring">화사한 봄날</string>
     <string name="category_filter_keyword_summer">여름</string>
-    <string name="category_filter_keyword_fall">가을</string>
-    <string name="category_filter_keyword_winter">겨울</string>
+    <string name="category_filter_keyword_fall">가을 풍경</string>
+    <string name="category_filter_keyword_winter">겨울눈</string>
     <string name="category_filter_keyword_backlight">역광에서</string>
     <string name="category_filter_keyword_night">night</string>
     <string name="category_filter_keyword_daily">daily</string>
     <string name="category_filter_keyword_cat">고양이</string>
+
+    <string-array name="category_filter_keyword">
+        <item></item>
+        <item>spring</item>
+        <item>summer</item>
+        <item>fall</item>
+        <item>winter</item>
+        <item>backlight</item>
+        <item>night</item>
+        <item>daily</item>
+        <item>cat</item>
+    </string-array>
 
     <string name="title_filter_premium_lock">잠금은 어떻게 푸나요?</string>
     <string name="content_filter_premium_lock">필터를 사용해보고 후기를 남기면 스탬프가 찍히고,\n일정 개수를 모으면 프리미엄 필터를 열람할 수 있어요.</string>

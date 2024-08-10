@@ -121,11 +121,11 @@
             android:paddingVertical="2dp"
             android:text="@{String.format(@string/content_filter_image_page, vm.state.selectedIndex, vm.state.data.pictures.size)}"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintBottom_toBottomOf="@id/vp_picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2"
+            app:layout_constraintTop_toTopOf="@id/vp_picture"
             tools:text="1/3" />
 
         <androidx.appcompat.widget.AppCompatButton

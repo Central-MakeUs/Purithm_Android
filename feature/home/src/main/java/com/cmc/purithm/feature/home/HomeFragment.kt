@@ -31,7 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    private var lastCheckedId = -1
+    private val homeFilterKeywordArray by lazy { resources.getStringArray(R.array.category_filter_keyword) }
     private val homeItemFilterDialogFragment by lazy { HomeItemFilterDialogFragment() }
     private val homeFilterLockBottomDialog by lazy { HomeFilterLockBottomDialog() }
     private val homeFilterAdapter by lazy { HomeFilterAdapter(viewModel) }
@@ -102,37 +102,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
-    /**
-     * 라디오 버튼 그룹을 Chip으로 사용하기 위해 커스텀
-     * */
-    private fun initRadioGroup() {
-        with(binding.groupFilterKeyword) {
-            forEach { view ->
-                if (view is RadioButton) {
-                    view.setOnClickListener {
-                        if (view.id == lastCheckedId) {
-                            clearCheck()
-                            lastCheckedId = -1
-                            viewModel.clickFilterTag("")
-                        } else {
-                            view.isChecked = true
-                            lastCheckedId = view.id
-                            viewModel.clickFilterTag(convertTag(view.text.toString()))
-                        }
-                    }
-                }
-            }
-        }
-    }
 
-    private fun convertTag(tag: String) = when (tag) {
-        "봄" -> "spring"
-        "여름" -> "summer"
-        "가을" -> "fall"
-        "겨울" -> "winter"
-        "역광에서" -> "backlight"
-        "고양이" -> "cat"
-        else -> tag
+    private fun initRadioGroup() {
+        binding.groupFilterKeyword.setOnCheckedChangeListener { group, checkedId ->
+            val radioButton = group.findViewById<RadioButton>(checkedId)
+            viewModel.clickFilterTag(homeFilterKeywordArray[group.indexOfChild(radioButton)])
+        }
     }
 
     companion object {

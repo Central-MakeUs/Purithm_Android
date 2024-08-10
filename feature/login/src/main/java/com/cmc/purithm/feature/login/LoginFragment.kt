@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.login
 
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -9,6 +10,9 @@ import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.model.AuthError
+import com.kakao.sdk.common.model.KakaoSdkError
+import com.kakao.sdk.common.util.KakaoJson
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,12 +25,19 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val kakaoCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
-            Log.e(TAG, "kakao error > msg = ${error.message}")
-            showSnackBar(getString(R.string.error_kakao_default_msg))
+            if(error is AuthError && error.statusCode == 302){
+                loginKakaoAccount()
+            } else {
+                showSnackBar(getString(R.string.error_kakao_default_msg))
+            }
         } else if (token != null) {
             Log.d(TAG, "kakaoCallback : token = ${token.accessToken}")
             viewModel.joinKakao(token.accessToken)
         }
+    }
+
+    private fun loginKakaoAccount() {
+        UserApiClient.instance.loginWithKakaoAccount(requireContext(), callback = kakaoCallback)
     }
 
     override fun initObserving() {
