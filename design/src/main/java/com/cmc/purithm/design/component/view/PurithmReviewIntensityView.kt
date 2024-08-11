@@ -3,6 +3,7 @@ package com.cmc.purithm.design.component.view
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -26,14 +27,19 @@ class PurithmReviewIntensityView @JvmOverloads constructor(
 
     @SuppressLint("SetTextI18n")
     fun setReviewIntensity(rating: Int) {
+        Log.d(TAG, "setReviewIntensity: on")
         val reviewRating = getReviewIntensity(rating)
         val (imgRes, color) = getImgResByIntensity(reviewRating) to getColorByIntensity(reviewRating)
+        
         with(binding) {
+            Log.d(TAG, "setReviewIntensity: rating = $rating")
+            Log.d(TAG, "setReviewIntensity: imgRes = $imgRes")
+            Log.d(TAG, "setReviewIntensity: color = $color")
             imgReview.setImageResource(imgRes)
-            imgReview.setColorFilter(color)
-
+            imgReview.setColorFilter(resources.getColor(color, null))
+            
             tvReviewIntensity.text = "${reviewRating.intensity}%"
-            tvReviewIntensity.setTextColor(color)
+            tvReviewIntensity.setTextColor(resources.getColor(color, null))
         }
     }
 
@@ -62,5 +68,9 @@ class PurithmReviewIntensityView @JvmOverloads constructor(
 
     enum class ReviewRating(val intensity: Int) {
         Outstanding(100), Good(80), Satisfactory(60), NeedImprovement(40), Poor(20)
+    }
+    
+    companion object {
+        private const val TAG = "PurithmReviewIntensityV"
     }
 }

@@ -74,22 +74,29 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 }
 
                 launch {
-                    // TODO : 리뷰 페이지 서버 연동 후 구현
                     viewModel.sideEffect.collect { sideEffect ->
                         Log.d(TAG, "initObserving: sideEffect on")
                         when (sideEffect) {
-                            is FilterSideEffects.NavigateFilterIntroduction -> navigate(FilterFragmentDirections.actionFilterFragmentToFilterIntroductionFragment(
-                                filterId
-                            ))
+                            is FilterSideEffects.NavigateFilterIntroduction -> navigate(
+                                FilterFragmentDirections.actionFilterFragmentToFilterIntroductionFragment(
+                                    filterId
+                                )
+                            )
 
                             is FilterSideEffects.NavigateFilterReview -> {
-                                TODO()
+                                navigate(
+                                    FilterFragmentDirections.actionFilterFragmentToFilterReviewFragment(
+                                        filterId
+                                    )
+                                )
                             }
 
                             is FilterSideEffects.NavigateFilterLoading -> {
-                                navigate(FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
-                                    filterId
-                                ))
+                                navigate(
+                                    FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
+                                        filterId
+                                    )
+                                )
                             }
                         }
                     }
@@ -116,7 +123,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 (activity as NavigationAction).navigateHome()
             },
             likeClickListener = {
-                if(viewModel.state.value.data?.liked == true){
+                if (viewModel.state.value.data?.liked == true) {
                     viewModel.deleteFilterLike(filterId)
                 } else {
                     viewModel.requestFilterLike(filterId)

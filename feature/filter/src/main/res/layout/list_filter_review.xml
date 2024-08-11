@@ -5,13 +5,15 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.filter.model.FilterReviewItemUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="13dp">
-
 
         <androidx.cardview.widget.CardView
             android:id="@+id/view_card"
@@ -27,8 +29,9 @@
             <ImageView
                 android:id="@+id/img_filter"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitCenter"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{data.thumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,8 +48,9 @@
             android:layout_marginEnd="2dp"
             android:ellipsize="end"
             android:maxLines="1"
+            android:text="@{data.userName}"
             android:textColor="@color/grey_500"
-            app:layout_constraintEnd_toStartOf="@id/tv_review_intensity"
+            app:layout_constraintEnd_toStartOf="@id/view_review_intensity"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_card"
@@ -61,15 +65,15 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/grey_300"
-            app:layout_constraintEnd_toStartOf="@+id/tv_review_intensity"
+            app:date="@{data.createdAt}"
+            app:layout_constraintEnd_toStartOf="@+id/view_review_intensity"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_reviewer"
-            tools:text="Made by Ehwa" />
+            tools:text="2024-07-09" />
 
-        <!-- FIXME :  binding adpater 적용 필요 -->
-        <TextView
-            android:id="@+id/tv_review_intensity"
+        <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+            android:id="@+id/view_review_intensity"
             style="@style/en_body_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

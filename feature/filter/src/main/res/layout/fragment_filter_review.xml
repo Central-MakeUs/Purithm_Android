@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.filter.viewmodel.FilterReviewViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +26,10 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -40,6 +43,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
+                    app:reviewBackground="@{vm.state.data.avg}"
                     tools:src="@drawable/bg_review_100" />
 
                 <ImageView
@@ -52,6 +56,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/img_review_background"
+                    app:reviewIntensityBackground="@{vm.state.data.avg}"
                     tools:src="@drawable/bg_review_intensity_100" />
 
                 <LinearLayout
@@ -69,6 +74,7 @@
                         style="@style/kr_body_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:text="@string/content_review_intensity"
                         android:textColor="@color/white" />
 
@@ -77,7 +83,9 @@
                         style="@style/en_title_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:textColor="@color/white"
+                        app:percentage="@{vm.state.data.avg}"
                         tools:text="80%" />
                 </LinearLayout>
 
@@ -91,15 +99,19 @@
                     android:textColor="@color/grey_500"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/img_review_background"
+                    app:reviewCount="@{vm.state.data.reviews.size()}"
                     tools:text="100명이 후기를 남겼어요" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_review"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="true"
+                    android:layout_marginStart="20dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginEnd="7dp"
+                    android:nestedScrollingEnabled="true"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -110,6 +122,7 @@
 
         </androidx.core.widget.NestedScrollView>
 
+        <!-- TODO : 진입점 별로 텍스트가 달라져야함 -->
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_confirm"
             style="@style/kr_body_3"
@@ -120,6 +133,7 @@
             android:background="@drawable/shape_button_solid_primary_lg"
             android:gravity="center"
             android:paddingVertical="18dp"
+            android:text="후기 남기고 스탬프 받기"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

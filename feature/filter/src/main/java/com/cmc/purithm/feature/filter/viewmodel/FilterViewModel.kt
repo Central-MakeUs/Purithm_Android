@@ -194,9 +194,10 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Log.d(TAG, "onCleared: on")
+    fun clickFilterReview(){
+        viewModelScope.launch {
+            _sideEffect.emit(FilterSideEffects.NavigateFilterReview)
+        }
     }
 
     companion object {

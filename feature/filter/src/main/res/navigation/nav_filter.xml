@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_filterFragment_to_filterIntroductionFragment"
             app:destination="@id/filterIntroductionFragment" />
+        <action
+            android:id="@+id/action_filterFragment_to_filterReviewFragment"
+            app:destination="@id/filterReviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterLoadingFragment"
@@ -53,6 +56,16 @@
         android:name="com.cmc.purithm.feature.filter.ui.FilterValueFragment"
         android:label="FilterValueFragment"
         tools:layout="@layout/fragment_filter_value">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterReviewFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterReviewFragment"
+        android:label="FilterReviewFragment"
+        tools:layout="@layout/fragment_filter_review">
         <argument
             android:name="filterId"
             app:argType="long"

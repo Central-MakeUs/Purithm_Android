@@ -19,6 +19,18 @@ object FilterBindingAdapter {
         if(tag.isNullOrEmpty()){
             return
         }
-        text = tag.joinToString(separator = " #", postfix = "#" )
+        text = tag.joinToString(separator = " #", prefix = "#" )
+    }
+
+    @BindingAdapter("date")
+    @JvmStatic
+    fun TextView.setDate(date : String) {
+        text = date.split("T")[0].replace("-", ".")
+    }
+
+    @BindingAdapter("percentage")
+    @JvmStatic
+    fun TextView.setPercentage(percentage : Int){
+        text = "${percentage}%"
     }
 }

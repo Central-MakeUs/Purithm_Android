@@ -39,6 +39,7 @@
         <LinearLayout
             android:id="@+id/layout_filter_satisfaction"
             android:layout_width="wrap_content"
+            app:delayClickEvent="@{() -> vm.clickFilterReview()}"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="8dp"

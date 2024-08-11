@@ -3,6 +3,7 @@ package com.cmc.purithm.data.di
 import com.cmc.purithm.data.remote.service.AuthService
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.data.remote.service.MemberService
+import com.cmc.purithm.data.remote.service.ReviewService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,5 +37,13 @@ internal object ServiceModule {
         @Named("purithm") retrofit: Retrofit
     ): FilterService {
         return retrofit.create(FilterService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideReviewService(
+        @Named("purithm") retrofit: Retrofit
+    ): ReviewService {
+        return retrofit.create(ReviewService::class.java)
     }
 }

@@ -1,8 +1,8 @@
 package com.cmc.purithm.domain.entity.photographer
 
 data class Photographer(
-    val id: Long,
-    val thumbnails: List<String>,
-    val profile: String,
-    val description: String
+    val id: Long = 0L,
+    val thumbnails: List<String> = emptyList(),
+    val profile: String = "",
+    val description: String = ""
 )
