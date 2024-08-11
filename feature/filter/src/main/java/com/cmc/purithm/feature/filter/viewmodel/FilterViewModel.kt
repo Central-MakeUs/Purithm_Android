@@ -40,19 +40,6 @@ class FilterViewModel @Inject constructor(
         getFilterFirstRun()
     }
 
-    fun clearData(){
-        _state.update {
-            it.copy(
-                loading = false,
-                isFirst = true,
-                error = null,
-                noText =  false,
-                filterImgType = FilterImgType.FILTER,
-                data = null
-            )
-        }
-    }
-
     private fun getFilterFirstRun() {
         viewModelScope.launch {
             Log.d(TAG, "getFilterFirstRun: start")
@@ -200,6 +187,12 @@ class FilterViewModel @Inject constructor(
             }
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        Log.d(TAG, "onCleared: on")
+    }
+
     companion object {
         private const val TAG = "FilterViewModel"
     }

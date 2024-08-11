@@ -28,7 +28,7 @@ firebaseCrashlytics = "2.9.9"
 splashScreen = "1.0.1"
 navigationCommonKtx = "2.7.7"
 paging = "3.3.1"
-
+hilt-fragmet = "1.2.0"
 [libraries]
 # Plugin
 android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -71,6 +71,7 @@ javax-inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
 hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
+hilt-fragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hilt-fragmet"}
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }

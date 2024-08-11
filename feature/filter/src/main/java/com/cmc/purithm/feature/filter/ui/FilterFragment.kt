@@ -4,10 +4,12 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
@@ -29,7 +31,7 @@ import kotlinx.coroutines.launch
 class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_filter
-    private val viewModel: FilterViewModel by activityViewModels()
+    private val viewModel: FilterViewModel by hiltNavGraphViewModels(R.id.nav_filter)
     private val navArgs by navArgs<FilterFragmentArgs>()
 
     private val filterId by lazy { navArgs.filterId }
@@ -43,6 +45,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                     viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: start")
                         Log.d(TAG, "initObserving: noText = ${state.noText}")
+                        Log.d(TAG, "initObserving: data = ${state.data}")
                         if (state.data != null) {
                             initAppBar(state.data.name, state.data.liked, state.data.likes)
                             initViewPager(state.data.pictures)
@@ -124,7 +127,8 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
 
     private fun initViewPager(pictureList: List<FilterImg>) {
         Log.d(TAG, "initViewPager: start")
-        if (!::pictureAdapter.isInitialized) {
+        if (binding.vpPicture.adapter == null) {
+            Log.d(TAG, "initViewPager: init start")
             pictureAdapter = FilterPictureAdapter(requireActivity(), pictureList)
             with(binding.vpPicture) {
                 adapter = pictureAdapter
@@ -139,13 +143,9 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
             }
         } else {
             // 선택된 인덱스로 변경되야함
-            binding.vpPicture.currentItem = selectedImgIndex
+            Log.d(TAG, "initViewPager: already init")
+            binding.vpPicture.currentItem = viewModel.state.value.selectedIndex - 1
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.clearData()
     }
 
     companion object {

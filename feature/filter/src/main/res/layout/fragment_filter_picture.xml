@@ -11,10 +11,6 @@
         <variable
             name="vm"
             type="com.cmc.purithm.feature.filter.viewmodel.FilterViewModel" />
-
-        <variable
-            name="filterImgUrl"
-            type="com.cmc.purithm.domain.entity.filter.FilterImg" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +23,7 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:visibility="@{vm.state.filterImgType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
-            app:imageUrl="@{filterImgUrl.picture}"
+            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).picture}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +36,7 @@
             android:layout_height="match_parent"
             android:scaleType="fitXY"
             android:visibility="@{vm.state.filterImgType == FilterImgType.ORIGINAL ? View.VISIBLE : View.GONE}"
-            app:imageUrl="@{filterImgUrl.originalPicture}"
+            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).originalPicture}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"

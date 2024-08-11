@@ -17,10 +17,8 @@ class FilterPictureAdapter(
     private val fragmentList = mutableListOf<Fragment>()
 
     init {
-        pictureList.forEach { picture ->
-            fragmentList.add(FilterPictureFragment().apply {
-                arguments = bundleOf(Constants.BUNDLE_FILTER_IMG_KEY to picture)
-            })
+        pictureList.forEach { _ ->
+            fragmentList.add(FilterPictureFragment())
         }
     }
 
