@@ -27,4 +27,8 @@ interface FilterRepository {
     suspend fun getFilterValue(
         filterId : Long
     ) : Filter
+
+    suspend fun getFilterIntroduction(
+        filterId : Long
+    ) : Filter
 }

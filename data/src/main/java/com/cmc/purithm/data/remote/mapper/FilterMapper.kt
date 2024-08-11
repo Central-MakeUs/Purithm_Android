@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.remote.mapper
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
+import com.cmc.purithm.data.remote.dto.filter.FilterDescriptionResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterDetailResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterListResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterValueResponseDto
@@ -42,6 +43,7 @@ internal fun BaseResponse<FilterDetailResponseDto>.toDomain(): Filter {
     )
 }
 
+@JvmName("filterValueResponse")
 internal fun BaseResponse<FilterValueResponseDto>.toDomain() : Filter {
     val response = this.data ?: throw NullPointerException("filter value is null")
     return Filter(
@@ -50,5 +52,18 @@ internal fun BaseResponse<FilterValueResponseDto>.toDomain() : Filter {
         thumbnail = response.thumbnail,
         liked = response.liked,
         filterValue = response.filterValue
+    )
+}
+
+@JvmName("filterDescriptionResponse")
+internal fun BaseResponse<FilterDescriptionResponseDto>.toDomain() : Filter {
+    val response = this.data ?: throw NullPointerException("filter value is null")
+    return Filter(
+        photographerId = response.photographerId,
+        photographerProfile = response.profile,
+        photographerName = response.name,
+        description = response.description,
+        filterIntroduction = response.photoDescriptions,
+        tag = response.tag
     )
 }

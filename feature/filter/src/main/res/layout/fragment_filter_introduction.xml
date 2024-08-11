@@ -5,11 +5,19 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.filter.model.FilterIntroductionUiModel" />
+
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.filter.viewmodel.FilterIntroductionViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -26,19 +34,20 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/view_profile"
                 android:layout_width="40dp"
-                app:cardElevation="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="@dimen/margin_screen_side"
                 android:layout_marginTop="30dp"
                 app:cardCornerRadius="99dp"
+                app:cardElevation="0dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
                 <ImageView
                     android:id="@+id/img_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerInside" />
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    app:imageUrl="@{data.photographerProfile}" />
 
             </androidx.cardview.widget.CardView>
 
@@ -49,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
+                android:text="@{data.photographerName}"
                 android:textColor="@color/grey_500"
                 app:layout_constraintBottom_toBottomOf="@id/view_profile"
                 app:layout_constraintEnd_toStartOf="@id/tv_shop"
@@ -67,6 +77,7 @@
                 android:drawablePadding="4dp"
                 android:text="@string/content_photographer_shop"
                 android:textColor="@color/blue_400"
+                app:delayClickEvent="@{() -> vm.clickPhotographerShop(data.photographerId)}"
                 app:layout_constraintBottom_toBottomOf="@id/tv_photographer"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_photographer"
@@ -79,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_screen_side"
                 android:layout_marginTop="40dp"
+                android:text="@{data.description}"
                 android:textColor="@color/grey_500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -88,18 +100,27 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_filter_detail"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:nestedScrollingEnabled="true"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_content" />
 
+            <TextView
+                android:id="@+id/tv_tag"
+                style="@style/kr_body_6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_screen_side"
+                android:textColor="@color/grey_400"
+                app:filterTag="@{data.tag}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/list_filter_detail"
+                tools:text="#보랏빛 #빈티지" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     </androidx.core.widget.NestedScrollView>
 </layout>

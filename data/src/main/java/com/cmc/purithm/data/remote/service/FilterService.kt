@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.remote.service
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
+import com.cmc.purithm.data.remote.dto.filter.FilterDescriptionResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterDetailResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterListResponseDto
 import com.cmc.purithm.data.remote.dto.filter.FilterReviewResponseDto
@@ -45,4 +46,9 @@ internal interface FilterService {
     suspend fun getFilterValue(
         @Path("filterId") filterId : Long
     ) : BaseResponse<FilterValueResponseDto>
+
+    @GET("api/filters/{filterId}/descriptions")
+    suspend fun getFilterDescription(
+        @Path("filterId") filterId : Long
+    ) : BaseResponse<FilterDescriptionResponseDto>
 }

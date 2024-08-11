@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.domain.entity.filter.FilterIntroduction" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,8 +18,10 @@
         <ImageView
             android:id="@+id/img_filter_detail"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:scaleType="fitCenter"
+            android:layout_height="0dp"
+            android:scaleType="fitXY"
+            app:imageUrl="@{data.picture}"
+            app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +32,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginTop="40dp"
+            android:text="@{data.title}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/margin_screen_side"
+            android:text="@{data.description}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -75,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="8dp"
+            app:delayClickEvent="@{() -> vm.clickNavigateFilterIntroduction()}"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintStart_toEndOf="@id/layout_filter_satisfaction"

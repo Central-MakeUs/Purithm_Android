@@ -12,4 +12,13 @@ object FilterBindingAdapter {
     fun TextView.setReviewCount(reviewCount : Int){
         text = String.format(context.getString(R.string.content_review_count), reviewCount)
     }
+
+    @BindingAdapter("filterTag")
+    @JvmStatic
+    fun TextView.setFilterTag(tag : List<String>?){
+        if(tag.isNullOrEmpty()){
+            return
+        }
+        text = tag.joinToString(separator = " #", postfix = "#" )
+    }
 }

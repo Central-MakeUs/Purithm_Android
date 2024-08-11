@@ -154,6 +154,12 @@ class FilterViewModel @Inject constructor(
         }
     }
 
+    fun clickNavigateFilterIntroduction(){
+        viewModelScope.launch {
+            _sideEffect.emit(FilterSideEffects.NavigateFilterIntroduction)
+        }
+    }
+
     fun clickNavigateFilterLoading(){
         viewModelScope.launch {
             _sideEffect.emit(FilterSideEffects.NavigateFilterLoading)
