@@ -7,6 +7,7 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
+import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewSnackBarBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -24,13 +25,12 @@ object Util {
     fun Context.getColorResource(id: Int) = ResourcesCompat.getColor(resources, id, null)
 
     @SuppressLint("RestrictedApi")
-    fun View.showPurithmSnackBar(message: String, actionText: String, action: (() -> Unit)?) {
-        val rootView = findViewById<View>(android.R.id.content)
-        val snackBar = Snackbar.make(rootView, "", Snackbar.LENGTH_INDEFINITE)
+    fun showPurithmSnackBar(view : View, message: String, actionText: String = "", action: (() -> Unit)? = null) {
+        val snackBar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT)
         val snackBarLayout = snackBar.view as Snackbar.SnackbarLayout
+        snackBarLayout.setBackgroundColor(view.resources.getColor(R.color.transparent, null))
 
-        val layoutInflater =
-            context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val layoutInflater = view.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customSnackBar = ViewSnackBarBinding.inflate(layoutInflater)
         with(customSnackBar){
             tvText.text = message

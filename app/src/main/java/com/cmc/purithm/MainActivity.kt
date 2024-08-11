@@ -20,6 +20,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
+import com.cmc.purithm.design.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

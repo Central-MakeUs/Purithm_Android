@@ -16,6 +16,8 @@
             style="@style/kr_body_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginBottom="17dp"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:gravity="start|center_vertical"
             android:textColor="@color/white"

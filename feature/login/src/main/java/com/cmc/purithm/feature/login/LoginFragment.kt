@@ -8,6 +8,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.design.util.Util
+import com.cmc.purithm.design.util.Util.showPurithmSnackBar
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.AuthError
@@ -25,10 +27,12 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
     private val kakaoCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
         if (error != null) {
-            if(error is AuthError && error.statusCode == 302){
+            if (error is AuthError && error.statusCode == 302) {
                 loginKakaoAccount()
             } else {
-                showSnackBar(getString(R.string.error_kakao_default_msg))
+                requireView().showSnackBar(
+                    message = error.message ?: getString(R.string.error_kakao_default_msg)
+                )
             }
         } else if (token != null) {
             Log.d(TAG, "kakaoCallback : token = ${token.accessToken}")
@@ -63,8 +67,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                             is LoginState.Error -> {
                                 dismissLoadingDialog()
-                                showSnackBar(
-                                    state.message
+                                requireView().showSnackBar(
+                                    message = state.message
                                         ?: getString(com.cmc.purithm.design.R.string.error_common)
                                 )
                             }
