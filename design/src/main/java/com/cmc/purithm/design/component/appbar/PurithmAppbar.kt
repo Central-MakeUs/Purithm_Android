@@ -29,7 +29,6 @@ class PurithmAppbar @JvmOverloads constructor(
         likeCnt: Int = 0,
         likeState: Boolean = false,
         backClickListener: (() -> Unit)? = null,
-        searchClickListener: (() -> Unit)? = null,
         likeClickListener: (() -> Unit)? = null,
         questionClickListener: (() -> Unit)? = null,
         registrationClickListener: (() -> Unit)? = null,
@@ -43,7 +42,6 @@ class PurithmAppbar @JvmOverloads constructor(
             PurithmAppbarType.ENG_DEFAULT -> setEngDefaultAppbar(
                 title,
                 likeState,
-                searchClickListener,
                 likeClickListener
             )
 
@@ -100,6 +98,7 @@ class PurithmAppbar @JvmOverloads constructor(
             with(btnBack) {
                 setOnClickListener(null)
                 visibility = View.GONE
+                setImageResource(R.drawable.ic_arrow_left)
             }
         }
     }
@@ -119,18 +118,12 @@ class PurithmAppbar @JvmOverloads constructor(
     fun setEngDefaultAppbar(
         title: String,
         likeState: Boolean,
-        searchClickListener: (() -> Unit)?,
         likeClickListener: (() -> Unit)?
     ) {
         setAppbarTopMargin(40)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
-
-            btnSearch.visibility = View.VISIBLE
-            btnSearch.setOnClickListener {
-                searchClickListener?.invoke()
-            }
             btnLike.setImageResource(
                 if (likeState) {
                     R.drawable.ic_like_pressed_appbar
@@ -143,6 +136,18 @@ class PurithmAppbar @JvmOverloads constructor(
                 likeClickListener?.invoke()
             }
             btnBack.visibility = View.VISIBLE
+            btnBack.setImageResource(R.drawable.ic_cancel)
+        }
+    }
+
+    /**
+     * 좋아요 요청 후, 데이터를 전체로 불러오는 것이 아닌 좋아요 상태만 요청하도록 변경
+     * */
+    fun setLike(like : Boolean){
+        if(like){
+            binding.btnLike.setImageResource(R.drawable.ic_like_pressed_appbar)
+        }else{
+            binding.btnLike.setImageResource(R.drawable.ic_like_unpressed_appbar)
         }
     }
 

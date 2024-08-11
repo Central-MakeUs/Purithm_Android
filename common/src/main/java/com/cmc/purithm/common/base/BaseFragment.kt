@@ -12,6 +12,7 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.common.dialog.LoadingDialogFragment
+import com.cmc.purithm.design.util.Util.showPurithmSnackBar
 import com.google.android.material.snackbar.Snackbar
 
 /**
@@ -45,7 +46,6 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     private var mToast: Toast? = null
-    private var mSnackBar: Snackbar? = null
     private var mCommonDialog: CommonDialogFragment? = null
 
     override fun onCreateView(
@@ -120,11 +120,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      *
      * @param message 스낵바를 생성할 메시지
      * */
-    protected fun showSnackBar(message: String) {
-        mSnackBar?.dismiss()
-        mSnackBar =
-            Snackbar.make(requireContext(), binding.root, message, Snackbar.LENGTH_SHORT).apply {
-                show()
-            }
+    protected fun showSnackBar(message: String, actionString : String = "", action: (() -> Unit)? = null) {
+        binding.root.showPurithmSnackBar(message, actionString, action)
     }
 }

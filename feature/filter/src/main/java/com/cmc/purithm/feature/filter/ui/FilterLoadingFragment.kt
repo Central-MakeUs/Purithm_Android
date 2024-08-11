@@ -11,7 +11,7 @@ class FilterLoadingFragment : BaseFragment<FragmentFilterLoadingBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_filter_loading
 
-    private val navArgs  by navArgs<FilterFragmentArgs>()
+    private val navArgs by navArgs<FilterFragmentArgs>()
 
     override fun initObserving() {}
 
@@ -25,6 +25,6 @@ class FilterLoadingFragment : BaseFragment<FragmentFilterLoadingBinding>() {
 
     companion object {
         private const val TAG = "FilterLoadingFragment"
-        private const val DELAY_TIME = 3000L
+        private const val DELAY_TIME = 1000L
     }
 }

@@ -167,9 +167,9 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun clickNavigateFilterLoading(filterId : Long){
+    fun clickNavigateFilterLoading(){
         viewModelScope.launch {
-            _sideEffect.emit(FilterSideEffects.NavigateFilterLoading(filterId))
+            _sideEffect.emit(FilterSideEffects.NavigateFilterLoading)
         }
     }
 
@@ -206,9 +206,9 @@ class FilterViewModel @Inject constructor(
 }
 
 sealed interface FilterSideEffects {
-    class NavigateFilterLoading(val filterId: Long) : FilterSideEffects
-    class NavigateFilterReview(val filterId: Long) : FilterSideEffects
-    class NavigateFilterIntroduction(val filterId: Long) : FilterSideEffects
+    data object NavigateFilterLoading : FilterSideEffects
+    data object NavigateFilterReview : FilterSideEffects
+    data object NavigateFilterIntroduction : FilterSideEffects
 }
 
 data class FilterState(

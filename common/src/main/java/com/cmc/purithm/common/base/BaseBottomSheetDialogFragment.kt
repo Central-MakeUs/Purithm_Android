@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.cmc.purithm.design.util.Util.dp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -70,6 +71,16 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
                 }
             })
             bottomSheet.setBackgroundResource(com.cmc.purithm.design.R.drawable.bg_white_bottom_sheet_dialog)
+        }
+    }
+
+    protected fun setTopMargin(dp : Int){
+        val bottomSheet =
+            dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+        if (bottomSheet != null) {
+            val behavior = BottomSheetBehavior.from<View>(bottomSheet)
+            behavior.isFitToContents = false
+            behavior.expandedOffset = dp.dp
         }
     }
 

@@ -24,7 +24,7 @@ object Util {
     fun Context.getColorResource(id: Int) = ResourcesCompat.getColor(resources, id, null)
 
     @SuppressLint("RestrictedApi")
-    fun View.showPurithmSnackBar(message: String, actionText: String, action: () -> Unit) {
+    fun View.showPurithmSnackBar(message: String, actionText: String, action: (() -> Unit)?) {
         val rootView = findViewById<View>(android.R.id.content)
         val snackBar = Snackbar.make(rootView, "", Snackbar.LENGTH_INDEFINITE)
         val snackBarLayout = snackBar.view as Snackbar.SnackbarLayout
@@ -34,9 +34,11 @@ object Util {
         val customSnackBar = ViewSnackBarBinding.inflate(layoutInflater)
         with(customSnackBar){
             tvText.text = message
-            tvAction.text = actionText
-            tvAction.setOnClickListener {
-                action()
+            if(actionText.isNotEmpty()){
+                tvAction.text = actionText
+                tvAction.setOnClickListener {
+                    action?.invoke()
+                }
             }
         }
         snackBarLayout.addView(customSnackBar.root)

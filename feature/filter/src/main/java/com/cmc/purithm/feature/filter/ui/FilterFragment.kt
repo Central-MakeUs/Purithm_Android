@@ -76,16 +76,18 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                         Log.d(TAG, "initObserving: sideEffect on")
                         when (sideEffect) {
                             is FilterSideEffects.NavigateFilterIntroduction -> navigate(FilterFragmentDirections.actionFilterFragmentToFilterIntroductionFragment(
-                                sideEffect.filterId
+                                filterId
                             ))
 
                             is FilterSideEffects.NavigateFilterReview -> {
                                 TODO()
                             }
 
-                            is FilterSideEffects.NavigateFilterLoading -> navigate(FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
-                                sideEffect.filterId
-                            ))
+                            is FilterSideEffects.NavigateFilterLoading -> {
+                                navigate(FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
+                                    filterId
+                                ))
+                            }
                         }
                     }
                 }

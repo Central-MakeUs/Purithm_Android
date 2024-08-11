@@ -5,11 +5,19 @@
 
     <data>
 
+        <variable
+            name="imgUrl"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.filter.viewmodel.FilterValueViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
 
         <com.cmc.purithm.design.component.appbar.PurithmAppbar
             android:id="@+id/view_appbar"
@@ -24,6 +32,7 @@
             style="@style/kr_body_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen_side"
             android:background="@drawable/shape_button_solid_primary_lg"
             android:drawableEnd="@drawable/ic_move_white"
             android:drawablePadding="8dp"
@@ -31,6 +40,7 @@
             android:paddingVertical="8dp"
             android:text="@string/content_filter_galaxy_guide"
             android:textColor="@color/white"
+            app:delayClickEvent="@{() -> vm.clickFilterGuide()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,6 +51,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
+            android:scaleType="centerCrop"
+            app:imageUrl="@{imgUrl}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,19 +61,19 @@
         <ScrollView
             android:id="@+id/scroll_filter_value"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="40dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:scrollbars="none"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/img_thumbnail">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <com.cmc.purithm.design.component.view.FilterValueView
                     android:id="@+id/view_lightbalance"

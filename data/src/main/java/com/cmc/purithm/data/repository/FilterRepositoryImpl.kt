@@ -47,4 +47,8 @@ internal class FilterRepositoryImpl @Inject constructor(
     override suspend fun getFilterDetail(filterId: Long): Filter {
         return HandleApi.callApi { filterService.getFilterDetail(filterId).toDomain() }
     }
+
+    override suspend fun getFilterValue(filterId: Long): Filter {
+        return HandleApi.callApi { filterService.getFilterValue(filterId).toDomain() }
+    }
 }
