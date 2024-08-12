@@ -27,6 +27,8 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
     val binding get() = requireNotNull(_binding)
     private val windowManager by lazy { context?.getSystemService(Context.WINDOW_SERVICE) as WindowManager }
     abstract val layoutResourceId: Int
+    abstract val dialogType: BaseDialogType
+
     abstract fun initDataBinding()
     abstract fun initView()
 
@@ -54,6 +56,23 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
 
     override fun onResume() {
         super.onResume()
+        setDialogType(dialogType)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun setDialogType(type: BaseDialogType) {
+        if (type == BaseDialogType.WRAP) {
+            setWrapDialog()
+        } else {
+            setFullSizeDialog()
+        }
+    }
+
+    private fun setWrapDialog() {
         val display = windowManager.defaultDisplay
         val size = Point()
         display.getSize(size)
@@ -64,8 +83,14 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
         dialog?.window?.attributes = params
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setFullSizeDialog() {
+        dialog?.window?.run {
+            setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+            clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        }
+    }
+
+    enum class BaseDialogType {
+        WRAP, FULL_SIZE
     }
 }
