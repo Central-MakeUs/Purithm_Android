@@ -76,7 +76,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 }
 
                 buildTypes {
-                    // FIXME : 실 배포는 난독화 추가
                     release {
                         isMinifyEnabled = false
                         isDebuggable = false

@@ -3,5 +3,5 @@ plugins {
 }
 
 android {
-    namespace = "com.cmc.purtihm.feature.home"
+    namespace = "com.cmc.purithm.feature.home"
 }

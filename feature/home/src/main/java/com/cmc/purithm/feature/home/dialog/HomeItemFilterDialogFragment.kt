@@ -4,8 +4,8 @@ import androidx.fragment.app.viewModels
 import com.cmc.purithm.common.base.BaseBottomSheetDialogFragment
 import com.cmc.purithm.common.util.getColorResource
 import com.cmc.purithm.feature.home.HomeViewModel
-import com.cmc.purtihm.feature.home.R
-import com.cmc.purtihm.feature.home.databinding.DialogHomeItemFilterBinding
+import com.cmc.purithm.feature.home.R
+import com.cmc.purithm.feature.home.databinding.DialogHomeItemFilterBinding
 
 /**
  * 홈 화면 정렬 바텀 시트 다이얼로그

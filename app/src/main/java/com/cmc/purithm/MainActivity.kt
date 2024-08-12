@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
                 setBottomNavVisibility(false)
             }
 
-            com.cmc.purtihm.feature.home.R.id.homeFragment -> {
+            com.cmc.purithm.feature.home.R.id.homeFragment -> {
                 setBottomNavVisibility(true)
             }
         }
@@ -157,7 +157,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         when (navHostFragment.navController.currentDestination?.id) {
             com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
             com.cmc.purithm.feature.splash.R.id.splashFragment,
-            com.cmc.purtihm.feature.home.R.id.homeFragment,
+            com.cmc.purithm.feature.home.R.id.homeFragment,
             com.cmc.purithm.feature.login.R.id.loginFragment -> {
                 finish()
             }
