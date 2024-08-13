@@ -21,10 +21,20 @@ internal object NetworkModule {
     @Singleton
     @Provides
     @Named("purithm")
-    fun provideOsdsRetrofit(
+    fun providePurithmRetrofit(
         @Named("authInterceptor") interceptor : OkHttpClient
     ) : Retrofit = Retrofit.Builder()
         .baseUrl(ApiConfig.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(interceptor)
+        .build()
+
+    @Singleton
+    @Provides
+    @Named("s3")
+    fun provideS3Retrofit(
+        @Named("noAuthInterceptor") interceptor : OkHttpClient
+    ) : Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
         .client(interceptor)
         .build()

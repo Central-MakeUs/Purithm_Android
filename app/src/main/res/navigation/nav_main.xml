@@ -32,4 +32,13 @@
         android:id="@+id/navigate_home"
         app:destination="@id/nav_home" />
 
+    <action
+        android:id="@+id/navigate_review"
+        app:destination="@id/nav_review">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+    </action>
+
 </navigation>

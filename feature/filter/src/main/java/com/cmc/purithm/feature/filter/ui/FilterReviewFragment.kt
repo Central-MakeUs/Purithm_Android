@@ -8,8 +8,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
-import com.cmc.purithm.design.util.Util
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.adapter.FilterReviewListAdapter
 import com.cmc.purithm.feature.filter.databinding.FragmentFilterReviewBinding
@@ -83,9 +83,7 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
             )
 
             btnConfirm.setOnClickListener {
-                requireView().showSnackBar(
-                    message = "준비중입니다"
-                )
+                (activity as NavigationAction).navigateReviewWrite(filterId)
             }
         }
     }

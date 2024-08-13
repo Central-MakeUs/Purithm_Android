@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_review"
-    app:startDestination="@id/myReviewFragment">
+    app:startDestination="@id/reviewWriteFragment">
 
-    <fragment
-        android:id="@+id/myReviewFragment"
-        android:name="com.cmc.purithm.feature.review.ui.MyReviewFragment"
-        android:label="ReviewFragment"
-        tools:layout="@layout/fragment_review_my" />
     <fragment
         android:id="@+id/reviewWriteFragment"
         android:name="com.cmc.purithm.feature.review.ui.ReviewWriteFragment"
         android:label="ReviewWriteFragment"
-        tools:layout="@layout/fragment_review_write" />
+        tools:layout="@layout/fragment_review_write" >
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+    </fragment>
 </navigation>

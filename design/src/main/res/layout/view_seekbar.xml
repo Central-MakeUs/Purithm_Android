@@ -15,6 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:max="100"
+            android:value="0"
+            android:thumbOffset="6dp"
             android:maxHeight="@dimen/size_seekbar_progress_height"
             android:minHeight="@dimen/size_seekbar_progress_height"
             android:progressDrawable="@drawable/bg_seekbar"
@@ -30,6 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/content_seekbar_minimum"
+            android:layout_marginStart="14dp"
             android:textColor="@color/grey_300"
             app:layout_constraintStart_toStartOf="@id/seekbar_main"
             app:layout_constraintTop_toBottomOf="@id/seekbar_main" />
@@ -40,6 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/content_seekbar_maximum"
+            android:layout_marginEnd="14dp"
             android:textColor="@color/blue_400"
             app:layout_constraintEnd_toEndOf="@id/seekbar_main"
             app:layout_constraintTop_toBottomOf="@id/seekbar_main" />

@@ -23,7 +23,6 @@ class PurithmSeekBar @JvmOverloads constructor(
             with(seekbarMain){
                 max = 100
                 progress = 0
-                incrementProgressBy(20)
             }
         }
     }

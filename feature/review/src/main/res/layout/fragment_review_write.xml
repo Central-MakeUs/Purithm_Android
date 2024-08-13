@@ -92,9 +92,9 @@
 
                 <com.cmc.purithm.design.component.view.PurithmSeekBar
                     android:id="@+id/seekbar_review"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:paddingHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="40dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

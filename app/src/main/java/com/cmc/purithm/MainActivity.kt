@@ -8,6 +8,7 @@ import android.view.WindowManager
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import androidx.core.os.bundleOf
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
@@ -100,9 +101,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateFilterItem(id: Long) {
+    override fun navigateFilterItem(filterId: Long) {
         with(navHostFragment.navController) {
-            deepLinkNavigate("purithm://filter/$id")
+            deepLinkNavigate("purithm://filter/$filterId")
+        }
+    }
+
+    override fun navigateReviewWrite(filterId: Long) {
+        with(navHostFragment.navController){
+            navigate(R.id.navigate_review, bundleOf("filterId" to filterId))
         }
     }
 
