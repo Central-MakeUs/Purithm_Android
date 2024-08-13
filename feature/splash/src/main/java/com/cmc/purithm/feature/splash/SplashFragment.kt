@@ -78,7 +78,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
                         true
                     }
 
-                    SplashState.Success -> {
+                    is SplashState.Error, SplashState.Success -> {
                         content.viewTreeObserver.removeOnPreDrawListener(this)
                         true
                     }

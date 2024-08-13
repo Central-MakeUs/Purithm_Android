@@ -51,8 +51,26 @@ class FilterViewModel @Inject constructor(
                         isFirst = flag
                     )
                 }
-                if (flag) {
-                    setFirstFilterRunUseCase(false)
+            }.onFailure { exception ->
+                _state.update {
+                    it.copy(
+                        error = exception
+                    )
+                }
+            }
+        }
+    }
+
+    fun setFilterFirstRun(flag : Boolean) {
+        viewModelScope.launch {
+            Log.d(TAG, "setFilterFirstRun: start")
+            runCatching {
+                setFirstFilterRunUseCase(flag)
+            }.onSuccess {
+                _state.update {
+                    it.copy(
+                        isFirst = flag
+                    )
                 }
             }.onFailure { exception ->
                 _state.update {
@@ -120,7 +138,7 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterImgType(currentFilterType : FilterImgType) {
+    fun clickFilterImgType(currentFilterType: FilterImgType) {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -134,7 +152,7 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterTextVisibility(){
+    fun clickFilterTextVisibility() {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -144,7 +162,7 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun setCurrentImgIndex(index : Int){
+    fun setCurrentImgIndex(index: Int) {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -154,13 +172,13 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun clickNavigateFilterIntroduction(){
+    fun clickNavigateFilterIntroduction() {
         viewModelScope.launch {
             _sideEffect.emit(FilterSideEffects.NavigateFilterIntroduction)
         }
     }
 
-    fun clickNavigateFilterLoading(){
+    fun clickNavigateFilterLoading() {
         viewModelScope.launch {
             _sideEffect.emit(FilterSideEffects.NavigateFilterLoading)
         }
@@ -194,7 +212,7 @@ class FilterViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterReview(){
+    fun clickFilterReview() {
         viewModelScope.launch {
             _sideEffect.emit(FilterSideEffects.NavigateFilterReview)
         }
@@ -215,7 +233,7 @@ data class FilterState(
     val loading: Boolean = false,
     val isFirst: Boolean = false,
     val error: Throwable? = null,
-    val selectedIndex : Int = 1,
+    val selectedIndex: Int = 1,
     val noText: Boolean = false,
     val filterImgType: FilterImgType = FilterImgType.FILTER,
     val data: FilterDetailUiModel? = null,

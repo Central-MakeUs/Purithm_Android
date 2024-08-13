@@ -13,6 +13,8 @@ import com.cmc.purithm.common.databinding.DialogLoadingBinding
 class LoadingDialogFragment : BaseDialogFragment<DialogLoadingBinding>() {
     override val layoutResourceId: Int
         get() = R.layout.dialog_loading
+    override val dialogType: BaseDialogType
+        get() = BaseDialogType.FULL_SIZE
 
     override fun initDataBinding() {}
     override fun initView() {}

@@ -16,6 +16,9 @@ class CommonDialogFragment(
     override val layoutResourceId: Int
         get() = R.layout.dialog_common
 
+    override val dialogType: BaseDialogType
+        get() = BaseDialogType.WRAP
+
     override fun initDataBinding() {
         with(binding) {
             content = this@CommonDialogFragment.content

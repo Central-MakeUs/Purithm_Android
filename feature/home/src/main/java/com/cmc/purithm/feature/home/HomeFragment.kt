@@ -2,27 +2,21 @@ package com.cmc.purithm.feature.home
 
 import android.util.Log
 import android.widget.RadioButton
-import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.paging.LoadState
-import androidx.paging.PagingData
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.home.adpater.HomeFilterAdapter
+import com.cmc.purithm.feature.home.databinding.FragmentHomeBinding
 import com.cmc.purithm.feature.home.dialog.HomeFilterLockBottomDialog
 import com.cmc.purithm.feature.home.dialog.HomeItemFilterDialogFragment
-import com.cmc.purithm.feature.home.model.HomeFilterUiModel
-import com.cmc.purtihm.feature.home.R
-import com.cmc.purtihm.feature.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import retrofit2.HttpException
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {

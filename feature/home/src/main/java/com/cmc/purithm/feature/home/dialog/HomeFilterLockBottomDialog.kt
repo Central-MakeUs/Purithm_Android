@@ -1,8 +1,8 @@
 package com.cmc.purithm.feature.home.dialog
 
 import com.cmc.purithm.common.base.BaseBottomSheetDialogFragment
-import com.cmc.purtihm.feature.home.R
-import com.cmc.purtihm.feature.home.databinding.DialogHomeItemPremiumBinding
+import com.cmc.purithm.feature.home.R
+import com.cmc.purithm.feature.home.databinding.DialogHomeItemPremiumBinding
 
 class HomeFilterLockBottomDialog : BaseBottomSheetDialogFragment<DialogHomeItemPremiumBinding>() {
     override val layoutResourceId: Int

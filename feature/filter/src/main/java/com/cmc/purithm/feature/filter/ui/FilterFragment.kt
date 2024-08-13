@@ -1,15 +1,11 @@
 package com.cmc.purithm.feature.filter.ui
 
 import android.util.Log
-import android.view.View
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
-import androidx.navigation.navGraphViewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
@@ -19,11 +15,9 @@ import com.cmc.purithm.domain.entity.filter.FilterImg
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.adapter.FilterPictureAdapter
 import com.cmc.purithm.feature.filter.databinding.FragmentFilterBinding
-import com.cmc.purithm.feature.filter.model.FilterImgType
 import com.cmc.purithm.feature.filter.viewmodel.FilterSideEffects
 import com.cmc.purithm.feature.filter.viewmodel.FilterViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -44,19 +38,9 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 launch {
                     viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: start")
-                        Log.d(TAG, "initObserving: noText = ${state.noText}")
-                        Log.d(TAG, "initObserving: data = ${state.data}")
                         if (state.data != null) {
                             initAppBar(state.data.name, state.data.liked, state.data.likes)
                             initViewPager(state.data.pictures)
-                        }
-                        if (state.isFirst) {
-                            with(binding.viewGuide) {
-                                root.visibility = View.VISIBLE
-                                btnGuideConfirm.setOnClickListener {
-                                    binding.viewGuide.root.visibility = View.GONE
-                                }
-                            }
                         }
                         if (state.error != null) {
                             Log.e(TAG, "initObserving: error")
@@ -111,6 +95,13 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
 
     override fun initView() {
         viewModel.getFilterDetail(filterId)
+        initGuide()
+    }
+
+    private fun initGuide(){
+        binding.viewGuide.btnGuideConfirm.setOnClickListener {
+            viewModel.setFilterFirstRun(false)
+        }
     }
 
     private fun initAppBar(title: String, liked: Boolean, likes: Int) {

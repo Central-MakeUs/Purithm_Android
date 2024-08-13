@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cmc.purithm.feature.home.HomeViewModel
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
-import com.cmc.purtihm.feature.home.R
-import com.cmc.purtihm.feature.home.databinding.ListFilterBinding
+import com.cmc.purithm.feature.home.R
+import com.cmc.purithm.feature.home.databinding.ListFilterBinding
 
 class HomeFilterAdapter(
     private val viewModel : HomeViewModel
