@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +38,6 @@ class PurithmMultipleEditText @JvmOverloads constructor(
 
         with(binding) {
             tvErrorMsg.text = errorMsg
-
             tvStatus.text = String.format(
                 context.getString(R.string.content_edit_text_multiple_status),
                 maxSize,
@@ -45,10 +45,10 @@ class PurithmMultipleEditText @JvmOverloads constructor(
             )
 
             editMain.hint = hint
-            editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize - 1))
+            editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize))
             editMain.imeOptions = imeOption
             editMain.setOnFocusChangeListener { _, hasFocus ->
-                layoutStatus.visibility = if(hasFocus){
+                layoutStatus.visibility = if(hasFocus && editMain.text.isNotEmpty()){
                     View.VISIBLE
                 } else {
                     View.GONE
@@ -66,17 +66,26 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     // 기본 설정
                     layoutStatus.visibility = View.VISIBLE
-                    tvErrorMsg.visibility = View.INVISIBLE
+                    tvErrorMsg.visibility = View.GONE
+                    editMain.setBackgroundResource(R.color.white)
                     tvTextCount.text = "${s.length}"
+                    Log.d(TAG, "onTextChanged: length = ${s.length}")
 
                     if (s.isEmpty()) {    // 입력된 텍스트가 없을 경우 background 변경
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_default)
+                        Log.d(TAG, "onTextChanged: empty, set main background")
                     }
                     if (s.length >= maxSize) {  // 메시지 길이 초과
+                        Log.d(TAG, "onTextChanged: error")
                         tvStatus.setTextColor(context.getColorResource(R.color.red_500))
+                        Log.d(TAG, "onTextChanged: subString = ${s.substring(0, maxSize)}")
+                        editMain.setSelection(maxSize)
+                        showErrorMsg()
                     } else {    // 텍스트가 한개라도 있으면 background 변경
+                        Log.d(TAG, "onTextChanged: text exist")
                         tvStatus.setTextColor(context.getColorResource(R.color.blue_400))
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text)
+                        showDefault()
                     }
                 }
 
@@ -85,10 +94,17 @@ class PurithmMultipleEditText @JvmOverloads constructor(
         }
     }
 
-    fun showErrorMsg() {
+    private fun showErrorMsg() {
         with(binding) {
             layoutStatus.visibility = View.GONE
             tvErrorMsg.visibility = View.VISIBLE
+        }
+    }
+
+    private fun showDefault() {
+        with(binding) {
+            layoutStatus.visibility = View.VISIBLE
+            tvErrorMsg.visibility = View.GONE
         }
     }
 

@@ -36,6 +36,7 @@ internal object NetworkModule {
         @Named("noAuthInterceptor") interceptor : OkHttpClient
     ) : Retrofit = Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
+        .baseUrl(ApiConfig.BASE_URL)
         .client(interceptor)
         .build()
 

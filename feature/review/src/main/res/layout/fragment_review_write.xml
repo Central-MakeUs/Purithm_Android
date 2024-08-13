@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.review.viewmodel.ReviewWriteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,12 +26,11 @@
         <ScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar">
-
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_main"
@@ -94,8 +96,8 @@
                     android:id="@+id/seekbar_review"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="40dp"
+                    android:paddingHorizontal="@dimen/margin_screen_side"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_description" />
@@ -107,30 +109,60 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="60dp"
+                    android:text="@string/title_review_write_description"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/seekbar_review" />
+
+                <TextView
+                    android:id="@+id/tv_review_write_require_text"
+                    style="@style/kr_body_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/content_review_write_require_text"
+                    android:textColor="@color/grey_300"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_title" />
 
                 <com.cmc.purithm.design.component.edittext.PurithmMultipleEditText
                     android:id="@+id/edit_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_title" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_require_text" />
+
+                <TextView
+                    android:id="@+id/tv_review_write_require_picture"
+                    style="@style/kr_body_6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/content_review_write_require_picture"
+                    android:textColor="@color/grey_300"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/edit_review" />
 
                 <androidx.core.widget.NestedScrollView
                     android:id="@+id/scroll_img"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_screen_side"
+                    android:layout_marginTop="10dp"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/edit_review">
+                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_require_picture">
 
                     <!-- 추가되는 View마다 marginEnd 20 추가 -->
                     <LinearLayout
@@ -184,15 +216,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="40dp"
                     android:button="@drawable/selector_ic_checkbox"
                     android:gravity="center_vertical"
                     android:padding="10dp"
                     android:text="@string/content_terms_of_review_agree"
                     android:theme="@style/style_checkbox"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review"
+                    app:layout_constraintVertical_bias="0.0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -214,7 +249,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scroll_main"
             app:layout_constraintVertical_bias="1.0" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
