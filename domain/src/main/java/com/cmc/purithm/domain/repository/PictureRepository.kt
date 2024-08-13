@@ -4,5 +4,5 @@ import java.io.File
 
 interface PictureRepository {
     suspend fun getPictureUploadUrl(prefix : String) : String
-    suspend fun uploadPicture(url : String, file : File) : Int
+    suspend fun uploadPicture(url : String, file : File)
 }

@@ -2,6 +2,7 @@ package com.cmc.purithm.data.repository
 
 import com.cmc.purithm.data.remote.HandleApi
 import com.cmc.purithm.data.remote.mapper.checkSuccess
+import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.PictureService
 import com.cmc.purithm.data.remote.service.S3Service
 import com.cmc.purithm.data.util.RetrofitUtil
@@ -15,10 +16,10 @@ internal class PictureRepositoryImpl @Inject constructor(
     private val s3Service: S3Service
 ) : PictureRepository {
     override suspend fun getPictureUploadUrl(prefix: String): String {
-        return HandleApi.callApi { pictureService.getPictureUploadUrl(prefix).checkSuccess() }
+        return HandleApi.callApi { pictureService.getPictureUploadUrl(prefix).toDomain() }
     }
 
-    override suspend fun uploadPicture(url: String, file : File): Int {
+    override suspend fun uploadPicture(url: String, file : File) {
         val multipart = RetrofitUtil.getProfileMultipartData(file)
         return s3Service.uploadPictureToS3(url, multipart)
     }

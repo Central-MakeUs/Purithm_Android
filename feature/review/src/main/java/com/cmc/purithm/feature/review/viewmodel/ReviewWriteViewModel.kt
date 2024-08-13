@@ -64,10 +64,27 @@ class ReviewWriteViewModel @Inject constructor(
                     it.copy(loading = false, pictures = it.pictures + url.split("?")[0])
                 }
             }.onFailure { exception ->
+                exception.printStackTrace()
                 _state.update {
                     it.copy(loading = false, error = exception)
                 }
             }
+        }
+    }
+
+    fun startGallery() {
+        viewModelScope.launch {
+            _sideEffect.emit(ReviewWriteSideEffect.StartGallery)
+        }
+    }
+
+    fun deleteImgUrl(url : String){
+        Log.d(TAG, "deleteImgUrl: start")
+        val list = _state.value.pictures.toMutableList()
+        list.remove(url)
+        Log.d(TAG, "deleteImgUrl: update = $list")
+        _state.update {
+            it.copy(pictures = list)
         }
     }
 
@@ -86,5 +103,5 @@ data class ReviewWriteState(
 )
 
 sealed interface ReviewWriteSideEffect {
-
+    data object StartGallery : ReviewWriteSideEffect
 }

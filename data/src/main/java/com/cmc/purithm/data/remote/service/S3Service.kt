@@ -12,5 +12,5 @@ internal interface S3Service {
     suspend fun uploadPictureToS3(
         @Url presignedUrl: String,
         @Part file : MultipartBody.Part
-    ) : Int
+    )
 }

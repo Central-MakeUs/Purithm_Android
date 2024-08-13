@@ -8,7 +8,7 @@ import javax.inject.Inject
 class UploadPictureUseCase @Inject constructor(
     private val pictureRepository: PictureRepository
 ) {
-    suspend operator fun invoke(url: String, file: File): Int {
-        return pictureRepository.uploadPicture(url, file)
+    suspend operator fun invoke(url: String, file: File) {
+        pictureRepository.uploadPicture(url, file)
     }
 }

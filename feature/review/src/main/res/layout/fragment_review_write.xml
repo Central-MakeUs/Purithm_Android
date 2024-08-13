@@ -122,7 +122,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="20dp"
-                    android:text="@string/content_review_write_require_text"
                     android:textColor="@color/grey_300"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -176,7 +175,8 @@
                             android:layout_width="98dp"
                             android:layout_height="98dp"
                             android:layout_marginEnd="@dimen/margin_screen_side"
-                            android:src="@drawable/bg_img_add" />
+                            android:src="@drawable/bg_img_add"
+                            app:delayClickEvent="@{() -> vm.startGallery()}" />
 
                     </LinearLayout>
                 </androidx.core.widget.NestedScrollView>
@@ -216,7 +216,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="40dp"
+                    android:layout_marginBottom="120dp"
                     android:button="@drawable/selector_ic_checkbox"
                     android:gravity="center_vertical"
                     android:padding="10dp"

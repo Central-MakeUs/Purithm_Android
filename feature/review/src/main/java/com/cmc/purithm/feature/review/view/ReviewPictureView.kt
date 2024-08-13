@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.review.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -34,10 +35,12 @@ class ReviewPictureView @JvmOverloads constructor(
             this.url = url
             // view가 갖고있는 index를 return
             btnDelete.setOnClickListener {
+                Log.d(TAG, "setInfo: click on")
                 deleteEvent(index)
-                removeView(this@ReviewPictureView)
             }
         }
     }
-
+    companion object{
+        private const val TAG = "ReviewPictureView"
+    }
 }
