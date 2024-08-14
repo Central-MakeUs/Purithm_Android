@@ -3,6 +3,7 @@ package com.cmc.purithm.design.component.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.SeekBar
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.cmc.purithm.design.databinding.ViewSeekbarBinding
 
@@ -15,15 +16,19 @@ class PurithmSeekBar @JvmOverloads constructor(
         initView(context)
     }
 
-    private lateinit var binding : ViewSeekbarBinding
+    private lateinit var binding: ViewSeekbarBinding
 
-    private fun initView(context: Context){
+    private fun initView(context: Context) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = ViewSeekbarBinding.inflate(inflater, this, true).apply {
-            with(seekbarMain){
-                max = 100
+            with(seekbarMain) {
+                max = 5
                 progress = 0
             }
         }
+    }
+
+    fun setChangeListener(listener : SeekBar.OnSeekBarChangeListener){
+        binding.seekbarMain.setOnSeekBarChangeListener(listener)
     }
 }

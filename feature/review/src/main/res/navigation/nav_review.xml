@@ -14,5 +14,9 @@
             android:name="filterId"
             app:argType="long"
             app:nullable="false" />
+        <argument
+            android:name="thumbnail"
+            app:argType="string"
+            app:nullable="false"/>
     </fragment>
 </navigation>

@@ -37,6 +37,14 @@ class ReviewWriteViewModel @Inject constructor(
         }
     }
 
+    fun setPureDegree(pureDegree: Int) {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(pureDegree = pureDegree)
+            }
+        }
+    }
+
     fun requestUploadUrl(file: File) {
         viewModelScope.launch {
             _state.update {

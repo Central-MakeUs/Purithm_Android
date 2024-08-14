@@ -29,7 +29,8 @@ object FilterBindingAdapters {
                 in 80 downTo 61 -> R.drawable.bg_review_80
                 in 60 downTo 41 -> R.drawable.bg_review_60
                 in 40 downTo 21 -> R.drawable.bg_review_40
-                else -> R.drawable.bg_review_20
+                in 20 downTo  1 -> R.drawable.bg_review_20
+                else -> R.drawable.bg_review_0
             }
         )
     }

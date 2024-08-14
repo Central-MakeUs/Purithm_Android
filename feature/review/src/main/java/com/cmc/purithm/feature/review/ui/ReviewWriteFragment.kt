@@ -5,7 +5,7 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
-import androidx.core.net.toFile
+import android.widget.SeekBar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,7 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
-import com.cmc.purithm.common.util.getFullPathFromUri
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.design.util.Util.dp
 import com.cmc.purithm.feature.review.R
@@ -23,7 +22,6 @@ import com.cmc.purithm.feature.review.view.ReviewPictureView
 import com.cmc.purithm.feature.review.viewmodel.ReviewWriteSideEffect
 import com.cmc.purithm.feature.review.viewmodel.ReviewWriteViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.io.File
 import java.io.FileOutputStream
@@ -35,6 +33,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
         get() = R.layout.fragment_review_write
     private val navArgs by navArgs<ReviewWriteFragmentArgs>()
     private val filterId by lazy { navArgs.filterId }
+    private val thumbnail by lazy { navArgs.thumbnail }
     private val viewModel by viewModels<ReviewWriteViewModel>()
     private val registeredPictureList = mutableListOf<String>()
 
@@ -97,6 +96,17 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
 
     override fun initView() {
         with(binding) {
+            seekbarReview.setChangeListener(object : SeekBar.OnSeekBarChangeListener {
+                override fun onProgressChanged(
+                    seekBar: SeekBar?,
+                    progress: Int,
+                    fromUser: Boolean
+                ) {
+                    viewModel.setPureDegree(progress * 20)
+                }
+                override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+                override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+            })
             editReview.initView(
                 maxSize = TEXT_MAX_SIZE,
                 minSize = TEXT_MIN_SIZE,
