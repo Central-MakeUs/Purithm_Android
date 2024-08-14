@@ -16,6 +16,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.io.File
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class ReviewWriteViewModel @Inject constructor(
@@ -28,6 +29,47 @@ class ReviewWriteViewModel @Inject constructor(
 
     private val _sideEffect = MutableSharedFlow<ReviewWriteSideEffect>()
     val sideEffect get() = _sideEffect.asSharedFlow()
+
+    fun addReview() {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(loading = true)
+            }
+            runCatching {
+                addReviewUseCase(
+                    filterId = state.value.filterId,
+                    content = _state.value.content,
+                    pureDegree = _state.value.pureDegree,
+                    pictures = _state.value.pictures
+                )
+            }.onSuccess { reviewId ->
+                _state.update {
+                    it.copy(loading = false)
+                }
+                _sideEffect.emit(ReviewWriteSideEffect.ShowReviewSuccessDialog(reviewId))
+            }.onFailure { exception ->
+                _state.update {
+                    it.copy(loading = false, error = exception)
+                }
+            }
+        }
+    }
+
+    fun setInitInfo(filterId: Long, thumbnail: String) {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(filterId = filterId, thumbnail = thumbnail)
+            }
+        }
+    }
+
+    fun setContent(content: String) {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(content = content)
+            }
+        }
+    }
 
     fun setAgree(agree: Boolean) {
         viewModelScope.launch {
@@ -86,7 +128,7 @@ class ReviewWriteViewModel @Inject constructor(
         }
     }
 
-    fun deleteImgUrl(url : String){
+    fun deleteImgUrl(url: String) {
         Log.d(TAG, "deleteImgUrl: start")
         val list = _state.value.pictures.toMutableList()
         list.remove(url)
@@ -102,14 +144,17 @@ class ReviewWriteViewModel @Inject constructor(
 }
 
 data class ReviewWriteState(
+    val filterId: Long = 0,
+    val thumbnail: String = "",
     val loading: Boolean = false,
     val error: Throwable? = null,
     val agree: Boolean = false,
     val content: String = "",
     val pureDegree: Int = -1,
-    val pictures: List<String> = emptyList()
+    val pictures: List<String> = emptyList(),
 )
 
 sealed interface ReviewWriteSideEffect {
     data object StartGallery : ReviewWriteSideEffect
+    class ShowReviewSuccessDialog(val reviewId: Long) : ReviewWriteSideEffect
 }

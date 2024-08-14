@@ -29,6 +29,7 @@
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="90dp"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,6 +68,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:scaleType="centerCrop"
+                        app:imageUrl="@{vm.state.thumbnail}"
                         tools:src="@drawable/bg_image_placeholder" />
                 </androidx.cardview.widget.CardView>
 
@@ -80,7 +82,8 @@
                     android:visibility="@{vm.state.pureDegree == -1 ? View.GONE : View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/view_thumbnail">
+                    app:layout_constraintTop_toBottomOf="@id/view_thumbnail"
+                    tools:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_filter_review_title"
@@ -187,13 +190,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/edit_review" />
 
-                <androidx.core.widget.NestedScrollView
+                <HorizontalScrollView
                     android:id="@+id/scroll_img"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_screen_side"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal"
+                    android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_review_write_require_picture">
@@ -214,7 +217,7 @@
                             app:delayClickEvent="@{() -> vm.startGallery()}" />
 
                     </LinearLayout>
-                </androidx.core.widget.NestedScrollView>
+                </HorizontalScrollView>
 
                 <TextView
                     android:id="@+id/tv_term_of_review_title"
@@ -251,7 +254,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="30dp"
-                    android:layout_marginBottom="160dp"
+                    android:layout_marginBottom="120dp"
                     android:button="@drawable/selector_ic_checkbox"
                     android:gravity="center_vertical"
                     android:padding="10dp"
@@ -261,8 +264,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
@@ -276,14 +278,16 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_solid_primary_lg"
-            android:enabled="false"
+            android:enabled="@{(vm.state.pureDegree != -1 &amp;&amp; vm.state.agree &amp;&amp; vm.state.content.length() > 20 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
             android:gravity="center"
             android:paddingVertical="18dp"
             android:text="@string/content_upload"
             android:textColor="@color/white"
+            app:delayClickEvent="@{() -> vm.addReview()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scroll_main"
             app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

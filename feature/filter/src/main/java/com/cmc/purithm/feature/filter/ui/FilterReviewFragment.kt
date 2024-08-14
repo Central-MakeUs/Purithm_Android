@@ -28,6 +28,7 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
     private val viewModel: FilterReviewViewModel by viewModels()
     private val navArgs by navArgs<FilterReviewFragmentArgs>()
     private val filterId by lazy { navArgs.filterId }
+    private val thumbnail by lazy { navArgs.thumbnail }
     private val filterReviewAdapter by lazy { FilterReviewListAdapter() }
 
     override fun initObserving() {
@@ -83,7 +84,7 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
             )
 
             btnConfirm.setOnClickListener {
-                (activity as NavigationAction).navigateReviewWrite(filterId)
+                (activity as NavigationAction).navigateReviewWrite(filterId, thumbnail)
             }
         }
     }

@@ -2,6 +2,7 @@ package com.cmc.purithm.data.remote.service
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.review.AddReviewRequestDto
+import com.cmc.purithm.data.remote.dto.review.AddReviewResponseDto
 import com.cmc.purithm.data.remote.dto.review.GetFilterReviewResponseDto
 import com.cmc.purithm.data.remote.dto.review.ReviewResponseDto
 import retrofit2.http.Body
@@ -20,8 +21,8 @@ internal interface ReviewService {
         @Path("reviewId") reviewId : Long
     ) : BaseResponse<ReviewResponseDto>
 
-    @POST("/api/revies")
+    @POST("/api/reviews")
     suspend fun addReview(
         @Body addReviewRequestDto : AddReviewRequestDto
-    ) : BaseResponse<Long>
+    ) : BaseResponse<AddReviewResponseDto>
 }

@@ -3,6 +3,7 @@ package com.cmc.purithm.feature.review.ui
 import android.content.Intent
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.util.Log
 import android.view.inputmethod.EditorInfo
 import android.widget.LinearLayout
 import android.widget.SeekBar
@@ -18,6 +19,7 @@ import com.cmc.purithm.design.util.Util.dp
 import com.cmc.purithm.feature.review.R
 import com.cmc.purithm.feature.review.databinding.FragmentReviewWriteBinding
 import com.cmc.purithm.feature.review.dialog.ReviewGuideBottomDialog
+import com.cmc.purithm.feature.review.dialog.ReviewSuccessDialog
 import com.cmc.purithm.feature.review.view.ReviewPictureView
 import com.cmc.purithm.feature.review.viewmodel.ReviewWriteSideEffect
 import com.cmc.purithm.feature.review.viewmodel.ReviewWriteViewModel
@@ -47,7 +49,6 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                         } else {
                             dismissLoadingDialog()
                         }
-
                         state.pictures.forEachIndexed { index, s ->
                             // 이미 추가된 리스트는 더 추가하지 않음
                             if(registeredPictureList.contains(s)){
@@ -83,6 +84,12 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                                     type = "image/*"
                                 }, REQUEST_IMG_CODE)
                             }
+
+                            is ReviewWriteSideEffect.ShowReviewSuccessDialog -> ReviewSuccessDialog(
+                                afterDelayEvent = {
+                                    Log.d(TAG, "initObserving: on!!")
+                                }
+                            ).show(childFragmentManager, null)
                         }
                     }
                 }
@@ -95,7 +102,11 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     }
 
     override fun initView() {
+        viewModel.setInitInfo(filterId, thumbnail)
         with(binding) {
+            btnTermOfServiceAgreement.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setAgree(isChecked)
+            }
             seekbarReview.setChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
@@ -115,7 +126,10 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                 errorMsg = String.format(
                     getString(R.string.content_review_write_require_text),
                     TEXT_MIN_SIZE
-                )
+                ),
+                textChangeListener = { content ->
+                    viewModel.setContent(content)
+                }
             )
             tvReviewWriteRequireText.text =
                 String.format(getString(R.string.content_review_write_require_text), TEXT_MIN_SIZE)
@@ -187,6 +201,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     }
 
     companion object {
+        private const val TAG = "ReviewWriteFragment"
         private const val TEXT_MAX_SIZE = 100
         private const val TEXT_MIN_SIZE = 20
         private const val REQUEST_IMG_CODE = 1

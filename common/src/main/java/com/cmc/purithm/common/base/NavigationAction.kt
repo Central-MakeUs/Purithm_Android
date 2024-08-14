@@ -16,5 +16,5 @@ interface NavigationAction {
     fun navigateHome()
     fun navigateTermOfService()
     fun navigateFilterItem(filterId: Long)
-    fun navigateReviewWrite(filterId : Long)
+    fun navigateReviewWrite(filterId : Long, thumbnail : String)
 }

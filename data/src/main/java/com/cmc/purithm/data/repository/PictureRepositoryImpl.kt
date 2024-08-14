@@ -20,7 +20,7 @@ internal class PictureRepositoryImpl @Inject constructor(
     }
 
     override suspend fun uploadPicture(url: String, file : File) {
-        val multipart = RetrofitUtil.getProfileMultipartData(file)
+        val multipart = RetrofitUtil.getRequestBody(file)
         return s3Service.uploadPictureToS3(url, multipart)
     }
 }

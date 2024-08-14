@@ -107,9 +107,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateReviewWrite(filterId: Long) {
-        with(navHostFragment.navController){
-            navigate(R.id.navigate_review, bundleOf("filterId" to filterId))
+    override fun navigateReviewWrite(filterId: Long, thumbnail: String) {
+        with(navHostFragment.navController) {
+            navigate(
+                R.id.navigate_review,
+                bundleOf("filterId" to filterId, "thumbnail" to thumbnail)
+            )
         }
     }
 
@@ -129,7 +132,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
             com.cmc.purithm.feature.login.R.id.loginFragment,
             com.cmc.purithm.feature.splash.R.id.splashFragment,
-            com.cmc.purithm.feature.filter.R.id.filterFragment-> {
+            com.cmc.purithm.feature.filter.R.id.filterFragment -> {
                 setBottomNavVisibility(false)
             }
 

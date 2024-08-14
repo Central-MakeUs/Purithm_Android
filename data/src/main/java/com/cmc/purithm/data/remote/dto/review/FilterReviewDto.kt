@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 internal data class FilterReviewDto(
     @SerializedName("id")
     val id : Long,
+    @SerializedName("profile")
+    val profile : String,
     @SerializedName("pureDegree")
     val pureDegree : Int,
     @SerializedName("user")
@@ -12,5 +14,5 @@ internal data class FilterReviewDto(
     @SerializedName("createdAt")
     val createAt : String,
     @SerializedName("pictures")
-    val pictures : List<String>
+    val pictures : List<String>?
 )

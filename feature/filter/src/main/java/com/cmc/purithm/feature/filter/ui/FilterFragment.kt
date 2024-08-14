@@ -70,7 +70,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                             is FilterSideEffects.NavigateFilterReview -> {
                                 navigate(
                                     FilterFragmentDirections.actionFilterFragmentToFilterReviewFragment(
-                                        filterId
+                                        filterId, viewModel.state.value.data?.pictures?.get(0)?.picture!!
                                     )
                                 )
                             }

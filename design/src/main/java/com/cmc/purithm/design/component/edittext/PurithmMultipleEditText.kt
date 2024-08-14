@@ -32,7 +32,7 @@ class PurithmMultipleEditText @JvmOverloads constructor(
         return ViewEditTextMultipleBinding.inflate(inflater, this, true)
     }
 
-    fun initView(maxSize: Int, minSize: Int, hint: String = "", imeOption: Int, errorMsg: String) {
+    fun initView(maxSize: Int, minSize: Int, hint: String = "", imeOption: Int, errorMsg: String, textChangeListener : (String) -> Unit) {
         this.maxSize = maxSize
         this.minSize = minSize
 
@@ -70,6 +70,7 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                     editMain.setBackgroundResource(R.color.white)
                     tvTextCount.text = "${s.length}"
                     Log.d(TAG, "onTextChanged: length = ${s.length}")
+                    textChangeListener(s.toString())
 
                     if (s.isEmpty()) {    // 입력된 텍스트가 없을 경우 background 변경
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_default)

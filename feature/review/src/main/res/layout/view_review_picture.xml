@@ -14,16 +14,29 @@
         android:layout_width="98dp"
         android:layout_height="98dp">
 
-        <ImageView
-            android:id="@+id/img_picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            app:imageUrl="@{url}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_img"
+            android:layout_width="98dp"
+            android:layout_height="98dp"
+            app:cardElevation="0dp"
+            app:cardCornerRadius="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageView
+                android:id="@+id/img_picture"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{url}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.cardview.widget.CardView>
 
         <ImageButton
             android:id="@+id/btn_delete"

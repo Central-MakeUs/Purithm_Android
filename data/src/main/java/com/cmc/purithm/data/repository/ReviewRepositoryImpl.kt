@@ -28,6 +28,6 @@ internal class ReviewRepositoryImpl @Inject constructor(
         pictures: List<String>
     ): Long {
         val request = AddReviewRequestDto(filterId, pureDegree, content, pictures)
-        return HandleApi.callApi { reviewService.addReview(request).checkSuccess() }
+        return HandleApi.callApi { reviewService.addReview(request).toDomain() }
     }
 }
