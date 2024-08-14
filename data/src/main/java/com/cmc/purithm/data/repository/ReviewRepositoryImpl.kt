@@ -21,6 +21,10 @@ internal class ReviewRepositoryImpl @Inject constructor(
         return HandleApi.callApi { reviewService.getReviewItem(reviewId).toDomain() }
     }
 
+    override suspend fun getAllReview(sortedBy : String): List<ReviewItem> {
+        return HandleApi.callApi { reviewService.getFeeds(sortedBy = sortedBy).toDomain() }
+    }
+
     override suspend fun addReview(
         filterId: Long,
         pureDegree: Int,

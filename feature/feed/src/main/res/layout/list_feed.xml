@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_screen_side">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewpager_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- TODO : chip component 추가 -->
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicator_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            app:ci_animator="@animator/animator_indicator"
+            app:ci_drawable="@drawable/ic_indicator_selected"
+            app:ci_drawable_unselected="@drawable/ic_indicator_unselected"
+            app:ci_gravity="center"
+            app:ci_height="8dp"
+            app:ci_margin="6dp"
+            app:ci_width="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/viewpager_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
