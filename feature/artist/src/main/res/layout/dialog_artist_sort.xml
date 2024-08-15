@@ -2,7 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data></data>
+    <data>
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.artist.viewmodel.ArtistViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_filter_popular"
+            android:id="@+id/tv_sort_filter"
             style="@style/kr_body_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,26 +32,28 @@
             android:layout_marginTop="20dp"
             android:paddingTop="20dp"
             android:paddingBottom="18dp"
+            android:text="@string/category_artist_sort_filter"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_top" />
 
         <TextView
-            android:id="@+id/tv_filter_new"
+            android:id="@+id/tv_filter_latest"
             style="@style/kr_body_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:paddingTop="20dp"
+            android:text="@string/category_artist_sort_latest"
             android:paddingBottom="18dp"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_filter_popular" />
+            app:layout_constraintTop_toBottomOf="@id/tv_sort_filter" />
 
         <TextView
-            android:id="@+id/tv_filter_review_high"
+            android:id="@+id/tv_filter_earliest"
             style="@style/kr_body_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,11 +61,12 @@
             android:layout_marginBottom="40dp"
             android:paddingTop="20dp"
             android:paddingBottom="18dp"
+            android:text="@string/category_artist_sort_earliest"
             android:textColor="@color/grey_300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_filter_new" />
+            app:layout_constraintTop_toBottomOf="@id/tv_filter_latest" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

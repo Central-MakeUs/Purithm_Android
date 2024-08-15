@@ -31,4 +31,8 @@ interface FilterRepository {
     suspend fun getFilterIntroduction(
         filterId : Long
     ) : Filter
+
+    suspend fun getFilterOfArtist(
+        artistId : Long
+    ) : Flow<PagingData<Filter>>
 }

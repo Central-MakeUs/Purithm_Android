@@ -1,5 +1,6 @@
 package com.cmc.purithm.data.di
 
+import com.cmc.purithm.data.remote.service.ArtistService
 import com.cmc.purithm.data.remote.service.AuthService
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.data.remote.service.MemberService
@@ -64,5 +65,13 @@ internal object ServiceModule {
         @Named("s3") retrofit: Retrofit
     ): S3Service {
         return retrofit.create(S3Service::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideArtistService(
+        @Named("purithm") retrofit: Retrofit
+    ): ArtistService {
+        return retrofit.create(ArtistService::class.java)
     }
 }

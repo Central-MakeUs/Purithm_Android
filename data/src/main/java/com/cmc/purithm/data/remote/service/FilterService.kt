@@ -37,11 +37,6 @@ internal interface FilterService {
         @Path("filterId") filterId: Long
     ): BaseResponse<FilterDetailResponseDto>
 
-    @GET("api/filters/{filterId}/reviews")
-    suspend fun getFilterReview(
-        @Path("filterId") filterId: Long
-    ): BaseResponse<FilterReviewResponseDto>
-
     @GET("api/filters/{filterId}/AOS")
     suspend fun getFilterValue(
         @Path("filterId") filterId : Long

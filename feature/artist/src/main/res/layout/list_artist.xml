@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.artist.viewmodel.ArtistViewModel" />
+
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.artist.model.ArtistUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +22,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/view_artist_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             app:cardCornerRadius="16dp"
             app:cardElevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,24 +33,23 @@
                 이미지 순서는 다음과 같음
                 1 3
                 2 4
-
-                FIXME : divider visibility 관리 필요
             -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_picture"
                 android:layout_width="match_parent"
-                android:layout_height="400dp">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/img_artist_thumbnail_1"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
+                    android:layout_height="200dp"
+                    app:artist_thumbnail="@{data.pictures[0]}"
                     app:layout_constraintBottom_toTopOf="@id/img_artist_thumbnail_2"
                     app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0"
-                    tools:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/bg_image_placeholder" />
 
                 <View
@@ -58,11 +64,12 @@
                 <ImageView
                     android:id="@+id/img_artist_thumbnail_3"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
+                    app:artist_thumbnail="@{data.pictures[2]}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_1"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/bg_image_placeholder" />
 
                 <View
@@ -78,12 +85,13 @@
                 <ImageView
                     android:id="@+id/img_artist_thumbnail_2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
+                    app:artist_thumbnail="@{data.pictures[1]}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_4"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/img_artist_thumbnail_1"
-                    tools:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/bg_image_placeholder" />
 
                 <View
@@ -98,11 +106,12 @@
                 <ImageView
                     android:id="@+id/img_artist_thumbnail_4"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="200dp"
+                    app:artist_thumbnail="@{data.pictures[3]}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_2"
                     app:layout_constraintTop_toBottomOf="@id/img_artist_thumbnail_3"
-                    tools:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     tools:src="@drawable/bg_image_placeholder" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -121,7 +130,8 @@
             <ImageView
                 android:id="@+id/img_profile"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:imageUrl="@{data.profile}" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -130,6 +140,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{data.name}"
             android:textColor="@color/grey_500"
             app:layout_constraintBottom_toBottomOf="@id/view_profile"
             app:layout_constraintStart_toEndOf="@id/view_profile"
@@ -146,6 +157,7 @@
             android:gravity="center"
             android:text="@string/content_shop"
             android:textColor="@color/blue_400"
+            app:delayClickEvent="@{() -> vm.clickArtist(data.id)}"
             app:layout_constraintBottom_toBottomOf="@id/view_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -158,6 +170,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:text="@{data.description}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

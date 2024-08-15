@@ -1,10 +1,12 @@
 package com.cmc.purithm.data.di
 
+import com.cmc.purithm.data.repository.ArtistRepositoryImpl
 import com.cmc.purithm.data.repository.AuthRepositoryImpl
 import com.cmc.purithm.data.repository.FilterRepositoryImpl
 import com.cmc.purithm.data.repository.MemberRepositoryImpl
 import com.cmc.purithm.data.repository.PictureRepositoryImpl
 import com.cmc.purithm.data.repository.ReviewRepositoryImpl
+import com.cmc.purithm.domain.repository.ArtistRepository
 import com.cmc.purithm.domain.repository.AuthRepository
 import com.cmc.purithm.domain.repository.FilterRepository
 import com.cmc.purithm.domain.repository.MemberRepository
@@ -39,4 +41,8 @@ internal abstract class RepositoryModule {
     @Singleton
     @Binds
     abstract fun bindPictureRepository(pictureRepositoryImpl: PictureRepositoryImpl) : PictureRepository
+
+    @Singleton
+    @Binds
+    abstract fun bindArtistRepository(artistRepositoryImpl: ArtistRepositoryImpl) : ArtistRepository
 }

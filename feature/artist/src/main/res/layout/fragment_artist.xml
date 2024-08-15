@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.artist.viewmodel.ArtistViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,10 +30,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
+            android:text="@{String.format(@string/content_artist_count, vm.state.artistSize)}"
             android:textColor="@color/grey_500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar"
-            tools:text="@string/content_artist_count" />
+            tools:text="20명의 작가들" />
 
         <LinearLayout
             android:id="@+id/layout_item_filter"
@@ -38,6 +42,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:delayClickEvent="@{() -> vm.clickArtistSortedBy()}"
             app:layout_constraintBottom_toBottomOf="@id/tv_artist_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -49,6 +54,7 @@
                 style="@style/kr_body_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{vm.state.sortedBy}"
                 android:textColor="@color/grey_400"
                 tools:text="필터 많은순" />
 
@@ -63,13 +69,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/list_artist"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_artist_count"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_artist_count" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

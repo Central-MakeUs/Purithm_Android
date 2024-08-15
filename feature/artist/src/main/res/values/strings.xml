@@ -2,4 +2,8 @@
 <resources>
     <string name="content_artist_count">%s명의 작가들</string>
     <string name="content_shop">Shop</string>
+
+    <string name="category_artist_sort_filter">필터 많은순</string>
+    <string name="category_artist_sort_latest">최신순</string>
+    <string name="category_artist_sort_earliest">오래된순</string>
 </resources>

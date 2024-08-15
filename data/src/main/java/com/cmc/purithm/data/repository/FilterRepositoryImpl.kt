@@ -55,4 +55,8 @@ internal class FilterRepositoryImpl @Inject constructor(
     override suspend fun getFilterIntroduction(filterId: Long): Filter {
         return HandleApi.callApi { filterService.getFilterDescription(filterId).toDomain() }
     }
+
+    override suspend fun getFilterOfArtist(artistId: Long): Flow<PagingData<Filter>> {
+        TODO("Not yet implemented")
+    }
 }
