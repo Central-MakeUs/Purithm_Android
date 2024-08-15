@@ -27,9 +27,9 @@
         tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/myReviewHistoryFragment"
-        android:name="com.cmc.purithm.feature.mypage.ui.MyReviewHistoryFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.ReviewHistoryListFragment"
         android:label="MyReviewHistoryFragment"
-        tools:layout="@layout/fragment_review_history" />
+        tools:layout="@layout/fragment_review_history_list" />
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.SettingFragment"

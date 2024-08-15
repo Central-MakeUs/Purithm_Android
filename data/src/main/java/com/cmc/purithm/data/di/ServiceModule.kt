@@ -6,6 +6,7 @@ import com.cmc.purithm.data.remote.service.MemberService
 import com.cmc.purithm.data.remote.service.PictureService
 import com.cmc.purithm.data.remote.service.ReviewService
 import com.cmc.purithm.data.remote.service.S3Service
+import com.cmc.purithm.domain.repository.MemberRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,5 +65,4 @@ internal object ServiceModule {
     ): S3Service {
         return retrofit.create(S3Service::class.java)
     }
-
 }

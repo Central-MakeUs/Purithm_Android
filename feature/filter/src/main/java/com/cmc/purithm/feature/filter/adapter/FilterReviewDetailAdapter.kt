@@ -50,7 +50,9 @@ class FilterReviewDetailAdapter(
                 viewReviewIntensity.setReviewIntensity(item.pureDegree)
                 viewpagerPictures.adapter =
                     FilterReviewPictureAdapter(fragmentActivity, item.pictures)
-                indicatorOnboarding.setViewPager(viewpagerPictures)
+                if(item.pictures.size > 1){
+                    indicatorOnboarding.setViewPager(viewpagerPictures)
+                }
             }
         }
     }

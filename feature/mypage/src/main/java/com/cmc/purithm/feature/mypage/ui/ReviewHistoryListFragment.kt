@@ -2,11 +2,11 @@ package com.cmc.purithm.feature.mypage.ui
 
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.feature.mypage.R
-import com.cmc.purithm.feature.mypage.databinding.FragmentReviewHistoryBinding
+import com.cmc.purithm.feature.mypage.databinding.FragmentReviewHistoryListBinding
 
-class MyReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
+class ReviewHistoryListFragment : BaseFragment<FragmentReviewHistoryListBinding>() {
     override val layoutId: Int
-        get() = R.layout.fragment_review_history
+        get() = R.layout.fragment_review_history_list
 
     override fun initObserving() {
 

@@ -107,11 +107,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateReviewWrite(filterId: Long, thumbnail: String) {
+    override fun navigateReviewWrite(filterName: String, filterId: Long, thumbnail: String) {
         with(navHostFragment.navController) {
             navigate(
                 R.id.navigate_review,
-                bundleOf("filterId" to filterId, "thumbnail" to thumbnail)
+                bundleOf(
+                    "filterName" to filterName,
+                    "filterId" to filterId,
+                    "thumbnail" to thumbnail
+                )
             )
         }
     }

@@ -70,7 +70,9 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                             is FilterSideEffects.NavigateFilterReview -> {
                                 navigate(
                                     FilterFragmentDirections.actionFilterFragmentToFilterReviewFragment(
-                                        filterId, viewModel.state.value.data?.pictures?.get(0)?.picture!!
+                                        filterId,
+                                        viewModel.state.value.data?.pictures?.get(0)?.picture!!,
+                                        viewModel.state.value.data?.name ?: ""
                                     )
                                 )
                             }
@@ -98,7 +100,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
         initGuide()
     }
 
-    private fun initGuide(){
+    private fun initGuide() {
         binding.viewGuide.btnGuideConfirm.setOnClickListener {
             viewModel.setFilterFirstRun(false)
         }

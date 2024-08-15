@@ -9,7 +9,11 @@
         android:id="@+id/reviewWriteFragment"
         android:name="com.cmc.purithm.feature.review.ui.ReviewWriteFragment"
         android:label="ReviewWriteFragment"
-        tools:layout="@layout/fragment_review_write" >
+        tools:layout="@layout/fragment_review_write">
+        <argument
+            android:name="filterName"
+            app:argType="string"
+            app:nullable="false" />
         <argument
             android:name="filterId"
             app:argType="long"
@@ -17,6 +21,32 @@
         <argument
             android:name="thumbnail"
             app:argType="string"
-            app:nullable="false"/>
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_reviewWriteFragment_to_reviewHistoryFragment"
+            app:destination="@id/reviewHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewHistoryFragment"
+        android:name="com.cmc.purithm.feature.review.ui.ReviewHistoryFragment"
+        android:label="ReviewHistoryFragment"
+        tools:layout="@layout/fragment_review_history">
+        <argument
+            android:name="filterId"
+            app:argType="long"
+            app:nullable="false" />
+        <argument
+            android:name="reviewId"
+            app:argType="long"
+            app:nullable="false" />
+        <argument
+            android:name="thumbnail"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="filterName"
+            app:argType="string"
+            app:nullable="false" />
+        <deepLink app:uri="purithm://review/history/{filterId}/{reviewId}/{thumbnail}/{filterName}" />
     </fragment>
 </navigation>

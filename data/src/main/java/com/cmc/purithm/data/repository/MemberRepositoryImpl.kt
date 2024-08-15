@@ -30,4 +30,7 @@ internal class MemberRepositoryImpl @Inject constructor(
         memberDataStore.setFirstFilterRun(flag)
     }
 
+    override suspend fun deleteMyReview(reviewId: Long) {
+        HandleApi.callApi { memberService.deleteReview(reviewId) }
+    }
 }

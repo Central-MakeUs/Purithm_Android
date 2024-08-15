@@ -5,28 +5,45 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.review.viewmodel.ReviewHistoryViewModel" />
+
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.review.model.ReviewHistoryUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_100"
-        android:paddingHorizontal="@dimen/margin_screen_side">
+        android:background="@color/grey_100">
+
+        <com.cmc.purithm.design.component.appbar.PurithmAppbar
+            android:id="@+id/view_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="17dp"
+            android:paddingHorizontal="@dimen/margin_screen_side"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_appbar"
             app:layout_constraintVertical_bias="0.0">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:paddingBottom="100dp">
 
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/vp_picture"
@@ -35,6 +52,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.cmc.purithm.design.component.view.FilterChip
+                    android:id="@+id/view_filter_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@id/vp_picture"
+                    app:layout_constraintStart_toStartOf="@id/vp_picture"
+                    app:layout_constraintTop_toTopOf="@id/vp_picture" />
+
 
                 <me.relex.circleindicator.CircleIndicator3
                     android:id="@+id/indicator_picture"
@@ -65,7 +93,8 @@
                     <ImageView
                         android:id="@+id/img_profile"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        app:imageUrl="@{data.userProfile}" />
                 </androidx.cardview.widget.CardView>
 
                 <TextView
@@ -74,6 +103,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:text="@{data.userName}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintBottom_toBottomOf="@id/view_profile"
                     app:layout_constraintStart_toEndOf="@id/view_profile"
@@ -97,10 +127,8 @@
                         android:text="@string/content_review_satisfactory"
                         android:textColor="@color/grey_300" />
 
-                    <!-- FIXME : need binding adapter -->
-                    <TextView
-                        android:id="@+id/tv_review_intensity"
-                        style="@style/kr_body_3"
+                    <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                        android:id="@+id/view_review_intensity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
                 </LinearLayout>
@@ -111,6 +139,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:text="@{data.content}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -124,18 +153,17 @@
             style="@style/kr_body_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginTop="@dimen/margin_screen_side"
             android:layout_marginBottom="18dp"
-            android:background="@color/color_button_solid_secondary"
+            android:background="@drawable/shape_button_solid_secondary_lg"
             android:gravity="center"
             android:paddingVertical="14dp"
             android:text="@string/content_delete"
             android:textColor="@color/grey_300"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scroll_main"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

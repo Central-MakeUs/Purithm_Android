@@ -36,6 +36,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     private val navArgs by navArgs<ReviewWriteFragmentArgs>()
     private val filterId by lazy { navArgs.filterId }
     private val thumbnail by lazy { navArgs.thumbnail }
+    private val filterName by lazy { navArgs.filterName }
     private val viewModel by viewModels<ReviewWriteViewModel>()
     private val registeredPictureList = mutableListOf<String>()
 
@@ -51,7 +52,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                         }
                         state.pictures.forEachIndexed { index, s ->
                             // 이미 추가된 리스트는 더 추가하지 않음
-                            if(registeredPictureList.contains(s)){
+                            if (registeredPictureList.contains(s)) {
                                 return@forEachIndexed
                             }
                             registeredPictureList.add(s)
@@ -87,7 +88,14 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
 
                             is ReviewWriteSideEffect.ShowReviewSuccessDialog -> ReviewSuccessDialog(
                                 afterDelayEvent = {
-                                    Log.d(TAG, "initObserving: on!!")
+                                    navigate(
+                                        ReviewWriteFragmentDirections.actionReviewWriteFragmentToReviewHistoryFragment(
+                                            reviewId = sideEffect.reviewId,
+                                            filterId = filterId,
+                                            thumbnail = thumbnail,
+                                            filterName = filterName
+                                        )
+                                    )
                                 }
                             ).show(childFragmentManager, null)
                         }
@@ -115,6 +123,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                 ) {
                     viewModel.setPureDegree(progress * 20)
                 }
+
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
                 override fun onStopTrackingTouch(seekBar: SeekBar?) {}
             })

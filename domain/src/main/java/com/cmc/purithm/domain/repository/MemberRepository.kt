@@ -6,4 +6,5 @@ interface MemberRepository {
     suspend fun agreeToTermsOfService()
     suspend fun getFirstFilter() : Boolean
     suspend fun setFirstFilter(flag : Boolean)
+    suspend fun deleteMyReview(reviewId : Long)
 }

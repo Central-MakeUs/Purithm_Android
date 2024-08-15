@@ -4,12 +4,59 @@
 
     <data>
 
+        <variable
+            name="imgUrl"
+            type="String" />
+
+        <variable
+            name="filterName"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_button_trans_primary_s"
+        android:paddingHorizontal="4dp"
+        android:paddingVertical="4.5dp">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_profile"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            app:cardCornerRadius="99dp"
+            app:cardElevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_filter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_filter_name"
+            style="@style/en_body_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{filterName}"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintStart_toEndOf="@id/view_profile"
+            app:layout_constraintTop_toTopOf="@id/view_profile" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_move_white"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintStart_toEndOf="@id/tv_filter_name"
+            app:layout_constraintTop_toTopOf="@id/view_profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

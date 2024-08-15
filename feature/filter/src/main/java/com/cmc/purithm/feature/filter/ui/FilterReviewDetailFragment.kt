@@ -23,9 +23,6 @@ class FilterReviewDetailFragment : BaseFragment<FragmentFilterReviewDetailBindin
     override fun initBinding() {}
 
     override fun initView() {
-        Log.d(TAG, "initView: reviewId = $reviewId")
-        Log.d(TAG, "initView: reviewList = $reviewList")
-
         with(binding) {
             viewAppbar.setAppBar(
                 type = PurithmAppbar.PurithmAppbarType.KR_BACK,
