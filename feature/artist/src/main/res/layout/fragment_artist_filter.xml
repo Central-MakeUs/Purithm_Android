@@ -5,6 +5,21 @@
 
     <data>
 
+        <variable
+            name="artistName"
+            type="String" />
+
+        <variable
+            name="artistDescription"
+            type="String" />
+
+        <variable
+            name="artistProfile"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.artist.viewmodel.ArtistFilterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,11 +37,11 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -46,6 +61,7 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     app:cardCornerRadius="99dp"
+                    android:layout_marginTop="40dp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +70,8 @@
                     <ImageView
                         android:id="@+id/img_profile"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        app:imageUrl="@{artistProfile}" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -64,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:text="@{artistName}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -100,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_screen_side"
                     android:gravity="center_vertical"
+                    app:delayClickEvent="@{() -> vm.clickFilterSortedBy()}"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@id/tv_artist_filter_count"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -113,6 +132,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/grey_400"
+                        android:text="@{vm.state.sortedBy}"
                         tools:text="최신순" />
 
                     <ImageView
@@ -135,7 +155,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_artist_filter_count"
-                    app:spanCount="2"/>
+                    app:spanCount="2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>

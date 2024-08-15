@@ -58,9 +58,21 @@ class ArtistViewModel @Inject constructor(
         }
     }
 
-    fun clickArtist(artistId: Long) {
+    fun clickArtist(
+        artistId: Long,
+        artistName: String,
+        artistProfile: String,
+        description: String
+    ) {
         viewModelScope.launch {
-            _sideEffect.emit(ArtistSideEffects.NavigateArtistFilter(artistId))
+            _sideEffect.emit(
+                ArtistSideEffects.NavigateArtistFilter(
+                    artistId,
+                    artistName,
+                    artistProfile,
+                    description
+                )
+            )
         }
     }
 
@@ -99,6 +111,12 @@ data class ArtistState(
 )
 
 sealed interface ArtistSideEffects {
-    class NavigateArtistFilter(val artistId: Long) : ArtistSideEffects
+    class NavigateArtistFilter(
+        val artistId: Long,
+        val artistName: String,
+        val artistProfile: String,
+        val description: String
+    ) : ArtistSideEffects
+
     data object ShowArtistFilterBottomSheet : ArtistSideEffects
 }

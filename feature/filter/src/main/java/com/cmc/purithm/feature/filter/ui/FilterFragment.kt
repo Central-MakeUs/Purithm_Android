@@ -5,6 +5,7 @@ import androidx.hilt.navigation.fragment.hiltNavGraphViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
@@ -113,7 +114,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
             likeState = liked,
             likeCnt = likes,
             backClickListener = {
-                (activity as NavigationAction).navigateHome()
+                findNavController().popBackStack()
             },
             likeClickListener = {
                 if (viewModel.state.value.data?.liked == true) {

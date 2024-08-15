@@ -46,4 +46,13 @@ internal interface FilterService {
     suspend fun getFilterDescription(
         @Path("filterId") filterId : Long
     ) : BaseResponse<FilterDescriptionResponseDto>
+
+    @GET("api/photographers/{photographerId}/filters")
+    suspend fun getFilterByPhotographer(
+        @Path("photographerId") photographerId : Long,
+        @Query("sortedBy") sortedBy: String,
+        @Query("os") os : String = "AOS",
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ) : BaseResponse<FilterListResponseDto>
 }

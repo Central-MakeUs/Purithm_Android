@@ -4,14 +4,14 @@ import androidx.fragment.app.viewModels
 import com.cmc.purithm.common.base.BaseBottomSheetDialogFragment
 import com.cmc.purithm.common.util.getColorResource
 import com.cmc.purithm.feature.artist.R
-import com.cmc.purithm.feature.artist.databinding.DialogArtistSortBinding
-import com.cmc.purithm.feature.artist.viewmodel.ArtistViewModel
+import com.cmc.purithm.feature.artist.databinding.DialogArtistItemSortBinding
+import com.cmc.purithm.feature.artist.viewmodel.ArtistFilterViewModel
 
-class ArtistSortBottomDialog : BaseBottomSheetDialogFragment<DialogArtistSortBinding>() {
+class ArtistFilterSortBottomDialog : BaseBottomSheetDialogFragment<DialogArtistItemSortBinding>() {
     override val layoutResourceId: Int
-        get() = R.layout.dialog_artist_sort
+        get() = R.layout.dialog_artist_item_sort
 
-    private val viewModel: ArtistViewModel by viewModels({
+    private val viewModel: ArtistFilterViewModel by viewModels({
         requireParentFragment()
     })
 
@@ -21,29 +21,30 @@ class ArtistSortBottomDialog : BaseBottomSheetDialogFragment<DialogArtistSortBin
             setTextColor(requireContext().getColorResource(com.cmc.purithm.design.R.color.grey_500))
         }
 
-        with(binding){
-            tvSortFilter.setOnClickListener {
-                viewModel.updateArtistSortedBy("필터 많은순")
+        with(binding) {
+            tvFilterView.setOnClickListener {
+                viewModel.updateArtistSortedBy("조회순")
                 dismissAllowingStateLoss()
             }
-            tvFilterLatest.setOnClickListener {
+            tvArtistFilterLatest.setOnClickListener {
                 viewModel.updateArtistSortedBy("최신순")
                 dismissAllowingStateLoss()
             }
-            tvFilterEarliest.setOnClickListener {
-                viewModel.updateArtistSortedBy("오래된순")
+            tvFilterReviewPure.setOnClickListener {
+                viewModel.updateArtistSortedBy("퓨어지수 높은순")
                 dismissAllowingStateLoss()
             }
         }
     }
 
     override fun initDataBinding() {
+
     }
 
-    private fun getCurrentSortedByTextView(sortedBy : String) = when(sortedBy){
-        "필터 많은순" -> binding.tvSortFilter
-        "최신순" -> binding.tvFilterLatest
-        "오래된순" -> binding.tvFilterEarliest
+    private fun getCurrentSortedByTextView(sortedBy: String) = when (sortedBy) {
+        "최신순" -> binding.tvArtistFilterLatest
+        "조회순" -> binding.tvFilterView
+        "퓨어지수 높은순" -> binding.tvFilterReviewPure
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }
 }

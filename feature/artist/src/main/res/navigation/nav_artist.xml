@@ -9,10 +9,31 @@
         android:id="@+id/artistFilterFragment"
         android:name="com.cmc.purithm.feature.artist.ui.ArtistFilterFragment"
         android:label="PhotographerFilterFragment"
-        tools:layout="@layout/fragment_artist_filter" />
+        tools:layout="@layout/fragment_artist_filter">
+        <argument
+            android:name="artistId"
+            app:argType="long"
+            app:nullable="false" />
+        <argument
+            android:name="artistName"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="artistProfile"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="artistDescription"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
     <fragment
         android:id="@+id/artistFragment"
         android:name="com.cmc.purithm.feature.artist.ui.ArtistFragment"
         android:label="PhotographerFragment"
-        tools:layout="@layout/fragment_artist" />
+        tools:layout="@layout/fragment_artist">
+        <action
+            android:id="@+id/action_artistFragment_to_artistFilterFragment"
+            app:destination="@id/artistFilterFragment" />
+    </fragment>
 </navigation>

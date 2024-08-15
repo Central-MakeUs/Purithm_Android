@@ -33,6 +33,6 @@ interface FilterRepository {
     ) : Filter
 
     suspend fun getFilterOfArtist(
-        artistId : Long
+        sortedBy : String, artistId: Long
     ) : Flow<PagingData<Filter>>
 }

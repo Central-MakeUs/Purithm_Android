@@ -6,4 +6,15 @@
     <string name="category_artist_sort_filter">필터 많은순</string>
     <string name="category_artist_sort_latest">최신순</string>
     <string name="category_artist_sort_earliest">오래된순</string>
+
+    <string name="category_artist_filter_sort_latest">최신순</string>
+    <string name="category_artist_filter_sort_view">조회순</string>
+    <string name="category_artist_filter_sort_review">퓨어지수 높은순</string>
+
+    <string name="title_filter_premium_lock">잠금은 어떻게 푸나요?</string>
+    <string name="content_filter_premium_lock">필터를 사용해보고 후기를 남기면 스탬프가 찍히고,\n일정 개수를 모으면 프리미엄 필터를 열람할 수 있어요.</string>
+    <string name="content_filter_premium_lock_description_start">스탬프&#160;</string>
+    <string name="content_filter_premium_lock_description_end">&#160;쌓이면 볼 수 있어요</string>
+    <string name="content_filter_premium_lock_description">8개 이상</string>
+    <string name="content_filter_premium_plus_lock_description">16개 이상</string>
 </resources>

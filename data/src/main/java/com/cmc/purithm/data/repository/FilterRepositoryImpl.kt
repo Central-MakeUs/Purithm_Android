@@ -5,6 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.cmc.purithm.data.remote.ApiConfig
 import com.cmc.purithm.data.remote.HandleApi
+import com.cmc.purithm.data.remote.datasource.ArtistFilterItemDataSource
 import com.cmc.purithm.data.remote.datasource.FilterItemDataSource
 import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.FilterService
@@ -14,7 +15,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 internal class FilterRepositoryImpl @Inject constructor(
-    private val filterService : FilterService
+    private val filterService: FilterService
 ) : FilterRepository {
     override suspend fun getFilterItems(
         tag: String,
@@ -24,7 +25,7 @@ internal class FilterRepositoryImpl @Inject constructor(
     ): Flow<PagingData<Filter>> {
         return Pager(
             config = PagingConfig(
-                pageSize =  ApiConfig.PAGE_SIZE
+                pageSize = ApiConfig.PAGE_SIZE
             ),
             pagingSourceFactory = {
                 FilterItemDataSource(
@@ -56,7 +57,21 @@ internal class FilterRepositoryImpl @Inject constructor(
         return HandleApi.callApi { filterService.getFilterDescription(filterId).toDomain() }
     }
 
-    override suspend fun getFilterOfArtist(artistId: Long): Flow<PagingData<Filter>> {
-        TODO("Not yet implemented")
+    override suspend fun getFilterOfArtist(
+        sortedBy: String,
+        artistId: Long
+    ): Flow<PagingData<Filter>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = ApiConfig.PAGE_SIZE
+            ),
+            pagingSourceFactory = {
+                ArtistFilterItemDataSource(
+                    filterService = filterService,
+                    sortedBy = sortedBy,
+                    artistId = artistId,
+                )
+            }
+        ).flow
     }
 }

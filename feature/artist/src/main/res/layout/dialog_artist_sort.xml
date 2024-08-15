@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <variable
-            name="vm"
-            type="com.cmc.purithm.feature.artist.viewmodel.ArtistViewModel" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

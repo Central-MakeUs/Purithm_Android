@@ -34,7 +34,7 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collectLatest { state ->
-                        if(state.loading){
+                        if (state.loading) {
                             showLoadingDialog()
                         } else {
                             dismissLoadingDialog()
@@ -57,7 +57,14 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
                             is ArtistSideEffects.NavigateArtistFilter -> {
-
+                                navigate(
+                                    ArtistFragmentDirections.actionArtistFragmentToArtistFilterFragment(
+                                        sideEffect.artistId,
+                                        sideEffect.artistName,
+                                        sideEffect.artistProfile,
+                                        sideEffect.description
+                                    )
+                                )
                             }
 
                             ArtistSideEffects.ShowArtistFilterBottomSheet -> {
