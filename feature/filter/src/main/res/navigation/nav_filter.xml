@@ -74,6 +74,23 @@
         <argument
             android:name="thumbnail"
             app:argType="string"
-            app:nullable="false"/>
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_filterReviewFragment_to_filterReviewDetailFragment"
+            app:destination="@id/filterReviewDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/filterReviewDetailFragment"
+        android:name="com.cmc.purithm.feature.filter.ui.FilterReviewDetailFragment"
+        android:label="FilterReviewDetailFragment"
+        tools:layout="@layout/fragment_filter_review_detail">
+        <argument
+            android:name="reviewId"
+            app:argType="long"
+            app:nullable="false" />
+        <argument
+            android:name="reviewList"
+            app:argType="com.cmc.purithm.feature.filter.model.FilterReviewItemUiModel[]"
+            app:nullable="false" />
     </fragment>
 </navigation>

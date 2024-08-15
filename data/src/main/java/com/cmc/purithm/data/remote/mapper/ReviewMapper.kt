@@ -14,6 +14,7 @@ internal fun BaseResponse<GetFilterReviewResponseDto>.toDomain(): Review {
         reviews = response.reviews.map {
             ReviewItem(
                 id = it.id,
+                content = it.content,
                 pureDegree = it.pureDegree,
                 userProfile = it.profile,
                 userName = it.userName,

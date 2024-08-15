@@ -29,7 +29,9 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
     private val navArgs by navArgs<FilterReviewFragmentArgs>()
     private val filterId by lazy { navArgs.filterId }
     private val thumbnail by lazy { navArgs.thumbnail }
-    private val filterReviewAdapter by lazy { FilterReviewListAdapter() }
+    private val filterReviewAdapter by lazy { FilterReviewListAdapter(clickEvent = { reviewId ->
+        viewModel.clickFilterReviewItem(reviewId)
+    }) }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -52,7 +54,16 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
                 launch {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
-                            is FilterReviewSideEffects.NavigateFilterReviewDetail -> TODO()
+                            is FilterReviewSideEffects.NavigateFilterReviewDetail -> {
+                                navigate(
+                                    FilterReviewFragmentDirections.actionFilterReviewFragmentToFilterReviewDetailFragment(
+                                        sideEffect.reviewId,
+                                        viewModel.state.value.data?.reviews?.toTypedArray()
+                                            ?: emptyArray()
+                                    )
+                                )
+                            }
+
                             FilterReviewSideEffects.ShowFilterReviewGuideDialog -> FilterReviewGuideBottomDialog().show(
                                 childFragmentManager,
                                 null

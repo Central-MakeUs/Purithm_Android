@@ -16,7 +16,10 @@ data class FilterReviewListUiModel(
                         pureDegree = it.pureDegree,
                         userName = it.userName,
                         createdAt = it.createdAt,
-                        thumbnail = it.pictures[0]
+                        userProfileUrl = it.userProfile,
+                        content = it.content,
+                        pictures = it.pictures ?: emptyList(),
+                        thumbnail = it.pictures?.get(0) ?: ""
                     )
                 }
             )

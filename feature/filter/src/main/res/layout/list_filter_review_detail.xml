@@ -5,13 +5,17 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.filter.model.FilterReviewItemUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/margin_screen_side"
-        android:layout_marginBottom="50dp">
+        android:layout_marginBottom="50dp"
+        android:background="@color/grey_100">
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager_pictures"
@@ -42,7 +46,6 @@
             android:id="@+id/view_profile"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="10dp"
             app:cardCornerRadius="99dp"
             app:cardElevation="0dp"
@@ -53,17 +56,19 @@
                 android:id="@+id/img_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="centerInside" />
+                android:scaleType="centerInside"
+                app:imageUrl="@{data.userProfileUrl}" />
 
         </androidx.cardview.widget.CardView>
 
 
         <TextView
-            android:id="@+id/tv_photographer"
+            android:id="@+id/tv_reviewer"
             style="@style/en_title_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
+            android:text="@{data.userName}"
             android:textColor="@color/grey_500"
             app:layout_constraintBottom_toBottomOf="@id/view_profile"
             app:layout_constraintEnd_toStartOf="@id/layout_filter_satisfaction"
@@ -79,7 +84,7 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@id/view_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/tv_photographer">
+            app:layout_constraintStart_toEndOf="@id/tv_reviewer">
 
             <TextView
                 style="@style/kr_caption_1"
@@ -91,16 +96,17 @@
             <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
                 android:id="@+id/view_review_intensity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tv_review_content"
             style="@style/kr_body_4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
+            android:gravity="start"
+            android:text="@{data.content}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

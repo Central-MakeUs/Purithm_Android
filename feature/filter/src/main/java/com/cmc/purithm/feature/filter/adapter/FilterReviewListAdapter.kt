@@ -12,7 +12,9 @@ import com.cmc.purithm.feature.filter.databinding.ListFilterReviewBinding
 import com.cmc.purithm.feature.filter.model.FilterReviewItemUiModel
 import com.cmc.purithm.feature.filter.viewmodel.FilterReviewViewModel
 
-class FilterReviewListAdapter :
+class FilterReviewListAdapter(
+    private val clickEvent : (Long) -> Unit
+) :
     ListAdapter<FilterReviewItemUiModel, FilterReviewListAdapter.FilterReviewViewHolder>(
         FilterReviewDiffUtil
     ) {
@@ -35,6 +37,9 @@ class FilterReviewListAdapter :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: FilterReviewItemUiModel) {
             Log.d(TAG, "bind: data = ${data}")
+            binding.root.setOnClickListener {
+                clickEvent(data.id)
+            }
             binding.data = data
             binding.viewReviewIntensity.setReviewIntensity(data.pureDegree)
         }

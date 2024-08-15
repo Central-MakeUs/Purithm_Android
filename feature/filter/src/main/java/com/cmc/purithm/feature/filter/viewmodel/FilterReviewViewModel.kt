@@ -56,6 +56,12 @@ class FilterReviewViewModel @Inject constructor(
             _sideEffect.emit(FilterReviewSideEffects.ShowFilterReviewGuideDialog)
         }
     }
+
+    fun clickFilterReviewItem(reviewId : Long){
+        viewModelScope.launch {
+            _sideEffect.emit(FilterReviewSideEffects.NavigateFilterReviewDetail(reviewId))
+        }
+    }
 }
 
 data class FilterReviewState(
@@ -64,6 +70,6 @@ data class FilterReviewState(
 )
 
 sealed interface FilterReviewSideEffects {
-    class NavigateFilterReviewDetail(reviewId: Long) : FilterReviewSideEffects
+    class NavigateFilterReviewDetail(val reviewId: Long) : FilterReviewSideEffects
     data object ShowFilterReviewGuideDialog : FilterReviewSideEffects
 }
