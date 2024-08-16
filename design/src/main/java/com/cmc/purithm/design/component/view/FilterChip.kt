@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewFilterChipBinding
 
@@ -22,8 +23,12 @@ class FilterChip @JvmOverloads constructor(
 
     fun setInitInfo(imgUrl: String, filterName: String, clickEvent: () -> Unit) {
         with(binding) {
-            this.imgUrl = imgUrl
             this.filterName = filterName
+
+            Glide.with(imgFilter)
+                .load(imgUrl)
+                .placeholder(R.drawable.bg_image_placeholder)
+                .into(imgFilter)
 
             root.setOnClickListener {
                 clickEvent()

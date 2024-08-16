@@ -20,6 +20,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -74,7 +76,7 @@ class ArtistFilterViewModel @Inject constructor(
         }
     }
 
-    fun setFilterLike(filterId : Long) {
+    fun setFilterLike(filterId: Long) {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -111,16 +113,25 @@ class ArtistFilterViewModel @Inject constructor(
             runCatching {
                 getFilterByArtistUseCase(
                     artistId = state.value.artistId,
-                    sortedBy = convertSortedBy(state.value.sortedBy)
+                    sortedBy = convertSortedBy(state.value.sortedBy),
+                    totalElementCallback = { totalElement ->
+                        _state.update {
+                            it.copy(
+                                filterSize = totalElement
+                            )
+                        }
+                    }
                 )
             }.onSuccess { data ->
                 data.cachedIn(viewModelScope)
                     .distinctUntilChanged()
-                    .collect { result ->
+                    .collect {
                         _state.update { state ->
                             state.copy(
                                 loading = false,
-                                dataList = result.map { ArtistFilterUiModel.toUiModel(it) },
+                                dataList = it.map { filter ->
+                                    ArtistFilterUiModel.toUiModel(filter)
+                                }
                             )
                         }
                     }
@@ -138,7 +149,7 @@ class ArtistFilterViewModel @Inject constructor(
     /**
      * paging adpater의 state를 viewModel에서 관리하도록 설정
      * */
-    fun setPageAdapterLoadStateListener(adapter : ArtistFilterAdapter){
+    fun setPageAdapterLoadStateListener(adapter: ArtistFilterAdapter) {
         adapter.addLoadStateListener { loadState ->
             val errorState = when {
                 loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
@@ -147,7 +158,7 @@ class ArtistFilterViewModel @Inject constructor(
                 else -> null
             }
 
-            if(errorState != null){
+            if (errorState != null) {
                 _state.update {
                     it.copy(
                         loading = false,

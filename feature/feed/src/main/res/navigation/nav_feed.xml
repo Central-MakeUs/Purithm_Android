@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/feedFragment"
-        android:name="com.cmc.purithm.feature.feed.FeedFragment"
+        android:name="com.cmc.purithm.feature.feed.ui.FeedFragment"
         android:label="FeedFragment"
         tools:layout="@layout/fragment_feed" />
 </navigation>

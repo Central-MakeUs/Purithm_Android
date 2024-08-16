@@ -2,6 +2,9 @@ package com.cmc.purithm.domain.entity.review
 
 data class ReviewItem(
     val id: Long = 0L,
+    val filterId : Long = 0L,
+    val filterName : String = "",
+    val filterThumbnail : String = "",
     val pureDegree: Int = 0,
     val content: String = "",
     val userName: String = "",

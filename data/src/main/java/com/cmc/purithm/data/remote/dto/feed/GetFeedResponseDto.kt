@@ -3,10 +3,14 @@ package com.cmc.purithm.data.remote.dto.feed
 import com.google.gson.annotations.SerializedName
 
 internal data class GetFeedResponseDto(
+    @SerializedName("id")
+    val id : Long,
     @SerializedName("filterId")
     val filterId : Long,
     @SerializedName("filterName")
     val filterName : String,
+    @SerializedName("filterThumbnail")
+    val filterThumbnail : String,
     @SerializedName("writer")
     val writer : String,
     @SerializedName("profile")

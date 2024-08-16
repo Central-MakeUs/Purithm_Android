@@ -9,7 +9,7 @@ interface FilterRepository {
         tag: String,
         sortedBy: String,
         page: Int = 0,
-        size: Int = 0
+        size: Int = 0,
     ): Flow<PagingData<Filter>>
 
     suspend fun requestFilterLike(
@@ -33,6 +33,6 @@ interface FilterRepository {
     ) : Filter
 
     suspend fun getFilterOfArtist(
-        sortedBy : String, artistId: Long
+        sortedBy : String, artistId: Long, totalElementCallback : (Int) -> Unit
     ) : Flow<PagingData<Filter>>
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="content_artist_count">%s명의 작가들</string>
+    <string name="content_artist_filter_count">%s개의 필터</string>
     <string name="content_shop">Shop</string>
 
     <string name="category_artist_sort_filter">필터 많은순</string>

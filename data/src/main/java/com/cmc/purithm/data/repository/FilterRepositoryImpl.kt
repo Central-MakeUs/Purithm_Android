@@ -21,7 +21,7 @@ internal class FilterRepositoryImpl @Inject constructor(
         tag: String,
         sortedBy: String,
         page: Int,
-        size: Int
+        size: Int,
     ): Flow<PagingData<Filter>> {
         return Pager(
             config = PagingConfig(
@@ -59,7 +59,8 @@ internal class FilterRepositoryImpl @Inject constructor(
 
     override suspend fun getFilterOfArtist(
         sortedBy: String,
-        artistId: Long
+        artistId: Long,
+        totalElementCallback: (Int) -> Unit
     ): Flow<PagingData<Filter>> {
         return Pager(
             config = PagingConfig(
@@ -70,6 +71,7 @@ internal class FilterRepositoryImpl @Inject constructor(
                     filterService = filterService,
                     sortedBy = sortedBy,
                     artistId = artistId,
+                    totalElementCallback = totalElementCallback
                 )
             }
         ).flow

@@ -5,22 +5,36 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.feed.model.FeedUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/margin_screen_side">
+        android:background="@color/grey_100"
+        android:paddingBottom="50dp">
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewpager_picture"
+            android:id="@+id/vp_picture"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- TODO : chip component 추가 -->
+        <com.cmc.purithm.design.component.view.FilterChip
+            android:id="@+id/view_filter_chip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="@id/vp_picture"
+            app:layout_constraintStart_toStartOf="@id/vp_picture"
+            app:layout_constraintTop_toTopOf="@id/vp_picture" />
+
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator_picture"
             android:layout_width="wrap_content"
@@ -33,10 +47,74 @@
             app:ci_height="8dp"
             app:ci_margin="6dp"
             app:ci_width="8dp"
-            app:layout_constraintBottom_toBottomOf="@id/viewpager_picture"
+            app:layout_constraintBottom_toBottomOf="@id/vp_picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/view_profile"
+            android:layout_width="@dimen/size_image_profile"
+            android:layout_height="@dimen/size_image_profile"
+            android:layout_marginTop="10dp"
+            app:cardCornerRadius="99dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_picture">
 
+            <ImageView
+                android:id="@+id/img_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:imageUrl="@{data.userProfile}" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_reviewer"
+            style="@style/en_title_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{data.userName}"
+            android:textColor="@color/grey_500"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintStart_toEndOf="@id/view_profile"
+            app:layout_constraintTop_toTopOf="@id/view_profile"
+            tools:text="Greta" />
+
+        <LinearLayout
+            android:id="@+id/layout_review_satisfactory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="end|center_vertical"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/view_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/view_profile">
+
+            <TextView
+                style="@style/kr_caption_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/content_review_satisfactory"
+                android:textColor="@color/grey_300" />
+
+            <com.cmc.purithm.design.component.view.PurithmReviewIntensityView
+                android:id="@+id/view_review_intensity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/kr_body_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{data.content}"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_profile"
+            tools:text="안녕하세요! 여름을 맞아 에메랄드빛 바다가 생각나는 청량한 필터를 준비했어요. 모래사장, 야자수, 수영장 같은 여름 풍경 사진에 이 필터를 쓰면 마치 휴가 와있는 것 같은 기분이 들 거예요. 안녕하세요 안녕하세요 안녕하세요" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -10,8 +10,8 @@ import com.cmc.purithm.domain.entity.filter.FilterImg
 import java.lang.NullPointerException
 
 internal fun BaseResponse<FilterListResponseDto>.toDomain(): List<Filter> {
-    val listData = this.data?.filters ?: emptyList()
-    return listData.map {
+    val response = this.data ?: throw NullPointerException("filter list is null")
+    return response.filters.map {
         Filter(
             id = it.id,
             memberShip = it.membership,

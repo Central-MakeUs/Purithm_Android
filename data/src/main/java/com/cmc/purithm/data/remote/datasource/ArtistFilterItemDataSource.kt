@@ -8,10 +8,11 @@ import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.domain.entity.filter.Filter
 
-internal class ArtistFilterItemDataSource (
+internal class ArtistFilterItemDataSource(
     private val filterService: FilterService,
-    private val artistId : Long,
+    private val artistId: Long,
     private val sortedBy: String,
+    private val totalElementCallback: (Int) -> Unit
 ) : PagingSource<Int, Filter>() {
     /**
      * 현재 목록을 대체할 새로운 데이터를 로드
@@ -31,16 +32,17 @@ internal class ArtistFilterItemDataSource (
 
         return try {
             var isLast = false
-            val filterList = HandleApi.callApi {
-                val response = filterService.getFilterByPhotographer(
+            val response = HandleApi.callApi {
+                filterService.getFilterByPhotographer(
                     sortedBy = this.sortedBy,
                     page = currentPage,
                     photographerId = artistId,
                     size = ApiConfig.PAGE_SIZE
                 )
-                isLast = response.data?.isLast ?: false
-                response.toDomain()
             }
+            isLast = response.data?.isLast ?: false
+            totalElementCallback(response.data?.totalElement ?: 0)
+            val filterList = response.toDomain()
             LoadResult.Page(
                 data = filterList,
                 prevKey = if (currentPage == START_PAGE_INDEX) null else currentPage - 1,

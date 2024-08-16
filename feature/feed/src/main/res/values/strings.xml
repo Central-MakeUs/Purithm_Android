@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="content_review_satisfactory">필터 만족도</string>
+
+    <string name="category_feed_sort_latest">최신순</string>
+    <string name="category_feed_sort_earliest">오래된순</string>
+    <string name="category_feed_sort_pure">퓨어지수 높은순</string>
+
+    <string name="content_feed_count">%s개의 후기</string>
+</resources>

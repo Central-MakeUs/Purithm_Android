@@ -5,11 +5,15 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.feed.viewModel.FeedViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
 
         <com.cmc.purithm.design.component.appbar.PurithmAppbar
             android:id="@+id/view_appbar"
@@ -26,6 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="30dp"
+            android:text="@{String.format(@string/content_feed_count, vm.state.totalSize)}"
             android:textColor="@color/grey_500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar"
@@ -35,20 +40,22 @@
             android:id="@+id/layout_item_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
+            app:delayClickEvent="@{() -> vm.clickFeedSort()}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_feed_count"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@id/tv_feed_count">
 
             <TextView
                 android:id="@+id/tv_item_filter"
                 style="@style/kr_body_5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{vm.state.sortedBy}"
                 android:textColor="@color/grey_400"
                 tools:text="인기순" />
 
@@ -63,10 +70,12 @@
         <com.cmc.purithm.design.component.view.PurithmRecyclerView
             android:id="@+id/list_feed"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="30dp"
             android:orientation="vertical"
+            android:paddingHorizontal="@dimen/margin_screen_side"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_feed_count" />

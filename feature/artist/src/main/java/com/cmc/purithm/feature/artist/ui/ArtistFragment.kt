@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.RecyclerView
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
@@ -33,7 +34,7 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.state.collectLatest { state ->
+                    viewModel.state.collect { state ->
                         if (state.loading) {
                             showLoadingDialog()
                         } else {
@@ -49,8 +50,13 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
                                 fragmentManager = childFragmentManager
                             )
                         }
-                        artistAdapter.submitList(state.data)
-                        binding.listArtist.scrollToPosition(0)
+                        if(state.data != artistAdapter.currentList){
+                            Log.d(TAG, "initObserving: update")
+                            // 리스트가 다를때만 업데이트 하도록 변경
+                            artistAdapter.submitList(state.data) {
+                                binding.listArtist.smoothScrollToPosition(0)
+                            }
+                        }
                     }
                 }
                 launch {
@@ -91,5 +97,9 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
                 title = "Artists"
             )
         }
+    }
+
+    companion object{
+        private const val TAG = "ArtistFragment"
     }
 }

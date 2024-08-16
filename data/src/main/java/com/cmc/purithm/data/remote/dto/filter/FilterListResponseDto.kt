@@ -5,6 +5,10 @@ import com.google.gson.annotations.SerializedName
 internal data class FilterListResponseDto(
     @SerializedName("isLast")
     val isLast : Boolean,
+    @SerializedName("totalPage")
+    val totalPage : Int,
+    @SerializedName("totalElement")
+    val totalElement : Int,
     @SerializedName("filters")
     val filters : List<FilterListDto>
 ) {
@@ -29,3 +33,4 @@ internal data class FilterListResponseDto(
         val liked : Boolean
     )
 }
+
