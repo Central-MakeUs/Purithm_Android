@@ -137,8 +137,6 @@ class TermOfServiceFragment : BaseFragment<FragmentTermOfServiceBinding>() {
     }
 
     companion object {
-        // FIXME : 노션 공유로 변경 후 재설정
-        private const val TERM_OF_SERVICE_URL =
-            "https://www.notion.so/94da255dcb0f4ba6b2e5c8f956c8c2ac"
+        private const val TERM_OF_SERVICE_URL = "https://palm-blizzard-691.notion.site/798f1bf6c507421584861961deb173d6?pvs=4"
     }
 }

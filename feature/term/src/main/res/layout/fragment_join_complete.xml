@@ -12,15 +12,12 @@
         android:layout_height="match_parent"
         android:background="@color/grey_100">
 
-        <TextView
+        <ImageView
             android:id="@+id/img_main"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:gravity="center"
-            android:textColor="@color/grey_500"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
-            android:text="여기는 그래픽이 들어갑니다"
-            app:layout_constraintDimensionRatio="4.5:5"
+            android:src="@drawable/bg_join_complete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
