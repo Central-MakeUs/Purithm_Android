@@ -51,13 +51,43 @@ class FilterReviewViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterReviewGuide(){
+    fun clickConfirmButton(
+        filterId: Long,
+        filterName: String,
+        filterThumbnail: String
+    ) {
+        viewModelScope.launch {
+            _state.value.data?.let {
+                when {
+                    it.hasReview -> {
+                        _sideEffect.emit(FilterReviewSideEffects.NavigateMyHistoryReview(it.reviewId ?: 0))
+                    }
+
+                    it.hasViewed -> {
+                        _sideEffect.emit(
+                            FilterReviewSideEffects.NavigateReviewWrite(
+                                filterName,
+                                filterId,
+                                filterThumbnail
+                            )
+                        )
+                    }
+
+                    else -> {
+                        _sideEffect.emit(FilterReviewSideEffects.NavigateFilterValue(filterId))
+                    }
+                }
+            }
+        }
+    }
+
+    fun clickFilterReviewGuide() {
         viewModelScope.launch {
             _sideEffect.emit(FilterReviewSideEffects.ShowFilterReviewGuideDialog)
         }
     }
 
-    fun clickFilterReviewItem(reviewId : Long){
+    fun clickFilterReviewItem(reviewId: Long) {
         viewModelScope.launch {
             _sideEffect.emit(FilterReviewSideEffects.NavigateFilterReviewDetail(reviewId))
         }
@@ -72,4 +102,7 @@ data class FilterReviewState(
 sealed interface FilterReviewSideEffects {
     class NavigateFilterReviewDetail(val reviewId: Long) : FilterReviewSideEffects
     data object ShowFilterReviewGuideDialog : FilterReviewSideEffects
+    class NavigateFilterValue(val filterId: Long) : FilterReviewSideEffects
+    class NavigateMyHistoryReview(val reviewId: Long) : FilterReviewSideEffects
+    class NavigateReviewWrite(val filterName: String, val filterId: Long, val thumbnail: String) : FilterReviewSideEffects
 }

@@ -32,6 +32,10 @@
         android:label="ReviewHistoryFragment"
         tools:layout="@layout/fragment_review_history">
         <argument
+            android:name="writeFlag"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
             android:name="filterId"
             app:argType="long"
             app:nullable="false" />

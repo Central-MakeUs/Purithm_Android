@@ -122,7 +122,16 @@
 
         </androidx.core.widget.NestedScrollView>
 
-        <!-- TODO : 진입점 별로 텍스트가 달라져야함 -->
+        <ImageView
+            android:id="@+id/img_btn_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_confirm" />
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_confirm"
             style="@style/kr_body_3"
@@ -133,8 +142,9 @@
             android:background="@drawable/shape_button_solid_primary_lg"
             android:gravity="center"
             android:paddingVertical="18dp"
-            android:text="후기 남기고 스탬프 받기"
             android:textColor="@color/white"
+            app:hasReview="@{vm.state.data.hasReview}"
+            app:hasViewed="@{vm.state.data.hasViewed}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

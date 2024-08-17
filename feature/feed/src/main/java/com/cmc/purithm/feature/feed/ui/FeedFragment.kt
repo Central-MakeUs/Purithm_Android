@@ -44,7 +44,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
                     viewModel.sideEffects.collect { sideEffect ->
                         when (sideEffect) {
                             is FeedSideEffects.NavigateFilter -> (activity as NavigationAction).navigateFilterItem(
-                                sideEffect.filterId
+                                sideEffect.filterId, false
                             )
 
                             FeedSideEffects.ShowFeedSortBottomDialog -> FeedSortBottomDialog().show(

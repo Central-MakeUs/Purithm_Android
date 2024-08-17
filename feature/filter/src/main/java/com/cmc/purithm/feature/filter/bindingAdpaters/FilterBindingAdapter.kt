@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.filter.bindingAdpaters
 
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.cmc.purithm.feature.filter.R
@@ -52,6 +53,18 @@ object FilterBindingAdapter {
             View.VISIBLE
         } else {
             View.INVISIBLE
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["hasReview", "hasViewed"], requireAll = true)
+    fun Button.setButtonText(hasReview : Boolean, hasViewed : Boolean){
+        text = if(hasReview){
+            "내가 남긴 후기 보기"
+        } else if(hasViewed) {
+            "후기 남기고 스탬프 받기"
+        } else {
+            "필터값 보기"
         }
     }
 }

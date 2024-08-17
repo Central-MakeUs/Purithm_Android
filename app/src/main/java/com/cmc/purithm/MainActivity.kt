@@ -18,6 +18,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationAction,
@@ -94,9 +96,9 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateFilterItem(filterId: Long) {
+    override fun navigateFilterItem(filterId: Long, popUpTo : Boolean) {
         with(navHostFragment.navController) {
-            deepLinkNavigate("purithm://filter/$filterId")
+            deepLinkNavigate("purithm://filter/$filterId", popUpTo)
         }
     }
 
@@ -115,7 +117,20 @@ class MainActivity : AppCompatActivity(), NavigationAction,
 
     override fun navigateArtistFilter(artistId: Long) {
         with(navHostFragment.navController){
-            deepLinkNavigate("purithm://artist/$artistId")
+            deepLinkNavigate("purithm://artist/filter/$artistId")
+        }
+    }
+
+    override fun navigateFilterValue(filterId: Long) {
+        with(navHostFragment.navController){
+            deepLinkNavigate("purithm://filter/value/$filterId")
+        }
+    }
+
+    override fun navigateMyReviewHistory(filterId : Long, reviewId: Long, thumbnail: String, filterName: String) {
+        with(navHostFragment.navController){
+            val encodingUrl = URLEncoder.encode(thumbnail, StandardCharsets.UTF_8.toString())
+            deepLinkNavigate("purithm://review/history/$filterId/$reviewId/$encodingUrl/$filterName")
         }
     }
 
@@ -143,6 +158,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
                 setBottomNavVisibility(false)
             }
 
+            com.cmc.purithm.feature.feed.R.id.feedFragment,
             com.cmc.purithm.feature.home.R.id.homeFragment,
             com.cmc.purithm.feature.artist.R.id.artistFragment-> {
                 setBottomNavVisibility(true)

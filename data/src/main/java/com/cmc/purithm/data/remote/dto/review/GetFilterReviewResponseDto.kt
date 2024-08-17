@@ -7,6 +7,10 @@ internal data class GetFilterReviewResponseDto(
     val avg: Int,
     @SerializedName("hasViewed")
     val hasViewed: Boolean,
+    @SerializedName("hasReview")
+    val hasReview : Boolean,
+    @SerializedName("reviewId")
+    val reviewId : Long?,
     @SerializedName("reviews")
     val reviews: List<FilterReviewDto>
 )

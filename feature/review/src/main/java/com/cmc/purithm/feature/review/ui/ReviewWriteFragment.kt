@@ -123,6 +123,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                                 afterDelayEvent = {
                                     navigate(
                                         ReviewWriteFragmentDirections.actionReviewWriteFragmentToReviewHistoryFragment(
+                                            writeFlag = true,
                                             reviewId = sideEffect.reviewId,
                                             filterId = filterId,
                                             thumbnail = thumbnail,

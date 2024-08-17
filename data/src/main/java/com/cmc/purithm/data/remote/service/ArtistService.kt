@@ -12,9 +12,9 @@ internal interface ArtistService {
         @Query("sortedBy") sortedBy: String
     ): BaseResponse<List<ArtistResponseDto>>
 
-    @GET("/api/photographers/{id}")
+    @GET("/api/photographers/{photographerId}")
     suspend fun getArtist(
-        @Path("id") id : Long
+        @Path("photographerId") id : Long
     ) : BaseResponse<ArtistResponseDto>
 
 }

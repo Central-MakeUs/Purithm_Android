@@ -30,9 +30,11 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
     private val filterName by lazy { navArgs.filterName }
     private val filterId by lazy { navArgs.filterId }
     private val thumbnail by lazy { navArgs.thumbnail }
-    private val filterReviewAdapter by lazy { FilterReviewListAdapter(clickEvent = { reviewId ->
-        viewModel.clickFilterReviewItem(reviewId)
-    }) }
+    private val filterReviewAdapter by lazy {
+        FilterReviewListAdapter(clickEvent = { reviewId ->
+            viewModel.clickFilterReviewItem(reviewId)
+        })
+    }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -69,6 +71,27 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
                                 childFragmentManager,
                                 null
                             )
+
+                            is FilterReviewSideEffects.NavigateFilterValue -> {
+                                (activity as NavigationAction).navigateFilterValue(sideEffect.filterId)
+                            }
+
+                            is FilterReviewSideEffects.NavigateMyHistoryReview -> {
+                                (activity as NavigationAction).navigateMyReviewHistory(
+                                    filterId,
+                                    sideEffect.reviewId,
+                                    thumbnail,
+                                    filterName
+                                )
+                            }
+
+                            is FilterReviewSideEffects.NavigateReviewWrite -> {
+                                (activity as NavigationAction).navigateReviewWrite(
+                                    filterName,
+                                    filterId,
+                                    thumbnail
+                                )
+                            }
                         }
                     }
                 }
@@ -95,8 +118,15 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
                 }
             )
 
+            /*
+            * state에 따라서 클릭 이벤트가 다름
+            *
+            * 1. 필터값 보기를 하지 않음 - 필터값 보기
+            * 2. 필터값 보기만 했음 - 리뷰 작성
+            * 3. 리뷰 작성도 했음 - 내가 쓴 리뷰
+            * */
             btnConfirm.setOnClickListener {
-                (activity as NavigationAction).navigateReviewWrite(filterName, filterId, thumbnail)
+                viewModel.clickConfirmButton(filterId, filterName, thumbnail)
             }
         }
     }

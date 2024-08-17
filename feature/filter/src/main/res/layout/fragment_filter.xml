@@ -72,9 +72,9 @@
             <TextView
                 android:id="@+id/tv_filter_satisfaction"
                 style="@style/kr_body_5"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@{String.format(@string/content_filter_satisfaction, vm.state.data.pureDegree)}"
                 android:textColor="@color/grey_300"
                 tools:text="필터 만족도 80%" />
@@ -107,9 +107,9 @@
             <TextView
                 android:id="@+id/tv_filter_introduce"
                 style="@style/kr_body_5"
-                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="@string/content_filter_introduce"
                 android:textColor="@color/grey_300" />
 

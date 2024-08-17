@@ -27,14 +27,10 @@ class PurithmReviewIntensityView @JvmOverloads constructor(
 
     @SuppressLint("SetTextI18n")
     fun setReviewIntensity(rating: Int) {
-        Log.d(TAG, "setReviewIntensity: on")
         val reviewRating = getReviewIntensity(rating)
         val (imgRes, color) = getImgResByIntensity(reviewRating) to getColorByIntensity(reviewRating)
         
         with(binding) {
-            Log.d(TAG, "setReviewIntensity: rating = $rating")
-            Log.d(TAG, "setReviewIntensity: imgRes = $imgRes")
-            Log.d(TAG, "setReviewIntensity: color = $color")
             imgReview.setImageResource(imgRes)
             imgReview.setColorFilter(resources.getColor(color, null))
             

@@ -1,6 +1,8 @@
 package com.cmc.purithm.feature.feed.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -35,13 +37,19 @@ class FeedAdapter(
     inner class FeedViewHolder(private val binding: ListFeedBinding) : RecyclerView.ViewHolder(
         binding.root
     ) {
+        private lateinit var feedPictureAdapter : FeedPictureAdapter
         fun bind(data: FeedUiModel) {
             with(binding) {
                 this.data = data
-
-                vpPicture.adapter = FeedPictureAdapter(fragmentActivity, data.pictures)
+                if(!::feedPictureAdapter.isInitialized){
+                    feedPictureAdapter = FeedPictureAdapter(fragmentActivity, data.pictures)
+                    vpPicture.isUserInputEnabled = true
+                    vpPicture.adapter = feedPictureAdapter
+                }
                 if (data.pictures.size > 1) {
                     indicatorPicture.setViewPager(vpPicture)
+                } else {
+                    indicatorPicture.visibility = View.GONE
                 }
                 viewReviewIntensity.setReviewIntensity(data.pureDegree)
                 viewFilterChip.setInitInfo(data.filterThumbnail, data.filterName, clickEvent = {
@@ -60,5 +68,9 @@ class FeedAdapter(
             return oldItem == newItem
 
         }
+    }
+
+    companion object {
+        private const val TAG = "FeedAdapter"
     }
 }

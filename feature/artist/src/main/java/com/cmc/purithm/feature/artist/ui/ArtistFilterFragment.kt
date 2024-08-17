@@ -58,7 +58,7 @@ class ArtistFilterFragment : BaseFragment<FragmentArtistFilterBinding>() {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
                             is ArtistFilterSideEffects.NavigateToFilter -> {
-                                (activity as NavigationAction).navigateFilterItem(sideEffect.id)
+                                (activity as NavigationAction).navigateFilterItem(sideEffect.id, false)
                             }
 
                             ArtistFilterSideEffects.ShowArtistFilterLockBottomSheet -> {

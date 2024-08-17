@@ -62,7 +62,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
                             is HomeSideEffect.NavigateToFilter -> (activity as NavigationAction).navigateFilterItem(
-                                sideEffect.id
+                                sideEffect.id, false
                             )
 
                             HomeSideEffect.ShowFilterLockBottomSheet -> homeFilterLockBottomDialog.show(

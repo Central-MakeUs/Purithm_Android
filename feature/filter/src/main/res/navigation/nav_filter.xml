@@ -60,6 +60,7 @@
             android:name="filterId"
             app:argType="long"
             app:nullable="false" />
+        <deepLink app:uri="purithm://filter/value/{filterId}" />
     </fragment>
     <fragment
         android:id="@+id/filterReviewFragment"

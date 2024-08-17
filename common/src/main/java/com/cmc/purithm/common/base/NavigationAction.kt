@@ -15,7 +15,9 @@ interface NavigationAction {
     fun navigateOnBoarding()
     fun navigateHome()
     fun navigateTermOfService()
-    fun navigateFilterItem(filterId: Long)
+    fun navigateFilterItem(filterId: Long, popUpTo : Boolean)
     fun navigateReviewWrite(filterName: String, filterId : Long, thumbnail : String)
     fun navigateArtistFilter(artistId : Long)
+    fun navigateFilterValue(filterId : Long)
+    fun navigateMyReviewHistory(filterId : Long, reviewId : Long, thumbnail : String, filterName : String)
 }

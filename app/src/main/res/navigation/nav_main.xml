@@ -13,6 +13,7 @@
     <include app:graph="@navigation/nav_filter" />
     <include app:graph="@navigation/nav_artist" />
     <include app:graph="@navigation/nav_review" />
+    <include app:graph="@navigation/nav_review"/>
     <include app:graph="@navigation/nav_mypage" />
 
     <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
