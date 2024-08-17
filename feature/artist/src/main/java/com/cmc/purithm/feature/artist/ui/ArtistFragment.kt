@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.artist.ui
 
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -89,7 +90,26 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
         binding.vm = viewModel
     }
 
+    private fun setBackButtonEvent(){
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            CommonDialogFragment.showDialog(
+                content = "앱을 종료하시겠습니까?",
+                negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                negativeClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                },
+                positiveText = "종료",
+                positiveClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                    requireActivity().finish()
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+    }
+
     override fun initView() {
+        setBackButtonEvent()
         with(binding) {
             listArtist.adapter = artistAdapter
             viewAppbar.setAppBar(

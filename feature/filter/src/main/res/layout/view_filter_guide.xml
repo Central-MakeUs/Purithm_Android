@@ -8,8 +8,19 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/black_trans20">
+
+        <ImageView
+            android:id="@+id/img_blur_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 가이드에 표시할 버튼 등 -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,12 +38,12 @@
                 style="@style/kr_body_6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/shape_badge_fill_blue"
                 android:paddingHorizontal="8dp"
                 android:paddingVertical="2dp"
                 android:text="@string/content_filter_guide_page"
                 android:textColor="@color/white"
-                android:layout_marginTop="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"

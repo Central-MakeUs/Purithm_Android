@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.home
 
 import android.util.Log
 import android.widget.RadioButton
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -86,6 +87,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         initRadioGroup()
+        setBackButtonEvent()
         viewModel.setPageAdapterLoadStateListener(homeFilterAdapter)
         with(binding) {
             listFilter.adapter = homeFilterAdapter
@@ -96,6 +98,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         }
     }
 
+    private fun setBackButtonEvent(){
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            CommonDialogFragment.showDialog(
+                content = "앱을 종료하시겠습니까?",
+                negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                negativeClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                },
+                positiveText = "종료",
+                positiveClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                    requireActivity().finish()
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+    }
 
     private fun initRadioGroup() {
         binding.groupFilterKeyword.setOnCheckedChangeListener { group, checkedId ->

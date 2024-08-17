@@ -9,13 +9,13 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
-import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.domain.entity.filter.FilterImg
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.adapter.FilterPictureAdapter
 import com.cmc.purithm.feature.filter.databinding.FragmentFilterBinding
+import com.cmc.purithm.feature.filter.util.BlurUtil.blurBitmap
 import com.cmc.purithm.feature.filter.viewmodel.FilterSideEffects
 import com.cmc.purithm.feature.filter.viewmodel.FilterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,6 +54,12 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                                 },
                                 fragmentManager = childFragmentManager
                             )
+                        }
+                        if(state.isFirst){
+                            binding.layoutMain.post {
+                                val blurBitmap = requireContext().blurBitmap(binding.layoutMain)
+                                binding.viewGuide.imgBlurBackground.setImageBitmap(blurBitmap)
+                            }
                         }
                     }
                 }

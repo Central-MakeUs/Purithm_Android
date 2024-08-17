@@ -52,7 +52,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
                     targetSdk = 34
-                    minSdk = 24
+                    minSdk = 26
 
                     buildFeatures {
                         // gradle 8.0부터 buildConfig를 사용하기 위함

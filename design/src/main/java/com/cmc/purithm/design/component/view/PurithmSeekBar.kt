@@ -22,7 +22,6 @@ class PurithmSeekBar @JvmOverloads constructor(
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         binding = ViewSeekbarBinding.inflate(inflater, this, true).apply {
             with(seekbarMain) {
-                max = 5
                 progress = 0
             }
         }
