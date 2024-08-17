@@ -27,10 +27,7 @@ class ArtistFilterFragment : BaseFragment<FragmentArtistFilterBinding>() {
         get() = R.layout.fragment_artist_filter
     private val viewModel: ArtistFilterViewModel by viewModels()
     private val navArgs by navArgs<ArtistFilterFragmentArgs>()
-    private val artistDescription by lazy { navArgs.artistDescription }
     private val artistId by lazy { navArgs.artistId }
-    private val artistName by lazy { navArgs.artistName }
-    private val artistProfile by lazy { navArgs.artistProfile }
     private val artistFilterAdapter by lazy { ArtistFilterAdapter(viewModel) }
 
     override fun initObserving() {
@@ -81,14 +78,12 @@ class ArtistFilterFragment : BaseFragment<FragmentArtistFilterBinding>() {
     override fun initBinding() {
         with(binding) {
             vm = viewModel
-            artistName = this@ArtistFilterFragment.artistName
-            artistDescription = this@ArtistFilterFragment.artistDescription
-            artistProfile = this@ArtistFilterFragment.artistProfile
         }
     }
 
     override fun initView() {
         viewModel.initArtistId(artistId)
+        viewModel.getArtist(artistId)
         viewModel.setPageAdapterLoadStateListener(artistFilterAdapter)
         with(binding) {
             listArtistFilter.adapter = artistFilterAdapter

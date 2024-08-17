@@ -13,4 +13,8 @@ internal class ArtistRepositoryImpl @Inject constructor(
     override suspend fun getArtists(sortedBy : String): List<Artist> {
         return HandleApi.callApi { artistService.getArtist(sortedBy).toDomain() }
     }
+
+    override suspend fun getArtist(artistId: Long): Artist {
+        return HandleApi.callApi { artistService.getArtist(artistId).toDomain() }
+    }
 }

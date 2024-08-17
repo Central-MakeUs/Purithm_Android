@@ -52,6 +52,9 @@ class FilterValueViewModel @Inject constructor(
                 }
             }.onSuccess {
                 _state.emit(FilterValueState.LikeResult(!liked))
+                if(!liked){
+                    _sideEffect.emit(FilterValueSideEffects.ShowFilterLikeSnackBar)
+                }
             }.onFailure { exception ->
                 _state.emit(FilterValueState.Error(exception.message ?: "알 수 없는 오류 발생"))
             }
@@ -74,5 +77,6 @@ sealed interface FilterValueState {
 }
 
 sealed interface FilterValueSideEffects {
+    data object ShowFilterLikeSnackBar : FilterValueSideEffects
     data object ShowFilterGuideDialog : FilterValueSideEffects
 }

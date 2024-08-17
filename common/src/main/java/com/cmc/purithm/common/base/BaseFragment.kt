@@ -120,7 +120,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      *
      * @param message 스낵바를 생성할 메시지
      * */
-    protected fun View.showSnackBar(message: String, actionString : String = "", action: (() -> Unit)? = null) {
-        showPurithmSnackBar(this, message, actionString, action)
+    protected fun showSnackBar(view : View, message: String, actionString : String = "", action: (() -> Unit)? = null) {
+        showPurithmSnackBar(view, message, actionString, action)
     }
 }

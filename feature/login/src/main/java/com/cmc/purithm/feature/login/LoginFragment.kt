@@ -32,8 +32,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
             if (error is AuthError && error.statusCode == 302) {
                 loginKakaoAccount()
             } else {
-                requireView().showSnackBar(
-                    message = error.message ?: getString(R.string.error_kakao_default_msg)
+                showSnackBar(
+                    view = requireView(), message = error.message ?: getString(R.string.error_kakao_default_msg)
                 )
             }
         } else if (token != null) {
@@ -69,7 +69,8 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
 
                             is LoginState.Error -> {
                                 dismissLoadingDialog()
-                                requireView().showSnackBar(
+                                showSnackBar(
+                                    view = requireView(),
                                     message = state.message
                                         ?: getString(com.cmc.purithm.design.R.string.error_common)
                                 )

@@ -7,11 +7,14 @@ import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
+import com.cmc.purithm.domain.usecase.artist.GetArtistUseCase
+import com.cmc.purithm.domain.usecase.artist.GetArtistsUseCase
 import com.cmc.purithm.domain.usecase.filter.DeleteFilterLikeUseCase
 import com.cmc.purithm.domain.usecase.filter.GetFilterByArtistUseCase
 import com.cmc.purithm.domain.usecase.filter.SetFilterLikeUseCase
 import com.cmc.purithm.feature.artist.adapter.ArtistFilterAdapter
 import com.cmc.purithm.feature.artist.model.ArtistFilterUiModel
+import com.cmc.purithm.feature.artist.model.ArtistUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -30,7 +33,8 @@ import javax.inject.Inject
 class ArtistFilterViewModel @Inject constructor(
     private val getFilterByArtistUseCase: GetFilterByArtistUseCase,
     private val setFilterLikeUseCase: SetFilterLikeUseCase,
-    private val deleteFilterLikeUseCase: DeleteFilterLikeUseCase
+    private val deleteFilterLikeUseCase: DeleteFilterLikeUseCase,
+    private val getArtistUseCase: GetArtistUseCase
 ) : ViewModel() {
     private val _state: MutableStateFlow<ArtistFilterState> = MutableStateFlow(ArtistFilterState())
     val state: StateFlow<ArtistFilterState> = _state.asStateFlow()
@@ -46,6 +50,33 @@ class ArtistFilterViewModel @Inject constructor(
                 )
             }
             getFilterByArtist()
+        }
+    }
+
+    fun getArtist(artistId : Long){
+        viewModelScope.launch {
+            _state.update {
+                it.copy(
+                    loading = true
+                )
+            }
+            runCatching {
+                getArtistUseCase(artistId)
+            }.onSuccess { artist ->
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        artist = ArtistUiModel.toUiModel(artist)
+                    )
+                }
+            }.onFailure { exception ->
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        error = exception
+                    )
+                }
+            }
         }
     }
 
@@ -214,6 +245,7 @@ data class ArtistFilterState(
     val loading: Boolean = false,
     val artistId: Long = 0L,
     val error: Throwable? = null,
+    val artist : ArtistUiModel? = null,
     val dataList: PagingData<ArtistFilterUiModel> = PagingData.empty(),
     val sortedBy: String = "최신순",
     val filterSize: Int = 0

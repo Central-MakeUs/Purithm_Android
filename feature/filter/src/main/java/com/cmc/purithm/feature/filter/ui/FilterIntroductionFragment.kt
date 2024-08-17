@@ -7,6 +7,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.filter.R
@@ -64,7 +65,9 @@ class FilterIntroductionFragment : BaseFragment<FragmentFilterIntroductionBindin
                     viewModel.sideEffect.collect { sideEffect ->
                         when (sideEffect) {
                             // 작가 Shop으로 이동
-                            is FilterIntroductionSideEffect.NavigateArtistShop -> TODO()
+                            is FilterIntroductionSideEffect.NavigateArtistShop -> {
+                                (activity as NavigationAction).navigateArtistFilter(sideEffect.artistId)
+                            }
                         }
                     }
                 }

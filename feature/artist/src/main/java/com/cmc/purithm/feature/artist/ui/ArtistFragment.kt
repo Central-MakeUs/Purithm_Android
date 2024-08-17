@@ -66,10 +66,7 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
                             is ArtistSideEffects.NavigateArtistFilter -> {
                                 navigate(
                                     ArtistFragmentDirections.actionArtistFragmentToArtistFilterFragment(
-                                        sideEffect.artistId,
-                                        sideEffect.artistName,
-                                        sideEffect.artistProfile,
-                                        sideEffect.description
+                                        sideEffect.artistId
                                     )
                                 )
                             }

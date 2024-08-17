@@ -91,6 +91,18 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                                     )
                                 )
                             }
+
+                            FilterSideEffects.ShowFilterLikeSnackBar -> {
+                                showSnackBar(
+                                    view = requireView(),
+                                    message = "찜 목록에 담겼어요",
+                                    actionString = "찜 목록 보기",
+                                    action = {
+                                        Log.d(TAG, "initObserving: snackbar on!")
+                                        // TODO : Navigate 추가해야함
+                                    }
+                                )
+                            }
                         }
                     }
                 }

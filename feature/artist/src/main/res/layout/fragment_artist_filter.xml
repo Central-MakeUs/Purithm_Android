@@ -6,18 +6,6 @@
     <data>
 
         <variable
-            name="artistName"
-            type="String" />
-
-        <variable
-            name="artistDescription"
-            type="String" />
-
-        <variable
-            name="artistProfile"
-            type="String" />
-
-        <variable
             name="vm"
             type="com.cmc.purithm.feature.artist.viewmodel.ArtistFilterViewModel" />
     </data>
@@ -60,8 +48,8 @@
                     android:id="@+id/view_profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    app:cardCornerRadius="99dp"
                     android:layout_marginTop="40dp"
+                    app:cardCornerRadius="99dp"
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -71,7 +59,7 @@
                         android:id="@+id/img_profile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:imageUrl="@{artistProfile}" />
+                        app:imageUrl="@{vm.state.artist.profile}" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -81,7 +69,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="@{artistName}"
+                    android:text="@{vm.state.artist.name}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -94,6 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:text="@{vm.state.artist.description}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -105,9 +94,9 @@
                     style="@style/kr_body_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.format(@string/content_artist_filter_count, vm.state.filterSize)}"
                     android:layout_marginStart="@dimen/margin_screen_side"
                     android:layout_marginTop="60dp"
+                    android:text="@{String.format(@string/content_artist_filter_count, vm.state.filterSize)}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/img_background"
@@ -119,8 +108,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_screen_side"
                     android:gravity="center_vertical"
-                    app:delayClickEvent="@{() -> vm.clickFilterSortedBy()}"
                     android:orientation="horizontal"
+                    app:delayClickEvent="@{() -> vm.clickFilterSortedBy()}"
                     app:layout_constraintBottom_toBottomOf="@id/tv_artist_filter_count"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -132,8 +121,8 @@
                         style="@style/kr_body_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/grey_400"
                         android:text="@{vm.state.sortedBy}"
+                        android:textColor="@color/grey_400"
                         tools:text="최신순" />
 
                     <ImageView

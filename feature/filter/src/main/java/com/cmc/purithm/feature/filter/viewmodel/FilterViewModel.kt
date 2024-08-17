@@ -126,6 +126,7 @@ class FilterViewModel @Inject constructor(
                         loading = false
                     )
                 }
+                _sideEffect.emit(FilterSideEffects.ShowFilterLikeSnackBar)
                 getFilterDetail(filterId)
             }.onFailure { exception ->
                 _state.update {
@@ -227,6 +228,7 @@ sealed interface FilterSideEffects {
     data object NavigateFilterLoading : FilterSideEffects
     data object NavigateFilterReview : FilterSideEffects
     data object NavigateFilterIntroduction : FilterSideEffects
+    data object ShowFilterLikeSnackBar : FilterSideEffects
 }
 
 data class FilterState(

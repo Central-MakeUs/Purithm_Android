@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="model"
             type="com.cmc.purithm.feature.home.model.HomeFilterUiModel" />
@@ -39,6 +41,20 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_filter_type"
+            style="@style/kr_body_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:textColor="@color/white"
+            android:visibility="@{model.canAccess ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:membership="@{model.membership}" />
 
         <com.cmc.purithm.design.component.view.FilterPremiumView
             android:id="@+id/view_filter_premium"

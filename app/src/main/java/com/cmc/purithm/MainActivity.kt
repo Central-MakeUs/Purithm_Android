@@ -113,6 +113,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
+    override fun navigateArtistFilter(artistId: Long) {
+        with(navHostFragment.navController){
+            deepLinkNavigate("purithm://artist/$artistId")
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         binding = null

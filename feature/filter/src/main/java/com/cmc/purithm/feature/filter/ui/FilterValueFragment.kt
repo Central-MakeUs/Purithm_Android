@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.filter.ui
 
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -9,7 +10,6 @@ import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
-import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.entity.filter.FilterValue
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.databinding.FragmentFilterValueBinding
@@ -79,6 +79,18 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
                                 childFragmentManager,
                                 null
                             )
+
+                            FilterValueSideEffects.ShowFilterLikeSnackBar -> {
+                                showSnackBar(
+                                    view = requireView(),
+                                    message = "찜 목록에 담겼어요",
+                                    actionString = "찜 목록 보기",
+                                    action = {
+                                        Log.d(TAG, "initObserving: snackbar on!")
+                                        // TODO : Navigate 추가해야함
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -122,5 +134,9 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
                 viewModel.requestFilterLike(filterId, liked)
             }
         )
+    }
+    
+    companion object{
+        private const val TAG = "FilterValueFragment"
     }
 }
