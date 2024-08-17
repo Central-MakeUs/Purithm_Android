@@ -44,8 +44,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 defaultConfig {
                     applicationId = "com.cmc.purithm"
-                    versionCode = 5
-                    versionName = "1.0.0.5"
+                    versionCode = 6
+                    versionName = "1.0.0.6"
 
                     setProperty("archivesBaseName", "purithm_v$versionName(${LocalDate.now()})")
 
