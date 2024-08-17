@@ -62,30 +62,5 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     override fun initBinding() {}
 
-    override fun initView() {
-        val content = activity?.findViewById<View>(android.R.id.content)
-        content?.viewTreeObserver?.addOnPreDrawListener(object :
-            ViewTreeObserver.OnPreDrawListener {
-            override fun onPreDraw(): Boolean {
-                // 토큰 검증에 성공했거나, 첫 실행이라면 화면 전환
-                return when (viewModel.state.value) {
-                    SplashState.IsFirstRun -> {
-                        // 첫 실행은 너무 빠르게 작동하여 0.5초 딜레이
-                        runBlocking {
-                            delay(500)
-                        }
-                        content.viewTreeObserver.removeOnPreDrawListener(this)
-                        true
-                    }
-
-                    is SplashState.Error, SplashState.Success -> {
-                        content.viewTreeObserver.removeOnPreDrawListener(this)
-                        true
-                    }
-
-                    else -> false
-                }
-            }
-        })
-    }
+    override fun initView() {}
 }

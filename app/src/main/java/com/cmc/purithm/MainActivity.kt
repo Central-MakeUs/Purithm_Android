@@ -5,14 +5,10 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
@@ -21,7 +17,6 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
-import com.cmc.purithm.design.util.Util
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -36,8 +31,6 @@ class MainActivity : AppCompatActivity(), NavigationAction,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        installSplashScreen()
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding?.lifecycleOwner = this
 
@@ -130,6 +123,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         destination: NavDestination,
         arguments: Bundle?
     ) {
+
         when (destination.id) {
             com.cmc.purithm.feature.term.R.id.joinCompleteFragment,
             com.cmc.purithm.feature.term.R.id.termOfServiceFragment,

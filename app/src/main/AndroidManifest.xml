@@ -14,10 +14,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:networkSecurityConfig="@xml/network"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Purithm.Splash"
+        android:theme="@style/Theme.Purithm"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
