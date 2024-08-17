@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.onboarding
 
 import android.util.Log
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -8,6 +9,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.feature.onboarding.banner.adapter.BannerViewPagerAdapter
 import com.cmc.purithm.feature.onboarding.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,7 +52,26 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
+    private fun setBackButtonEvent(){
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            CommonDialogFragment.showDialog(
+                content = "앱을 종료하시겠습니까?",
+                negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                negativeClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                },
+                positiveText = "종료",
+                positiveClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                    requireActivity().finish()
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+    }
+
     override fun initView() {
+        setBackButtonEvent()
         with(binding) {
             vpBanner.adapter = BannerViewPagerAdapter(
                 requireActivity(),

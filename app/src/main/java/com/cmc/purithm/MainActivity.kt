@@ -164,20 +164,6 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         )
     }
 
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        when (navHostFragment.navController.currentDestination?.id) {
-            com.cmc.purithm.feature.onboarding.R.id.onBoardingFragment,
-            com.cmc.purithm.feature.splash.R.id.splashFragment,
-            com.cmc.purithm.feature.home.R.id.homeFragment,
-            com.cmc.purithm.feature.login.R.id.loginFragment -> {
-                finish()
-            }
-
-            else -> super.onBackPressed()
-        }
-    }
-
     companion object {
         private const val TAG = "MainActivity"
     }

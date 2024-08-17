@@ -2,12 +2,14 @@ package com.cmc.purithm.feature.login
 
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.util.Util
 import com.cmc.purithm.design.util.Util.showPurithmSnackBar
 import com.cmc.purithm.feature.login.databinding.FragmentLoginBinding
@@ -92,6 +94,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         }
     }
 
+
     private fun loginKakaoTalk() {
         Log.d(TAG, "loginKakaoTalk: start")
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(requireContext())) {
@@ -108,7 +111,23 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
         binding.vm = viewModel
     }
 
-    override fun initView() {}
+    override fun initView() {
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            CommonDialogFragment.showDialog(
+                content = "앱을 종료하시겠습니까?",
+                negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                negativeClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                },
+                positiveText = "종료",
+                positiveClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                    requireActivity().finish()
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
+    }
 
     companion object {
         private const val TAG = "LoginFragment"
