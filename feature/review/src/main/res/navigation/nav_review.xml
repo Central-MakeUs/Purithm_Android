@@ -11,6 +11,10 @@
         android:label="ReviewWriteFragment"
         tools:layout="@layout/fragment_review_write">
         <argument
+            android:name="navigateType"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
             android:name="filterName"
             app:argType="string"
             app:nullable="false" />
@@ -32,9 +36,13 @@
         android:label="ReviewHistoryFragment"
         tools:layout="@layout/fragment_review_history">
         <argument
-            android:name="writeFlag"
+            android:name="isWrite"
             android:defaultValue="false"
             app:argType="boolean" />
+        <argument
+            android:name="navigateType"
+            android:defaultValue="0"
+            app:argType="integer" />
         <argument
             android:name="filterId"
             app:argType="long"

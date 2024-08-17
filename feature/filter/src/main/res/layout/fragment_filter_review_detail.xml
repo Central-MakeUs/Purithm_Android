@@ -25,28 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="20dp"
-            android:paddingBottom="100dp"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar" />
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_confirm"
-            style="@style/kr_body_3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/margin_screen_side"
-            android:layout_marginBottom="40dp"
-            android:background="@drawable/shape_button_solid_primary_lg"
-            android:gravity="center"
-            android:paddingVertical="18dp"
-            android:textColor="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:text="후기 남기고 스탬프 받기" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

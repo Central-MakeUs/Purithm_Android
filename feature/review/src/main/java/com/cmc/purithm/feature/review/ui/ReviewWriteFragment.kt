@@ -44,6 +44,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     private val filterId by lazy { navArgs.filterId }
     private val thumbnail by lazy { navArgs.thumbnail }
     private val filterName by lazy { navArgs.filterName }
+    private val navigateType by lazy { navArgs.navigateType }
     private val viewModel by viewModels<ReviewWriteViewModel>()
     private val registeredPictureList = mutableListOf<String>()
     private val viewTreeObserver = ViewTreeObserver.OnGlobalLayoutListener {
@@ -123,7 +124,8 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                                 afterDelayEvent = {
                                     navigate(
                                         ReviewWriteFragmentDirections.actionReviewWriteFragmentToReviewHistoryFragment(
-                                            writeFlag = true,
+                                            navigateType = navigateType,
+                                            isWrite = true,
                                             reviewId = sideEffect.reviewId,
                                             filterId = filterId,
                                             thumbnail = thumbnail,

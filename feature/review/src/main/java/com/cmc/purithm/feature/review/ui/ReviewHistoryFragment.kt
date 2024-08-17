@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.review.ui
 
 import android.view.View
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,17 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
     private val reviewId by lazy { navArgs.reviewId }
     private val thumbnail by lazy { navArgs.thumbnail }
     // 리뷰 작성에서 넘어올 시, 아에 다른곳으로 navigate해야함
-    private val writeFlag by lazy { navArgs.writeFlag }
+    private val isWrite by lazy { navArgs.isWrite }
+    private val navigateType by lazy { navArgs.navigateType }
+
+    private fun backNavigate(){
+        // FIXME : 마이페이지 구현 후 수정
+        if(isWrite){
+            (activity as NavigationAction).popBackStackAfterWriteReview(type = navigateType)
+        } else {
+            findNavController().popBackStack()
+        }
+    }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -48,7 +59,7 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
                                     content = "삭제되었습니다.",
                                     positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
                                     positiveClickEvent = {
-                                        findNavController().popBackStack()
+                                        backNavigate()
                                     },
                                     fragmentManager = childFragmentManager
                                 )
@@ -104,13 +115,20 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
         }
     }
 
+    private fun setBackButtonEvent(){
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            backNavigate()
+        }
+    }
+
     override fun initView() {
+        setBackButtonEvent()
         with(binding){
             viewAppbar.setAppBar(
                 type = PurithmAppbar.PurithmAppbarType.KR_BACK,
                 title = "남긴 후기",
                 backClickListener = {
-                    findNavController().popBackStack()
+                    backNavigate()
                 }
             )
 

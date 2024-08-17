@@ -87,6 +87,7 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
 
                             is FilterReviewSideEffects.NavigateReviewWrite -> {
                                 (activity as NavigationAction).navigateReviewWrite(
+                                    navigateType = 1,
                                     filterName,
                                     filterId,
                                     thumbnail

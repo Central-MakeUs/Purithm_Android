@@ -96,17 +96,18 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateFilterItem(filterId: Long, popUpTo : Boolean) {
+    override fun navigateFilterItem(filterId: Long, popUpTo: Boolean) {
         with(navHostFragment.navController) {
-            deepLinkNavigate("purithm://filter/$filterId", popUpTo)
+            deepLinkNavigate("purithm://filter/$filterId", popUpToInclusive = popUpTo)
         }
     }
 
-    override fun navigateReviewWrite(filterName: String, filterId: Long, thumbnail: String) {
+    override fun navigateReviewWrite(navigateType : Int, filterName: String, filterId: Long, thumbnail: String) {
         with(navHostFragment.navController) {
             navigate(
                 R.id.navigate_review,
                 bundleOf(
+                    "navigateType" to navigateType,
                     "filterName" to filterName,
                     "filterId" to filterId,
                     "thumbnail" to thumbnail
@@ -116,19 +117,37 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     override fun navigateArtistFilter(artistId: Long) {
-        with(navHostFragment.navController){
+        with(navHostFragment.navController) {
             deepLinkNavigate("purithm://artist/filter/$artistId")
         }
     }
 
     override fun navigateFilterValue(filterId: Long) {
-        with(navHostFragment.navController){
+        with(navHostFragment.navController) {
             deepLinkNavigate("purithm://filter/value/$filterId")
         }
     }
 
-    override fun navigateMyReviewHistory(filterId : Long, reviewId: Long, thumbnail: String, filterName: String) {
-        with(navHostFragment.navController){
+    /**
+     * @param type 이동되야할 fragment, 1 - filter review, 2 - my page
+     * */
+    override fun popBackStackAfterWriteReview(type: Int) {
+        with(navHostFragment.navController) {
+            if(type == 1){
+                popBackStack(com.cmc.purithm.feature.filter.R.id.filterReviewFragment, false)
+            } else {
+                popBackStack(com.cmc.purithm.feature.filter.R.id.filterReviewFragment, false)
+            }
+        }
+    }
+
+    override fun navigateMyReviewHistory(
+        filterId: Long,
+        reviewId: Long,
+        thumbnail: String,
+        filterName: String
+    ) {
+        with(navHostFragment.navController) {
             val encodingUrl = URLEncoder.encode(thumbnail, StandardCharsets.UTF_8.toString())
             deepLinkNavigate("purithm://review/history/$filterId/$reviewId/$encodingUrl/$filterName")
         }
@@ -154,13 +173,13 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.filter.R.id.filterFragment,
             com.cmc.purithm.feature.review.R.id.reviewWriteFragment,
             com.cmc.purithm.feature.review.R.id.reviewHistoryFragment,
-            com.cmc.purithm.feature.artist.R.id.artistFilterFragment-> {
+            com.cmc.purithm.feature.artist.R.id.artistFilterFragment -> {
                 setBottomNavVisibility(false)
             }
 
             com.cmc.purithm.feature.feed.R.id.feedFragment,
             com.cmc.purithm.feature.home.R.id.homeFragment,
-            com.cmc.purithm.feature.artist.R.id.artistFragment-> {
+            com.cmc.purithm.feature.artist.R.id.artistFragment -> {
                 setBottomNavVisibility(true)
             }
         }
@@ -172,11 +191,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
 
     private fun NavController.deepLinkNavigate(
         deepLinkUrl: String,
-        popUpTo: Boolean = false
+        destinationId: Int = 0,
+        popUpToInclusive: Boolean = false
     ) {
         val builder = NavOptions.Builder()
-        if (popUpTo) {
-            builder.setPopUpTo(graph.startDestinationId, true)
+        if (popUpToInclusive) {
+            builder.setPopUpTo(destinationId, true)
         }
         navigate(
             NavDeepLinkRequest.Builder
