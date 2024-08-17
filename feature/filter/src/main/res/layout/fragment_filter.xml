@@ -13,9 +13,9 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/layout_main"
         android:background="@color/grey_100">
 
         <com.cmc.purithm.design.component.appbar.PurithmAppbar
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="horizontal"
             app:delayClickEvent="@{() -> vm.clickFilterReview()}"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,12 +66,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
+                android:layout_marginEnd="2dp"
                 android:src="@drawable/ic_review_start_3" />
 
             <TextView
                 android:id="@+id/tv_filter_satisfaction"
                 style="@style/kr_body_5"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{String.format(@string/content_filter_satisfaction, vm.state.data.pureDegree)}"
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="horizontal"
             app:delayClickEvent="@{() -> vm.clickNavigateFilterIntroduction()}"
             app:layout_constraintStart_toEndOf="@id/layout_filter_satisfaction"
@@ -100,12 +101,13 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="1dp"
+                android:layout_marginEnd="3.5dp"
                 android:src="@drawable/ic_artist_fill" />
 
             <TextView
                 android:id="@+id/tv_filter_introduce"
                 style="@style/kr_body_5"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/content_filter_introduce"

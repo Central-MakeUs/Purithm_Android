@@ -1,10 +1,15 @@
 package com.cmc.purithm.feature.review.ui
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
+import android.graphics.Rect
 import android.net.Uri
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.View
+import android.view.ViewTreeObserver
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.SeekBar
 import androidx.fragment.app.viewModels
@@ -33,12 +38,40 @@ import java.io.IOException
 class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_review_write
+    private var isKeyBoardVisible = false
+    private var lastHeightDiff = 0
     private val navArgs by navArgs<ReviewWriteFragmentArgs>()
     private val filterId by lazy { navArgs.filterId }
     private val thumbnail by lazy { navArgs.thumbnail }
     private val filterName by lazy { navArgs.filterName }
     private val viewModel by viewModels<ReviewWriteViewModel>()
     private val registeredPictureList = mutableListOf<String>()
+    private val viewTreeObserver = ViewTreeObserver.OnGlobalLayoutListener {
+        val rootView = requireActivity().window.decorView.findViewById<View>(android.R.id.content)
+        Log.d(TAG, "add: on!")
+        val heightDiff = rootView.rootView.height - rootView.height
+        if(lastHeightDiff == 0){
+            Log.d(TAG, "add: diff setting")
+            Log.d(TAG, "add: value = $heightDiff")
+            lastHeightDiff = heightDiff
+        }
+
+        if(heightDiff > lastHeightDiff){
+            Log.d(TAG, "add: keypad on")
+            isKeyBoardVisible = true
+        } else {
+            if(isKeyBoardVisible){
+                isKeyBoardVisible = false
+                Log.d(TAG, "add: keypad down")
+                if(binding.editReview.getFocus()){
+                    Log.d(TAG, "add: edit text focus on")
+                    binding.editReview.removeFocus()
+                    val imm = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(binding.editReview.windowToken, 0)
+                }
+            }
+        }
+    }
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -110,6 +143,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
     }
 
     override fun initView() {
+        requireActivity().window.decorView.viewTreeObserver.addOnGlobalLayoutListener(viewTreeObserver)
         viewModel.setInitInfo(filterId, thumbnail)
         with(binding) {
             btnTermOfServiceAgreement.setOnCheckedChangeListener { _, isChecked ->
@@ -122,6 +156,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                     fromUser: Boolean
                 ) {
                     viewModel.setPureDegree(progress * 20)
+                    binding.editReview.removeFocus()
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {}
@@ -207,6 +242,11 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
             }
         }
         return result
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.decorView.viewTreeObserver.removeOnGlobalLayoutListener(viewTreeObserver)
     }
 
     companion object {

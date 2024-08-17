@@ -27,11 +27,13 @@ class FilterPremiumView @JvmOverloads constructor(
                 FilterMembership.PREMIUM -> {
                     imgPremium.setImageResource(R.drawable.ic_premium)
                     tvPremium.text = context.getString(R.string.content_premium_filter)
+                    tvPremiumDescription.setBackgroundResource(R.drawable.bg_text_filter_premium)
                     tvPremiumDescription.text = context.getString(R.string.content_premium_filter_stamp)
                 }
                 FilterMembership.PREMIUM_PLUS -> {
                     imgPremium.setImageResource(R.drawable.ic_premium_plus)
                     tvPremium.text = context.getString(R.string.content_premium_plus_filter)
+                    tvPremiumDescription.setBackgroundResource(R.drawable.bg_text_filter_premium_plus)
                     tvPremiumDescription.text = context.getString(R.string.content_premium_plus_filter_stamp)
                 }
                 FilterMembership.BASIC -> {

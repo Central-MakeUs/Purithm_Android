@@ -1,6 +1,9 @@
 package com.cmc.purithm.design.component.edittext
 
 import android.content.Context
+import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.SharedPreferences.Editor
+import android.graphics.Rect
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
@@ -8,7 +11,10 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat.getSystemService
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewEditTextMultipleBinding
 import com.cmc.purithm.design.util.Util.getColorResource
@@ -32,7 +38,14 @@ class PurithmMultipleEditText @JvmOverloads constructor(
         return ViewEditTextMultipleBinding.inflate(inflater, this, true)
     }
 
-    fun initView(maxSize: Int, minSize: Int, hint: String = "", imeOption: Int, errorMsg: String, textChangeListener : (String) -> Unit) {
+    fun initView(
+        maxSize: Int,
+        minSize: Int,
+        hint: String = "",
+        imeOption: Int,
+        errorMsg: String,
+        textChangeListener: (String) -> Unit
+    ) {
         this.maxSize = maxSize
         this.minSize = minSize
 
@@ -48,10 +61,13 @@ class PurithmMultipleEditText @JvmOverloads constructor(
             editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize))
             editMain.imeOptions = imeOption
             editMain.setOnFocusChangeListener { _, hasFocus ->
-                layoutStatus.visibility = if(hasFocus && editMain.text.isNotEmpty()){
-                    View.VISIBLE
-                } else {
-                    View.GONE
+                val inputSize = editMain.text.toString().length
+                if (!hasFocus && inputSize > 0) {
+                    if (inputSize < minSize) {
+                        showErrorMsg()
+                    } else {
+                        showDefault()
+                    }
                 }
             }
             editMain.addTextChangedListener(object : TextWatcher {
@@ -69,23 +85,20 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                     tvErrorMsg.visibility = View.GONE
                     editMain.setBackgroundResource(R.color.white)
                     tvTextCount.text = "${s.length}"
-                    Log.d(TAG, "onTextChanged: length = ${s.length}")
                     textChangeListener(s.toString())
 
                     if (s.isEmpty()) {    // 입력된 텍스트가 없을 경우 background 변경
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_default)
-                        Log.d(TAG, "onTextChanged: empty, set main background")
+                        editMain.setBackgroundResource(R.drawable.shape_white_trasn_60_background)
                     }
                     if (s.length >= maxSize) {  // 메시지 길이 초과
-                        Log.d(TAG, "onTextChanged: error")
                         tvStatus.setTextColor(context.getColorResource(R.color.red_500))
-                        Log.d(TAG, "onTextChanged: subString = ${s.substring(0, maxSize)}")
                         editMain.setSelection(maxSize)
                         showErrorMsg()
                     } else {    // 텍스트가 한개라도 있으면 background 변경
-                        Log.d(TAG, "onTextChanged: text exist")
                         tvStatus.setTextColor(context.getColorResource(R.color.blue_400))
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text)
+                        editMain.setBackgroundResource(R.drawable.shape_white_background)
                         showDefault()
                     }
                 }
@@ -109,7 +122,8 @@ class PurithmMultipleEditText @JvmOverloads constructor(
         }
     }
 
-    fun getCurrentInput() = binding.editMain.text.toString()
+    fun getFocus() = binding.editMain.hasFocus()
+    fun removeFocus() = binding.editMain.clearFocus()
 
     companion object {
         private const val TAG = "PurithmMultipleEditText"

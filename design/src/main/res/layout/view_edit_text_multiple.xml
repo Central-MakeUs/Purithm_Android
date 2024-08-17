@@ -11,7 +11,7 @@
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="@dimen/size_edit_text_multiple_height"
-        android:background="@drawable/bg_edit_text_default"
+        android:background="@drawable/bg_edit_text"
         android:padding="@dimen/size_edit_text_multiple_padding">
 
         <EditText
@@ -20,9 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/bg_edit_text_default"
+            android:background="@drawable/shape_white_trasn_60_background"
             android:gravity="start"
-            android:imeOptions="actionDone"
             android:inputType="textMultiLine"
             android:textColor="@color/grey_500"
             app:layout_constraintBottom_toTopOf="@id/tv_error_msg"
@@ -40,8 +39,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible">
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv_text_count"
