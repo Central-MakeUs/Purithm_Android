@@ -1,6 +1,7 @@
 package com.cmc.purithm.common.base
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -79,7 +80,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 dismiss
      * */
     protected fun dismissLoadingDialog() {
+        Log.d(TAG, "dismissLoadingDialog: start")
         if (mLoadingDialog.isAdded) {
+            Log.d(TAG, "dismissLoadingDialog: on")
             mLoadingDialog.dismissAllowingStateLoss()
         }
     }
@@ -88,7 +91,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 show
      * */
     protected fun showLoadingDialog() {
-        if (mLoadingDialog.isHidden) {
+        Log.d(TAG, "showLoadingDialog: start")
+        if (mLoadingDialog.isDetached) {
+            Log.d(TAG, "showLoadingDialog: on")
             mLoadingDialog.show(childFragmentManager, LoadingDialogFragment::class.java.simpleName)
         }
     }
@@ -122,5 +127,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     protected fun showSnackBar(view : View, message: String, actionString : String = "", action: (() -> Unit)? = null) {
         showPurithmSnackBar(view, message, actionString, action)
+    }
+
+    companion object {
+        private const val TAG = "BaseFragment"
     }
 }

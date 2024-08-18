@@ -29,6 +29,8 @@ splashScreen = "1.0.1"
 navigationCommonKtx = "2.7.7"
 paging = "3.3.1"
 hilt-fragmet = "1.2.0"
+lottie = "6.0.0"
+
 [libraries]
 # Plugin
 android-pluginGradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
@@ -71,7 +73,7 @@ javax-inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
 hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
-hilt-fragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hilt-fragmet"}
+hilt-fragment = { module = "androidx.hilt:hilt-navigation-fragment", version.ref = "hilt-fragmet" }
 
 # Firebase
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
@@ -106,6 +108,9 @@ androidx-navigation-common-ktx = { group = "androidx.navigation", name = "naviga
 # Paging
 androidx-paging-common = { module = "androidx.paging:paging-common", version.ref = "paging" }
 androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.ref = "paging" }
+
+#rottie
+lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
 
 [bundles]
 kotlinx-coroutine = ["kotlin-coroutine-core", "kotlin-coroutine-android"]

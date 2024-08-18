@@ -92,7 +92,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@{model.photographerName}"
+            android:text="@{String.format(@string/content_filter_artist, model.photographerName)}"
             android:textColor="@color/grey_300"
             app:layout_constraintEnd_toStartOf="@+id/btn_like"
             app:layout_constraintHorizontal_bias="0.0"

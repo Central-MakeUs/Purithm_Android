@@ -42,7 +42,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> viewModel.checkFirstRun()
+                            SplashState.Initialize -> {
+                                delay(1000)
+                                viewModel.checkFirstRun()
+                            }
                             else -> {}
                         }
                     }
@@ -63,5 +66,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     override fun initBinding() {}
 
-    override fun initView() {}
+    override fun initView() {
+
+    }
 }

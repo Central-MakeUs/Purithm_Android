@@ -160,7 +160,7 @@
                     android:id="@+id/btn_delete"
                     style="@style/kr_body_3"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/size_bottom_button_size"
                     android:layout_marginTop="@dimen/margin_screen_side"
                     android:layout_marginBottom="18dp"
                     android:background="@drawable/shape_button_solid_secondary_lg"

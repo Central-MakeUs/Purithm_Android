@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.content.res.ResourcesCompat
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewSnackBarBinding
@@ -29,6 +30,10 @@ object Util {
         val snackBar = Snackbar.make(view, "", Snackbar.LENGTH_SHORT)
         val snackBarLayout = snackBar.view as Snackbar.SnackbarLayout
         snackBarLayout.setBackgroundColor(view.resources.getColor(R.color.transparent, null))
+
+        val snackBarParams = snackBar.view.layoutParams as ViewGroup.MarginLayoutParams
+        snackBarParams.setMargins(20.dp, 0, 20.dp, 48.dp)
+        snackBar.view.layoutParams = snackBarParams
 
         val layoutInflater = view.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val customSnackBar = ViewSnackBarBinding.inflate(layoutInflater)

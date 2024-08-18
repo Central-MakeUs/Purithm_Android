@@ -26,6 +26,8 @@
     <dimen name="radius_button_s">10dp</dimen>
     <dimen name="radius_button_lg">12dp</dimen>
     <dimen name="size_button_stroke">1dp</dimen>
+    <dimen name="size_bottom_button_size">64dp</dimen>
+    <dimen name="margin_bottom_button_bottom">48dp</dimen>
 
     <!-- edit text -->
     <dimen name="size_edit_text_multiple_height">196dp</dimen>

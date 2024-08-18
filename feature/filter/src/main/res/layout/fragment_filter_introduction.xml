@@ -82,7 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/margin_screen_side"
-                    android:drawableStart="@drawable/ic_home"
+                    android:drawableStart="@drawable/ic_menu_home_selected"
                     android:drawablePadding="4dp"
                     android:text="@string/content_photographer_shop"
                     android:textColor="@color/blue_400"

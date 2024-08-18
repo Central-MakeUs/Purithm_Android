@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -30,32 +31,38 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/kr_title_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:text="@{title}"
-            android:textColor="@color/grey_500"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vp_banner" />
-
-        <TextView
-            android:id="@+id/tv_content"
-            style="@style/kr_body_4"
+        <LinearLayout
+            android:id="@+id/layout_content"
             android:layout_width="0dp"
-            android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:gravity="center"
-            android:text="@{content}"
-            android:textColor="@color/grey_500"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/vp_banner">
 
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/kr_title_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:text="@{title}"
+                android:textColor="@color/grey_500"
+                tools:text="title" />
+
+            <TextView
+                android:id="@+id/tv_content"
+                style="@style/kr_body_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/margin_screen_side"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@{content}"
+                android:textColor="@color/grey_500"
+                tools:text="content" />
+        </LinearLayout>
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator_onboarding"
@@ -71,7 +78,7 @@
             app:ci_width="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_content" />
+            app:layout_constraintTop_toBottomOf="@id/layout_content" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"

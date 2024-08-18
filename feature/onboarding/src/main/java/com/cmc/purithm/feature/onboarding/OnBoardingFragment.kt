@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.onboarding
 
+import android.annotation.SuppressLint
 import android.util.Log
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
@@ -10,6 +11,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
+import com.cmc.purithm.common.view.OnSwipeTouchListener
 import com.cmc.purithm.feature.onboarding.banner.adapter.BannerViewPagerAdapter
 import com.cmc.purithm.feature.onboarding.databinding.FragmentOnboardingBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +54,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
         }
     }
 
-    private fun setBackButtonEvent(){
+    private fun setBackButtonEvent() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             CommonDialogFragment.showDialog(
                 content = "앱을 종료하시겠습니까?",
@@ -77,7 +79,7 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
                 requireActivity(),
                 bannerImgList
             )
-            vpBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            vpBanner.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     binding.title = bannerTitleArray[position]
@@ -85,17 +87,40 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
                 }
             })
             indicatorOnboarding.setViewPager(vpBanner)
+            layoutContent.setOnTouchListener(object : OnSwipeTouchListener(requireContext()) {
+                override fun onSwipeLeft() {
+                    Log.d(TAG, "onSwipeLeft: on")
+                    Log.d(TAG, "onSwipeLeft: item = ${vpBanner.currentItem}")
+                    if(vpBanner.currentItem + 1 <= 3){
+                        Log.d(TAG, "onSwipeLeft: item change")
+                        vpBanner.currentItem = vpBanner.currentItem + 1
+                    }
+                }
+
+                override fun onSwipeRight() {
+                    Log.d(TAG, "onSwipeRight: on")
+                    if(vpBanner.currentItem - 1 >= 0){
+                        Log.d(TAG, "onSwipeRight: item change")
+                        vpBanner.currentItem = vpBanner.currentItem - 1
+                    }
+                }
+            })
         }
     }
 
     private fun createBannerList(): List<Int> {
         val list = mutableListOf<Int>()
         bannerTitleArray.forEachIndexed { index, _ ->
-            val imgRes = resources.getIdentifier("bg_onboarding_${index+1}", "drawable", requireContext().packageName)
+            val imgRes = resources.getIdentifier(
+                "bg_onboarding_${index + 1}",
+                "drawable",
+                requireContext().packageName
+            )
             list.add(imgRes)
         }
         return list.toList()
     }
+
     companion object {
         private const val TAG = "OnBoardingFragment"
     }

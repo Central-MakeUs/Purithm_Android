@@ -14,9 +14,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
-        android:background="@color/grey_100">
+        android:background="@color/grey_100"
+        android:fitsSystemWindows="true">
 
         <com.cmc.purithm.design.component.appbar.PurithmAppbar
             android:id="@+id/view_appbar"
@@ -283,10 +283,10 @@
             android:id="@+id/btn_upload"
             style="@style/kr_body_3"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/size_bottom_button_size"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginTop="40dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="@dimen/margin_bottom_button_bottom"
             android:background="@drawable/shape_button_solid_primary_lg"
             android:enabled="@{(vm.state.pureDegree > 19 &amp;&amp; vm.state.agree &amp;&amp; vm.state.introduceAgree &amp;&amp; vm.state.content.length() > 20 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
             android:gravity="center"

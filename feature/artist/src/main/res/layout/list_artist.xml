@@ -154,7 +154,7 @@
             style="@style/kr_body_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_home"
+            android:drawableStart="@drawable/ic_menu_home_selected"
             android:drawablePadding="5.26dp"
             android:gravity="center"
             android:text="@string/content_shop"

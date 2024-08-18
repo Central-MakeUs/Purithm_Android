@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.constraintlayout.widget.ConstraintSet
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewAppbarBinding
 import com.cmc.purithm.design.util.Util.dp
@@ -225,18 +226,15 @@ class PurithmAppbar @JvmOverloads constructor(
     }
 
     private fun setAppbarTopMargin(top: Int) {
-        val layoutParams = LayoutParams(
-            LayoutParams.MATCH_PARENT,
-            LayoutParams.MATCH_PARENT
-        ).apply {
-            setMargins(
-                0,
-                top.dp,
-                0,
-                10.dp
-            )
+        val constraintSet = ConstraintSet().apply {
+            clone(binding.layoutAppbar)
         }
-        binding.layoutAppbar.layoutParams = layoutParams
+        constraintSet.setMargin(
+            R.id.layout_appbar,
+            ConstraintSet.TOP,
+            top.dp
+        )
+        constraintSet.applyTo(binding.layoutAppbar)
     }
 
 
@@ -247,7 +245,7 @@ class PurithmAppbar @JvmOverloads constructor(
     companion object {
         private const val TAG = "PurithmAppbar"
 
-        private const val TOP_MARGIN_KR = 74
-        private const val TOP_MARGIN_EN = 50
+        private const val TOP_MARGIN_KR = 80
+        private const val TOP_MARGIN_EN = 56
     }
 }

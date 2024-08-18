@@ -82,6 +82,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 // paging
                 add("implementation", libs.findLibrary("androidx-paging-runtime").get())
+
+                // lottie
+                add("implementation", libs.findLibrary("lottie").get())
             }
         }
     }

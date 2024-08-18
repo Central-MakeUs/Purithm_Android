@@ -31,6 +31,8 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
 
                 add("implementation", libs.findLibrary("glide-glide").get())
                 add("implementation", libs.findLibrary("glide-compiler").get())
+
+                add("implementation", libs.findLibrary("lottie").get())
                 
                 add("implementation", libs.findBundle("androidx-navigation").get())
 
