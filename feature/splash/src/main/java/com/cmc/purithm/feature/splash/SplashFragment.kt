@@ -15,6 +15,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
+// TODO : 최소 딜레이 1초로 설정
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     private val viewModel: SplashViewModel by viewModels()

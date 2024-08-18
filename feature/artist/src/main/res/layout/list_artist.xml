@@ -121,9 +121,10 @@
             android:id="@+id/view_profile"
             android:layout_width="@dimen/size_image_profile"
             android:layout_height="@dimen/size_image_profile"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             app:cardCornerRadius="99dp"
             app:cardElevation="0dp"
+            app:delayClickEvent="@{() -> vm.clickArtist(data.id, data.name, data.profile, data.description)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_artist_thumbnail">
 
@@ -142,6 +143,7 @@
             android:layout_marginStart="10dp"
             android:text="@{data.name}"
             android:textColor="@color/grey_500"
+            app:delayClickEvent="@{() -> vm.clickArtist(data.id, data.name, data.profile, data.description)}"
             app:layout_constraintBottom_toBottomOf="@id/view_profile"
             app:layout_constraintStart_toEndOf="@id/view_profile"
             app:layout_constraintTop_toTopOf="@id/view_profile"
@@ -169,7 +171,7 @@
             style="@style/kr_body_4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:text="@{data.description}"
             android:textColor="@color/grey_500"
             app:layout_constraintEnd_toEndOf="parent"

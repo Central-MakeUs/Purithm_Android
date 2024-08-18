@@ -60,7 +60,7 @@ internal fun BaseResponse<FilterDescriptionResponseDto>.toDomain() : Filter {
     val response = this.data ?: throw NullPointerException("filter value is null")
     return Filter(
         photographerId = response.photographerId,
-        photographerProfile = response.profile,
+        photographerProfile = response.profile ?: "",
         photographerName = response.name,
         description = response.description,
         filterIntroduction = response.photoDescriptions,

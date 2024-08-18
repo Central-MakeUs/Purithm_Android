@@ -10,7 +10,7 @@ internal data class ReviewResponseDto(
     @SerializedName("createdAt")
     val createdAt : String,
     @SerializedName("userProfile")
-    val userProfile : String,
+    val userProfile : String?,
     @SerializedName("pictures")
     val pictures : List<String>,
     @SerializedName("pureDegree")

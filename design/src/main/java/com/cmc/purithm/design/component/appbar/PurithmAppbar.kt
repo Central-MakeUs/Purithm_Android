@@ -106,7 +106,7 @@ class PurithmAppbar @JvmOverloads constructor(
     private fun setKrBackAppbar(
         title: String,
     ) {
-        setAppbarTopMargin(64)
+        setAppbarTopMargin(TOP_MARGIN_KR)
         with(binding) {
             tvTitleKr.visibility = View.VISIBLE
             tvTitleKr.text = title
@@ -120,7 +120,7 @@ class PurithmAppbar @JvmOverloads constructor(
         likeState: Boolean,
         likeClickListener: (() -> Unit)?
     ) {
-        setAppbarTopMargin(40)
+        setAppbarTopMargin(TOP_MARGIN_EN)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
@@ -157,7 +157,7 @@ class PurithmAppbar @JvmOverloads constructor(
         likeState: Boolean,
         likeClickListener: (() -> Unit)?
     ) {
-        setAppbarTopMargin(40)
+        setAppbarTopMargin(TOP_MARGIN_EN)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
@@ -182,7 +182,7 @@ class PurithmAppbar @JvmOverloads constructor(
         title: String,
         questionClickListener: (() -> Unit)?
     ) {
-        setAppbarTopMargin(64)
+        setAppbarTopMargin(TOP_MARGIN_KR)
         with(binding) {
             tvTitleKr.visibility = View.VISIBLE
             tvTitleKr.text = title
@@ -199,7 +199,7 @@ class PurithmAppbar @JvmOverloads constructor(
         title: String,
         registrationClickListener: (() -> Unit)?
     ) {
-        setAppbarTopMargin(64)
+        setAppbarTopMargin(TOP_MARGIN_KR)
         with(binding) {
             tvTitleKr.visibility = View.VISIBLE
             tvTitleKr.text = title
@@ -215,7 +215,7 @@ class PurithmAppbar @JvmOverloads constructor(
     private fun setEngTextAppbar(
         title: String
     ) {
-        setAppbarTopMargin(40)
+        setAppbarTopMargin(TOP_MARGIN_EN)
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
@@ -246,5 +246,8 @@ class PurithmAppbar @JvmOverloads constructor(
 
     companion object {
         private const val TAG = "PurithmAppbar"
+
+        private const val TOP_MARGIN_KR = 74
+        private const val TOP_MARGIN_EN = 50
     }
 }

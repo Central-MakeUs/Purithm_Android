@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_screen_side"
-            android:background="@drawable/shape_button_solid_primary_lg"
+            android:background="@drawable/shape_button_solid_primary_xs"
             android:drawableEnd="@drawable/ic_move_white"
             android:drawablePadding="8dp"
             android:paddingHorizontal="13dp"
@@ -58,15 +58,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_filter_guide" />
 
+        <ImageView
+            android:id="@+id/img_gradient_background"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="75dp"
+            android:src="@drawable/gradient_purple_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_thumbnail" />
+
         <ScrollView
             android:id="@+id/scroll_filter_value"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingBottom="48dp"
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="40dp"
             android:orientation="vertical"
             android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/img_thumbnail">
 

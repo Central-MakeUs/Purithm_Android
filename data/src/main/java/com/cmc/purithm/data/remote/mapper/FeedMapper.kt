@@ -13,7 +13,7 @@ internal fun BaseResponse<List<GetFeedResponseDto>>.toDomain(): List<ReviewItem>
             filterId = it.filterId,
             filterThumbnail = it.filterThumbnail,
             pureDegree = it.pureDegree,
-            userProfile = it.profile,
+            userProfile = it.profile ?: "",
             content = it.content,
             userName = it.writer,
             pictures = it.pictures,

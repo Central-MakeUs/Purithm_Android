@@ -6,7 +6,7 @@ internal data class FilterReviewDto(
     @SerializedName("id")
     val id : Long,
     @SerializedName("profile")
-    val profile : String,
+    val profile : String?,
     @SerializedName("content")
     val content : String,
     @SerializedName("pureDegree")

@@ -79,6 +79,14 @@ class ReviewWriteViewModel @Inject constructor(
         }
     }
 
+    fun setIntroduceAgree(agree : Boolean) {
+        viewModelScope.launch {
+            _state.update {
+                it.copy(introduceAgree = agree)
+            }
+        }
+    }
+
     fun setPureDegree(pureDegree: Int) {
         viewModelScope.launch {
             _state.update {
@@ -151,6 +159,7 @@ data class ReviewWriteState(
     val agree: Boolean = false,
     val content: String = "",
     val pureDegree: Int = -1,
+    val introduceAgree : Boolean = false,
     val pictures: List<String> = emptyList(),
 )
 

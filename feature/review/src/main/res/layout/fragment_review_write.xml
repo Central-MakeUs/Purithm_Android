@@ -14,6 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
         android:background="@color/grey_100">
 
@@ -153,28 +154,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/seekbar_review" />
 
-                <TextView
-                    android:id="@+id/tv_review_write_require_text"
-                    style="@style/kr_body_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginTop="20dp"
-                    android:textColor="@color/grey_300"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_title" />
-
                 <com.cmc.purithm.design.component.edittext.PurithmMultipleEditText
                     android:id="@+id/edit_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="20dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_require_text" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_review_write_title" />
 
                 <TextView
                     android:id="@+id/tv_review_write_require_picture"
@@ -214,6 +202,8 @@
                             android:layout_height="98dp"
                             android:layout_marginEnd="@dimen/margin_screen_side"
                             android:src="@drawable/bg_img_add"
+                            android:visibility="@{vm.state.pictures.size() &lt; 3 ? View.VISIBLE : View.GONE}"
+
                             app:delayClickEvent="@{() -> vm.startGallery()}" />
 
                     </LinearLayout>
@@ -253,8 +243,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="120dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="140dp"
                     android:button="@drawable/selector_ic_checkbox"
                     android:gravity="center_vertical"
                     android:padding="10dp"
@@ -265,6 +255,25 @@
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_term_of_review"
+                    app:layout_constraintVertical_bias="0" />
+
+                <CheckBox
+                    android:id="@+id/btn_term_of_service_introduce_agreement"
+                    style="@style/kr_body_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:layout_marginBottom="120dp"
+                    android:button="@drawable/selector_ic_checkbox"
+                    android:gravity="center_vertical"
+                    android:padding="10dp"
+                    android:text="@string/content_terms_of_review_introduce_agree"
+                    android:theme="@style/style_checkbox"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_term_of_service_agreement"
                     app:layout_constraintVertical_bias="0" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -279,7 +288,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_solid_primary_lg"
-            android:enabled="@{(vm.state.pureDegree > 19 &amp;&amp; vm.state.agree &amp;&amp; vm.state.content.length() > 20 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
+            android:enabled="@{(vm.state.pureDegree > 19 &amp;&amp; vm.state.agree &amp;&amp; vm.state.introduceAgree &amp;&amp; vm.state.content.length() > 20 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
             android:gravity="center"
             android:paddingVertical="18dp"
             android:text="@string/content_upload"

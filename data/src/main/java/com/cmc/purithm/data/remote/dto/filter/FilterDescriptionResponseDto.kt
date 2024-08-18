@@ -9,7 +9,7 @@ internal data class FilterDescriptionResponseDto(
     @SerializedName("name")
     val name : String,
     @SerializedName("profile")
-    val profile : String,
+    val profile : String?,
     @SerializedName("description")
     val description : String,
     @SerializedName("photoDescriptions")

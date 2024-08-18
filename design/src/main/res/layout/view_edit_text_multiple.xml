@@ -16,6 +16,7 @@
 
         <EditText
             android:id="@+id/edit_main"
+            android:textColorHint="@color/grey_200"
             style="@style/kr_body_4"
             android:layout_width="match_parent"
             android:layout_height="0dp"

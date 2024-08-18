@@ -14,7 +14,7 @@ internal data class GetFeedResponseDto(
     @SerializedName("writer")
     val writer : String,
     @SerializedName("profile")
-    val profile : String,
+    val profile : String?,
     @SerializedName("pureDegree")
     val pureDegree : Int,
     @SerializedName("content")

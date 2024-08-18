@@ -12,7 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_button_trans_primary_s"
-        android:paddingHorizontal="4dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="12dp"
         android:paddingVertical="4.5dp">
 
         <androidx.cardview.widget.CardView

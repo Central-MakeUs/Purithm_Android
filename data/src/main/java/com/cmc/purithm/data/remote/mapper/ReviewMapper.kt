@@ -23,7 +23,7 @@ internal fun BaseResponse<GetFilterReviewResponseDto>.toDomain(): Review {
                 id = it.id,
                 content = it.content,
                 pureDegree = it.pureDegree,
-                userProfile = it.profile,
+                userProfile = it.profile ?: "",
                 userName = it.userName,
                 pictures = it.pictures ?: emptyList(),
                 createdAt = it.createAt
@@ -37,7 +37,7 @@ internal fun BaseResponse<ReviewResponseDto>.toDomain(): ReviewItem {
     return ReviewItem(
         pureDegree = response.pureDegree,
         content = response.content,
-        userProfile = response.userProfile,
+        userProfile = response.userProfile ?: "",
         userName = response.username,
         pictures = response.pictures,
     )

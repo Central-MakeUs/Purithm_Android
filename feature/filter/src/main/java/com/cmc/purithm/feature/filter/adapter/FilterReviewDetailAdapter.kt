@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.filter.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
@@ -52,6 +53,9 @@ class FilterReviewDetailAdapter(
                     FilterReviewPictureAdapter(fragmentActivity, item.pictures)
                 if(item.pictures.size > 1){
                     indicatorOnboarding.setViewPager(viewpagerPictures)
+                } else {
+                    indicatorOnboarding.visibility = View.GONE
+                    imgListBackground.visibility = View.GONE
                 }
             }
         }

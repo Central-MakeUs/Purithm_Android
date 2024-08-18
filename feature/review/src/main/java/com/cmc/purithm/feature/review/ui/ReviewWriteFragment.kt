@@ -152,6 +152,9 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
             btnTermOfServiceAgreement.setOnCheckedChangeListener { _, isChecked ->
                 viewModel.setAgree(isChecked)
             }
+            btnTermOfServiceIntroduceAgreement.setOnCheckedChangeListener { _, isChecked ->
+                viewModel.setIntroduceAgree(isChecked)
+            }
             seekbarReview.setChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onProgressChanged(
                     seekBar: SeekBar?,
@@ -168,7 +171,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
             editReview.initView(
                 maxSize = TEXT_MAX_SIZE,
                 minSize = TEXT_MIN_SIZE,
-                hint = getString(R.string.content_review_hint),
+                hint = String.format(getString(R.string.content_review_write_require_text), TEXT_MIN_SIZE),
                 imeOption = EditorInfo.IME_ACTION_DONE,
                 errorMsg = String.format(
                     getString(R.string.content_review_write_require_text),
@@ -178,8 +181,6 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                     viewModel.setContent(content)
                 }
             )
-            tvReviewWriteRequireText.text =
-                String.format(getString(R.string.content_review_write_require_text), TEXT_MIN_SIZE)
             viewAppbar.setAppBar(
                 type = PurithmAppbar.PurithmAppbarType.KR_DEFAULT,
                 title = "",

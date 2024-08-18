@@ -8,7 +8,7 @@
     <dimen name="margin_grid_6column">20dp</dimen>
 
     <!-- appbar -->
-    <dimen name="size_appbar_height">98dp</dimen>
+    <dimen name="size_appbar_height">106dp</dimen>
 
     <!-- bottom navigation -->
     <dimen name="size_bottom_navigation_height">82dp</dimen>
@@ -24,7 +24,7 @@
     <!-- button -->
     <dimen name="radius_button_md">12dp</dimen>
     <dimen name="radius_button_s">10dp</dimen>
-    <dimen name="radius_button_lg">16dp</dimen>
+    <dimen name="radius_button_lg">12dp</dimen>
     <dimen name="size_button_stroke">1dp</dimen>
 
     <!-- edit text -->

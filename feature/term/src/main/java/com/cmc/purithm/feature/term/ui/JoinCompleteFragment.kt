@@ -27,6 +27,6 @@ class JoinCompleteFragment : BaseFragment<FragmentJoinCompleteBinding>() {
     }
 
     companion object {
-        private const val DELAY_TIME = 3000L
+        private const val DELAY_TIME = 2000L
     }
 }

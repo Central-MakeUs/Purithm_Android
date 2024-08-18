@@ -14,7 +14,6 @@
         android:background="@drawable/bg_grey100_bottom_sheet_dialog"
         android:paddingHorizontal="@dimen/margin_screen_side">
 
-
         <ImageView
             android:id="@+id/img_top"
             android:layout_width="0dp"
@@ -25,17 +24,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/kr_title_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/title_filter_galaxy_guide"
+            android:textColor="@color/grey_500"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_top" />
+
         <ScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:scrollbars="none"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_top">
+            app:layout_constraintTop_toBottomOf="@id/tv_title">
 
             <LinearLayout
                 android:id="@+id/layout_filter_guide"
@@ -43,19 +53,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_title"
-                    style="@style/kr_title_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/title_filter_galaxy_guide"
-                    android:textColor="@color/grey_500" />
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layout_filter_guide_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:background="@drawable/shape_white_round_background">
 
                     <ImageView

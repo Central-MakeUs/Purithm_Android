@@ -8,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_marginBottom="48dp"
         android:layout_height="@dimen/size_snack_bar_height"
         android:background="@drawable/bg_snackbar">
 

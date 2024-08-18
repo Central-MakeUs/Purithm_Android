@@ -25,6 +25,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/img_list_background"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/gradient_black"
+            app:layout_constraintBottom_toBottomOf="@id/vp_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/vp_picture" />
+
         <com.cmc.purithm.design.component.view.FilterChip
             android:id="@+id/view_filter_chip"
             android:layout_width="wrap_content"

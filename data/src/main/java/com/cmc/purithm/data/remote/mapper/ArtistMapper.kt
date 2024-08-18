@@ -13,7 +13,7 @@ internal fun BaseResponse<List<ArtistResponseDto>>.toDomain(): List<Artist> {
             id = it.id,
             name = it.name,
             description = it.description,
-            profileImg = it.profile,
+            profileImg = it.profile ?: "",
             pictures = it.pictures,
             createdAt = it.createdAt
         )
@@ -27,7 +27,7 @@ internal fun BaseResponse<ArtistResponseDto>.toDomain(): Artist {
         id = response.id,
         name = response.name,
         description = response.description,
-        profileImg = response.profile,
+        profileImg = response.profile ?: "",
         pictures = response.pictures,
         createdAt = response.createdAt
     )

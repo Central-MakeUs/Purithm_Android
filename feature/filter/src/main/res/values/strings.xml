@@ -7,7 +7,7 @@
 
     <string name="content_confirm">확인</string>
     <string name="content_text">텍스트</string>
-    <string name="content_filter_value">필터값 보정값 보기</string>
+    <string name="content_filter_value">필터 보정값 보기</string>
     <string name="content_original">원본</string>
     <string name="content_filter_satisfaction">필터 만족도 %s%%</string>
     <string name="content_filter_introduce">필터 소개</string>

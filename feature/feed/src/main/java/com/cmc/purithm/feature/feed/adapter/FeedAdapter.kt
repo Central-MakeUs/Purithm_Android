@@ -50,6 +50,7 @@ class FeedAdapter(
                     indicatorPicture.setViewPager(vpPicture)
                 } else {
                     indicatorPicture.visibility = View.GONE
+                    imgListBackground.visibility = View.GONE
                 }
                 viewReviewIntensity.setReviewIntensity(data.pureDegree)
                 viewFilterChip.setInitInfo(data.filterThumbnail, data.filterName, clickEvent = {

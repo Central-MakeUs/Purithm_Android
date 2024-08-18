@@ -88,6 +88,7 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
                                         indicatorPicture.setViewPager(vpPicture)
                                     } else {
                                         indicatorPicture.visibility = View.GONE
+                                        imgListBackground.visibility = View.GONE
                                     }
                                     viewReviewIntensity.setReviewIntensity(state.data.pureDegree)
                                 }

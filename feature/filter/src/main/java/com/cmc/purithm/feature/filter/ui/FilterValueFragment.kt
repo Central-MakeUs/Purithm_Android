@@ -55,6 +55,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
 
                             is FilterValueState.LikeResult -> {
                                 dismissLoadingDialog()
+                                Log.d(TAG, "initObserving: state result = ${state.result}")
                                 binding.viewAppbar.setLike(state.result)
                             }
 

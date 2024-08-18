@@ -11,7 +11,7 @@
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black_trans20">
+        android:background="@color/black_trans60">
 
         <ImageView
             android:id="@+id/img_blur_background"
@@ -164,7 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/margin_screen_side"
-                android:layout_marginBottom="40dp"
+                android:layout_marginBottom="48dp"
                 android:background="@drawable/shape_button_trans_primary_lg"
                 android:gravity="center"
                 android:paddingVertical="18dp"

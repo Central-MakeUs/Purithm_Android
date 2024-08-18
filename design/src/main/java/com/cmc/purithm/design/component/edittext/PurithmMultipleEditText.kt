@@ -101,7 +101,7 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                         editMain.setSelection(maxSize)
                         showErrorMsg()
                     } else {    // 텍스트가 한개라도 있으면 background 변경
-                        tvStatus.setTextColor(context.getColorResource(R.color.blue_400))
+                        tvTextCount.setTextColor(context.getColorResource(R.color.blue_400))
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_focus)
                         editMain.setBackgroundResource(R.drawable.shape_white_background)
                         showDefault()
