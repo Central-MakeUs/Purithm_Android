@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="stampCount"
+            type="int" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_screen_side">
+
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/kr_body_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/grey_500"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:stampCount="@{stampCount}"
+            tools:text="4개 더 모으면 premium+ 필터를 열람할 수 있어요" />
+
+        <ImageView
+            android:id="@+id/img_1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_stamp_flower_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_2"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+        <ImageView
+            android:id="@+id/img_2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_stamp_cloud_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_3"
+            app:layout_constraintStart_toEndOf="@id/img_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+        <ImageView
+            android:id="@+id/img_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_stamp_glow_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_4"
+            app:layout_constraintStart_toEndOf="@id/img_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+        <ImageView
+            android:id="@+id/img_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_stamp_clover_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_3"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
+
+        <ImageView
+            android:id="@+id/img_5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_stamp_heart_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_6"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_1" />
+
+        <ImageView
+            android:id="@+id/img_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_screen_side"
+            android:src="@drawable/ic_stamp_star_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_7"
+            app:layout_constraintStart_toEndOf="@id/img_5"
+            app:layout_constraintTop_toBottomOf="@id/img_1" />
+
+        <ImageView
+            android:id="@+id/img_7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_screen_side"
+            android:src="@drawable/ic_stamp_flower2_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toStartOf="@id/img_8"
+            app:layout_constraintStart_toEndOf="@id/img_6"
+            app:layout_constraintTop_toBottomOf="@id/img_1" />
+
+        <ImageView
+            android:id="@+id/img_8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_screen_side"
+            android:src="@drawable/ic_stamp_premium_lock"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/img_7"
+            app:layout_constraintTop_toBottomOf="@id/img_1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

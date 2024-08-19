@@ -7,7 +7,6 @@ import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
 
-@SuppressLint("ClickableViewAccessibility")
 open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
     private val gestureDetector: GestureDetector
 
@@ -22,6 +21,7 @@ open class OnSwipeTouchListener(ctx: Context) : View.OnTouchListener {
 
     override fun onTouch(v: View?, event: MotionEvent): Boolean {
         try {
+            v?.performClick()
             return gestureDetector.onTouchEvent(event)
         } catch (e: Exception) {
             // Error Handling

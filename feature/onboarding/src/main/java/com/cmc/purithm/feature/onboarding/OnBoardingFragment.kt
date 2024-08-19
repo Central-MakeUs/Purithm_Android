@@ -89,18 +89,13 @@ class OnBoardingFragment : BaseFragment<FragmentOnboardingBinding>() {
             indicatorOnboarding.setViewPager(vpBanner)
             layoutContent.setOnTouchListener(object : OnSwipeTouchListener(requireContext()) {
                 override fun onSwipeLeft() {
-                    Log.d(TAG, "onSwipeLeft: on")
-                    Log.d(TAG, "onSwipeLeft: item = ${vpBanner.currentItem}")
                     if(vpBanner.currentItem + 1 <= 3){
-                        Log.d(TAG, "onSwipeLeft: item change")
                         vpBanner.currentItem = vpBanner.currentItem + 1
                     }
                 }
 
                 override fun onSwipeRight() {
-                    Log.d(TAG, "onSwipeRight: on")
                     if(vpBanner.currentItem - 1 >= 0){
-                        Log.d(TAG, "onSwipeRight: item change")
                         vpBanner.currentItem = vpBanner.currentItem - 1
                     }
                 }

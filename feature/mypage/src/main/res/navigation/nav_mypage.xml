@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_mypage"
-    app:startDestination="@id/myAccountFragment">
+    app:startDestination="@id/profileFragment">
 
     <fragment
         android:id="@+id/myAccountFragment"
@@ -21,8 +21,8 @@
         android:label="MyFilterHistoryFragment"
         tools:layout="@layout/fragment_filter_history" />
     <fragment
-        android:id="@+id/myProfileFragment"
-        android:name="com.cmc.purithm.feature.mypage.ui.MyProfileFragment"
+        android:id="@+id/profileFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.ProfileFragment"
         android:label="MyProfileFragment"
         tools:layout="@layout/fragment_profile" />
     <fragment
