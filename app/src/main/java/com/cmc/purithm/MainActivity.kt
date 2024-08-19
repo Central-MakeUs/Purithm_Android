@@ -1,6 +1,7 @@
 package com.cmc.purithm
 
 
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -59,6 +60,8 @@ class MainActivity : AppCompatActivity(), NavigationAction,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
             )
+            navigationBarColor = Color.TRANSPARENT
+            statusBarColor = Color.TRANSPARENT
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             WindowCompat.setDecorFitsSystemWindows(window, false)

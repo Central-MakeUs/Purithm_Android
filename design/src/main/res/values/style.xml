@@ -37,5 +37,7 @@
 
     <style name="style_transparent_bottom_sheet_dialog_fragment_child" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">#00000000</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

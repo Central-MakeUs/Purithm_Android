@@ -55,7 +55,6 @@ class FilterReviewDetailAdapter(
                     indicatorOnboarding.setViewPager(viewpagerPictures)
                 } else {
                     indicatorOnboarding.visibility = View.GONE
-                    imgListBackground.visibility = View.GONE
                 }
             }
         }

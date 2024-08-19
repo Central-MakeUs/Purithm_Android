@@ -8,6 +8,8 @@
         <item name="android:windowSplashScreenAnimatedIcon" tools:targetApi="S">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowContentOverlay">@null</item>
+        <item name="android:enforceNavigationBarContrast" tools:targetApi="q">false</item>
+        <item name="android:enforceStatusBarContrast" tools:targetApi="q">false</item>
     </style>
 
     <style name="Theme.Purithm" parent="Base.Theme.PUTRITHM" />

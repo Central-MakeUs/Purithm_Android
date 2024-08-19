@@ -19,21 +19,12 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager_pictures"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="4:5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/img_list_background"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/gradient_black"
-            app:layout_constraintBottom_toBottomOf="@id/viewpager_pictures"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/viewpager_pictures" />
 
         <me.relex.circleindicator.CircleIndicator3
             android:id="@+id/indicator_onboarding"

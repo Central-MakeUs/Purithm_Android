@@ -43,10 +43,12 @@ object ViewBindingAdapters {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     performClick()
+                    isPressed = true
                     touchEvent()
                     true
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                    isPressed = false
                     touchEvent()
                     true
                 }

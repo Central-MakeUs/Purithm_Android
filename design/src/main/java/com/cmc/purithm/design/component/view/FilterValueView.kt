@@ -2,6 +2,7 @@ package com.cmc.purithm.design.component.view
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -31,18 +32,18 @@ class FilterValueView @JvmOverloads constructor(
         }
     }
 
-    private fun getFilterRes(name : String) = when(name){
-        "lightBalance" -> "라이트밸런스" to  R.drawable.ic_lightbalance
-        "brightness" -> "밝기" to  R.drawable.ic_lightness
-        "exposure" -> "노출" to  R.drawable.ic_exposure
-        "contrast" -> "대비" to  R.drawable.ic_contrast
-        "highlight" -> "하이라이트" to  R.drawable.ic_highlight
-        "shadow" -> "그림자" to  R.drawable.ic_shadow
-        "saturation" -> "채도" to  R.drawable.ic_saturation
-        "tint" -> "틴트" to  R.drawable.ic_tint
-        "temperature" -> "색온도" to  R.drawable.ic_warming
-        "clear" -> "선명도" to  R.drawable.ic_sharpness
-        "clarity" -> "명료도" to  R.drawable.ic_clarity
+    private fun getFilterRes(name: String) = when (name) {
+        "lightBalance" -> "라이트밸런스" to R.drawable.ic_lightbalance
+        "brightness" -> "밝기" to R.drawable.ic_lightness
+        "exposure" -> "노출" to R.drawable.ic_exposure
+        "contrast" -> "대비" to R.drawable.ic_contrast
+        "highlight" -> "하이라이트" to R.drawable.ic_highlight
+        "shadow" -> "그림자" to R.drawable.ic_shadow
+        "saturation" -> "채도" to R.drawable.ic_saturation
+        "tint" -> "틴트" to R.drawable.ic_tint
+        "temperature" -> "색온도" to R.drawable.ic_warming
+        "clear" -> "선명도" to R.drawable.ic_sharpness
+        "clarity" -> "명료도" to R.drawable.ic_clarity
         else -> throw IllegalArgumentException("$name is not supported")
     }
 }

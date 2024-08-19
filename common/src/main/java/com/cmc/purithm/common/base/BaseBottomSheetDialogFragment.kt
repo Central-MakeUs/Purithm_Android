@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.cmc.purithm.common.R
+import com.cmc.purithm.common.util.getColorResource
 import com.cmc.purithm.design.util.Util.dp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -31,6 +34,7 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
             DialogFragment.STYLE_NORMAL,
             com.cmc.purithm.design.R.style.style_transparent_bottom_sheet_dialog_fragment
         )
+        dialog?.window?.navigationBarColor = requireContext().getColorResource(com.cmc.purithm.design.R.color.grey_100)
     }
 
     override fun onCreateView(
@@ -87,5 +91,10 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun dismissAllowingStateLoss() {
+        super.dismissAllowingStateLoss()
+        dialog?.window?.navigationBarColor = requireContext().getColorResource(com.cmc.purithm.design.R.color.transparent)
     }
 }

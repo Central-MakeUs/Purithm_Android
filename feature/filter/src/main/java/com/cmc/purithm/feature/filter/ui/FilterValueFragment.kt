@@ -30,6 +30,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
     private val filterId by lazy {
         navArgs.filterId
     }
+    private var likeState = false
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -57,6 +58,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
                                 dismissLoadingDialog()
                                 Log.d(TAG, "initObserving: state result = ${state.result}")
                                 binding.viewAppbar.setLike(state.result)
+                                likeState = state.result
                             }
 
                             FilterValueState.Loading -> {
@@ -65,7 +67,8 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
 
                             is FilterValueState.Success -> {
                                 dismissLoadingDialog()
-                                setAppbar(state.data.name, state.data.liked)
+                                likeState = state.data.liked
+                                setAppbar(state.data.name, likeState)
                                 setFilterValue(state.data.filterValue)
                                 binding.imgUrl = state.data.thumbnail
                             }
@@ -132,7 +135,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
                 findNavController().popBackStack()
             },
             likeClickListener = {
-                viewModel.requestFilterLike(filterId, liked)
+                viewModel.requestFilterLike(filterId, likeState)
             }
         )
     }

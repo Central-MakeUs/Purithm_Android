@@ -16,10 +16,14 @@ class FilterReviewPictureAdapter(
     private val fragmentList = mutableListOf<Fragment>()
 
     init {
+        val imgSize = imgList.size
         imgList.forEach { img ->
             Log.d(TAG, "img = $img")
             fragmentList.add(FilterReviewDetailPictureFragment().apply {
-                arguments = bundleOf(Constants.BUNDLE_FILTER_REVIEW_IMG_KEY to img)
+                arguments = bundleOf(
+                    Constants.BUNDLE_FILTER_REVIEW_IMG_KEY to img,
+                    Constants.BUNDLE_FILTER_REVIEW_IMG_GRADIENT to (imgSize > 1)
+                )
             })
         }
     }

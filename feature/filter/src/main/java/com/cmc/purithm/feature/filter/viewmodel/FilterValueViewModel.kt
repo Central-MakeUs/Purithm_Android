@@ -28,7 +28,6 @@ class FilterValueViewModel @Inject constructor(
     private val _sideEffect : MutableSharedFlow<FilterValueSideEffects> = MutableSharedFlow()
     val sideEffect : SharedFlow<FilterValueSideEffects> get() = _sideEffect.asSharedFlow()
 
-
     fun getFilterValue(filterId : Long) {
         viewModelScope.launch {
             _state.emit(FilterValueState.Loading)

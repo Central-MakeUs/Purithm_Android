@@ -150,12 +150,12 @@
             android:id="@+id/img_gradient"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/gradient_purple"
             android:visibility="@{vm.state.noText ? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_no_filter"
