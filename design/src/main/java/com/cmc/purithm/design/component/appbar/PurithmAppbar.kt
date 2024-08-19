@@ -46,7 +46,13 @@ class PurithmAppbar @JvmOverloads constructor(
                 likeClickListener
             )
 
-            PurithmAppbarType.ENG_LIKE -> setEngLikeAppbar(title, likeCnt, likeState, likeClickListener)
+            PurithmAppbarType.ENG_LIKE -> setEngLikeAppbar(
+                title,
+                likeCnt,
+                likeState,
+                likeClickListener
+            )
+
             PurithmAppbarType.KR_DEFAULT -> setKrDefaultAppbar(title, questionClickListener)
             PurithmAppbarType.KR_BUTTON -> setKrButtonAppbar(title, registrationClickListener)
             PurithmAppbarType.KR_BACK -> setKrBackAppbar(title)
@@ -144,10 +150,10 @@ class PurithmAppbar @JvmOverloads constructor(
     /**
      * 좋아요 요청 후, 데이터를 전체로 불러오는 것이 아닌 좋아요 상태만 요청하도록 변경
      * */
-    fun setLike(like : Boolean){
-        if(like){
+    fun setLike(like: Boolean) {
+        if (like) {
             binding.btnLike.setImageResource(R.drawable.ic_like_pressed_appbar)
-        }else{
+        } else {
             binding.btnLike.setImageResource(R.drawable.ic_like_unpressed_appbar)
         }
     }
@@ -226,15 +232,36 @@ class PurithmAppbar @JvmOverloads constructor(
     }
 
     private fun setAppbarTopMargin(top: Int) {
+        Log.d(TAG, "setAppbarTopMargin: on")
         val constraintSet = ConstraintSet().apply {
-            clone(binding.layoutAppbar)
+            clone(binding.layoutMain)
         }
-        constraintSet.setMargin(
+        constraintSet.connect(
             R.id.layout_appbar,
+            ConstraintSet.TOP,
+            ConstraintSet.PARENT_ID,
             ConstraintSet.TOP,
             top.dp
         )
-        constraintSet.applyTo(binding.layoutAppbar)
+        constraintSet.connect(
+            R.id.layout_appbar,
+            ConstraintSet.BOTTOM,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.BOTTOM
+        )
+        constraintSet.connect(
+            R.id.layout_appbar,
+            ConstraintSet.START,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.START
+        )
+        constraintSet.connect(
+            R.id.layout_appbar,
+            ConstraintSet.END,
+            ConstraintSet.PARENT_ID,
+            ConstraintSet.END
+        )
+        constraintSet.applyTo(binding.layoutMain)
     }
 
 
@@ -245,7 +272,7 @@ class PurithmAppbar @JvmOverloads constructor(
     companion object {
         private const val TAG = "PurithmAppbar"
 
-        private const val TOP_MARGIN_KR = 80
-        private const val TOP_MARGIN_EN = 56
+        private const val TOP_MARGIN_KR = 64
+        private const val TOP_MARGIN_EN = 40
     }
 }

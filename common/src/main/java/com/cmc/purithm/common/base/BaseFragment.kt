@@ -94,7 +94,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         Log.d(TAG, "showLoadingDialog: start")
         if (mLoadingDialog.isDetached) {
             Log.d(TAG, "showLoadingDialog: on")
-            mLoadingDialog.show(childFragmentManager, LoadingDialogFragment::class.java.simpleName)
+            mLoadingDialog.show(childFragmentManager, mLoadingDialog.tag)
         }
     }
 
