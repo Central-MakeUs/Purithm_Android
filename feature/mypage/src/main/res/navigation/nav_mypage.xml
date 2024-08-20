@@ -28,6 +28,12 @@
         <action
             android:id="@+id/action_profileFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myAccountFragment"
+            app:destination="@id/myAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/myReviewHistoryFragment"
@@ -43,6 +49,23 @@
             android:name="id"
             app:argType="long"
             app:nullable="false" />
+        <argument
+            android:name="username"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="profile"
+            app:argType="string"
+            app:nullable="true" />
+        <action
+            android:id="@+id/action_settingFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.EditProfileFragment"
+        android:label="EditProfileFragment"
+        tools:layout="@layout/fragment_edit_profile">
         <argument
             android:name="username"
             app:argType="string"

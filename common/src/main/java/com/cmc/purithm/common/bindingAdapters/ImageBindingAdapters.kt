@@ -24,7 +24,6 @@ object ImageBindingAdapters {
         Glide.with(this)
             .load(url)
             .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
-            .onlyRetrieveFromCache(true)
             .into(this)
 
     }

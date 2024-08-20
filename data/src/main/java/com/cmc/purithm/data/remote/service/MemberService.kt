@@ -2,7 +2,9 @@ package com.cmc.purithm.data.remote.service
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
+import com.cmc.purithm.data.remote.dto.member.ProfileUpdateRequestDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,4 +24,9 @@ internal interface MemberService {
 
     @GET("/api/users/account")
     suspend fun getAccount() : BaseResponse<MemberAccountResponseDto>
+
+    @POST("/api/users/me")
+    suspend fun updateProfile(
+        @Body body : ProfileUpdateRequestDto
+    ) : BaseResponse<Unit?>
 }

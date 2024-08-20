@@ -80,7 +80,16 @@
                     android:background="@color/transparent"
                     android:contentDescription="@string/content_setting"
                     android:src="@drawable/ic_settings"
-                    android:visibility="visible" />
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_content"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:textColor="@color/blue_400"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:id="@+id/layout_like"

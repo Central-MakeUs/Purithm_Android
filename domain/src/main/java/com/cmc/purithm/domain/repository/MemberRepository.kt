@@ -12,4 +12,5 @@ interface MemberRepository {
     suspend fun deleteMyReview(reviewId : Long)
     suspend fun getUser() : Member
     suspend fun getAccount() : Account
+    suspend fun updateUserProfile(username : String, profile : String)
 }

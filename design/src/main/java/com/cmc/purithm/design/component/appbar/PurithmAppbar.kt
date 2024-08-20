@@ -27,13 +27,15 @@ class PurithmAppbar @JvmOverloads constructor(
     fun setAppBar(
         type: PurithmAppbarType,
         title: String = "",
+        content : String = "",
         likeCnt: Int = 0,
         likeState: Boolean = false,
         backClickListener: (() -> Unit)? = null,
         likeClickListener: (() -> Unit)? = null,
         questionClickListener: (() -> Unit)? = null,
         registrationClickListener: (() -> Unit)? = null,
-        settingClickListener : (() -> Unit)? = null
+        settingClickListener: (() -> Unit)? = null,
+        contentClickListener: (() -> Unit)? = null
     ) {
         Log.d(TAG, "setAppBar: start")
         Log.d(TAG, "setAppBar: type = $type")
@@ -59,6 +61,7 @@ class PurithmAppbar @JvmOverloads constructor(
             PurithmAppbarType.KR_BACK -> setKrBackAppbar(title)
             PurithmAppbarType.ENG_TEXT -> setEngTextAppbar(title)
             PurithmAppbarType.ENG_SETTING -> setEngSettingAppbar(settingClickListener)
+            PurithmAppbarType.KR_TEXT -> setKrTextAppbar(title, content, contentClickListener)
         }
         binding.btnBack.setOnClickListener {
             Log.d(TAG, "setAppBar: back on")
@@ -92,6 +95,11 @@ class PurithmAppbar @JvmOverloads constructor(
                 text = ""
                 visibility = View.GONE
             }
+            with(tvContent) {
+                text = ""
+                visibility = View.GONE
+                setOnClickListener(null)
+            }
             with(btnLike) {
                 setOnClickListener(null)
                 visibility = View.GONE
@@ -100,7 +108,7 @@ class PurithmAppbar @JvmOverloads constructor(
                 setOnClickListener(null)
                 visibility = View.GONE
             }
-            with(btnSetting){
+            with(btnSetting) {
                 setOnClickListener(null)
                 visibility = View.GONE
             }
@@ -124,7 +132,27 @@ class PurithmAppbar @JvmOverloads constructor(
         }
     }
 
-    fun setEngDefaultAppbar(
+    private fun setKrTextAppbar(
+        title: String,
+        content: String,
+        contentClickListener: (() -> Unit)?
+    ) {
+        setAppbarTopMargin(TOP_MARGIN_KR)
+        with(binding) {
+            tvTitleKr.visibility = View.VISIBLE
+            tvTitleKr.text = title
+
+            tvContent.visibility = View.VISIBLE
+            tvContent.text = content
+            tvContent.setOnClickListener {
+                contentClickListener?.invoke()
+            }
+
+            btnBack.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setEngDefaultAppbar(
         title: String,
         likeState: Boolean,
         likeClickListener: (() -> Unit)?
@@ -282,7 +310,7 @@ class PurithmAppbar @JvmOverloads constructor(
 
 
     enum class PurithmAppbarType {
-        ENG_DEFAULT, ENG_LIKE, ENG_TEXT, ENG_SETTING, KR_DEFAULT, KR_BUTTON, KR_BACK
+        ENG_DEFAULT, ENG_LIKE, ENG_TEXT, ENG_SETTING, KR_DEFAULT, KR_BUTTON, KR_BACK, KR_TEXT
     }
 
     companion object {
