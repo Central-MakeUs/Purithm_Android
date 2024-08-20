@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.mypage.ui
 
+import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -63,7 +64,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             ProfileSideEffects.NavigateLike -> TODO()
                             is ProfileSideEffects.NavigateProfileSetting -> TODO()
                             ProfileSideEffects.NavigateReviewHistory -> TODO()
-                            ProfileSideEffects.NavigateSetting -> TODO()
+                            is ProfileSideEffects.NavigateSetting -> {
+                                navigate(ProfileFragmentDirections.actionProfileFragmentToSettingFragment(
+                                    sideEffect.id,
+                                    sideEffect.username,
+                                    sideEffect.profile
+                                ))
+                            }
                             ProfileSideEffects.NavigateStamp -> TODO()
                         }
                     }
@@ -77,11 +84,34 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
     }
 
     override fun initView() {
+        setBackButtonEvent()
         binding.viewAppbar.setAppBar(
             type = PurithmAppbar.PurithmAppbarType.ENG_SETTING,
             settingClickListener = {
-                viewModel.clickSetting()
+                viewModel.clickSetting(
+                    binding.data?.id!!,
+                    binding.data?.username!!,
+                    binding.data?.profile ?: ""
+                )
             }
         )
+    }
+
+    private fun setBackButtonEvent(){
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            CommonDialogFragment.showDialog(
+                content = "앱을 종료하시겠습니까?",
+                negativeText = getString(com.cmc.purithm.design.R.string.content_cancel),
+                negativeClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                },
+                positiveText = "종료",
+                positiveClickEvent = {
+                    CommonDialogFragment.dismissDialog()
+                    requireActivity().finish()
+                },
+                fragmentManager = childFragmentManager
+            )
+        }
     }
 }

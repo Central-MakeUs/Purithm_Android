@@ -19,19 +19,27 @@
     <!-- popUpTo는 fragmentId를 그대로 사용할 수 있음 -->
     <action
         android:id="@+id/navigate_login"
-        app:destination="@id/nav_login" />
+        app:destination="@id/nav_login"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_onboarding"
-        app:destination="@id/nav_onboarding" />
+        app:destination="@id/nav_onboarding"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_term_of_service"
-        app:destination="@id/nav_term_of_service" />
+        app:destination="@id/nav_term_of_service"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_home"
-        app:destination="@id/nav_home" />
+        app:destination="@id/nav_home"
+        app:popUpTo="@id/splashFragment"
+        app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_review"

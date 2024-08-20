@@ -1,10 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_stamp">스탬프</string>
+    <string name="title_setting_account">계정 관리</string>
+    <string name="title_setting_other">기타</string>
+    <string name="title_setting">설정</string>
+
     <string name="content_stamp_count">누적 스탬프 %d</string>
     <string name="content_edit_profile">Edit profile</string>
+
     <string name="category_like">찜 목록</string>
     <string name="category_filter_history">필터 열람 내역</string>
     <string name="category_review_history">남긴 후기</string>
+    <string name="category_account_info">계정 정보</string>
+    <string name="category_edit_profile">프로필 편집</string>
+    <string name="category_terms_of_service">이용약관</string>
+    <string name="category_personal_info">개인정보 처리방침</string>
+    <string name="category_app_version">버전 정보</string>
+    <string name="category_logout">로그아웃</string>
+    <string name="category_delete_account">탈퇴</string>
 
 </resources>

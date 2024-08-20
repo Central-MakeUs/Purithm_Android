@@ -69,4 +69,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun initView() {
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        //
+    }
 }

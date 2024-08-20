@@ -36,15 +36,15 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
-    fun clickEditProfile(username : String, profile : String){
+    fun clickEditProfile(id : Long, username : String, profile : String){
         viewModelScope.launch {
-            _sideEffects.emit(ProfileSideEffects.NavigateProfileSetting(username, profile))
+            _sideEffects.emit(ProfileSideEffects.NavigateProfileSetting(id, username, profile))
         }
     }
 
-    fun clickSetting(){
+    fun clickSetting(id : Long, username : String, profile : String){
         viewModelScope.launch {
-            _sideEffects.emit(ProfileSideEffects.NavigateSetting)
+            _sideEffects.emit(ProfileSideEffects.NavigateSetting(id, username, profile))
         }
     }
 
@@ -82,10 +82,10 @@ sealed interface ProfileState {
 }
 
 sealed interface ProfileSideEffects {
-    data object NavigateSetting : ProfileSideEffects
+    data class NavigateSetting(val id : Long, val username : String, val profile : String) : ProfileSideEffects
     data object NavigateStamp : ProfileSideEffects
     data object NavigateLike : ProfileSideEffects
     data object NavigateFilterHistory : ProfileSideEffects
     data object NavigateReviewHistory : ProfileSideEffects
-    class NavigateProfileSetting(val username : String, val profile : String) : ProfileSideEffects
+    class NavigateProfileSetting(val id : Long, val username : String, val profile : String) : ProfileSideEffects
 }

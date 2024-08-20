@@ -94,7 +94,7 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/content_edit_profile"
                     android:textColor="@color/blue_400"
-                    app:delayClickEvent="@{() -> vm.clickEditProfile(data.username, data.profile)}"
+                    app:delayClickEvent="@{() -> vm.clickEditProfile(data.id, data.username, data.profile)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_user_name" />

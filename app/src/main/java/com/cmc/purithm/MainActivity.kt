@@ -176,13 +176,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.filter.R.id.filterFragment,
             com.cmc.purithm.feature.review.R.id.reviewWriteFragment,
             com.cmc.purithm.feature.review.R.id.reviewHistoryFragment,
+            com.cmc.purithm.feature.mypage.R.id.settingFragment,
             com.cmc.purithm.feature.artist.R.id.artistFilterFragment -> {
                 setBottomNavVisibility(false)
             }
 
             com.cmc.purithm.feature.feed.R.id.feedFragment,
             com.cmc.purithm.feature.home.R.id.homeFragment,
-            com.cmc.purithm.feature.artist.R.id.artistFragment -> {
+            com.cmc.purithm.feature.artist.R.id.artistFragment,
+            com.cmc.purithm.feature.mypage.R.id.profileFragment -> {
                 setBottomNavVisibility(true)
             }
         }
