@@ -18,24 +18,10 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/img_picture"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:visibility="@{vm.state.filterImgType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
-            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).picture}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="9:16"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
             android:id="@+id/img_original"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="fitXY"
-            android:visibility="@{vm.state.filterImgType == FilterImgType.ORIGINAL ? View.VISIBLE : View.GONE}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
             app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).originalPicture}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="9:16"
@@ -43,5 +29,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/img_picture"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:visibility="@{vm.state.filterImgType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
+            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).picture}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="9:16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

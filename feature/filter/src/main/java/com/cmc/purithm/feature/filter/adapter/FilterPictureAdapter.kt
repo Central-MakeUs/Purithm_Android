@@ -1,10 +1,12 @@
 package com.cmc.purithm.feature.filter.adapter
 
+import android.content.Context
 import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.bumptech.glide.Glide
 import com.cmc.purithm.domain.entity.filter.FilterImg
 import com.cmc.purithm.feature.filter.Constants
 import com.cmc.purithm.feature.filter.model.FilterImgType
@@ -17,7 +19,7 @@ class FilterPictureAdapter(
     private val fragmentList = mutableListOf<Fragment>()
 
     init {
-        pictureList.forEach { _ ->
+        pictureList.forEach { filterImg ->
             fragmentList.add(FilterPictureFragment())
         }
     }
