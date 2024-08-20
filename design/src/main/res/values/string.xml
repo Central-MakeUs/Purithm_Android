@@ -4,7 +4,7 @@
     <string name="title_term_of_service">이용약관</string>
     <string name="content_appbar_registration">등록</string>
     <string name="content_back_description">뒤로가기</string>
-    <string name="content_search_description">검색</string>
+    <string name="content_setting">설정</string>
     <string name="content_like_description">찜</string>
     <string name="content_question_description">도움말</string>
 

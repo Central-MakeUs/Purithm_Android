@@ -5,6 +5,13 @@
 
     <data>
 
+        <variable
+            name="data"
+            type="com.cmc.purithm.feature.mypage.model.ProfileUiModel" />
+
+        <variable
+            name="vm"
+            type="com.cmc.purithm.feature.mypage.viewmodel.ProfileViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,15 +30,17 @@
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_main"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="64dp">
 
                 <ImageView
                     android:id="@+id/img_background"
@@ -58,7 +67,8 @@
                         android:id="@+id/img_profile"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
+                        android:scaleType="centerCrop"
+                        app:imageUrl="@{data.profile}" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -69,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:includeFontPadding="true"
+                    android:text="@{data.username}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,6 +94,7 @@
                     android:layout_marginTop="2dp"
                     android:text="@string/content_edit_profile"
                     android:textColor="@color/blue_400"
+                    app:delayClickEvent="@{() -> vm.clickEditProfile(data.username, data.profile)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tv_user_name" />
@@ -122,7 +134,9 @@
                         android:gravity="center"
                         android:paddingHorizontal="12dp"
                         android:paddingVertical="8dp"
+                        android:text="@{String.format(@string/content_stamp_count, data.stampCnt)}"
                         android:textColor="@color/white"
+                        app:delayClickEvent="@{() -> vm.clickStamp()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toEndOf="@id/tv_stamp_title"
@@ -133,38 +147,216 @@
                         android:id="@+id/view_stamp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_stamp_cnt" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/layout_like"
-                    android:layout_width="0dp"
-                    android:layout_height="60dp"
-                    android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <ImageView
+                    android:id="@+id/img_like"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_screen_side"
+                    android:layout_marginTop="40dp"
+                    android:src="@drawable/ic_mypage_like"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_stamp">
+                    app:layout_constraintTop_toBottomOf="@id/layout_stamp" />
 
-                    <ImageView
-                        android:id="@+id/img_like"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_mypage_like" />
+                <TextView
+                    android:id="@+id/tv_like"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/category_like"
+                    android:textColor="@color/grey_500"
+                    app:layout_constraintBottom_toBottomOf="@id/img_like"
+                    app:layout_constraintEnd_toStartOf="@id/layout_like"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/img_like"
+                    app:layout_constraintTop_toTopOf="@id/img_like" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_like"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/margin_screen_side"
+                    app:delayClickEvent="@{() -> vm.clickLike()}"
+                    app:layout_constraintBottom_toBottomOf="@id/img_like"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_like"
+                    app:layout_constraintTop_toTopOf="@id/img_like">
 
                     <TextView
                         style="@style/kr_body_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/category_like"
-                        android:textColor="@color/grey_500"/>
+                        android:layout_marginEnd="10dp"
+                        android:ellipsize="end"
+                        android:gravity="end|center_vertical"
+                        android:maxLines="1"
+                        android:text="@{String.valueOf(data.likesCnt)}"
+                        android:textColor="@color/grey_300"
+                        app:layout_constraintBottom_toBottomOf="@id/img_like_arrow"
+                        app:layout_constraintEnd_toStartOf="@id/img_like_arrow"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/img_like_arrow"
+                        tools:text="1" />
 
-                </LinearLayout>
+                    <ImageView
+                        android:id="@+id/img_like_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider_like"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:background="@color/grey_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_like" />
+
+                <ImageView
+                    android:id="@+id/img_filter_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_screen_side"
+                    android:src="@drawable/ic_history"
+                    app:layout_constraintBottom_toBottomOf="@id/layout_filter_history"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/layout_filter_history" />
+
+                <TextView
+                    android:id="@+id/tv_history"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/category_filter_history"
+                    android:textColor="@color/grey_500"
+                    app:layout_constraintBottom_toBottomOf="@id/img_filter_history"
+                    app:layout_constraintEnd_toStartOf="@id/layout_filter_history"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/img_filter_history"
+                    app:layout_constraintTop_toTopOf="@id/img_filter_history" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_filter_history"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/margin_screen_side"
+                    app:delayClickEvent="@{() -> vm.clickFilterHistory()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_history"
+                    app:layout_constraintTop_toBottomOf="@id/layout_like">
+
+                    <TextView
+                        style="@style/kr_body_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:ellipsize="end"
+                        android:gravity="end|center_vertical"
+                        android:maxLines="1"
+                        android:text="@{String.valueOf(data.filterViewCnt)}"
+                        android:textColor="@color/grey_300"
+                        app:layout_constraintBottom_toBottomOf="@id/img_filter_history_arrow"
+                        app:layout_constraintEnd_toStartOf="@id/img_filter_history_arrow"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/img_filter_history_arrow"
+                        tools:text="1" />
+
+                    <ImageView
+                        android:id="@+id/img_filter_history_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/divider_filter_history"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:background="@color/grey_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_filter_history" />
+
+                <ImageView
+                    android:id="@+id/img_review_history"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_screen_side"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="@id/layout_review_history"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/layout_review_history" />
+
+                <TextView
+                    android:id="@+id/tv_review_history"
+                    style="@style/kr_body_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="@string/category_review_history"
+                    android:textColor="@color/grey_500"
+                    app:layout_constraintBottom_toBottomOf="@id/img_review_history"
+                    app:layout_constraintEnd_toStartOf="@id/layout_review_history"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toEndOf="@id/img_review_history"
+                    app:layout_constraintTop_toTopOf="@id/img_review_history" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_review_history"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="@dimen/margin_screen_side"
+                    app:delayClickEvent="@{() -> vm.clickReviewHistory()}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/tv_review_history"
+                    app:layout_constraintTop_toBottomOf="@id/layout_filter_history">
+
+                    <TextView
+                        style="@style/kr_body_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:ellipsize="end"
+                        android:gravity="end|center_vertical"
+                        android:maxLines="1"
+                        android:text="@{String.valueOf(data.reviewCnt)}"
+                        android:textColor="@color/grey_300"
+                        app:layout_constraintBottom_toBottomOf="@id/img_review_history_arrow"
+                        app:layout_constraintEnd_toStartOf="@id/img_review_history_arrow"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/img_review_history_arrow"
+                        tools:text="12345" />
+
+                    <ImageView
+                        android:id="@+id/img_review_history_arrow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_arrow_right_grey"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

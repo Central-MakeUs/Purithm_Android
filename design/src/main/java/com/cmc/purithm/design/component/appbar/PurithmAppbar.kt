@@ -33,6 +33,7 @@ class PurithmAppbar @JvmOverloads constructor(
         likeClickListener: (() -> Unit)? = null,
         questionClickListener: (() -> Unit)? = null,
         registrationClickListener: (() -> Unit)? = null,
+        settingClickListener : (() -> Unit)? = null
     ) {
         Log.d(TAG, "setAppBar: start")
         Log.d(TAG, "setAppBar: type = $type")
@@ -57,6 +58,7 @@ class PurithmAppbar @JvmOverloads constructor(
             PurithmAppbarType.KR_BUTTON -> setKrButtonAppbar(title, registrationClickListener)
             PurithmAppbarType.KR_BACK -> setKrBackAppbar(title)
             PurithmAppbarType.ENG_TEXT -> setEngTextAppbar(title)
+            PurithmAppbarType.ENG_SETTING -> setEngSettingAppbar(settingClickListener)
         }
         binding.btnBack.setOnClickListener {
             Log.d(TAG, "setAppBar: back on")
@@ -90,15 +92,15 @@ class PurithmAppbar @JvmOverloads constructor(
                 text = ""
                 visibility = View.GONE
             }
-            with(btnSearch) {
-                setOnClickListener(null)
-                visibility = View.GONE
-            }
             with(btnLike) {
                 setOnClickListener(null)
                 visibility = View.GONE
             }
             with(btnQuestion) {
+                setOnClickListener(null)
+                visibility = View.GONE
+            }
+            with(btnSetting){
                 setOnClickListener(null)
                 visibility = View.GONE
             }
@@ -202,6 +204,20 @@ class PurithmAppbar @JvmOverloads constructor(
         }
     }
 
+    private fun setEngSettingAppbar(
+        settingClickListener: (() -> Unit)?
+    ) {
+        setAppbarTopMargin(TOP_MARGIN_EN)
+        with(binding) {
+            tvTitleEn.visibility = View.VISIBLE
+            btnSetting.visibility = View.VISIBLE
+            btnSetting.setOnClickListener {
+                settingClickListener?.invoke()
+            }
+            btnBack.visibility = View.GONE
+        }
+    }
+
     private fun setKrButtonAppbar(
         title: String,
         registrationClickListener: (() -> Unit)?
@@ -266,7 +282,7 @@ class PurithmAppbar @JvmOverloads constructor(
 
 
     enum class PurithmAppbarType {
-        ENG_DEFAULT, ENG_LIKE, ENG_TEXT, KR_DEFAULT, KR_BUTTON, KR_BACK
+        ENG_DEFAULT, ENG_LIKE, ENG_TEXT, ENG_SETTING, KR_DEFAULT, KR_BUTTON, KR_BACK
     }
 
     companion object {
