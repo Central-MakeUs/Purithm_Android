@@ -177,6 +177,7 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.review.R.id.reviewWriteFragment,
             com.cmc.purithm.feature.review.R.id.reviewHistoryFragment,
             com.cmc.purithm.feature.mypage.R.id.settingFragment,
+            com.cmc.purithm.feature.mypage.R.id.myAccountFragment,
             com.cmc.purithm.feature.artist.R.id.artistFilterFragment -> {
                 setBottomNavVisibility(false)
             }

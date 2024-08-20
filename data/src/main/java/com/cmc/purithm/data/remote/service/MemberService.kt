@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.remote.service
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
+import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -18,4 +19,7 @@ internal interface MemberService {
 
     @GET("/api/users/me")
     suspend fun getUser(): BaseResponse<MemberResponseDto>
+
+    @GET("/api/users/account")
+    suspend fun getAccount() : BaseResponse<MemberAccountResponseDto>
 }

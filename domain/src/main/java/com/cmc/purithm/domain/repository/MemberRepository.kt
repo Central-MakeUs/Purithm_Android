@@ -1,5 +1,6 @@
 package com.cmc.purithm.domain.repository
 
+import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
 
 interface MemberRepository {
@@ -10,4 +11,5 @@ interface MemberRepository {
     suspend fun setFirstFilter(flag : Boolean)
     suspend fun deleteMyReview(reviewId : Long)
     suspend fun getUser() : Member
+    suspend fun getAccount() : Account
 }

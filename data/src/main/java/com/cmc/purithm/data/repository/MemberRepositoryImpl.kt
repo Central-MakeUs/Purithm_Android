@@ -4,6 +4,7 @@ import com.cmc.purithm.data.local.datasource.MemberDataStore
 import com.cmc.purithm.data.remote.HandleApi
 import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.MemberService
+import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
 import com.cmc.purithm.domain.repository.MemberRepository
 import javax.inject.Inject
@@ -38,5 +39,9 @@ internal class MemberRepositoryImpl @Inject constructor(
 
     override suspend fun getUser(): Member {
         return HandleApi.callApi { memberService.getUser().toDomain() }
+    }
+
+    override suspend fun getAccount(): Account {
+        return HandleApi.callApi { memberService.getAccount().toDomain() }
     }
 }

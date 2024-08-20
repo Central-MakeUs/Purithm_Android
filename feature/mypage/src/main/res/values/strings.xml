@@ -7,6 +7,7 @@
 
     <string name="content_stamp_count">누적 스탬프 %d</string>
     <string name="content_edit_profile">Edit profile</string>
+    <string name="content_kakao_login">카카오 로그인</string>
 
     <string name="category_like">찜 목록</string>
     <string name="category_filter_history">필터 열람 내역</string>
@@ -18,5 +19,8 @@
     <string name="category_app_version">버전 정보</string>
     <string name="category_logout">로그아웃</string>
     <string name="category_delete_account">탈퇴</string>
+    <string name="category_join_type">가입 방법</string>
+    <string name="category_email">이메일</string>
+    <string name="category_join_date">가입일</string>
 
 </resources>
