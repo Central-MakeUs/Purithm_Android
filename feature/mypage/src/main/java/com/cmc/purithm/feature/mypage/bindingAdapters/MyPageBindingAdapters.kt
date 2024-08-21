@@ -31,7 +31,7 @@ object MyPageBindingAdapters {
 
     @JvmStatic
     @BindingAdapter("socialImg")
-    fun ImageView.setSocialImg(socialImg: String) {
+    fun ImageView.setSocialImg(socialImg: String?) {
         when (socialImg) {
             "KAKAO" -> setImageResource(R.drawable.ic_kakao)
         }
@@ -39,7 +39,7 @@ object MyPageBindingAdapters {
 
     @JvmStatic
     @BindingAdapter("socialText")
-    fun TextView.setSocialText(socialText: String) {
+    fun TextView.setSocialText(socialText: String?) {
         text = when (socialText) {
             "KAKAO" -> "카카오 로그인"
             else -> ""

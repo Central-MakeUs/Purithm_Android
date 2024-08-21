@@ -2,8 +2,8 @@ package com.cmc.purithm.domain.entity.member
 
 data class Member(
     val id: Long = 0L,
-    val memberMetaData: MemberMetaData? = null,
-    val account : Account? = null,
+    val memberMetaData: MemberMetaData = MemberMetaData(),
+    val account : Account = Account(),
     val email: String = "",
     val profile: String = "",
     val username: String = "",

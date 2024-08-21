@@ -16,6 +16,7 @@ import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,8 +52,9 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     private fun initBottomNavigation() {
-        binding?.bnvMain?.addOnItemSelectedListener(navHostFragment.navController)
+        binding?.bnvMain?.setupWithNavController(navHostFragment.navController)
     }
+
 
     private fun setTransparentStatusBar() {
         window.apply {
@@ -182,9 +184,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
                 setBottomNavVisibility(false)
             }
 
-            com.cmc.purithm.feature.feed.R.id.feedFragment,
-            com.cmc.purithm.feature.home.R.id.homeFragment,
-            com.cmc.purithm.feature.artist.R.id.artistFragment,
+            com.cmc.purithm.feature.feed.R.id.feedFragment -> {
+                setBottomNavVisibility(true)
+            }
+            com.cmc.purithm.feature.home.R.id.homeFragment -> {
+                setBottomNavVisibility(true)
+            }
+            com.cmc.purithm.feature.artist.R.id.artistFragment -> {
+                setBottomNavVisibility(true)
+            }
             com.cmc.purithm.feature.mypage.R.id.profileFragment -> {
                 setBottomNavVisibility(true)
             }

@@ -10,6 +10,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.mypage.R
 import com.cmc.purithm.feature.mypage.databinding.FragmentSettingBinding
@@ -39,7 +41,9 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                             is SettingState.SuccessDeleteAccount -> {}
                             is SettingState.Error -> {}
                             SettingState.Loading -> showLoadingDialog()
-                            is SettingState.SuccessLogout -> {}
+                            is SettingState.SuccessLogout -> {
+                                (activity as NavigationAction).navigateOnBoarding()
+                            }
                             SettingState.Initialize -> {}
                         }
                     }
@@ -49,8 +53,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                     viewModel.sideEffects.collect { sideEffect ->
                         when (sideEffect) {
                             SettingSideEffects.DeleteAccount -> {}
-                            SettingSideEffects.Logout -> {}
-                            SettingSideEffects.NavigateToAccountInfo -> {}
+                            SettingSideEffects.Logout -> {
+                                CommonDialogFragment.showDialog(
+                                    content = "로그아웃 하시겠습니까?",
+                                    positiveText = "로그아웃",
+                                    negativeText = "취소",
+                                    positiveClickEvent = {
+                                        viewModel.logout()
+                                    },
+                                    negativeClickEvent = {
+                                        CommonDialogFragment.dismissDialog()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
+                            }
+                            SettingSideEffects.NavigateToAccountInfo -> navigate(SettingFragmentDirections.actionSettingFragmentToMyAccountFragment())
                             SettingSideEffects.NavigateToEditProfile -> {}
                             SettingSideEffects.NavigateToPersonalInfo -> startWeb(URL_PERSONAL_INFO)
                             SettingSideEffects.NavigateToTermsOfService -> startWeb(
