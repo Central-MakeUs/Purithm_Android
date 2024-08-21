@@ -79,7 +79,7 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
 
         val params = dialog?.window?.attributes
         val deviceWidth = size.x
-        params?.width = (deviceWidth * 0.9).toInt()
+        params?.width = (deviceWidth * 0.8).toInt()
         dialog?.window?.attributes = params
     }
 

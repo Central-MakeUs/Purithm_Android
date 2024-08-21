@@ -45,6 +45,10 @@
             android:name="filterId"
             app:argType="long"
             app:nullable="false" />
+        <argument
+            android:name="filterName"
+            app:argType="string"
+            app:nullable="false"/>
         <action
             android:id="@+id/action_filterLoadingFragment_to_filterValueFragment"
             app:destination="@id/filterValueFragment"

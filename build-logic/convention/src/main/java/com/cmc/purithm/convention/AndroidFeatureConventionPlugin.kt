@@ -85,6 +85,9 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 // lottie
                 add("implementation", libs.findLibrary("lottie").get())
+
+                // shimmer
+                add("implementation", libs.findLibrary("facebook-shimmer").get())
             }
         }
     }

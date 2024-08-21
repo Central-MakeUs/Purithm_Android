@@ -18,11 +18,21 @@ class FilterPictureFragment : BaseFragment<FragmentFilterPictureBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_filter_picture
     private val viewModel : FilterViewModel by hiltNavGraphViewModels(R.id.nav_filter)
+    private val filterImg : String by lazy {
+        arguments?.getString(Constants.BUNDLE_FILTER_IMG_KEY, "") ?: ""
+    }
+    private val originalImg : String by lazy {
+        arguments?.getString(Constants.BUNDLE_FILTER_ORIGINAL_KEY, "") ?: ""
+    }
 
     override fun initObserving() {}
 
     override fun initBinding() {
-        binding.vm = viewModel
+        with(binding){
+            vm = viewModel
+            filterImg = this@FilterPictureFragment.filterImg
+            originalImg = this@FilterPictureFragment.originalImg
+        }
     }
 
     override fun initView() {}

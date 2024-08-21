@@ -20,7 +20,12 @@ class FilterPictureAdapter(
 
     init {
         pictureList.forEach { filterImg ->
-            fragmentList.add(FilterPictureFragment())
+            fragmentList.add(FilterPictureFragment().apply {
+                arguments = bundleOf(
+                    Constants.BUNDLE_FILTER_IMG_KEY to filterImg.picture,
+                    Constants.BUNDLE_FILTER_ORIGINAL_KEY to filterImg.originalPicture
+                )
+            })
         }
     }
 

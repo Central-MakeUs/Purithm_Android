@@ -87,7 +87,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                             is FilterSideEffects.NavigateFilterLoading -> {
                                 navigate(
                                     FilterFragmentDirections.actionFilterFragmentToFilterLoadingFragment(
-                                        filterId
+                                        filterId, viewModel.state.value.data?.name ?: ""
                                     )
                                 )
                             }

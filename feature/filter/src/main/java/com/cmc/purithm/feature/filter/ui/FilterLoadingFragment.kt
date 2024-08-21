@@ -10,12 +10,14 @@ import com.cmc.purithm.feature.filter.databinding.FragmentFilterLoadingBinding
 class FilterLoadingFragment : BaseFragment<FragmentFilterLoadingBinding>() {
     override val layoutId: Int
         get() = R.layout.fragment_filter_loading
-
-    private val navArgs by navArgs<FilterFragmentArgs>()
+    private val navArgs by navArgs<FilterLoadingFragmentArgs>()
+    private val filterName by lazy { navArgs.filterName }
 
     override fun initObserving() {}
 
-    override fun initBinding() {}
+    override fun initBinding() {
+        binding.filterName = filterName
+    }
 
     override fun initView() {
         Handler(Looper.getMainLooper()).postDelayed({
@@ -25,6 +27,6 @@ class FilterLoadingFragment : BaseFragment<FragmentFilterLoadingBinding>() {
 
     companion object {
         private const val TAG = "FilterLoadingFragment"
-        private const val DELAY_TIME = 1000L
+        private const val DELAY_TIME = 2000L
     }
 }

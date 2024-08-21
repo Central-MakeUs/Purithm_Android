@@ -101,7 +101,7 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
                     viewModel.sideEffect.collect { sideEffect ->
                         when(sideEffect){
                             ReviewHistorySideEffect.NavigateFilter -> {
-
+                                (activity as NavigationAction).navigateFilterItem(filterId, false)
                             }
                         }
                     }

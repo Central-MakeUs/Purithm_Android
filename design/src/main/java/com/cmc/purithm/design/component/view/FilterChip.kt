@@ -27,6 +27,7 @@ class FilterChip @JvmOverloads constructor(
 
             Glide.with(imgFilter)
                 .load(imgUrl)
+                .centerCrop()
                 .placeholder(R.drawable.bg_image_placeholder)
                 .into(imgFilter)
 

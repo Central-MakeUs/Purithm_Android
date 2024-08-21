@@ -49,12 +49,13 @@ class FilterReviewDetailAdapter(
             with(binding) {
                 data = item
                 viewReviewIntensity.setReviewIntensity(item.pureDegree)
-                viewpagerPictures.adapter =
+                vpPicture.adapter =
                     FilterReviewPictureAdapter(fragmentActivity, item.pictures)
                 if(item.pictures.size > 1){
-                    indicatorOnboarding.setViewPager(viewpagerPictures)
+                    indicatorOnboarding.setViewPager(vpPicture)
                 } else {
                     indicatorOnboarding.visibility = View.GONE
+                    imgListBackground.visibility = View.GONE
                 }
             }
         }

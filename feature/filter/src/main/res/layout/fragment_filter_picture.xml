@@ -3,11 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <import type="com.cmc.purithm.feature.filter.model.FilterImgType" />
-
         <import type="android.view.View" />
-
+        <variable
+            name="originalImg"
+            type="String" />
+        <variable
+            name="filterImg"
+            type="String" />
         <variable
             name="vm"
             type="com.cmc.purithm.feature.filter.viewmodel.FilterViewModel" />
@@ -19,10 +22,10 @@
 
         <ImageView
             android:id="@+id/img_original"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).originalPicture}"
+            app:imageUrl="@{originalImg}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"
@@ -31,11 +34,11 @@
 
         <ImageView
             android:id="@+id/img_picture"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:visibility="@{vm.state.filterImgType == FilterImgType.FILTER ? View.VISIBLE : View.GONE}"
-            app:imageUrl="@{vm.state.data.pictures.get(vm.state.selectedIndex - 1).picture}"
+            app:imageUrl="@{filterImg}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="9:16"
             app:layout_constraintEnd_toEndOf="parent"

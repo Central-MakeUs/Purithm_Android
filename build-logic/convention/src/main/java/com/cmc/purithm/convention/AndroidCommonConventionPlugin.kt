@@ -39,6 +39,9 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findBundle("lifecycle").get())
                 add("implementation", libs.findBundle("kotlinx-coroutine").get())
 
+                add("implementation", libs.findLibrary("facebook-shimmer").get())
+
+
             }
         }
     }

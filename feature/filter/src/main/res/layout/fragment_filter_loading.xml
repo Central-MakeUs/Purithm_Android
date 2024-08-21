@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="filterName"
+            type="String" />
+        <import type="com.cmc.purithm.feature.filter.R"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -47,17 +50,18 @@
             <TextView
                 style="@style/en_title_1"
                 android:layout_width="wrap_content"
+                android:text="@{filterName}"
                 android:layout_height="wrap_content"
-                android:text="Dreamlike"
                 android:textColor="@color/blue_400" />
         </LinearLayout>
 
         <ImageView
             android:id="@+id/img_filter_loading_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="fitCenter"
             android:layout_marginBottom="-48dp"
-            android:src="@drawable/ic_filter_loading"
+            app:imageGifRes="@{R.raw.ic_filter_loading}"
             app:layout_constraintBottom_toTopOf="@id/layout_filter_loading_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
