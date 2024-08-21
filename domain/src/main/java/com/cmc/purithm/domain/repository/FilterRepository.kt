@@ -2,6 +2,7 @@ package com.cmc.purithm.domain.repository
 
 import androidx.paging.PagingData
 import com.cmc.purithm.domain.entity.filter.Filter
+import com.cmc.purithm.domain.entity.filter.FilterHistory
 import kotlinx.coroutines.flow.Flow
 
 interface FilterRepository {
@@ -21,18 +22,22 @@ interface FilterRepository {
     )
 
     suspend fun getFilterDetail(
-        filterId : Long
-    ) : Filter
+        filterId: Long
+    ): Filter
 
     suspend fun getFilterValue(
-        filterId : Long
-    ) : Filter
+        filterId: Long
+    ): Filter
 
     suspend fun getFilterIntroduction(
-        filterId : Long
-    ) : Filter
+        filterId: Long
+    ): Filter
 
     suspend fun getFilterOfArtist(
-        sortedBy : String, artistId: Long, totalElementCallback : (Int) -> Unit
-    ) : Flow<PagingData<Filter>>
+        sortedBy: String, artistId: Long, totalElementCallback: (Int) -> Unit
+    ): Flow<PagingData<Filter>>
+
+    suspend fun getLikedFilters(): List<Filter>
+
+    suspend fun getFilterHistory(): List<FilterHistory>
 }

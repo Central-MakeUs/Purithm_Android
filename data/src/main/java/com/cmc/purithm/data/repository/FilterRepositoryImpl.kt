@@ -10,6 +10,7 @@ import com.cmc.purithm.data.remote.datasource.FilterItemDataSource
 import com.cmc.purithm.data.remote.mapper.toDomain
 import com.cmc.purithm.data.remote.service.FilterService
 import com.cmc.purithm.domain.entity.filter.Filter
+import com.cmc.purithm.domain.entity.filter.FilterHistory
 import com.cmc.purithm.domain.repository.FilterRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -75,5 +76,13 @@ internal class FilterRepositoryImpl @Inject constructor(
                 )
             }
         ).flow
+    }
+
+    override suspend fun getLikedFilters(): List<Filter> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getFilterHistory(): List<FilterHistory> {
+        TODO("Not yet implemented")
     }
 }

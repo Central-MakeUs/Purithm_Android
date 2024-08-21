@@ -1,9 +1,13 @@
 package com.cmc.purithm.data.remote.service
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
+import com.cmc.purithm.data.remote.dto.filter.FilterHistoryResponseDto
+import com.cmc.purithm.data.remote.dto.filter.FilterLikeResponseDto
+import com.cmc.purithm.data.remote.dto.member.GetStampResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
 import com.cmc.purithm.data.remote.dto.member.ProfileUpdateRequestDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
+import com.cmc.purithm.data.remote.dto.review.ReviewHistoryResponseDto
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
@@ -29,4 +33,16 @@ internal interface MemberService {
     suspend fun updateProfile(
         @Body body : ProfileUpdateRequestDto
     ) : BaseResponse<Unit?>
+
+    @GET("/api/users/stamps")
+    suspend fun getStamp() : BaseResponse<List<GetStampResponseDto>>
+
+    @GET("/api/users/review")
+    suspend fun getReviews() : BaseResponse<List<ReviewHistoryResponseDto>>
+
+    @GET("/api/users/picks")
+    suspend fun getLikedFilters() : BaseResponse<List<FilterLikeResponseDto>>
+
+    @GET("/api/users/history")
+    suspend fun getFilterHistory() : BaseResponse<List<FilterHistoryResponseDto>>
 }

@@ -46,5 +46,5 @@ internal fun BaseResponse<ReviewResponseDto>.toDomain(): ReviewItem {
 internal fun BaseResponse<AddReviewResponseDto>.toDomain(): Long {
     val response = this.data ?: throw NullPointerException("data is null")
     return response.id
-
 }
+

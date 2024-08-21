@@ -1,5 +1,6 @@
 package com.cmc.purithm.domain.repository
 
+import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
 
@@ -13,4 +14,5 @@ interface MemberRepository {
     suspend fun getUser() : Member
     suspend fun getAccount() : Account
     suspend fun updateUserProfile(username : String, profile : String)
+    suspend fun getStamp() : List<Filter>
 }

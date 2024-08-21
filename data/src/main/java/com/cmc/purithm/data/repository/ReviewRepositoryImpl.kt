@@ -34,4 +34,8 @@ internal class ReviewRepositoryImpl @Inject constructor(
         val request = AddReviewRequestDto(filterId, pureDegree, content, pictures)
         return HandleApi.callApi { reviewService.addReview(request).toDomain() }
     }
+
+    override suspend fun getReviewHistory(): List<ReviewItem> {
+        TODO("Not yet implemented")
+    }
 }
