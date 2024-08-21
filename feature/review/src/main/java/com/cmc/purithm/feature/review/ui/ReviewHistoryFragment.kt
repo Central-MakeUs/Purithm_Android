@@ -55,14 +55,8 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
                         when(state) {
                             ReviewHistoryState.DeleteSuccess -> {
                                 dismissLoadingDialog()
-                                CommonDialogFragment.showDialog(
-                                    content = "삭제되었습니다.",
-                                    positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
-                                    positiveClickEvent = {
-                                        backNavigate()
-                                    },
-                                    fragmentManager = childFragmentManager
-                                )
+                                showSnackBar(binding.root, message = "삭제되었습니다.")
+                                backNavigate()
                             }
                             is ReviewHistoryState.Error -> {
                                 dismissLoadingDialog()
@@ -134,7 +128,18 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
             )
 
             btnDelete.setOnClickListener {
-                viewModel.deleteReview(reviewId)
+                CommonDialogFragment.showDialog(
+                    content = "작성한 후기를 삭제할까요?",
+                    positiveText = "삭제하기",
+                    negativeText = "취소",
+                    negativeClickEvent = {
+                        CommonDialogFragment.dismissDialog()
+                    },
+                    positiveClickEvent = {
+                        viewModel.deleteReview(reviewId)
+                    },
+                    fragmentManager = childFragmentManager
+                )
             }
 
             viewFilterChip.setInitInfo(

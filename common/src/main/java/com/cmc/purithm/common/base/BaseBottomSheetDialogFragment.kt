@@ -85,6 +85,10 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
             val behavior = BottomSheetBehavior.from<View>(bottomSheet)
             behavior.isFitToContents = false
             behavior.expandedOffset = dp.dp
+
+            val layoutParams = bottomSheet.layoutParams
+            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
+            bottomSheet.layoutParams = layoutParams
         }
     }
 

@@ -9,6 +9,8 @@ import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.cmc.purithm.common.R
@@ -65,6 +67,9 @@ object ImageBindingAdapters {
     fun ImageView.setImageByGifRes(imageGifRes: Int) {
         Glide.with(this)
             .load(imageGifRes)
+            .diskCacheStrategy(DiskCacheStrategy.ALL) // 디스크 캐시 설정
+            .skipMemoryCache(false) // 메모리 캐시 사용 여부
+            .apply(RequestOptions().override(180, 180)) // 해상도 조절
             .into(this)
     }
 
