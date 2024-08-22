@@ -33,14 +33,22 @@ object ImageBindingAdapters {
      *
      * @param url 이미지 URL
      * */
-    @BindingAdapter(value = ["imageUrl", "lottieView"], requireAll = false)
+    @BindingAdapter("imageUrl")
     @JvmStatic
-    fun ImageView.setImageByUrl(url: String?, lottieView: LottieAnimationView?) {
+    fun ImageView.setImageByUrl(url: String?, ) {
         Log.d(TAG, "setImageByUrl: start")
         Glide.with(this)
             .load(url)
             .centerCrop()
             .placeholder(com.cmc.purithm.design.R.color.grey_200)
+            .thumbnail(
+                Glide.with(this)
+                    .load(R.raw.gif_loading)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .skipMemoryCache(false)
+                    .override(30,30)
+                    .fitCenter()
+            )
             .into(this)
 
     }
