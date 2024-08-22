@@ -23,42 +23,29 @@ import com.cmc.purithm.common.R
  * */
 object ImageBindingAdapters {
     private const val TAG = "ImageBindingAdapters"
+
     /**
      * URL 형식의 이미지를 Glide로 설정
      *
      * @param url 이미지 URL
      * */
-    @BindingAdapter(value = ["imageUrl", "lottieView"], requireAll = false)
+    @BindingAdapter(value = ["imageUrl"], requireAll = false)
     @JvmStatic
-    fun ImageView.setImageByUrl(url: String?, lottieView: LottieAnimationView?) {
+    fun ImageView.setImageByUrl(url: String?) {
         Log.d(TAG, "setImageByUrl: start")
-        lottieView?.run {
-            visibility = View.VISIBLE
-            playAnimation()
-        }
         Glide.with(this)
             .load(url)
             .centerCrop()
             .placeholder(com.cmc.purithm.design.R.color.grey_200)
-            .into(object : CustomTarget<Drawable>(){
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: Transition<in Drawable>?
-                ) {
-                    lottieView?.run {
-                        cancelAnimation()
-                        visibility = View.GONE
-                    }
-                    this@setImageByUrl.run {
-                        setImageDrawable(resource)
-                        visibility = View.VISIBLE
-                    }
-                }
-
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    Log.d(TAG, "onLoadCleared: start")
-                }
-            })
+            .thumbnail(
+                Glide.with(this)
+                    .load(R.raw.gif_loading)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .skipMemoryCache(false)
+                    .override(30,30)
+                    .fitCenter()
+            )
+            .into(this)
 
     }
 
