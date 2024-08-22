@@ -88,6 +88,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 // shimmer
                 add("implementation", libs.findLibrary("facebook-shimmer").get())
+
+                add("implementation", libs.findLibrary("stickyscrollview").get())
             }
         }
     }

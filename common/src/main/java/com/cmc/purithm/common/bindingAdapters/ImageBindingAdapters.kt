@@ -2,9 +2,12 @@ package com.cmc.purithm.common.bindingAdapters
 
 import android.graphics.drawable.Drawable
 import android.util.Log
+import android.view.Gravity
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
 import androidx.databinding.BindingAdapter
 import com.airbnb.lottie.LottieAnimationView
@@ -14,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.cmc.purithm.common.R
+import com.cmc.purithm.design.util.Util.dp
 
 /**
  * 이미지에 사용되는 BindingAdapter
@@ -29,22 +33,14 @@ object ImageBindingAdapters {
      *
      * @param url 이미지 URL
      * */
-    @BindingAdapter(value = ["imageUrl"], requireAll = false)
+    @BindingAdapter(value = ["imageUrl", "lottieView"], requireAll = false)
     @JvmStatic
-    fun ImageView.setImageByUrl(url: String?) {
+    fun ImageView.setImageByUrl(url: String?, lottieView: LottieAnimationView?) {
         Log.d(TAG, "setImageByUrl: start")
         Glide.with(this)
             .load(url)
             .centerCrop()
             .placeholder(com.cmc.purithm.design.R.color.grey_200)
-            .thumbnail(
-                Glide.with(this)
-                    .load(R.raw.gif_loading)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .skipMemoryCache(false)
-                    .override(30,30)
-                    .fitCenter()
-            )
             .into(this)
 
     }
@@ -64,5 +60,35 @@ object ImageBindingAdapters {
     @JvmStatic
     fun ImageView.setImageByRes(res: Int) {
         setImageResource(res)
+    }
+
+    @JvmStatic
+    @BindingAdapter("profile")
+    fun ImageView.setProfile(profile: String?) {
+        Glide.with(this)
+            .load(profile)
+            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
+            .into(object : CustomTarget<Drawable>() {
+                override fun onResourceReady(
+                    resource: Drawable,
+                    transition: Transition<in Drawable>?
+                ) {
+                    // 이미지 뷰의 scaleType과 width, height를 변경
+                    // 이미지를 적용
+                    with(this@setProfile){
+                        setImageDrawable(resource)
+                        scaleType = ImageView.ScaleType.CENTER_CROP
+                        layoutParams = FrameLayout.LayoutParams(
+                            FrameLayout.LayoutParams.MATCH_PARENT,
+                            FrameLayout.LayoutParams.MATCH_PARENT,
+                            Gravity.CENTER
+                        )
+                    }
+                }
+
+                override fun onLoadCleared(placeholder: Drawable?) {
+                    Log.d(TAG, "onLoadCleared: start")
+                }
+            })
     }
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/grey_100">
+
+        <com.cmc.purithm.design.component.appbar.PurithmAppbar
+            android:id="@+id/view_appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.amar.library.ui.StickyScrollView
+            android:id="@+id/scroll_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_appbar"
+            app:stickyHeader="@id/layout_stamp_description">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layout_stamp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/view_stamp_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/img_stamp_background"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/bg_stamp_background" />
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <TextView
+                        android:id="@+id/tv_stamp_description_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:letterSpacing="-0.0285714285714286"
+                        android:lineSpacingExtra="10dp"
+                        android:text="@string/content_stamp_description_1"
+                        android:textColor="@color/white"
+                        android:textSize="21sp"
+                        app:layout_constraintBottom_toTopOf="@id/tv_stamp_description_2"
+                        app:layout_constraintStart_toStartOf="@id/view_stamp_background"
+                        app:layout_constraintTop_toTopOf="@id/view_stamp_background"
+                        app:layout_constraintVertical_chainStyle="packed" />
+
+                    <TextView
+                        android:id="@+id/tv_stamp_description_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:letterSpacing="-0.0285714285714286"
+                        android:lineSpacingExtra="10dp"
+                        android:text="@string/content_stamp_description_2"
+                        android:textColor="@color/white"
+                        android:textSize="21sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_stamp_description_1"
+                        app:layout_constraintTop_toBottomOf="@id/tv_stamp_description_1" />
+
+                    <ImageView
+                        android:id="@+id/img_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_arrow_right_white"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_stamp_description_2"
+                        app:layout_constraintEnd_toStartOf="@id/img_stamp"
+                        app:layout_constraintHorizontal_chainStyle="spread_inside"
+                        app:layout_constraintStart_toEndOf="@id/tv_stamp_description_2"
+                        app:layout_constraintTop_toTopOf="@id/tv_stamp_description_2" />
+
+                    <ImageView
+                        android:id="@+id/img_stamp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/margin_screen_side"
+                        android:src="@drawable/ic_stamp_flower_unlock"
+                        app:layout_constraintBottom_toBottomOf="@id/view_stamp_background"
+                        app:layout_constraintEnd_toEndOf="@id/view_stamp_background"
+                        app:layout_constraintStart_toEndOf="@+id/img_arrow"
+                        app:layout_constraintTop_toTopOf="@id/view_stamp_background" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_stamp_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:orientation="horizontal"
+                    android:paddingVertical="21dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_stamp">
+
+                    <TextView
+                        android:id="@+id/tv_total_stamp_count"
+                        style="@style/kr_body_3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="start|center_vertical"
+                        android:textColor="@color/grey_500"
+                        tools:text="총 12개" />
+
+                    <TextView
+                        android:id="@+id/tv_premium_state"
+                        style="@style/kr_body_6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end|center_vertical"
+                        android:textColor="@color/grey_300"
+                        tools:text="premium+까지 4개 남음" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.amar.library.ui.StickyScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

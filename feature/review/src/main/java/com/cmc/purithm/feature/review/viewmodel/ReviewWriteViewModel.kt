@@ -101,7 +101,7 @@ class ReviewWriteViewModel @Inject constructor(
                 it.copy(loading = true)
             }
             runCatching {
-                getPictureUploadUrlUseCase()
+                getPictureUploadUrlUseCase("review")
             }.onSuccess { uploadUrl ->
                 uploadPicture(uploadUrl, file)
             }.onFailure { exception ->

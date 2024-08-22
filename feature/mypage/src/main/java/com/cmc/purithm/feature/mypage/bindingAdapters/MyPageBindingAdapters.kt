@@ -3,6 +3,8 @@ package com.cmc.purithm.feature.mypage.bindingAdapters
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.cmc.purithm.common.bindingAdapters.ImageBindingAdapters.setImageByUrl
 import com.cmc.purithm.feature.mypage.R
 
 object MyPageBindingAdapters {
@@ -44,6 +46,32 @@ object MyPageBindingAdapters {
             "KAKAO" -> "카카오 로그인"
             else -> ""
         }
+    }
 
+    @JvmStatic
+    @BindingAdapter("dot_date")
+    fun TextView.setDotDate(date: String?) {
+        text = date?.replace("-", ".")
+    }
+
+    @JvmStatic
+    @BindingAdapter("stamp_membership")
+    fun TextView.setStampMembership(membership: String) {
+        when (membership) {
+            "PREMIUM" -> {
+                text = "premium"
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_blue)
+            }
+
+            "PREMIUM+" -> {
+                text = "premium+"
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_purple)
+            }
+
+            else -> {
+                text = "basic"
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_fill_grey)
+            }
+        }
     }
 }

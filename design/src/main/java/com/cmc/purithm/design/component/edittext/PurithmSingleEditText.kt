@@ -28,27 +28,26 @@ class PurithmSingleEditText @JvmOverloads constructor(
         return ViewEditTextSingleBinding.inflate(layoutInflater, this, true)
     }
 
-    // TODO : minSize의 사용 여부
+
     fun initView(
         maxSize: Int,
         minSize: Int,
         title: String,
         description: String,
         hint: String,
-        imeOption: Int
+        errorDescription: String,
+        textChangeListener: (String) -> Unit
     ) {
         with(binding) {
             tvTitle.text = title
             tvDesc.text = description
-            tvCount.text = "0"
             tvMaxCount.text = String.format(
                 context.getString(R.string.content_edit_text_single_status),
                 maxSize
             )
 
             editMain.hint = hint
-            editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize - 1))
-            editMain.imeOptions = imeOption
+            editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize))
             editMain.setOnFocusChangeListener { _, hasFocus ->
                 if (hasFocus) {
                     binding.tvDesc.visibility = View.VISIBLE
@@ -70,16 +69,22 @@ class PurithmSingleEditText @JvmOverloads constructor(
                 }
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                    textChangeListener(s.toString())
                     tvCount.text = "${s.length}"
                     if (s.isEmpty()) {
                         editMain.setBackgroundResource(R.drawable.bg_edit_text_default)
                         tvDesc.visibility = View.GONE
                         tvMaxCount.visibility = View.GONE
                         tvCount.visibility = View.GONE
+                    } else if (s.length < minSize) {
+                        showErrorMsg(errorDescription)
                     } else {
-                        tvDesc.visibility = View.VISIBLE
-                        tvMaxCount.visibility = View.VISIBLE
-                        tvCount.visibility = View.VISIBLE
+                        if(editMain.hasFocus()){
+                            tvDesc.visibility = View.VISIBLE
+                            tvMaxCount.visibility = View.VISIBLE
+                            tvCount.visibility = View.VISIBLE
+                        }
+                        setDefault(description)
                     }
                 }
 
@@ -88,12 +93,31 @@ class PurithmSingleEditText @JvmOverloads constructor(
         }
     }
 
+    fun setText(text: String) {
+        binding.editMain.setText(text)
+    }
+
+    fun getText(): String {
+        return binding.editMain.text.toString()
+    }
+
     fun showErrorMsg(errorMsg: String) {
         with(binding) {
+            editMain.setBackgroundResource(R.drawable.bg_edit_text_error)
             tvDesc.setTextColor(context.getColorResource(R.color.red_500))
             tvDesc.text = errorMsg
 
             tvCount.setTextColor(context.getColorResource(R.color.red_500))
+        }
+    }
+
+    fun setDefault(description: String){
+        with(binding) {
+            editMain.setBackgroundResource(R.drawable.bg_edit_text)
+            tvDesc.setTextColor(context.getColorResource(R.color.grey_300))
+            tvDesc.text = description
+
+            tvCount.setTextColor(context.getColorResource(R.color.blue_400))
         }
     }
 }

@@ -8,6 +8,10 @@
     <string name="content_stamp_count">누적 스탬프 %d</string>
     <string name="content_edit_profile">Edit profile</string>
     <string name="content_kakao_login">카카오 로그인</string>
+    <string name="content_stamp_description_1">후기 남기고</string>
+    <string name="content_stamp_description_2">스탬프를 채워 보세요</string>
+    <string name="content_stamp_total_count">총 %d개</string>
+    <string name="content_stamp_review_history">남긴 후기</string>
 
     <string name="category_like">찜 목록</string>
     <string name="category_filter_history">필터 열람 내역</string>
@@ -22,5 +26,6 @@
     <string name="category_join_type">가입 방법</string>
     <string name="category_email">이메일</string>
     <string name="category_join_date">가입일</string>
-
+    <string name="category_gallery">사진첩에서 선택</string>
+    <string name="category_deafult_img">기존 이미지로 변경</string>
 </resources>

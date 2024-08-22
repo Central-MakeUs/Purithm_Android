@@ -72,6 +72,12 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
+    fun refresh(){
+        viewModelScope.launch {
+            _state.emit(ProfileState.Initialize)
+        }
+    }
+
 }
 
 sealed interface ProfileState {
