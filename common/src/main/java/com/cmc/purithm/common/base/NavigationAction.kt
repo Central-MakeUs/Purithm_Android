@@ -20,5 +20,6 @@ interface NavigationAction {
     fun navigateArtistFilter(artistId : Long)
     fun navigateFilterValue(filterId : Long)
     fun popBackStackAfterWriteReview(type : Int)
+    fun popBackStackAfterProfileEdit()
     fun navigateMyReviewHistory(filterId : Long, reviewId : Long, thumbnail : String, filterName : String)
 }

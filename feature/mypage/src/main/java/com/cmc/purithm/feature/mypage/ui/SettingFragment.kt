@@ -68,7 +68,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                                 )
                             }
                             SettingSideEffects.NavigateToAccountInfo -> navigate(SettingFragmentDirections.actionSettingFragmentToMyAccountFragment())
-                            SettingSideEffects.NavigateToEditProfile -> {}
+                            SettingSideEffects.NavigateToEditProfile -> navigate(SettingFragmentDirections.actionSettingFragmentToEditProfileFragment(
+                                username,
+                                profile
+                            ))
                             SettingSideEffects.NavigateToPersonalInfo -> startWeb(URL_PERSONAL_INFO)
                             SettingSideEffects.NavigateToTermsOfService -> startWeb(
                                 URL_TERMS_OF_SERVICE

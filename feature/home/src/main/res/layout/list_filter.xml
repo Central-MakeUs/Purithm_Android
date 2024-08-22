@@ -50,7 +50,6 @@
                 android:scaleType="centerCrop"
                 android:background="@color/grey_200"
                 app:imageUrl="@{model.thumbnailUrl}"
-                app:lottieView="@{lottieView}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

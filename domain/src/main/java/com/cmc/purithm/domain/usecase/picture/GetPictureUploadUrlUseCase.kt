@@ -6,7 +6,7 @@ import javax.inject.Inject
 class GetPictureUploadUrlUseCase @Inject constructor(
     private val pictureRepository: PictureRepository
 ){
-    suspend operator fun invoke() : String{
-        return pictureRepository.getPictureUploadUrl("review")
+    suspend operator fun invoke(prefix : String) : String{
+        return pictureRepository.getPictureUploadUrl(prefix)
     }
 }

@@ -22,5 +22,6 @@
     <string name="category_join_type">가입 방법</string>
     <string name="category_email">이메일</string>
     <string name="category_join_date">가입일</string>
-
+    <string name="category_gallery">사진첩에서 선택</string>
+    <string name="category_deafult_img">기존 이미지로 변경</string>
 </resources>

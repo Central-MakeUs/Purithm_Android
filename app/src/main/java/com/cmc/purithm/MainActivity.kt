@@ -146,6 +146,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
+    override fun popBackStackAfterProfileEdit() {
+        with(navHostFragment.navController){
+            popBackStack(com.cmc.purithm.feature.mypage.R.id.profileFragment, false)
+        }
+    }
+
     override fun navigateMyReviewHistory(
         filterId: Long,
         reviewId: Long,
@@ -180,20 +186,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.review.R.id.reviewHistoryFragment,
             com.cmc.purithm.feature.mypage.R.id.settingFragment,
             com.cmc.purithm.feature.mypage.R.id.myAccountFragment,
-            com.cmc.purithm.feature.artist.R.id.artistFilterFragment -> {
+            com.cmc.purithm.feature.artist.R.id.artistFilterFragment,
+            com.cmc.purithm.feature.mypage.R.id.editProfileFragment -> {
                 setBottomNavVisibility(false)
             }
 
-            com.cmc.purithm.feature.feed.R.id.feedFragment -> {
-                setBottomNavVisibility(true)
-            }
-            com.cmc.purithm.feature.home.R.id.homeFragment -> {
-                setBottomNavVisibility(true)
-            }
-            com.cmc.purithm.feature.artist.R.id.artistFragment -> {
-                setBottomNavVisibility(true)
-            }
-            com.cmc.purithm.feature.mypage.R.id.profileFragment -> {
+            com.cmc.purithm.feature.feed.R.id.feedFragment,
+            com.cmc.purithm.feature.home.R.id.homeFragment,
+            com.cmc.purithm.feature.artist.R.id.artistFragment,
+            com.cmc.purithm.feature.mypage.R.id.profileFragment-> {
                 setBottomNavVisibility(true)
             }
         }

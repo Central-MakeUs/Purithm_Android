@@ -62,7 +62,12 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                         when (sideEffect) {
                             ProfileSideEffects.NavigateFilterHistory -> TODO()
                             ProfileSideEffects.NavigateLike -> TODO()
-                            is ProfileSideEffects.NavigateProfileSetting -> TODO()
+                            is ProfileSideEffects.NavigateProfileSetting -> {
+                                navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(
+                                    sideEffect.username,
+                                    sideEffect.profile
+                                ))
+                            }
                             ProfileSideEffects.NavigateReviewHistory -> TODO()
                             is ProfileSideEffects.NavigateSetting -> {
                                 navigate(ProfileFragmentDirections.actionProfileFragmentToSettingFragment(
@@ -113,5 +118,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 fragmentManager = childFragmentManager
             )
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.refresh()
     }
 }

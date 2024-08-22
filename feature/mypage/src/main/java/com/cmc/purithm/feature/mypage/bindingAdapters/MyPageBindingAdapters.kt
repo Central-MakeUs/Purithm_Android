@@ -3,6 +3,8 @@ package com.cmc.purithm.feature.mypage.bindingAdapters
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+import com.cmc.purithm.common.bindingAdapters.ImageBindingAdapters.setImageByUrl
 import com.cmc.purithm.feature.mypage.R
 
 object MyPageBindingAdapters {

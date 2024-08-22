@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_bottom_sheet_dialog">
+
+        <ImageView
+            android:id="@+id/img_top"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="20dp"
+            android:src="@drawable/ic_bottom_sheet_dialog_top"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_start_gallery"
+            style="@style/kr_body_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginTop="20dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="18dp"
+            android:text="@string/category_gallery"
+            android:textColor="@color/grey_500"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/img_top" />
+
+        <TextView
+            android:id="@+id/tv_default_img"
+            style="@style/kr_body_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginBottom="40dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="18dp"
+            android:text="@string/category_deafult_img"
+            android:textColor="@color/grey_500"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_start_gallery" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
