@@ -2,6 +2,7 @@
 agp = "8.1.4"
 kotlin = "1.9.22"
 junit = "4.13.2"
+stickyscrollview = "1.0.3"
 testJunit = "1.1.5"
 espresso = "3.5.1"
 retrofit = "2.11.0"
@@ -111,6 +112,7 @@ androidx-paging-runtime = { module = "androidx.paging:paging-runtime", version.r
 
 #rottie
 lottie = { module = "com.airbnb.android:lottie", version.ref = "lottie" }
+stickyscrollview = { module = "com.github.amarjain07:StickyScrollView", version.ref = "stickyscrollview" }
 
 [bundles]
 kotlinx-coroutine = ["kotlin-coroutine-core", "kotlin-coroutine-android"]
