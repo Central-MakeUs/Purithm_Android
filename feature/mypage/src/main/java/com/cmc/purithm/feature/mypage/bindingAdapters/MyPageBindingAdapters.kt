@@ -3,8 +3,7 @@ package com.cmc.purithm.feature.mypage.bindingAdapters
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.cmc.purithm.common.bindingAdapters.ImageBindingAdapters.setImageByUrl
+import com.cmc.purithm.common.util.getColorResource
 import com.cmc.purithm.feature.mypage.R
 
 object MyPageBindingAdapters {
@@ -49,28 +48,31 @@ object MyPageBindingAdapters {
     }
 
     @JvmStatic
-    @BindingAdapter("dot_date")
-    fun TextView.setDotDate(date: String?) {
-        text = date?.replace("-", ".")
+    @BindingAdapter("dotDate")
+    fun TextView.setDotDate(dotDate: String?) {
+        text = dotDate?.replace("-", ".")
     }
 
     @JvmStatic
-    @BindingAdapter("stamp_membership")
-    fun TextView.setStampMembership(membership: String) {
-        when (membership) {
+    @BindingAdapter("stampMembership")
+    fun TextView.setStampMembership(stampMembership: String) {
+        when (stampMembership) {
             "PREMIUM" -> {
                 text = "premium"
-                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_blue)
+                setTextColor(context.getColorResource(com.cmc.purithm.design.R.color.blue_400))
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_blue_400)
             }
 
             "PREMIUM+" -> {
                 text = "premium+"
+                setTextColor(context.getColorResource(com.cmc.purithm.design.R.color.purple_500))
                 setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_purple)
             }
 
             else -> {
                 text = "basic"
-                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_fill_grey)
+                setTextColor(context.getColorResource(com.cmc.purithm.design.R.color.grey_400))
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_blue_100)
             }
         }
     }
