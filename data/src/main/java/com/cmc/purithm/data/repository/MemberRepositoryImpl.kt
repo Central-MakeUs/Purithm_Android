@@ -65,4 +65,8 @@ internal class MemberRepositoryImpl @Inject constructor(
     override suspend fun getReviewHistory(): List<ReviewItem> {
         return HandleApi.callApi { memberService.getReviews().toDomain() }
     }
+
+    override suspend fun getFilterLike(): List<Filter> {
+        return HandleApi.callApi { memberService.getLikedFilters().toDomain() }
+    }
 }

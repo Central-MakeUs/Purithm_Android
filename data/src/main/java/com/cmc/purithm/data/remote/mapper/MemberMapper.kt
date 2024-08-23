@@ -2,6 +2,7 @@ package com.cmc.purithm.data.remote.mapper
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.filter.FilterHistoryResponseDto
+import com.cmc.purithm.data.remote.dto.filter.FilterLikeResponseDto
 import com.cmc.purithm.data.remote.dto.member.GetStampResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
@@ -103,6 +104,23 @@ internal fun BaseResponse<List<ReviewHistoryResponseDto>>.toDomain(): List<Revie
             content = it.content,
             userName = it.writer,
             pictures = it.pictures,
+        )
+    }
+}
+
+@JvmName("filterLikeToFilter")
+internal fun BaseResponse<List<FilterLikeResponseDto>>.toDomain(): List<Filter> {
+    val data = data ?: throw NullPointerException("data is null")
+    return data.map {
+        Filter(
+            id = it.id,
+            name = it.name,
+            photographerName = it.photographerName,
+            thumbnail = it.thumbnail,
+            memberShip = it.membership,
+            liked = true,
+            likes = it.likes,
+            canAccess = it.canAccess
         )
     }
 }

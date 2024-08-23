@@ -89,6 +89,9 @@
 
         <deepLink
             app:uri="purithm://filter/review/{filterId}/{thumbnail}/{filterName}" />
+        <action
+            android:id="@+id/action_filterReviewFragment_to_filterLoadingFragment"
+            app:destination="@id/filterLoadingFragment" />
     </fragment>
     <fragment
         android:id="@+id/filterReviewDetailFragment"

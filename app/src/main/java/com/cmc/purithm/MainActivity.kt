@@ -193,7 +193,10 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.mypage.R.id.myAccountFragment,
             com.cmc.purithm.feature.artist.R.id.artistFilterFragment,
             com.cmc.purithm.feature.mypage.R.id.editProfileFragment,
-            com.cmc.purithm.feature.mypage.R.id.stampHistoryFragment -> {
+            com.cmc.purithm.feature.mypage.R.id.stampHistoryFragment,
+            com.cmc.purithm.feature.mypage.R.id.myReviewHistoryFragment,
+            com.cmc.purithm.feature.mypage.R.id.myFilterHistoryFragment,
+            com.cmc.purithm.feature.mypage.R.id.myFavoriteFilterFragment,-> {
                 setBottomNavVisibility(false)
             }
 

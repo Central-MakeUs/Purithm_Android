@@ -6,11 +6,13 @@ import android.view.View
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintSet.Motion
 import androidx.core.view.forEach
 import androidx.databinding.BindingAdapter
 import com.cmc.purithm.common.R
 import com.cmc.purithm.common.view.DelayClickEventListener
+import com.cmc.purithm.design.component.view.FilterPremiumView
 
 /**
  * 버튼에 공통적으로 사용되는 BindingAdapter

@@ -26,6 +26,7 @@ class CommonDialogFragment(
     }
 
     override fun initView() {
+        isCancelable = false
         with(binding) {
             if (negativeClickEvent != null && negativeText != null) {
                 tvNegativeButton.text = negativeText

@@ -20,4 +20,5 @@ interface MemberRepository {
     suspend fun getStamp() : FilterHistory
     suspend fun getFilterHistory() : FilterHistory
     suspend fun getReviewHistory() : List<ReviewItem>
+    suspend fun getFilterLike() : List<Filter>
 }

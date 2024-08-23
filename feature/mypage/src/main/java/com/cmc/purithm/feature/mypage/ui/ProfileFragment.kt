@@ -64,7 +64,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                 ProfileFragmentDirections.actionProfileFragmentToMyFilterHistoryFragment()
                             )
 
-                            ProfileSideEffects.NavigateLike -> TODO()
+                            ProfileSideEffects.NavigateLike -> navigate(
+                                ProfileFragmentDirections.actionProfileFragmentToMyFavoriteFilterFragment()
+                            )
                             is ProfileSideEffects.NavigateProfileSetting -> {
                                 navigate(
                                     ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(

@@ -73,7 +73,7 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
                             )
 
                             is FilterReviewSideEffects.NavigateFilterValue -> {
-                                (activity as NavigationAction).navigateFilterValue(sideEffect.filterId)
+                                navigate(FilterReviewFragmentDirections.actionFilterReviewFragmentToFilterLoadingFragment(sideEffect.filterId, sideEffect.filterName))
                             }
 
                             is FilterReviewSideEffects.NavigateMyHistoryReview -> {

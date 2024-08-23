@@ -11,7 +11,7 @@ internal data class FilterLikeResponseDto(
     val name: String,
     @SerializedName("thumbnail")
     val thumbnail: String,
-    @SerializedName("photographer")
+    @SerializedName("photographerName")
     val photographerName: String,
     @SerializedName("likes")
     val likes: Int,

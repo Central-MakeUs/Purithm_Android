@@ -223,6 +223,7 @@
             android:layout_marginStart="@dimen/margin_screen_side"
             android:layout_marginTop="15dp"
             android:paddingVertical="15dp"
+            android:visibility="gone"
             android:text="@string/category_delete_account"
             android:textColor="@color/grey_500"
             app:delayClickEvent="@{() -> vm.clickDeleteAccount()}"

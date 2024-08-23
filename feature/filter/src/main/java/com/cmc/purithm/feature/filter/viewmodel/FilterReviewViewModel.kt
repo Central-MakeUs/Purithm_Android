@@ -74,7 +74,7 @@ class FilterReviewViewModel @Inject constructor(
                     }
 
                     else -> {
-                        _sideEffect.emit(FilterReviewSideEffects.NavigateFilterValue(filterId))
+                        _sideEffect.emit(FilterReviewSideEffects.NavigateFilterValue(filterId, filterName))
                     }
                 }
             }
@@ -102,7 +102,7 @@ data class FilterReviewState(
 sealed interface FilterReviewSideEffects {
     class NavigateFilterReviewDetail(val reviewId: Long) : FilterReviewSideEffects
     data object ShowFilterReviewGuideDialog : FilterReviewSideEffects
-    class NavigateFilterValue(val filterId: Long) : FilterReviewSideEffects
+    class NavigateFilterValue(val filterId: Long, val filterName : String) : FilterReviewSideEffects
     class NavigateMyHistoryReview(val reviewId: Long) : FilterReviewSideEffects
     class NavigateReviewWrite(val filterName: String, val filterId: Long, val thumbnail: String) : FilterReviewSideEffects
 }
