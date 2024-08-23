@@ -9,6 +9,7 @@ import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.entity.filter.FilterHistory
 import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
+import com.cmc.purithm.domain.entity.review.ReviewItem
 import com.cmc.purithm.domain.repository.MemberRepository
 import javax.inject.Inject
 
@@ -59,5 +60,9 @@ internal class MemberRepositoryImpl @Inject constructor(
 
     override suspend fun getFilterHistory(): FilterHistory {
         return HandleApi.callApi { memberService.getFilterHistory().toDomain() }
+    }
+
+    override suspend fun getReviewHistory(): List<ReviewItem> {
+        return HandleApi.callApi { memberService.getReviews().toDomain() }
     }
 }

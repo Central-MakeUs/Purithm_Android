@@ -74,7 +74,10 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                 )
                             }
 
-                            ProfileSideEffects.NavigateReviewHistory -> TODO()
+                            ProfileSideEffects.NavigateReviewHistory -> navigate(
+                                ProfileFragmentDirections.actionProfileFragmentToMyReviewHistoryFragment()
+                            )
+
                             is ProfileSideEffects.NavigateSetting -> {
                                 navigate(
                                     ProfileFragmentDirections.actionProfileFragmentToSettingFragment(

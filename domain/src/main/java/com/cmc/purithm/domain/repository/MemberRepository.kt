@@ -4,6 +4,8 @@ import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.entity.filter.FilterHistory
 import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
+import com.cmc.purithm.domain.entity.review.Review
+import com.cmc.purithm.domain.entity.review.ReviewItem
 
 interface MemberRepository {
     suspend fun getFirstRun() : Boolean
@@ -17,4 +19,5 @@ interface MemberRepository {
     suspend fun updateUserProfile(username : String, profile : String)
     suspend fun getStamp() : FilterHistory
     suspend fun getFilterHistory() : FilterHistory
+    suspend fun getReviewHistory() : List<ReviewItem>
 }

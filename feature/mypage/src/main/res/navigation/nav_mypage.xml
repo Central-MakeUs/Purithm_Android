@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_profileFragment_to_myFilterHistoryFragment"
             app:destination="@id/myFilterHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myReviewHistoryFragment"
+            app:destination="@id/myReviewHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/myReviewHistoryFragment"

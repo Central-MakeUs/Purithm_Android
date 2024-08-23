@@ -37,7 +37,7 @@ internal interface MemberService {
     @GET("/api/users/stamps")
     suspend fun getStamp() : BaseResponse<GetStampResponseDto>
 
-    @GET("/api/users/review")
+    @GET("/api/users/reviews")
     suspend fun getReviews() : BaseResponse<List<ReviewHistoryResponseDto>>
 
     @GET("/api/users/picks")

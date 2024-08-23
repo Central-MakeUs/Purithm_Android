@@ -77,12 +77,4 @@ internal class FilterRepositoryImpl @Inject constructor(
             }
         ).flow
     }
-
-    override suspend fun getLikedFilters(): List<Filter> {
-        TODO("Not yet implemented")
-    }
-
-    override suspend fun getFilterHistory(): List<FilterHistory> {
-        TODO("Not yet implemented")
-    }
 }

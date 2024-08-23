@@ -36,8 +36,4 @@ interface FilterRepository {
     suspend fun getFilterOfArtist(
         sortedBy: String, artistId: Long, totalElementCallback: (Int) -> Unit
     ): Flow<PagingData<Filter>>
-
-    suspend fun getLikedFilters(): List<Filter>
-
-    suspend fun getFilterHistory(): List<FilterHistory>
 }

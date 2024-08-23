@@ -8,5 +8,4 @@ interface ReviewRepository {
     suspend fun getReviewItem(reviewId : Long) : ReviewItem
     suspend fun getAllReview(sortedBy : String) : List<ReviewItem>
     suspend fun addReview(filterId : Long, pureDegree : Int, content : String, pictures : List<String>) : Long
-    suspend fun getReviewHistory() : List<ReviewItem>
 }

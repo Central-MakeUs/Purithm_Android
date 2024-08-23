@@ -4,6 +4,7 @@ import com.cmc.purithm.data.remote.dto.base.BaseResponse
 import com.cmc.purithm.data.remote.dto.feed.GetFeedResponseDto
 import com.cmc.purithm.domain.entity.review.ReviewItem
 
+@JvmName("feedToReviewItem")
 internal fun BaseResponse<List<GetFeedResponseDto>>.toDomain(): List<ReviewItem> {
     val response = data ?: throw NullPointerException("data is null")
     return response.map {

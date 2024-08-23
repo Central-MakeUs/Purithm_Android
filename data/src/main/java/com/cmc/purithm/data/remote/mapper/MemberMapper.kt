@@ -5,11 +5,13 @@ import com.cmc.purithm.data.remote.dto.filter.FilterHistoryResponseDto
 import com.cmc.purithm.data.remote.dto.member.GetStampResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
+import com.cmc.purithm.data.remote.dto.review.ReviewHistoryResponseDto
 import com.cmc.purithm.domain.entity.filter.Filter
 import com.cmc.purithm.domain.entity.filter.FilterHistory
 import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
 import com.cmc.purithm.domain.entity.member.MemberMetaData
+import com.cmc.purithm.domain.entity.review.ReviewItem
 
 internal fun BaseResponse<MemberResponseDto>.toDomain(): Member {
     val data = data ?: throw NullPointerException("data is null")
@@ -85,4 +87,22 @@ internal fun BaseResponse<FilterHistoryResponseDto>.toDomain(): FilterHistory {
             )
         }
     )
+}
+
+@JvmName("reviewHistoryToReviewItem")
+internal fun BaseResponse<List<ReviewHistoryResponseDto>>.toDomain(): List<ReviewItem> {
+    val data = data ?: throw NullPointerException("data is null")
+    return data.map {
+        ReviewItem(
+            id = it.id,
+            filterName = it.filterName,
+            filterId = it.filterId,
+            filterThumbnail = it.filterThumbnail,
+            pureDegree = it.pureDegree,
+            userProfile = it.profile ?: "",
+            content = it.content,
+            userName = it.writer,
+            pictures = it.pictures,
+        )
+    }
 }

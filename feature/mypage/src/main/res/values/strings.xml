@@ -20,6 +20,8 @@
     <string name="content_filter_premium_plus_lock_description">16개 이상</string>
     <string name="content_filter_navigate">필터값 보기</string>
     <string name="content_review_navigate">휴기 남기기</string>
+    <string name="content_review_satisfactory">필터 만족도</string>
+    <string name="content_delete">삭제</string>
 
     <string name="category_like">찜 목록</string>
     <string name="category_filter_history">필터 열람 내역</string>
