@@ -17,6 +17,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.cmc.purithm.common.R
+import com.cmc.purithm.common.bindingAdapters.ImageBindingAdapters.setProfile
 import com.cmc.purithm.design.util.Util.dp
 
 /**
@@ -33,14 +34,13 @@ object ImageBindingAdapters {
      *
      * @param url 이미지 URL
      * */
-    @BindingAdapter(value = ["imageUrl", "lottieView"], requireAll = false)
+    @BindingAdapter("imageUrl")
     @JvmStatic
-    fun ImageView.setImageByUrl(url: String?, lottieView: LottieAnimationView?) {
+    fun ImageView.setImageByUrl(url: String?) {
         Log.d(TAG, "setImageByUrl: start")
         Glide.with(this)
             .load(url)
-            .centerCrop()
-            .placeholder(com.cmc.purithm.design.R.color.grey_200)
+            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
             .into(this)
 
     }
@@ -73,22 +73,20 @@ object ImageBindingAdapters {
                     resource: Drawable,
                     transition: Transition<in Drawable>?
                 ) {
-                    // 이미지 뷰의 scaleType과 width, height를 변경
-                    // 이미지를 적용
-                    with(this@setProfile){
-                        setImageDrawable(resource)
-                        scaleType = ImageView.ScaleType.CENTER_CROP
-                        layoutParams = FrameLayout.LayoutParams(
-                            FrameLayout.LayoutParams.MATCH_PARENT,
-                            FrameLayout.LayoutParams.MATCH_PARENT,
-                            Gravity.CENTER
-                        )
-                    }
+                    setImageDrawable(resource)
+                    scaleType = ImageView.ScaleType.CENTER_CROP
+                    layoutParams = FrameLayout.LayoutParams(
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        FrameLayout.LayoutParams.MATCH_PARENT,
+                        Gravity.CENTER
+                    )
                 }
 
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    Log.d(TAG, "onLoadCleared: start")
-                }
+                override fun onLoadCleared(placeholder: Drawable?) {}
             })
+    }
+
+    private fun ImageView.setCenterCrop(drawable: Drawable) {
+
     }
 }

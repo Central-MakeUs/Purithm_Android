@@ -22,7 +22,6 @@ class HomeFilterAdapter(
             data?.run {
                 with(binding) {
                     model = data
-                    lottieView = viewPlaceholderLottie
                     root.setOnClickListener {
                         viewModel.clickFilterItem(data.id, data.canAccess)
                     }

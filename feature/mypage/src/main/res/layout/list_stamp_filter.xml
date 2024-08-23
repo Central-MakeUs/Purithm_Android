@@ -32,7 +32,7 @@
                 android:paddingVertical="1dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:stamp_membership="@{data.memberShip}" />
+                app:stampMembership="@{data.memberShip}" />
 
             <TextView
                 android:id="@+id/tv_filter_name"
