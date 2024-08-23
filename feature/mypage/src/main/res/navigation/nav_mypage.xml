@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_profileFragment_to_stampHistoryFragment"
             app:destination="@id/stampHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myFilterHistoryFragment"
+            app:destination="@id/myFilterHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/myReviewHistoryFragment"

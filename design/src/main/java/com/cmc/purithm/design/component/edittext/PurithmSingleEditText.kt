@@ -103,6 +103,9 @@ class PurithmSingleEditText @JvmOverloads constructor(
 
     fun showErrorMsg(errorMsg: String) {
         with(binding) {
+            tvDesc.visibility = View.VISIBLE
+            tvMaxCount.visibility = View.VISIBLE
+            tvCount.visibility = View.VISIBLE
             editMain.setBackgroundResource(R.drawable.bg_edit_text_error)
             tvDesc.setTextColor(context.getColorResource(R.color.red_500))
             tvDesc.text = errorMsg

@@ -16,4 +16,5 @@ interface MemberRepository {
     suspend fun getAccount() : Account
     suspend fun updateUserProfile(username : String, profile : String)
     suspend fun getStamp() : FilterHistory
+    suspend fun getFilterHistory() : FilterHistory
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="data"
-            type="com.cmc.purithm.feature.mypage.model.StampUiModel" />
+            type="com.cmc.purithm.feature.mypage.model.HistoryUiModel" />
 
         <variable
             name="vm"
@@ -30,7 +30,8 @@
         <com.amar.library.ui.StickyScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/view_appbar"
@@ -128,8 +129,9 @@
                     android:id="@+id/layout_stamp_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:background="@color/grey_100"
                     android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/margin_screen_side"
                     android:paddingVertical="21dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="start|center_vertical"
-                        android:text="@{String.format(@string/content_stamp_total_count, data.stampCount)}"
+                        android:text="@{String.format(@string/content_stamp_total_count, data.count)}"
                         android:textColor="@color/grey_500"
                         tools:text="총 12개" />
 
@@ -154,7 +156,7 @@
                         android:layout_weight="1"
                         android:gravity="end|center_vertical"
                         android:textColor="@color/grey_300"
-                        app:stampCount2="@{data.stampCount}"
+                        app:stampCount2="@{data.count}"
                         tools:text="premium+까지 4개 남음" />
                 </LinearLayout>
 
@@ -163,6 +165,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:nestedScrollingEnabled="true"
                     android:orientation="vertical"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"

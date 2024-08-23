@@ -107,7 +107,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
-    override fun navigateReviewWrite(navigateType : Int, filterName: String, filterId: Long, thumbnail: String) {
+    override fun navigateReviewWrite(
+        navigateType: Int,
+        filterName: String,
+        filterId: Long,
+        thumbnail: String
+    ) {
         with(navHostFragment.navController) {
             navigate(
                 R.id.navigate_review,
@@ -138,16 +143,16 @@ class MainActivity : AppCompatActivity(), NavigationAction,
      * */
     override fun popBackStackAfterWriteReview(type: Int) {
         with(navHostFragment.navController) {
-            if(type == 1){
+            if (type == 1) {
                 popBackStack(com.cmc.purithm.feature.filter.R.id.filterReviewFragment, false)
             } else {
-                popBackStack(com.cmc.purithm.feature.filter.R.id.filterReviewFragment, false)
+                popBackStack(com.cmc.purithm.feature.mypage.R.id.myFilterHistoryFragment, false)
             }
         }
     }
 
     override fun popBackStackAfterProfileEdit() {
-        with(navHostFragment.navController){
+        with(navHostFragment.navController) {
             popBackStack(com.cmc.purithm.feature.mypage.R.id.profileFragment, false)
         }
     }
@@ -187,14 +192,15 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.mypage.R.id.settingFragment,
             com.cmc.purithm.feature.mypage.R.id.myAccountFragment,
             com.cmc.purithm.feature.artist.R.id.artistFilterFragment,
-            com.cmc.purithm.feature.mypage.R.id.editProfileFragment -> {
+            com.cmc.purithm.feature.mypage.R.id.editProfileFragment,
+            com.cmc.purithm.feature.mypage.R.id.stampHistoryFragment -> {
                 setBottomNavVisibility(false)
             }
 
             com.cmc.purithm.feature.feed.R.id.feedFragment,
             com.cmc.purithm.feature.home.R.id.homeFragment,
             com.cmc.purithm.feature.artist.R.id.artistFragment,
-            com.cmc.purithm.feature.mypage.R.id.profileFragment-> {
+            com.cmc.purithm.feature.mypage.R.id.profileFragment -> {
                 setBottomNavVisibility(true)
             }
         }

@@ -19,6 +19,8 @@ internal data class FilterHistoryResponseDto(
             val filterId : Long,
             @SerializedName("filterName")
             val filterName : String,
+            @SerializedName("thumbnail")
+            val thumbnail : String,
             @SerializedName("photographer")
             val photographer : String,
             @SerializedName("membership")

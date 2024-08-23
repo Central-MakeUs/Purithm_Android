@@ -1,6 +1,7 @@
 package com.cmc.purithm.data.remote.mapper
 
 import com.cmc.purithm.data.remote.dto.base.BaseResponse
+import com.cmc.purithm.data.remote.dto.filter.FilterHistoryResponseDto
 import com.cmc.purithm.data.remote.dto.member.GetStampResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberAccountResponseDto
 import com.cmc.purithm.data.remote.dto.member.MemberResponseDto
@@ -9,7 +10,6 @@ import com.cmc.purithm.domain.entity.filter.FilterHistory
 import com.cmc.purithm.domain.entity.member.Account
 import com.cmc.purithm.domain.entity.member.Member
 import com.cmc.purithm.domain.entity.member.MemberMetaData
-import com.google.gson.annotations.SerializedName
 
 internal fun BaseResponse<MemberResponseDto>.toDomain(): Member {
     val data = data ?: throw NullPointerException("data is null")
@@ -33,6 +33,7 @@ internal fun BaseResponse<MemberAccountResponseDto>.toDomain(): Account {
     )
 }
 
+@JvmName("stampToFilterHistory")
 internal fun BaseResponse<GetStampResponseDto>.toDomain(): FilterHistory {
     val data = data ?: throw NullPointerException("data is null")
     return FilterHistory(
@@ -51,6 +52,33 @@ internal fun BaseResponse<GetStampResponseDto>.toDomain(): FilterHistory {
                             hasViewed = true,
                             hasReview = true,
                             writeReviewId = stampItem.reviewId
+                        )
+                    )
+                }
+            )
+        }
+    )
+}
+
+@JvmName("filterHistoryToFilterHistory")
+internal fun BaseResponse<FilterHistoryResponseDto>.toDomain(): FilterHistory {
+    val data = data ?: throw NullPointerException("data is null")
+    return FilterHistory(
+        totalCount = data.totalCount,
+        list = data.list.map { list ->
+            FilterHistory.FilterHistoryItem(
+                date = list.date,
+                filters = list.filters.map { item ->
+                    Filter(
+                        id = item.filterId,
+                        name = item.filterName,
+                        photographerName = item.photographer,
+                        thumbnail = item.thumbnail,
+                        memberShip = item.membership,
+                        userMetaData = MemberMetaData(
+                            hasViewed = true,
+                            hasReview = item.hasReview,
+                            writeReviewId = item.reviewId ?: 0L
                         )
                     )
                 }

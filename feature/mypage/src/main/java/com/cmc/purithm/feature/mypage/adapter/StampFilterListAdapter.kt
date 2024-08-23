@@ -7,16 +7,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cmc.purithm.feature.mypage.R
-import com.cmc.purithm.feature.mypage.databinding.ListStampFilterBinding
-import com.cmc.purithm.feature.mypage.model.StampUiModel
+import com.cmc.purithm.feature.mypage.adapter.diffUtil.HistoryItemDiffUtil
+import com.cmc.purithm.feature.mypage.adapter.listener.HistoryClickListener
+import com.cmc.purithm.feature.mypage.databinding.ListStampHistoryBinding
+import com.cmc.purithm.feature.mypage.model.HistoryUiModel
 
 class StampFilterListAdapter(
-    private val reviewHistoryClickEvent : StampListAdapter.StampListClickListener
-) : ListAdapter<StampUiModel.StampHistory.StampHistoryItem, StampFilterListAdapter.StampFilterViewHolder>(StampFilterDiffUtil){
+    private val historyClickEvent : HistoryClickListener
+) : ListAdapter<HistoryUiModel.History.HistoryItem, StampFilterListAdapter.StampFilterViewHolder>(HistoryItemDiffUtil){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StampFilterViewHolder {
         return StampFilterViewHolder(
-            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.list_stamp_filter, parent, false)
+            DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.list_stamp_history, parent, false)
         )
     }
 
@@ -24,12 +26,17 @@ class StampFilterListAdapter(
         holder.bind(currentList[position])
     }
 
-    inner class StampFilterViewHolder(private val binding: ListStampFilterBinding) :
+    inner class StampFilterViewHolder(private val binding: ListStampHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: StampUiModel.StampHistory.StampHistoryItem){
+        fun bind(item: HistoryUiModel.History.HistoryItem){
             binding.data = item
+            binding.imgFilterThumbnail.setOnClickListener {
+                historyClickEvent.onStampThumbClick(
+                    filterId = item.filterId
+                )
+            }
             binding.tvReviewHistory.setOnClickListener {
-                reviewHistoryClickEvent.onReviewHistoryClick(
+                historyClickEvent.onReviewHistoryClick(
                     reviewId = item.reviewId,
                     filterId = item.id,
                     filterName = item.filterName,
@@ -39,20 +46,4 @@ class StampFilterListAdapter(
         }
     }
 
-    private object StampFilterDiffUtil :
-        DiffUtil.ItemCallback<StampUiModel.StampHistory.StampHistoryItem>() {
-        override fun areItemsTheSame(
-            oldItem: StampUiModel.StampHistory.StampHistoryItem,
-            newItem: StampUiModel.StampHistory.StampHistoryItem
-        ): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(
-            oldItem: StampUiModel.StampHistory.StampHistoryItem,
-            newItem: StampUiModel.StampHistory.StampHistoryItem
-        ): Boolean {
-            return oldItem == newItem
-        }
-    }
 }

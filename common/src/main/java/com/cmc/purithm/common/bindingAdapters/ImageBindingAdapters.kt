@@ -40,6 +40,7 @@ object ImageBindingAdapters {
         Log.d(TAG, "setImageByUrl: start")
         Glide.with(this)
             .load(url)
+            .centerCrop()
             .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
             .into(this)
 

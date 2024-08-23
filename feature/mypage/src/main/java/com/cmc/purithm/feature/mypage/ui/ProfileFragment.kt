@@ -60,22 +60,31 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
                         when (sideEffect) {
-                            ProfileSideEffects.NavigateFilterHistory -> TODO()
+                            ProfileSideEffects.NavigateFilterHistory -> navigate(
+                                ProfileFragmentDirections.actionProfileFragmentToMyFilterHistoryFragment()
+                            )
+
                             ProfileSideEffects.NavigateLike -> TODO()
                             is ProfileSideEffects.NavigateProfileSetting -> {
-                                navigate(ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(
-                                    sideEffect.username,
-                                    sideEffect.profile
-                                ))
+                                navigate(
+                                    ProfileFragmentDirections.actionProfileFragmentToEditProfileFragment(
+                                        sideEffect.username,
+                                        sideEffect.profile
+                                    )
+                                )
                             }
+
                             ProfileSideEffects.NavigateReviewHistory -> TODO()
                             is ProfileSideEffects.NavigateSetting -> {
-                                navigate(ProfileFragmentDirections.actionProfileFragmentToSettingFragment(
-                                    sideEffect.id,
-                                    sideEffect.username,
-                                    sideEffect.profile
-                                ))
+                                navigate(
+                                    ProfileFragmentDirections.actionProfileFragmentToSettingFragment(
+                                        sideEffect.id,
+                                        sideEffect.username,
+                                        sideEffect.profile
+                                    )
+                                )
                             }
+
                             ProfileSideEffects.NavigateStamp -> navigate(
                                 ProfileFragmentDirections.actionProfileFragmentToStampHistoryFragment()
                             )
@@ -104,7 +113,7 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
         )
     }
 
-    private fun setBackButtonEvent(){
+    private fun setBackButtonEvent() {
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             CommonDialogFragment.showDialog(
                 content = "앱을 종료하시겠습니까?",

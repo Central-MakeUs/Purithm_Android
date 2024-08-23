@@ -39,7 +39,6 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
     private val navigateType by lazy { navArgs.navigateType }
 
     private fun backNavigate(){
-        // FIXME : 마이페이지 구현 후 수정
         if(isWrite){
             (activity as NavigationAction).popBackStackAfterWriteReview(type = navigateType)
         } else {

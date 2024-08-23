@@ -7,14 +7,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.cmc.purithm.feature.mypage.R
 import com.cmc.purithm.feature.mypage.adapter.diffUtil.HistoryDiffUtil
+import com.cmc.purithm.feature.mypage.adapter.listener.FilterHistoryClickListener
 import com.cmc.purithm.feature.mypage.adapter.listener.HistoryClickListener
 import com.cmc.purithm.feature.mypage.databinding.ListHistoryBinding
 import com.cmc.purithm.feature.mypage.model.HistoryUiModel
 
-class StampListAdapter(
-    private val historyClickEvent: HistoryClickListener
+class FilterHistoryAdapter(
+    private val historyClickListener: HistoryClickListener,
+    private val filterHistoryClickListener: FilterHistoryClickListener
 ) :
-    ListAdapter<HistoryUiModel.History, StampListAdapter.StampViewHolder>(HistoryDiffUtil) {
+    ListAdapter<HistoryUiModel.History, FilterHistoryAdapter.StampViewHolder>(HistoryDiffUtil) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StampViewHolder {
         return StampViewHolder(
             DataBindingUtil.inflate(
@@ -33,7 +35,7 @@ class StampListAdapter(
     inner class StampViewHolder(private val binding: ListHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: HistoryUiModel.History) {
-            val adapter = StampFilterListAdapter(historyClickEvent)
+            val adapter = FilterHistoryListAdapter(historyClickListener, filterHistoryClickListener)
             binding.date = item.date
             binding.listStampFilter.adapter = adapter
             adapter.submitList(item.stampItemList)

@@ -56,4 +56,8 @@ internal class MemberRepositoryImpl @Inject constructor(
     override suspend fun getStamp(): FilterHistory {
         return HandleApi.callApi { memberService.getStamp().toDomain() }
     }
+
+    override suspend fun getFilterHistory(): FilterHistory {
+        return HandleApi.callApi { memberService.getFilterHistory().toDomain() }
+    }
 }
