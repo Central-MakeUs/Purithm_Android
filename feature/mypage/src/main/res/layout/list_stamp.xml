@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <variable
+            name="date"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/grey_400"
-            app:dot_date="2024.07.10"
+            app:dot_date="@{date}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

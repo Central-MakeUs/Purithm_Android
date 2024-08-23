@@ -35,7 +35,7 @@ internal interface MemberService {
     ) : BaseResponse<Unit?>
 
     @GET("/api/users/stamps")
-    suspend fun getStamp() : BaseResponse<List<GetStampResponseDto>>
+    suspend fun getStamp() : BaseResponse<GetStampResponseDto>
 
     @GET("/api/users/review")
     suspend fun getReviews() : BaseResponse<List<ReviewHistoryResponseDto>>

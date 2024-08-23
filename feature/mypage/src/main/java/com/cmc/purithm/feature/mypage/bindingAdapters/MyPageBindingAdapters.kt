@@ -32,6 +32,29 @@ object MyPageBindingAdapters {
     }
 
     @JvmStatic
+    @BindingAdapter("stampCount2")
+    fun TextView.setTextWithStampCount2(stampCount: Int) {
+        val premiumCnt = 8
+        val premiumPlusCnt = 16
+
+        text = when (stampCount) {
+            in 0..7 -> {
+                val remainCnt = premiumCnt - stampCount
+                "premium까지 ${remainCnt}개 남음"
+            }
+
+            in 8..15 -> {
+                val remainCnt = premiumPlusCnt - stampCount
+                "premium+까지 ${remainCnt}개 남음"
+            }
+
+            else -> {
+                ""
+            }
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter("socialImg")
     fun ImageView.setSocialImg(socialImg: String?) {
         when (socialImg) {
@@ -70,7 +93,7 @@ object MyPageBindingAdapters {
 
             else -> {
                 text = "basic"
-                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_fill_grey)
+                setBackgroundResource(com.cmc.purithm.design.R.drawable.shape_badge_outline_grey)
             }
         }
     }

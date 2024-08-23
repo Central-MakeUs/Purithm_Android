@@ -5,7 +5,7 @@ data class FilterHistory(
     val list : List<FilterHistoryItem>
 ) {
     data class FilterHistoryItem(
-        val data : String,
+        val date : String,
         val filters : List<Filter>
     )
 }

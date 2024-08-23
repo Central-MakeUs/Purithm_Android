@@ -76,7 +76,9 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                                     sideEffect.profile
                                 ))
                             }
-                            ProfileSideEffects.NavigateStamp -> TODO()
+                            ProfileSideEffects.NavigateStamp -> navigate(
+                                ProfileFragmentDirections.actionProfileFragmentToStampHistoryFragment()
+                            )
                         }
                     }
                 }

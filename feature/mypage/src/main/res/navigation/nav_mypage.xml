@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_stampHistoryFragment"
+            app:destination="@id/stampHistoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/myReviewHistoryFragment"
@@ -75,4 +78,9 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/stampHistoryFragment"
+        android:name="com.cmc.purithm.feature.mypage.ui.StampHistoryFragment"
+        android:label="StampHistoryFragment"
+        tools:layout="@layout/fragment_stamp_history" />
 </navigation>
