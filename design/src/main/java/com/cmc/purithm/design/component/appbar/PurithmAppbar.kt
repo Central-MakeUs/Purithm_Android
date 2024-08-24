@@ -316,7 +316,7 @@ class PurithmAppbar @JvmOverloads constructor(
     companion object {
         private const val TAG = "PurithmAppbar"
 
-        private const val TOP_MARGIN_KR = 64
-        private const val TOP_MARGIN_EN = 40
+        private const val TOP_MARGIN_KR = 74
+        private const val TOP_MARGIN_EN = 50
     }
 }

@@ -174,8 +174,8 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
     }
 
     companion object {
-        private const val USER_NAME_MAX_SIZE = 12
-        private const val USER_NAME_MIN_SIZE = 4
+        private const val USER_NAME_MAX_SIZE = 20
+        private const val USER_NAME_MIN_SIZE = 1
         private const val REQUEST_IMG_CODE = 1
     }
 }

@@ -10,6 +10,7 @@ import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.mypage.R
 import com.cmc.purithm.feature.mypage.databinding.FragmentProfileBinding
+import com.cmc.purithm.feature.mypage.dialog.FilterLockGuideDialog
 import com.cmc.purithm.feature.mypage.viewmodel.ProfileSideEffects
 import com.cmc.purithm.feature.mypage.viewmodel.ProfileState
 import com.cmc.purithm.feature.mypage.viewmodel.ProfileViewModel
@@ -93,6 +94,8 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding>() {
                             ProfileSideEffects.NavigateStamp -> navigate(
                                 ProfileFragmentDirections.actionProfileFragmentToStampHistoryFragment()
                             )
+
+                            ProfileSideEffects.ShowFilterLockGuideDialog -> FilterLockGuideDialog().show(childFragmentManager, null)
                         }
                     }
                 }

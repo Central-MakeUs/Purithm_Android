@@ -62,6 +62,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Filters" />
 
+            <ImageButton
+                android:id="@+id/btn_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginEnd="@dimen/margin_screen_side"
+                android:background="@color/transparent"
+                android:contentDescription="@string/content_setting"
+                android:src="@drawable/ic_settings"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <LinearLayout
                 android:id="@+id/layout_side"
                 android:layout_width="wrap_content"
@@ -72,15 +84,6 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
-                <ImageButton
-                    android:id="@+id/btn_setting"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:contentDescription="@string/content_setting"
-                    android:src="@drawable/ic_settings"
-                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_content"

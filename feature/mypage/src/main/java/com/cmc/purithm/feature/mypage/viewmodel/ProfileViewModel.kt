@@ -78,6 +78,12 @@ class ProfileViewModel @Inject constructor(
         }
     }
 
+    fun clickStampLayout() {
+        viewModelScope.launch {
+            _sideEffects.emit(ProfileSideEffects.ShowFilterLockGuideDialog)
+        }
+    }
+
 }
 
 sealed interface ProfileState {
@@ -88,6 +94,7 @@ sealed interface ProfileState {
 }
 
 sealed interface ProfileSideEffects {
+    data object ShowFilterLockGuideDialog : ProfileSideEffects
     data class NavigateSetting(val id : Long, val username : String, val profile : String) : ProfileSideEffects
     data object NavigateStamp : ProfileSideEffects
     data object NavigateLike : ProfileSideEffects

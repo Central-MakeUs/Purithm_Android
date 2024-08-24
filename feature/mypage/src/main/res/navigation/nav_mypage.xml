@@ -91,5 +91,9 @@
         android:id="@+id/stampHistoryFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.StampHistoryFragment"
         android:label="StampHistoryFragment"
-        tools:layout="@layout/fragment_stamp_history" />
+        tools:layout="@layout/fragment_stamp_history" >
+        <action
+            android:id="@+id/action_stampHistoryFragment_to_myFilterHistoryFragment"
+            app:destination="@id/myFilterHistoryFragment" />
+    </fragment>
 </navigation>

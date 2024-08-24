@@ -85,7 +85,7 @@ class StampHistoryFragment : BaseFragment<FragmentStampHistoryBinding>() {
                 launch {
                     viewModel.sideEffects.collect { sideEffects ->
                         when (sideEffects) {
-                            StampSideEffects.NavigateFilterHistory -> TODO()
+                            StampSideEffects.NavigateFilterHistory -> navigate(StampHistoryFragmentDirections.actionStampHistoryFragmentToMyFilterHistoryFragment())
                             is StampSideEffects.NavigateReviewHistory -> (activity as NavigationAction).navigateMyReviewHistory(
                                 sideEffects.reviewId,
                                 sideEffects.filterId,

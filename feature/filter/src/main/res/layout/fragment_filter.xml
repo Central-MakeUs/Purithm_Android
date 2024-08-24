@@ -207,7 +207,7 @@
             android:id="@+id/btn_filter_value"
             style="@style/kr_body_3"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_bottom_button_size"
+            android:layout_height="@dimen/size_bottom_button"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginBottom="@dimen/margin_bottom_button_bottom"
             android:background="@drawable/shape_button_trans_primary_lg"

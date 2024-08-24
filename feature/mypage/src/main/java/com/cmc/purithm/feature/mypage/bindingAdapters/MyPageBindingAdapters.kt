@@ -99,4 +99,14 @@ object MyPageBindingAdapters {
             }
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("maxCount")
+    fun TextView.setMaxCount(count: Int) {
+        text = if (count < 100) {
+            count.toString()
+        } else {
+            "99+"
+        }
+    }
 }

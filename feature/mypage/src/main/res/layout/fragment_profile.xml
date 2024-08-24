@@ -76,10 +76,14 @@
                 <TextView
                     android:id="@+id/tv_user_name"
                     style="@style/kr_title_1"
-                    android:layout_width="wrap_content"
+                    android:layout_marginHorizontal="@dimen/margin_screen_side"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:ellipsize="end"
+                    android:gravity="center"
                     android:includeFontPadding="true"
+                    android:maxLines="1"
                     android:text="@{data.username}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -148,6 +152,7 @@
                         android:id="@+id/view_stamp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:delayClickEvent="@{() -> vm.clickStampLayout()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tv_stamp_cnt" />
@@ -194,16 +199,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:ellipsize="end"
                         android:gravity="end|center_vertical"
                         android:maxLines="1"
-                        android:text="@{String.valueOf(data.likesCnt)}"
                         android:textColor="@color/grey_300"
                         app:layout_constraintBottom_toBottomOf="@id/img_like_arrow"
                         app:layout_constraintEnd_toStartOf="@id/img_like_arrow"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/img_like_arrow"
+                        app:maxCount="@{data.likesCnt}"
                         tools:text="1" />
 
                     <ImageView
@@ -265,16 +269,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:ellipsize="end"
                         android:gravity="end|center_vertical"
                         android:maxLines="1"
-                        android:text="@{String.valueOf(data.filterViewCnt)}"
                         android:textColor="@color/grey_300"
                         app:layout_constraintBottom_toBottomOf="@id/img_filter_history_arrow"
                         app:layout_constraintEnd_toStartOf="@id/img_filter_history_arrow"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/img_filter_history_arrow"
+                        app:maxCount="@{data.filterViewCnt}"
                         tools:text="1" />
 
                     <ImageView
@@ -336,16 +339,15 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="10dp"
-                        android:ellipsize="end"
                         android:gravity="end|center_vertical"
                         android:maxLines="1"
-                        android:text="@{String.valueOf(data.reviewCnt)}"
                         android:textColor="@color/grey_300"
                         app:layout_constraintBottom_toBottomOf="@id/img_review_history_arrow"
                         app:layout_constraintEnd_toStartOf="@id/img_review_history_arrow"
                         app:layout_constraintHorizontal_bias="1.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/img_review_history_arrow"
+                        app:maxCount="@{data.reviewCnt}"
                         tools:text="12345" />
 
                     <ImageView

@@ -56,6 +56,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         app:cardCornerRadius="16dp"
+                        app:delayClickEvent="@{() -> vm.clickFilterHistory()}"
                         app:cardElevation="0dp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

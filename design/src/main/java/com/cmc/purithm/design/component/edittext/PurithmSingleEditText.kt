@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -69,8 +70,11 @@ class PurithmSingleEditText @JvmOverloads constructor(
                 }
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                    textChangeListener(s.toString())
-                    tvCount.text = "${s.length}"
+                    Log.d(TAG, "onTextChanged: on")
+                    Log.d(TAG, "onTextChanged: trim Data = ${s.toString().trim()}")
+                    val spaceRemoveText = s.toString().trim()
+                    textChangeListener(spaceRemoveText)
+                    tvCount.text = "${spaceRemoveText.length}"
                     if (s.isEmpty()) {
                         editMain.setBackgroundResource(R.drawable.bg_edit_text_default)
                         tvDesc.visibility = View.GONE
@@ -88,7 +92,16 @@ class PurithmSingleEditText @JvmOverloads constructor(
                     }
                 }
 
-                override fun afterTextChanged(s: Editable?) {}
+                override fun afterTextChanged(s: Editable?) {
+                    Log.d(TAG, "afterTextChanged: on")
+                    // 공백을 제거한 텍스트를 EditText에 설정
+                    editMain.removeTextChangedListener(this) // 무한 루프 방지
+                    val filteredText = s.toString().replace(" ", "")
+                    editMain.setText(filteredText)
+                    Log.d(TAG, "afterTextChanged: filteredText size = ${filteredText.length}")
+                    editMain.setSelection(filteredText.length) // 커서를 마지막으로 이동
+                    editMain.addTextChangedListener(this)
+                }
             })
         }
     }
@@ -122,5 +135,9 @@ class PurithmSingleEditText @JvmOverloads constructor(
 
             tvCount.setTextColor(context.getColorResource(R.color.blue_400))
         }
+    }
+
+    companion object {
+        private const val TAG = "PurithmSingleEditText"
     }
 }

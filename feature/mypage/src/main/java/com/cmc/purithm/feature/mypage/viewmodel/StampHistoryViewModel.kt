@@ -42,6 +42,12 @@ class StampHistoryViewModel @Inject constructor(
         }
     }
 
+    fun clickFilterHistory() {
+        viewModelScope.launch {
+            _sideEffects.emit(StampSideEffects.NavigateFilterHistory)
+        }
+    }
+
     fun clickFilterThumbnail(filterId: Long) {
         viewModelScope.launch {
             _sideEffects.emit(StampSideEffects.NavigateFilter(filterId))

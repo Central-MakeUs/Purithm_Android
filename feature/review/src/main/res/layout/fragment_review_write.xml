@@ -283,7 +283,7 @@
             android:id="@+id/btn_upload"
             style="@style/kr_body_3"
             android:layout_width="0dp"
-            android:layout_height="@dimen/size_bottom_button_size"
+            android:layout_height="@dimen/size_bottom_button"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
             android:layout_marginTop="40dp"
             android:layout_marginBottom="@dimen/margin_bottom_button_bottom"

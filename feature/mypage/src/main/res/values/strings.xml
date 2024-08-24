@@ -4,7 +4,7 @@
     <string name="title_setting_account">계정 관리</string>
     <string name="title_setting_other">기타</string>
     <string name="title_setting">설정</string>
-    <string name="title_filter_premium_lock">잠금은 어떻게 푸나요?</string>
+    <string name="title_mypage_premium_lock">스탬프는 어떻게 모으나요?</string>
 
     <string name="content_stamp_count">누적 스탬프 %d</string>
     <string name="content_edit_profile">Edit profile</string>
