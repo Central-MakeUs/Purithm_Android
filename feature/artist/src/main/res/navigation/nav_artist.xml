@@ -23,6 +23,8 @@
         tools:layout="@layout/fragment_artist">
         <action
             android:id="@+id/action_artistFragment_to_artistFilterFragment"
-            app:destination="@id/artistFilterFragment" />
+            app:destination="@id/artistFilterFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit"/>
     </fragment>
 </navigation>

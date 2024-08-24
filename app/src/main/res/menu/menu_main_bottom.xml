@@ -4,23 +4,24 @@
         android:id="@+id/nav_home"
         android:icon="@drawable/selector_menu_home"
         android:checked="true"
+        android:layout="@layout/view_menu_home"
         android:title="" />
 
     <item
         android:id="@+id/nav_photographer"
         android:icon="@drawable/selector_menu_artist"
-        android:checked="true"
+        android:layout="@layout/view_menu_artist"
         android:title="" />
 
     <item
         android:id="@+id/nav_feed"
         android:icon="@drawable/selector_menu_feed"
-        android:checked="true"
+        android:layout="@layout/view_menu_feed"
         android:title="" />
 
     <item
         android:id="@+id/nav_mypage"
         android:icon="@drawable/selector_menu_profile"
-        android:checked="true"
+        android:layout="@layout/view_menu_mypage"
         android:title="" />
 </menu>

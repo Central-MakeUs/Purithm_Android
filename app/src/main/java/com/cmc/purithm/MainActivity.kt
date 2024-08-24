@@ -4,12 +4,17 @@ package com.cmc.purithm
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.core.view.WindowCompat
+import androidx.core.view.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
@@ -19,6 +24,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
+import com.cmc.purithm.design.util.Util.dp
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
@@ -40,21 +46,14 @@ class MainActivity : AppCompatActivity(), NavigationAction,
 
         navHostFragment.navController.addOnDestinationChangedListener(this)
         setTransparentStatusBar()
-
-        if (savedInstanceState == null) {
-            initBottomNavigation()
-        }
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
         initBottomNavigation()
     }
 
     private fun initBottomNavigation() {
-        binding?.bnvMain?.setupWithNavController(navHostFragment.navController)
+        with(binding?.bnvMain!!) {
+            setupWithNavController(navHostFragment.navController)
+        }
     }
-
 
     private fun setTransparentStatusBar() {
         window.apply {
@@ -196,7 +195,8 @@ class MainActivity : AppCompatActivity(), NavigationAction,
             com.cmc.purithm.feature.mypage.R.id.stampHistoryFragment,
             com.cmc.purithm.feature.mypage.R.id.myReviewHistoryFragment,
             com.cmc.purithm.feature.mypage.R.id.myFilterHistoryFragment,
-            com.cmc.purithm.feature.mypage.R.id.myFavoriteFilterFragment,-> {
+            com.cmc.purithm.feature.mypage.R.id.myFavoriteFilterFragment,
+            -> {
                 setBottomNavVisibility(false)
             }
 

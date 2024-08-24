@@ -13,6 +13,7 @@ import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 internal interface MemberService {
     @POST("/api/users/terms")
@@ -44,5 +45,7 @@ internal interface MemberService {
     suspend fun getLikedFilters() : BaseResponse<List<FilterLikeResponseDto>>
 
     @GET("/api/users/history")
-    suspend fun getFilterHistory() : BaseResponse<FilterHistoryResponseDto>
+    suspend fun getFilterHistory(
+        @Query("os") os: String = "AOS"
+    ) : BaseResponse<FilterHistoryResponseDto>
 }

@@ -21,28 +21,38 @@
         android:id="@+id/navigate_login"
         app:destination="@id/nav_login"
         app:popUpTo="@id/splashFragment"
+        app:enterAnim="@animator/animator_navigate"
+        app:exitAnim="@animator/animator_exit"
         app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_onboarding"
         app:destination="@id/nav_onboarding"
         app:popUpTo="@id/splashFragment"
+        app:enterAnim="@animator/animator_navigate"
+        app:exitAnim="@animator/animator_exit"
         app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_term_of_service"
         app:destination="@id/nav_term_of_service"
         app:popUpTo="@id/splashFragment"
+        app:enterAnim="@animator/animator_navigate"
+        app:exitAnim="@animator/animator_exit"
         app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_home"
         app:destination="@id/nav_home"
         app:popUpTo="@id/splashFragment"
+        app:enterAnim="@animator/animator_navigate"
+        app:exitAnim="@animator/animator_exit"
         app:popUpToInclusive="true"/>
 
     <action
         android:id="@+id/navigate_review"
+        app:enterAnim="@animator/animator_navigate"
+        app:exitAnim="@animator/animator_exit"
         app:destination="@id/nav_review">
         <argument
             android:name="filterId"

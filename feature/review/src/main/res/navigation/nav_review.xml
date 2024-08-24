@@ -28,7 +28,9 @@
             app:nullable="false" />
         <action
             android:id="@+id/action_reviewWriteFragment_to_reviewHistoryFragment"
-            app:destination="@id/reviewHistoryFragment" />
+            app:destination="@id/reviewHistoryFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit"/>
     </fragment>
     <fragment
         android:id="@+id/reviewHistoryFragment"

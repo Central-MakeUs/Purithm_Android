@@ -11,7 +11,8 @@
     <dimen name="size_appbar_height">106dp</dimen>
 
     <!-- bottom navigation -->
-    <dimen name="size_bottom_navigation_height">82dp</dimen>
+    <dimen name="size_bottom_navigation_icon">64dp</dimen>
+    <dimen name="size_bottom_navigation_bottom_padding">16dp</dimen>
 
     <!-- image -->
     <dimen name="radius_image_rectangle_default">16dp</dimen>

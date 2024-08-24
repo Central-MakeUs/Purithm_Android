@@ -28,13 +28,19 @@
         <deepLink app:uri="purithm://filter/{filterId}" />
         <action
             android:id="@+id/action_filterFragment_to_filterLoadingFragment"
-            app:destination="@id/filterLoadingFragment" />
+            app:destination="@id/filterLoadingFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_filterFragment_to_filterIntroductionFragment"
-            app:destination="@id/filterIntroductionFragment" />
+            app:destination="@id/filterIntroductionFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_filterFragment_to_filterReviewFragment"
-            app:destination="@id/filterReviewFragment" />
+            app:destination="@id/filterReviewFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit" />
     </fragment>
     <fragment
         android:id="@+id/filterLoadingFragment"
@@ -48,10 +54,12 @@
         <argument
             android:name="filterName"
             app:argType="string"
-            app:nullable="false"/>
+            app:nullable="false" />
         <action
             android:id="@+id/action_filterLoadingFragment_to_filterValueFragment"
             app:destination="@id/filterValueFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit"
             app:popUpTo="@id/filterFragment"
             app:popUpToInclusive="false" />
     </fragment>
@@ -85,10 +93,11 @@
             app:nullable="false" />
         <action
             android:id="@+id/action_filterReviewFragment_to_filterReviewDetailFragment"
-            app:destination="@id/filterReviewDetailFragment" />
+            app:destination="@id/filterReviewDetailFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:exitAnim="@animator/animator_exit" />
 
-        <deepLink
-            app:uri="purithm://filter/review/{filterId}/{thumbnail}/{filterName}" />
+        <deepLink app:uri="purithm://filter/review/{filterId}/{thumbnail}/{filterName}" />
         <action
             android:id="@+id/action_filterReviewFragment_to_filterLoadingFragment"
             app:destination="@id/filterLoadingFragment" />
