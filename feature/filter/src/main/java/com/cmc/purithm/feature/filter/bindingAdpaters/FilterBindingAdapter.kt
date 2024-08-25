@@ -26,7 +26,11 @@ object FilterBindingAdapter {
     @BindingAdapter("percentage")
     @JvmStatic
     fun TextView.setPercentage(percentage : Int){
-        text = "${percentage}%"
+        text = if(percentage == 0){
+            "??"
+        } else {
+            "${percentage}%"
+        }
     }
 
     @BindingAdapter("guideVisibility")

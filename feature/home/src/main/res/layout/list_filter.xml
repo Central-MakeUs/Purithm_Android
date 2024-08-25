@@ -68,7 +68,7 @@
 
         <TextView
             android:id="@+id/tv_filter_title"
-            style="@style/en_title_3"
+            style="@style/en_title_3_hard"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"

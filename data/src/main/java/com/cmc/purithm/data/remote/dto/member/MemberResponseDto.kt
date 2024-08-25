@@ -8,7 +8,7 @@ internal data class MemberResponseDto(
     @SerializedName("name")
     val name: String,
     @SerializedName("profile")
-    val profile: String,
+    val profile: String?,
     @SerializedName("stamp")
     val stamp: Int,
     @SerializedName("likes")

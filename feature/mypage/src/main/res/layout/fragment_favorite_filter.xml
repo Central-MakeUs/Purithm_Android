@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="count"
             type="int" />
@@ -22,54 +25,67 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{count == 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/view_appbar">
+            app:layout_constraintTop_toBottomOf="@id/view_appbar"
+            app:layout_constraintVertical_bias="0.4">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="@dimen/size_empty_img"
+                android:layout_height="@dimen/size_empty_img"
+                android:src="@drawable/ic_stamp_heart_unlock" />
 
-                <TextView
-                    android:id="@+id/tv_total_count"
-                    style="@style/kr_body_3"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginTop="30dp"
-                    android:gravity="start|center_vertical"
-                    android:text="@{String.format(@string/content_stamp_total_count, count)}"
-                    android:textColor="@color/grey_500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="총 12개" />
+            <TextView
+                style="@style/kr_body_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/content_like_filter_empty"
+                android:textColor="@color/grey_400" />
 
-                <com.cmc.purithm.design.component.view.PurithmRecyclerView
-                    android:id="@+id/list_filter_like"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_screen_side"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="7dp"
-                    android:nestedScrollingEnabled="true"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_total_count"
-                    app:layout_constraintVertical_bias="0.0"
-                    app:spanCount="2" />
+        </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_total_count"
+            style="@style/kr_body_3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_screen_side"
+            android:layout_marginTop="30dp"
+            android:gravity="start|center_vertical"
+            android:text="@{String.format(@string/content_stamp_total_count, count)}"
+            android:textColor="@color/grey_500"
+            android:visibility="@{count > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_appbar"
+            tools:text="총 12개" />
 
-
-        </androidx.core.widget.NestedScrollView>
+        <com.cmc.purithm.design.component.view.PurithmRecyclerView
+            android:id="@+id/list_filter_like"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen_side"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="7dp"
+            android:nestedScrollingEnabled="true"
+            android:visibility="@{count > 0 ? View.VISIBLE : View.GONE}"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_total_count"
+            app:layout_constraintVertical_bias="0.0"
+            app:spanCount="2" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

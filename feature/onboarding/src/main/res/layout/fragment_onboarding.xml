@@ -26,7 +26,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_banner"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="400dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +86,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
-            android:layout_marginTop="73dp"
             android:layout_marginBottom="40dp"
             android:background="@drawable/shape_button_solid_primary_lg"
             android:gravity="center"
@@ -98,7 +97,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/indicator_onboarding"
-            app:layout_constraintVertical_bias="1.0"
-            app:layout_goneMarginTop="73dp" />
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

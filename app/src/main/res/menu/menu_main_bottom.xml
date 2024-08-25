@@ -1,27 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/selector_menu_home"
         android:checked="true"
-        android:layout="@layout/view_menu_home"
-        android:title="" />
+        android:icon="@drawable/selector_menu_home"
+        android:title=""
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/nav_photographer"
         android:icon="@drawable/selector_menu_artist"
-        android:layout="@layout/view_menu_artist"
-        android:title="" />
+        android:title=""
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/nav_feed"
         android:icon="@drawable/selector_menu_feed"
-        android:layout="@layout/view_menu_feed"
-        android:title="" />
+        android:title=""
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/nav_mypage"
         android:icon="@drawable/selector_menu_profile"
-        android:layout="@layout/view_menu_mypage"
-        android:title="" />
+        android:title=""
+        app:showAsAction="always" />
 </menu>

@@ -23,6 +23,9 @@
     <string name="content_review_satisfactory">필터 만족도</string>
     <string name="content_delete">삭제</string>
     <string name="content_filter_artist">Made by %s</string>
+    <string name="content_stamp_empty">후기 남기고\n스탬프를 채워 보세요</string>
+    <string name="content_review_write">후기 남기러 가기</string>
+    <string name="content_like_filter_empty">마음에 든 필터가 있다면\n찜 아이콘을 눌러 보세요</string>
 
     <string name="category_like">찜 목록</string>
     <string name="category_filter_history">필터 열람 내역</string>

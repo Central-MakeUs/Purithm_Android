@@ -19,7 +19,7 @@ internal fun BaseResponse<MemberResponseDto>.toDomain(): Member {
     return Member(
         id = data.id,
         username = data.name,
-        profile = data.profile,
+        profile = data.profile ?: "",
         stampCnt = data.stamp,
         likesCnt = data.likes,
         filterViewCnt = data.filterViewCount,

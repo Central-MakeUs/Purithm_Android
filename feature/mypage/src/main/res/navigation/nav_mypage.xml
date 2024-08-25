@@ -60,7 +60,11 @@
         android:id="@+id/myReviewHistoryFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.ReviewHistoryListFragment"
         android:label="MyReviewHistoryFragment"
-        tools:layout="@layout/fragment_review_history_list" />
+        tools:layout="@layout/fragment_review_history_list" >
+        <action
+            android:id="@+id/action_myReviewHistoryFragment_to_myFilterHistoryFragment"
+            app:destination="@id/myFilterHistoryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.SettingFragment"

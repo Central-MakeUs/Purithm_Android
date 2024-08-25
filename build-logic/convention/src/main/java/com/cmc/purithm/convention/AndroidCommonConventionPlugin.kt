@@ -33,7 +33,7 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("glide-compiler").get())
 
                 add("implementation", libs.findLibrary("lottie").get())
-                
+
                 add("implementation", libs.findBundle("androidx-navigation").get())
 
                 add("implementation", libs.findBundle("lifecycle").get())
@@ -41,7 +41,7 @@ class AndroidCommonConventionPlugin : Plugin<Project> {
 
                 add("implementation", libs.findLibrary("facebook-shimmer").get())
 
-
+                add("implementation", libs.findLibrary("androidx-paging-runtime").get())
             }
         }
     }

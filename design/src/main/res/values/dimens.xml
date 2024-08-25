@@ -19,6 +19,7 @@
     <dimen name="radius_image_rectangle_small">12dp</dimen>
     <dimen name="size_image_profile">40dp</dimen>
     <dimen name="size_image_mypage_filter_thumbnail">58dp</dimen>
+    <dimen name="size_empty_img">150dp</dimen>
 
     <!-- seekbar -->
     <dimen name="size_seekbar_progress_height">6dp</dimen>

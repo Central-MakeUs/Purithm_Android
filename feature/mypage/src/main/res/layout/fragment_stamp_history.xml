@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="data"
             type="com.cmc.purithm.feature.mypage.model.HistoryUiModel" />
@@ -27,10 +29,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/layout_empty_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="@{data.count == 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_appbar"
+            app:layout_constraintVertical_bias="0.3">
+
+            <ImageView
+                android:layout_width="@dimen/size_empty_img"
+                android:layout_height="@dimen/size_empty_img"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_stamp_flower_unlock" />
+
+            <TextView
+                style="@style/kr_body_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="@string/content_stamp_empty"
+                android:textColor="@color/grey_400" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_review_write"
+                style="@style/kr_body_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/shape_button_solid_primary_s"
+                android:paddingHorizontal="18dp"
+                android:paddingVertical="12dp"
+                android:text="@string/content_review_write"
+                android:textColor="@color/white"
+                app:delayClickEvent="@{() -> vm.clickFilterHistory()}" />
+
+        </LinearLayout>
+
         <com.amar.library.ui.StickyScrollView
             android:id="@+id/scroll_main"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="@{data.count > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,8 +102,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
                         app:cardCornerRadius="16dp"
-                        app:delayClickEvent="@{() -> vm.clickFilterHistory()}"
                         app:cardElevation="0dp"
+                        app:delayClickEvent="@{() -> vm.clickFilterHistory()}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">

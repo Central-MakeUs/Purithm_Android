@@ -42,9 +42,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     abstract fun initView()
 
-    private val mLoadingDialog by lazy {
-        LoadingDialogFragment()
-    }
+    private var mLoadingDialog : LoadingDialogFragment? = null
 
     private var mToast: Toast? = null
     private var mCommonDialog: CommonDialogFragment? = null
@@ -81,9 +79,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     protected fun dismissLoadingDialog() {
         Log.d(TAG, "dismissLoadingDialog: start")
-        if (mLoadingDialog.isAdded) {
+        if (mLoadingDialog?.isAdded == true) {
             Log.d(TAG, "dismissLoadingDialog: on")
-            mLoadingDialog.dismissAllowingStateLoss()
+            mLoadingDialog?.dismissAllowingStateLoss()
         }
     }
 
@@ -91,10 +89,13 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 show
      * */
     protected fun showLoadingDialog() {
+        if(mLoadingDialog == null){
+            mLoadingDialog = LoadingDialogFragment()
+        }
         Log.d(TAG, "showLoadingDialog: start")
-        if (mLoadingDialog.isDetached) {
+        if (mLoadingDialog?.isAdded == false) {
             Log.d(TAG, "showLoadingDialog: on")
-            mLoadingDialog.show(childFragmentManager, mLoadingDialog.tag)
+            mLoadingDialog?.show(childFragmentManager, mLoadingDialog?.tag)
         }
     }
 

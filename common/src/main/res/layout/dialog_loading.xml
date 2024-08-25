@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/view_loading"
@@ -19,8 +20,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/lottie_loading" />
+            app:lottie_fileName="lottie_loading.json"
+            app:lottie_loop="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

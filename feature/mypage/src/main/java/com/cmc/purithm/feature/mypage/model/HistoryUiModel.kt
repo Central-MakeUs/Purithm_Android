@@ -3,8 +3,8 @@ package com.cmc.purithm.feature.mypage.model
 import com.cmc.purithm.domain.entity.filter.FilterHistory
 
 data class HistoryUiModel(
-    val count: Int,
-    val historyList: List<History>
+    val count: Int = 0,
+    val historyList: List<History> = emptyList()
 ) {
     data class History(
         val date: String,

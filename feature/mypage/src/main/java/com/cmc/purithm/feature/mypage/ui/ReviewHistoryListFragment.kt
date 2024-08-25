@@ -107,6 +107,9 @@ class ReviewHistoryListFragment : BaseFragment<FragmentReviewHistoryListBinding>
                 }
             )
             listReviewHistory.adapter = reviewHistoryAdapter
+            btnReviewWrite.setOnClickListener {
+                navigate(ReviewHistoryListFragmentDirections.actionMyReviewHistoryFragmentToMyFilterHistoryFragment())
+            }
         }
     }
 }

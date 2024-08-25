@@ -129,6 +129,10 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
             btnConfirm.setOnClickListener {
                 viewModel.clickConfirmButton(filterId, filterName, thumbnail)
             }
+
+            btnReviewWrite.setOnClickListener {
+                viewModel.clickConfirmButton(filterId, filterName, thumbnail)
+            }
         }
     }
 

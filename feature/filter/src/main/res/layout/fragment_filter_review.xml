@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="com.cmc.purithm.feature.filter.viewmodel.FilterReviewViewModel" />
@@ -82,7 +84,7 @@
 
                     <TextView
                         android:id="@+id/tv_review_intensity"
-                        style="@style/en_title_1"
+                        style="@style/kr_title_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -90,6 +92,41 @@
                         app:percentage="@{vm.state.data.avg}"
                         tools:text="80%" />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_empty_review"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="88dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="@{vm.state.data.reviews.size() == 0 ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/img_review_background">
+
+                    <TextView
+                        style="@style/kr_body_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/content_review_empty"
+                        android:textColor="@color/grey_400" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_review_write"
+                        style="@style/kr_body_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/shape_button_solid_primary_s"
+                        android:paddingHorizontal="18dp"
+                        android:paddingVertical="12dp"
+                        android:text="@string/content_review_write"
+                        android:textColor="@color/white" />
+
+                </LinearLayout>
+
 
                 <TextView
                     android:id="@+id/tv_review_count"
@@ -99,6 +136,7 @@
                     android:layout_marginStart="@dimen/margin_screen_side"
                     android:layout_marginTop="40dp"
                     android:textColor="@color/grey_500"
+                    android:visibility="@{vm.state.data.reviews.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/img_review_background"
                     app:reviewCount="@{vm.state.data.reviews.size()}"
@@ -112,6 +150,7 @@
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="7dp"
                     android:nestedScrollingEnabled="false"
+                    android:visibility="@{vm.state.data.reviews.size() > 0 ? View.VISIBLE : View.GONE}"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -143,6 +182,7 @@
             android:gravity="center"
             android:paddingVertical="18dp"
             android:textColor="@color/white"
+            android:visibility="@{vm.state.data.reviews.size() > 0 ? View.VISIBLE : View.GONE}"
             app:hasReview="@{vm.state.data.hasReview}"
             app:hasViewed="@{vm.state.data.hasViewed}"
             app:layout_constraintBottom_toBottomOf="parent"
