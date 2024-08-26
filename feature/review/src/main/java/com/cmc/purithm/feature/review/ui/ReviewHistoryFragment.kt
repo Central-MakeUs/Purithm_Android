@@ -21,7 +21,6 @@ import com.cmc.purithm.feature.review.viewmodel.ReviewHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
-// TODO : 리뷰 작성에서 넘어오는 경우 확인해야함
 @AndroidEntryPoint
 class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
     override val layoutId: Int
@@ -37,6 +36,7 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
     // 리뷰 작성에서 넘어올 시, 아에 다른곳으로 navigate해야함
     private val isWrite by lazy { navArgs.isWrite }
     private val navigateType by lazy { navArgs.navigateType }
+    private lateinit var reviewPictureAdapter : ReviewPictureAdapter
 
     private fun backNavigate(){
         if(isWrite){
@@ -76,7 +76,10 @@ class ReviewHistoryFragment : BaseFragment<FragmentReviewHistoryBinding>() {
                                 dismissLoadingDialog()
                                 with(binding){
                                     data = state.data
-                                    vpPicture.adapter = ReviewPictureAdapter(requireActivity(), state.data.pictures)
+                                    if(!::reviewPictureAdapter.isInitialized){
+                                        reviewPictureAdapter = ReviewPictureAdapter(requireActivity(), state.data.pictures)
+                                        vpPicture.adapter = reviewPictureAdapter
+                                    }
                                     if(state.data.pictures.size > 1){
                                         indicatorPicture.setViewPager(vpPicture)
                                     } else {

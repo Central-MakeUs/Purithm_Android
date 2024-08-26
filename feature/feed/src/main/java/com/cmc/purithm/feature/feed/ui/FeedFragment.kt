@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.feed.ui
 
+import android.util.Log
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -31,6 +32,7 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collect { state ->
+                        Log.d(TAG, "initObserving: list = ${state.data}")
                         if (state.loading) {
                             showLoadingDialog()
                         } else {
@@ -89,5 +91,8 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
                 title = "Feed"
             )
         }
+    }
+    companion object {
+        private const val TAG = "FeedFragment"
     }
 }

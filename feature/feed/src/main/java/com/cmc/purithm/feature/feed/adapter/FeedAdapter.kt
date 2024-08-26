@@ -34,18 +34,13 @@ class FeedAdapter(
         holder.bind(currentList[position])
     }
 
-    inner class FeedViewHolder(private val binding: ListFeedBinding) : RecyclerView.ViewHolder(
-        binding.root
-    ) {
-        private lateinit var feedPictureAdapter : FeedPictureAdapter
+    inner class FeedViewHolder(private val binding: ListFeedBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: FeedUiModel) {
             with(binding) {
+                Log.d(TAG, "bind: data = $data")
                 this.data = data
-                if(!::feedPictureAdapter.isInitialized){
-                    feedPictureAdapter = FeedPictureAdapter(fragmentActivity, data.pictures)
-                    vpPicture.isUserInputEnabled = true
-                    vpPicture.adapter = feedPictureAdapter
-                }
+                vpPicture.adapter = FeedPictureAdapter(fragmentActivity, data.pictures)
+                vpPicture.isUserInputEnabled = true
                 if (data.pictures.size > 1) {
                     indicatorPicture.setViewPager(vpPicture)
                 } else {
