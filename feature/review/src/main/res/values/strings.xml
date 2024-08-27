@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title_review_write">How purithm?</string>
-    <string name="content_review_write">아래 바를 조절해 만족도를 남겨주세요</string>
+    <string name="content_review_write_description">아래 바를 조절해 만족도를 남겨주세요</string>
 
     <string name="title_review_write_description">필터 사용 후기를 남겨주세요</string>
     <string name="content_review_write_require_text">텍스트 %d자 이상 입력해주세요</string>

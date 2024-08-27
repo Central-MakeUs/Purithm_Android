@@ -170,6 +170,15 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                 ),
                 textChangeListener = { content ->
                     viewModel.setContent(content)
+                }, focusChangeListener = { hasFocus ->
+                    if (hasFocus) {
+                        scrollMain.post {
+                            scrollMain.smoothScrollTo(
+                                0,
+                                editReview.top + scrollMain.scrollY
+                            )
+                        }
+                    }
                 }
             )
             viewAppbar.setAppBar(

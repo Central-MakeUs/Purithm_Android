@@ -44,7 +44,8 @@ class PurithmMultipleEditText @JvmOverloads constructor(
         hint: String = "",
         imeOption: Int,
         errorMsg: String,
-        textChangeListener: (String) -> Unit
+        textChangeListener: (String) -> Unit,
+        focusChangeListener : (Boolean) -> Unit
     ) {
         this.maxSize = maxSize
         this.minSize = minSize
@@ -61,6 +62,7 @@ class PurithmMultipleEditText @JvmOverloads constructor(
             editMain.filters = arrayOf(InputFilter.LengthFilter(maxSize))
             editMain.imeOptions = imeOption
             editMain.setOnFocusChangeListener { _, hasFocus ->
+                focusChangeListener(hasFocus)
                 if(hasFocus) {
                     layoutMain.setBackgroundResource(R.drawable.bg_edit_text_focus)
                 } else {
@@ -72,6 +74,9 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                         } else {
                             showDefault()
                         }
+                    } else {
+                        layoutStatus.visibility = View.GONE
+                        tvErrorMsg.visibility = View.GONE
                     }
                 }
             }
@@ -95,11 +100,18 @@ class PurithmMultipleEditText @JvmOverloads constructor(
                     if (s.isEmpty()) {    // 입력된 텍스트가 없을 경우 background 변경
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_default)
                         editMain.setBackgroundResource(R.drawable.shape_white_trasn_60_background)
+                        return
+                    }
+                    if (s.length < minSize){ // 최소 입력이 안됐을 때
+                        tvTextCount.setTextColor(context.getColorResource(R.color.red_500))
+                        layoutMain.setBackgroundResource(R.drawable.bg_edit_text_error)
+                        return
                     }
                     if (s.length >= maxSize) {  // 메시지 길이 초과
                         tvStatus.setTextColor(context.getColorResource(R.color.red_500))
                         editMain.setSelection(maxSize)
                         showErrorMsg()
+                        return
                     } else {    // 텍스트가 한개라도 있으면 background 변경
                         tvTextCount.setTextColor(context.getColorResource(R.color.blue_400))
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_focus)

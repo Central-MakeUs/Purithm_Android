@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
                     android:layout_marginTop="6dp"
-                    android:text="@string/content_review_write"
+                    android:text="@string/content_review_write_description"
                     android:textColor="@color/grey_400"
                     android:visibility="@{vm.state.pureDegree == -1 ? View.VISIBLE : View.INVISIBLE}"
                     app:layout_constraintEnd_toEndOf="parent"
