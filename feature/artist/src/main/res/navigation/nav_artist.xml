@@ -10,7 +10,10 @@
         android:name="com.cmc.purithm.feature.artist.ui.ArtistFilterFragment"
         android:label="PhotographerFilterFragment"
         tools:layout="@layout/fragment_artist_filter">
-        <deepLink app:uri="purithm://artist/filter/{artistId}" />
+        <deepLink
+            app:enterAnim="@animator/animator_navigate"
+            app:popExitAnim="@animator/animator_exit"
+            app:uri="purithm://artist/filter/{artistId}" />
         <argument
             android:name="artistId"
             app:argType="long"
@@ -25,6 +28,6 @@
             android:id="@+id/action_artistFragment_to_artistFilterFragment"
             app:destination="@id/artistFilterFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
 </navigation>

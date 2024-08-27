@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.home.adpater
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -13,25 +14,32 @@ import com.cmc.purithm.feature.home.R
 import com.cmc.purithm.feature.home.databinding.ListFilterBinding
 
 class HomeFilterAdapter(
-    private val viewModel : HomeViewModel
+    private val viewModel: HomeViewModel
 ) : PagingDataAdapter<HomeFilterUiModel, HomeFilterAdapter.HomeFilterViewHolder>(HomeFilterDiffUtil()) {
 
     inner class HomeFilterViewHolder(private val binding: ListFilterBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private var likeState = false
         fun bind(data: HomeFilterUiModel?) {
             data?.run {
                 with(binding) {
                     model = data
+                    likeState = data.liked
                     root.setOnClickListener {
                         viewModel.clickFilterItem(data.id, data.canAccess)
                     }
 
                     btnLike.setOnClickListener {
-                        if(data.liked){
+                        if (data.liked) {
                             viewModel.deleteFilterLike(data.id)
+                            btnLike.setImageResource(com.cmc.purithm.design.R.drawable.ic_like_unpressed)
+                            tvLikeCnt.text = (tvLikeCnt.text.toString().toInt() - 1).toString()
                         } else {
                             viewModel.setFilterLike(data.id)
+                            btnLike.setImageResource(com.cmc.purithm.design.R.drawable.ic_like_pressed)
+                            tvLikeCnt.text = (tvLikeCnt.text.toString().toInt() + 1).toString()
                         }
+                        likeState = !likeState
                     }
                 }
             }

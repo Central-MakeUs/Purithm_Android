@@ -54,6 +54,7 @@
                     <ImageView
                         android:id="@+id/img_profile"
                         android:layout_width="match_parent"
+                        app:delayClickEvent="@{() -> vm.clickPhotographerShop(data.photographerId)}"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
                         app:imageUrl="@{data.photographerProfile}" />

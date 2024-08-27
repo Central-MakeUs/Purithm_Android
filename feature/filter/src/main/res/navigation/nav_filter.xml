@@ -5,7 +5,6 @@
     android:id="@+id/nav_filter"
     app:startDestination="@id/filterFragment">
 
-
     <fragment
         android:id="@+id/filterIntroductionFragment"
         android:name="com.cmc.purithm.feature.filter.ui.FilterIntroductionFragment"
@@ -29,18 +28,18 @@
         <action
             android:id="@+id/action_filterFragment_to_filterLoadingFragment"
             app:destination="@id/filterLoadingFragment"
-            app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit" />
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
         <action
             android:id="@+id/action_filterFragment_to_filterIntroductionFragment"
             app:destination="@id/filterIntroductionFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit" />
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_filterFragment_to_filterReviewFragment"
             app:destination="@id/filterReviewFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit" />
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
     <fragment
         android:id="@+id/filterLoadingFragment"
@@ -58,8 +57,8 @@
         <action
             android:id="@+id/action_filterLoadingFragment_to_filterValueFragment"
             app:destination="@id/filterValueFragment"
-            app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@id/filterFragment"
             app:popUpToInclusive="false" />
     </fragment>
@@ -95,12 +94,17 @@
             android:id="@+id/action_filterReviewFragment_to_filterReviewDetailFragment"
             app:destination="@id/filterReviewDetailFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit" />
+            app:popExitAnim="@animator/animator_exit" />
 
-        <deepLink app:uri="purithm://filter/review/{filterId}/{thumbnail}/{filterName}" />
+        <deepLink
+            app:enterAnim="@animator/animator_navigate"
+            app:popExitAnim="@animator/animator_exit"
+            app:uri="purithm://filter/review/{filterId}/{thumbnail}/{filterName}" />
         <action
             android:id="@+id/action_filterReviewFragment_to_filterLoadingFragment"
-            app:destination="@id/filterLoadingFragment" />
+            app:destination="@id/filterLoadingFragment"
+            app:enterAnim="@animator/animator_navigate"
+            app:popExitAnim="@animator/animator_exit"/>
     </fragment>
     <fragment
         android:id="@+id/filterReviewDetailFragment"

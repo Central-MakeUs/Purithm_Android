@@ -29,38 +29,38 @@
             android:id="@+id/action_profileFragment_to_settingFragment"
             app:destination="@id/settingFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_profileFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_profileFragment_to_stampHistoryFragment"
             app:destination="@id/stampHistoryFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_profileFragment_to_myFilterHistoryFragment"
             app:destination="@id/myFilterHistoryFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_profileFragment_to_myReviewHistoryFragment"
             app:destination="@id/myReviewHistoryFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_profileFragment_to_myFavoriteFilterFragment"
             app:destination="@id/myFavoriteFilterFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
     <fragment
         android:id="@+id/myReviewHistoryFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.ReviewHistoryListFragment"
         android:label="MyReviewHistoryFragment"
-        tools:layout="@layout/fragment_review_history_list" >
+        tools:layout="@layout/fragment_review_history_list">
         <action
             android:id="@+id/action_myReviewHistoryFragment_to_myFilterHistoryFragment"
             app:destination="@id/myFilterHistoryFragment" />
@@ -86,12 +86,12 @@
             android:id="@+id/action_settingFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
         <action
             android:id="@+id/action_settingFragment_to_myAccountFragment"
             app:destination="@id/myAccountFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
@@ -111,13 +111,11 @@
         android:id="@+id/stampHistoryFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.StampHistoryFragment"
         android:label="StampHistoryFragment"
-        tools:layout="@layout/fragment_stamp_history" >
+        tools:layout="@layout/fragment_stamp_history">
         <action
             android:id="@+id/action_stampHistoryFragment_to_myFilterHistoryFragment"
             app:destination="@id/myFilterHistoryFragment"
-            app:exitAnim="@animator/nav_default_exit_anim"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"/>
+            app:enterAnim="@animator/animator_navigate"
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
 </navigation>

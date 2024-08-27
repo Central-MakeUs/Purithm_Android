@@ -5,7 +5,6 @@
     android:id="@+id/nav_feed"
     app:startDestination="@id/feedFragment">
 
-
     <fragment
         android:id="@+id/feedFragment"
         android:name="com.cmc.purithm.feature.feed.ui.FeedFragment"

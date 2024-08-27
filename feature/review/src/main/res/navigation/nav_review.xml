@@ -30,7 +30,7 @@
             android:id="@+id/action_reviewWriteFragment_to_reviewHistoryFragment"
             app:destination="@id/reviewHistoryFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
     <fragment
         android:id="@+id/reviewHistoryFragment"
@@ -61,6 +61,9 @@
             android:name="filterName"
             app:argType="string"
             app:nullable="false" />
-        <deepLink app:uri="purithm://review/history/{filterId}/{reviewId}/{thumbnail}/{filterName}" />
+        <deepLink
+            app:enterAnim="@animator/animator_navigate"
+            app:popExitAnim="@animator/animator_exit"
+            app:uri="purithm://review/history/{filterId}/{reviewId}/{thumbnail}/{filterName}" />
     </fragment>
 </navigation>

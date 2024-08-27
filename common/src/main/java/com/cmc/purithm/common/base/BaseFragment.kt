@@ -1,6 +1,8 @@
 package com.cmc.purithm.common.base
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -42,7 +44,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     abstract fun initView()
 
-    private var mLoadingDialog : LoadingDialogFragment? = null
+    private val mLoadingDialog = LoadingDialogFragment()
 
     private var mToast: Toast? = null
     private var mCommonDialog: CommonDialogFragment? = null
@@ -79,9 +81,9 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     protected fun dismissLoadingDialog() {
         Log.d(TAG, "dismissLoadingDialog: start")
-        if (mLoadingDialog?.isAdded == true) {
-            Log.d(TAG, "dismissLoadingDialog: on")
-            mLoadingDialog?.dismissAllowingStateLoss()
+        Log.d(TAG, "dismissLoadingDialog: isVisible = ${mLoadingDialog.isVisible}")
+        if (mLoadingDialog.isVisible) {
+            mLoadingDialog.dismissAllowingStateLoss()
         }
     }
 
@@ -89,13 +91,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * 로딩 다이얼로그 show
      * */
     protected fun showLoadingDialog() {
-        if(mLoadingDialog == null){
-            mLoadingDialog = LoadingDialogFragment()
-        }
         Log.d(TAG, "showLoadingDialog: start")
-        if (mLoadingDialog?.isAdded == false) {
-            Log.d(TAG, "showLoadingDialog: on")
-            mLoadingDialog?.show(childFragmentManager, mLoadingDialog?.tag)
+        Log.d(TAG, "showLoadingDialog: isVisible = ${mLoadingDialog.isVisible}")
+        if (!mLoadingDialog.isVisible) {
+            mLoadingDialog.show(childFragmentManager, mLoadingDialog.tag)
         }
     }
 
@@ -126,7 +125,12 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      *
      * @param message 스낵바를 생성할 메시지
      * */
-    protected fun showSnackBar(view : View, message: String, actionString : String = "", action: (() -> Unit)? = null) {
+    protected fun showSnackBar(
+        view: View,
+        message: String,
+        actionString: String = "",
+        action: (() -> Unit)? = null
+    ) {
         showPurithmSnackBar(view, message, actionString, action)
     }
 

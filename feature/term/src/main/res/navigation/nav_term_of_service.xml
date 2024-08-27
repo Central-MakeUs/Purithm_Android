@@ -14,7 +14,7 @@
             android:id="@+id/action_termOfServiceFragment_to_joinCompleteFragment"
             app:destination="@id/joinCompleteFragment"
             app:enterAnim="@animator/animator_navigate"
-            app:exitAnim="@animator/animator_exit"/>
+            app:popExitAnim="@animator/animator_exit" />
     </fragment>
 
     <fragment

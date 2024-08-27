@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.paging.log
 import androidx.paging.map
 import com.cmc.purithm.domain.usecase.filter.DeleteFilterLikeUseCase
 import com.cmc.purithm.domain.usecase.filter.GetFilterItemsUseCase
@@ -13,6 +14,9 @@ import com.cmc.purithm.domain.usecase.filter.SetFilterLikeUseCase
 import com.cmc.purithm.feature.home.adpater.HomeFilterAdapter
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -20,9 +24,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -38,23 +47,39 @@ class HomeViewModel @Inject constructor(
     val sideEffect: SharedFlow<HomeSideEffect> = _sideEffect.asSharedFlow()
 
     init {
-        getFilters()
+        viewModelScope.launch {
+            getFilters()
+        }
     }
 
-    private fun getFilters() {
+    private suspend fun getFilters() {
         Log.d(TAG, "getFilters: start")
         viewModelScope.launch {
-            _state.update { state ->
-                state.copy(
-                    loading = true
-                )
-            }
+
             runCatching {
                 getFilterItemsUseCase(state.value.tag, convertSortedBy(state.value.sortedBy))
-            }.onSuccess { filter ->
-                filter.cachedIn(viewModelScope)
+            }.onSuccess { filters ->
+                filters.cachedIn(viewModelScope)
                     .distinctUntilChanged()
-                    .collect { result ->
+                    /* 스켈레톤에서 추가 */
+//                    .onCompletion {
+//                        Log.d(TAG, "getFilters: onCompletion")
+//                        _state.update {
+//                            it.copy(
+//                                loading = false
+//                            )
+//                        }
+//                    }
+//                    .onStart {
+//                        Log.d(TAG, "getFilters: onStart")
+//                        _state.update {
+//                            it.copy(
+//                                loading = true
+//                            )
+//                        }
+//                    }
+                    .collectLatest { result ->
+                        Log.d(TAG, "getFilters: collectLatest")
                         _state.update { state ->
                             state.copy(
                                 loading = false,
@@ -62,12 +87,10 @@ class HomeViewModel @Inject constructor(
                             )
                         }
                     }
-            }.onFailure { exception ->
-                exception.printStackTrace()
+            }.onFailure {
                 _state.update { state ->
                     state.copy(
-                        loading = false,
-                        error = exception
+                        error = it
                     )
                 }
             }
@@ -90,7 +113,6 @@ class HomeViewModel @Inject constructor(
                         loading = false
                     )
                 }
-                getFilters()
             }.onFailure { exception ->
                 _state.update {
                     it.copy(
@@ -118,7 +140,6 @@ class HomeViewModel @Inject constructor(
                         loading = false
                     )
                 }
-                getFilters()
             }.onFailure { exception ->
                 _state.update {
                     it.copy(
@@ -193,23 +214,21 @@ class HomeViewModel @Inject constructor(
     /**
      * paging adpater의 state를 viewModel에서 관리하도록 설정
      * */
-    fun setPageAdapterLoadStateListener(adapter : HomeFilterAdapter){
+    fun setPageAdapterLoadStateListener(adapter: HomeFilterAdapter) {
         adapter.addLoadStateListener { loadState ->
-            val errorState = when {
-                loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                else -> null
-            }
+            val isError = loadState.refresh is LoadState.Error || loadState.append is LoadState.Error
 
-            if(errorState != null){
+            if (isError) {
+                val errorState = loadState.refresh as? LoadState.Error
+                    ?: loadState.append as? LoadState.Error
                 _state.update {
                     it.copy(
                         loading = false,
-                        error = errorState.error
+                        error = errorState?.error
                     )
                 }
             }
+
         }
     }
 

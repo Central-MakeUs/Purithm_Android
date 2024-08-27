@@ -10,16 +10,16 @@ object MyPageBindingAdapters {
     @JvmStatic
     @BindingAdapter("stampCount")
     fun TextView.setTextWithStampCount(stampCount: Int) {
-        val premiumCnt = 8
-        val premiumPlusCnt = 16
+        val premiumCnt = 4
+        val premiumPlusCnt = 8
 
         text = when (stampCount) {
-            in 0..7 -> {
+            in 0..3 -> {
                 val remainCnt = premiumCnt - stampCount
                 "${remainCnt}개 더 모으면 premium 필터를 열람할 수 있어요"
             }
 
-            in 8..15 -> {
+            in 4..7 -> {
                 val remainCnt = premiumPlusCnt - stampCount
                 "${remainCnt}개 더 모으면 premium+ 필터를 열람할 수 있어요"
             }
@@ -33,16 +33,16 @@ object MyPageBindingAdapters {
     @JvmStatic
     @BindingAdapter("stampCount2")
     fun TextView.setTextWithStampCount2(stampCount: Int) {
-        val premiumCnt = 8
-        val premiumPlusCnt = 16
+        val premiumCnt = 4
+        val premiumPlusCnt = 8
 
         text = when (stampCount) {
-            in 0..7 -> {
+            in 0..3 -> {
                 val remainCnt = premiumCnt - stampCount
                 "premium까지 ${remainCnt}개 남음"
             }
 
-            in 8..15 -> {
+            in 4..7 -> {
                 val remainCnt = premiumPlusCnt - stampCount
                 "premium+까지 ${remainCnt}개 남음"
             }

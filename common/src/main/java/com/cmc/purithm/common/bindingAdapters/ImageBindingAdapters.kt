@@ -86,8 +86,4 @@ object ImageBindingAdapters {
                 override fun onLoadCleared(placeholder: Drawable?) {}
             })
     }
-
-    private fun ImageView.setCenterCrop(drawable: Drawable) {
-
-    }
 }
