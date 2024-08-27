@@ -14,7 +14,9 @@
         android:id="@+id/myFavoriteFilterFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.MyFavoriteFilterFragment"
         android:label="MyFavoriteFilterFragment"
-        tools:layout="@layout/fragment_favorite_filter" />
+        tools:layout="@layout/fragment_favorite_filter" >
+        <deepLink app:uri="purithm://mypage/favorite" />
+    </fragment>
     <fragment
         android:id="@+id/myFilterHistoryFragment"
         android:name="com.cmc.purithm.feature.mypage.ui.MyFilterHistoryFragment"

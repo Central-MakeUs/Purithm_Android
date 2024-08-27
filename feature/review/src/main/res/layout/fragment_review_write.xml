@@ -13,8 +13,11 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:background="@color/grey_100"
         android:fitsSystemWindows="true">
 
@@ -36,9 +39,11 @@
             app:layout_constraintTop_toBottomOf="@id/view_appbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/layout_main"
+                android:id="@+id/layout_sub"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:paddingBottom="100dp">
 
                 <ImageView
@@ -223,19 +228,49 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/scroll_img" />
 
-                <TextView
-                    android:id="@+id/tv_term_of_review"
-                    style="@style/kr_body_6"
+                <LinearLayout
+                    android:id="@+id/layout_term_of_review"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_screen_side"
                     android:background="@drawable/shape_white_round_background"
+                    android:orientation="vertical"
                     android:padding="20dp"
-                    android:text="@string/content_terms_of_review"
-                    android:textColor="@color/grey_300"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review_title" />
+                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review_title">
+
+                    <TextView
+                        style="@style/kr_body_5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/title_terms_of_review_introduction"
+                        android:textColor="@color/grey_400" />
+
+                    <com.cmc.purithm.feature.review.view.TermOfReviewTextView
+                        android:id="@+id/tv_term_of_review_content_1"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.cmc.purithm.feature.review.view.TermOfReviewTextView
+                        android:id="@+id/tv_term_of_review_content_2"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.cmc.purithm.feature.review.view.TermOfReviewTextView
+                        android:id="@+id/tv_term_of_review_content_3"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"/>
+
+                    <com.cmc.purithm.feature.review.view.TermOfReviewTextView
+                        android:id="@+id/tv_term_of_review_content_4"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="20dp"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
 
                 <CheckBox
                     android:id="@+id/btn_term_of_service_agreement"
@@ -254,7 +289,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tv_term_of_review"
+                    app:layout_constraintTop_toBottomOf="@id/layout_term_of_review"
                     app:layout_constraintVertical_bias="0" />
 
                 <CheckBox
@@ -263,7 +298,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/margin_screen_side"
-                    android:layout_marginBottom="120dp"
+                    android:layout_marginBottom="140dp"
                     android:button="@drawable/selector_ic_checkbox"
                     android:gravity="center_vertical"
                     android:padding="10dp"

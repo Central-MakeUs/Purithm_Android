@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.viewpager2.widget.ViewPager2
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.domain.entity.filter.FilterImg
@@ -32,6 +33,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     private val filterId by lazy { navArgs.filterId }
     private lateinit var pictureAdapter: FilterPictureAdapter
     private var selectedImgIndex = 0
+    private var likeCnt = 0
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
@@ -41,6 +43,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                         Log.d(TAG, "initObserving: start")
                         if (state.data != null) {
                             initAppBar(state.data.name, state.data.liked, state.data.likes)
+                            likeCnt = state.data.likes
                             initViewPager(state.data.pictures)
                         }
                         if (state.error != null) {
@@ -98,8 +101,7 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                                     message = "찜 목록에 담겼어요",
                                     actionString = "찜 목록 보기",
                                     action = {
-                                        Log.d(TAG, "initObserving: snackbar on!")
-                                        // TODO : Navigate 추가해야함
+                                        (activity as NavigationAction).navigateMyFavoriteFilter()
                                     }
                                 )
                             }
@@ -126,22 +128,28 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
     }
 
     private fun initAppBar(title: String, liked: Boolean, likes: Int) {
-        binding.viewAppbar.setAppBar(
-            type = PurithmAppbar.PurithmAppbarType.ENG_LIKE,
-            title = title,
-            likeState = liked,
-            likeCnt = likes,
-            backClickListener = {
-                findNavController().popBackStack()
-            },
-            likeClickListener = {
-                if (viewModel.state.value.data?.liked == true) {
-                    viewModel.deleteFilterLike(filterId)
-                } else {
-                    viewModel.requestFilterLike(filterId)
+        with(binding.viewAppbar){
+            setAppBar(
+                type = PurithmAppbar.PurithmAppbarType.ENG_LIKE,
+                title = title,
+                likeState = liked,
+                likeCnt = likes,
+                backClickListener = {
+                    findNavController().popBackStack()
+                },
+                likeClickListener = {
+                    if (viewModel.state.value.data?.liked == true) {
+                        viewModel.deleteFilterLike(filterId)
+                        setLikeCnt(likeCnt - 1)
+                        setLikeState(false)
+                    } else {
+                        viewModel.requestFilterLike(filterId)
+                        setLikeCnt(likeCnt + 1)
+                        setLikeState(true)
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     private fun initViewPager(pictureList: List<FilterImg>) {

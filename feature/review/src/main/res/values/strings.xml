@@ -8,7 +8,15 @@
     <string name="content_review_write_require_picture">사진 1장 이상 올려주세요</string>
     <string name="content_review_hint">여기에 남겨주세요</string>
     <string name="title_terms_of_review">후기 약관 동의</string>
-    <string name="content_terms_of_review">작성하신 후기는 퓨리즘 및 퓨리즘 이용자에게 공개됩니다.</string>
+    <string name="title_terms_of_review_introduction">후기작성 안내</string>
+    <string name="content_terms_of_review_1">작성하신 후기는 퓨리즘 및 퓨리즘 이용자에게 공개됩니다.</string>
+    <string name="content_terms_of_review_2">후기 작성 시 스탬프 1개가 지급되니다. 4개 이상의 스탬프를 모을 시 premium 필터의 열람 권한이 부여되고, 8개 이상의 스탬프를 모을 시 premium+필터의 열람 권한이 부여됩니다.</string>
+    <string name="content_terms_of_review_3">아래에 해당할 경우 지급받은 스탬프가 회수될 수 있습니다.</string>
+    <string name="content_terms_of_review_4">원활한 서비스 이용을 위해 후기 도용 시 스탬프 회수 및 3개월 간의 후기 스탬프 적립 지금이 중단되며, 퓨리즘 서비스 이용에 제한이 발생될 수 있습니다.</string>
+    <string name="content_terms_of_review_sub_1">-문자 및 기회의 단순 나열, 반복된 내용의 후기</string>
+    <string name="content_terms_of_review_sub_2">-필터와 관련 없는 내용의 후기</string>
+    <string name="content_terms_of_review_sub_3">-개인정보 및 광고, 비속어가 포함된 내용의 후기</string>
+    <string name="content_terms_of_review_sub_4">-관련 없는 사진, 타인의 사진을 도용한 후기</string>
     <string name="content_terms_of_review_introduce_agree">(필수) 후기는 홍보 컨텐츠로 사용될 수 있습니다.</string>
     <string name="content_terms_of_review_agree">(필수) 후기 약관에 동의합니다.</string>
     <string name="content_upload">올리기</string>
@@ -25,4 +33,5 @@
     <string name="content_filter_intensity_description">필터 만족도는 필터를 사용한 사람들의 만족도입니다.\n만족도가 높을수록 100%에 가까워요.</string>
     <string name="content_filter_intensity_outstanding">만족해요</string>
     <string name="content_filter_intensity_poor">아쉬워요</string>
+
 </resources>

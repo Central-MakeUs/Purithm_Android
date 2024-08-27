@@ -68,6 +68,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginEnd="@dimen/margin_screen_side"
+                android:visibility="gone"
                 android:background="@color/transparent"
                 android:contentDescription="@string/content_setting"
                 android:src="@drawable/ic_settings"

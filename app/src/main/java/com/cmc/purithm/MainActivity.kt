@@ -1,20 +1,20 @@
 package com.cmc.purithm
 
 
+import android.content.Context
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.view.ViewTreeObserver
 import android.view.WindowManager
-import android.widget.ImageView
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.net.toUri
 import androidx.core.os.bundleOf
 import androidx.core.view.WindowCompat
-import androidx.core.view.forEach
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.NavDeepLinkRequest
@@ -24,10 +24,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.databinding.ActivityMainBinding
-import com.cmc.purithm.design.util.Util.dp
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationAction,
@@ -137,6 +137,12 @@ class MainActivity : AppCompatActivity(), NavigationAction,
         }
     }
 
+    override fun navigateMyFavoriteFilter() {
+        with(navHostFragment.navController) {
+            deepLinkNavigate("purithm://mypage/favorite")
+        }
+    }
+
     /**
      * @param type 이동되야할 fragment, 1 - filter review, 2 - my page
      * */
@@ -228,6 +234,22 @@ class MainActivity : AppCompatActivity(), NavigationAction,
                 .build(),
             builder.build()
         )
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent): Boolean {
+        if (event.action == MotionEvent.ACTION_DOWN) {
+            val v = currentFocus
+            if (v is EditText) {
+                val outRect = Rect()
+                v.getGlobalVisibleRect(outRect)
+                if (!outRect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    v.clearFocus()
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
     }
 
     companion object {

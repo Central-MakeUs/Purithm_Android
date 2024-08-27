@@ -77,6 +77,16 @@ class PurithmAppbar @JvmOverloads constructor(
         }
     }
 
+    fun setLikeState(state: Boolean){
+        binding.btnLike.setImageResource(
+            if (state) {
+                R.drawable.ic_like_pressed_appbar
+            } else {
+                R.drawable.ic_like_unpressed_appbar
+            }
+        )
+    }
+
     private fun clearAppbar() {
         with(binding) {
             with(tvTitleEn) {
@@ -161,13 +171,7 @@ class PurithmAppbar @JvmOverloads constructor(
         with(binding) {
             tvTitleEn.visibility = View.VISIBLE
             tvTitleEn.text = title
-            btnLike.setImageResource(
-                if (likeState) {
-                    R.drawable.ic_like_pressed_appbar
-                } else {
-                    R.drawable.ic_like_unpressed_appbar
-                }
-            )
+            setLikeState(likeState)
             btnLike.visibility = View.VISIBLE
             btnLike.setOnClickListener {
                 likeClickListener?.invoke()
@@ -177,16 +181,6 @@ class PurithmAppbar @JvmOverloads constructor(
         }
     }
 
-    /**
-     * 좋아요 요청 후, 데이터를 전체로 불러오는 것이 아닌 좋아요 상태만 요청하도록 변경
-     * */
-    fun setLike(like: Boolean) {
-        if (like) {
-            binding.btnLike.setImageResource(R.drawable.ic_like_pressed_appbar)
-        } else {
-            binding.btnLike.setImageResource(R.drawable.ic_like_unpressed_appbar)
-        }
-    }
 
     private fun setEngLikeAppbar(
         title: String,
@@ -200,13 +194,7 @@ class PurithmAppbar @JvmOverloads constructor(
             tvTitleEn.text = title
 
             setLikeCnt(likeCnt)
-            btnLike.setImageResource(
-                if (likeState) {
-                    R.drawable.ic_like_pressed_appbar
-                } else {
-                    R.drawable.ic_like_unpressed_appbar
-                }
-            )
+            setLikeState(likeState)
             btnLike.visibility = View.VISIBLE
             btnLike.setOnClickListener {
                 likeClickListener?.invoke()

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_symbol"
+            style="@style/kr_body_6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="&#8226;"
+            android:textColor="@color/grey_300"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_main_text"
+            style="@style/kr_body_6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_symbol"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_sub_text_1"
+            style="@style/kr_caption_1"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="@id/tv_main_text"
+            app:layout_constraintStart_toStartOf="@id/tv_main_text"
+            app:layout_constraintTop_toBottomOf="@id/tv_main_text"/>
+
+        <TextView
+            android:id="@+id/tv_sub_text_2"
+            style="@style/kr_caption_1"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="@id/tv_sub_text_1"
+            app:layout_constraintStart_toStartOf="@id/tv_sub_text_1"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_text_1"/>
+
+        <TextView
+            android:id="@+id/tv_sub_text_3"
+            style="@style/kr_caption_1"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="@id/tv_sub_text_2"
+            app:layout_constraintStart_toStartOf="@id/tv_sub_text_2"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_text_2"/>
+
+        <TextView
+            android:id="@+id/tv_sub_text_4"
+            style="@style/kr_caption_1"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_300"
+            app:layout_constraintEnd_toEndOf="@id/tv_sub_text_3"
+            app:layout_constraintStart_toStartOf="@id/tv_sub_text_3"
+            app:layout_constraintTop_toBottomOf="@id/tv_sub_text_3"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
