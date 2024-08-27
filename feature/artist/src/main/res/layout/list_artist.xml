@@ -43,7 +43,7 @@
                     android:id="@+id/img_artist_thumbnail_1"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:artist_thumbnail="@{data.pictures[0]}"
                     app:layout_constraintBottom_toTopOf="@id/img_artist_thumbnail_2"
                     app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_3"
@@ -65,7 +65,7 @@
                     android:id="@+id/img_artist_thumbnail_3"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:artist_thumbnail="@{data.pictures[2]}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_1"
@@ -86,7 +86,7 @@
                     android:id="@+id/img_artist_thumbnail_2"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:artist_thumbnail="@{data.pictures[1]}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/img_artist_thumbnail_4"
@@ -107,7 +107,7 @@
                     android:id="@+id/img_artist_thumbnail_4"
                     android:layout_width="0dp"
                     android:layout_height="200dp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     app:artist_thumbnail="@{data.pictures[3]}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_artist_thumbnail_2"
@@ -132,7 +132,10 @@
                 android:id="@+id/img_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:imageUrl="@{data.profile}" />
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_profile_default_small_img"
+                app:profile="@{data.profile}" />
         </androidx.cardview.widget.CardView>
 
         <TextView

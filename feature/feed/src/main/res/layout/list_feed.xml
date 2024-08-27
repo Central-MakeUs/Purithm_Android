@@ -86,7 +86,10 @@
                 android:id="@+id/img_profile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:imageUrl="@{data.userProfile}" />
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_profile_default_small_img"
+                app:profile="@{data.userProfile}" />
         </androidx.cardview.widget.CardView>
 
         <TextView

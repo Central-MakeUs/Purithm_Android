@@ -57,9 +57,11 @@
 
                     <ImageView
                         android:id="@+id/img_profile"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:imageUrl="@{vm.state.artist.profile}" />
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_profile_default_img"
+                        app:profile="@{vm.state.artist.profile}" />
 
                 </androidx.cardview.widget.CardView>
 

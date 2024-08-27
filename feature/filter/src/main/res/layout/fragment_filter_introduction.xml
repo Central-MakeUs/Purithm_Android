@@ -53,11 +53,13 @@
 
                     <ImageView
                         android:id="@+id/img_profile"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_profile_default_small_img"
                         app:delayClickEvent="@{() -> vm.clickPhotographerShop(data.photographerId)}"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        app:imageUrl="@{data.photographerProfile}" />
+                        app:profile="@{data.photographerProfile}" />
 
                 </androidx.cardview.widget.CardView>
 

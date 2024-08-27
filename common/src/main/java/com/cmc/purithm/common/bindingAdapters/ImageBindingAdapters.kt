@@ -68,7 +68,6 @@ object ImageBindingAdapters {
     fun ImageView.setProfile(profile: String?) {
         Glide.with(this)
             .load(profile)
-            .placeholder(com.cmc.purithm.design.R.drawable.bg_image_placeholder)
             .into(object : CustomTarget<Drawable>() {
                 override fun onResourceReady(
                     resource: Drawable,
