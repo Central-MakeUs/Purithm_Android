@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
@@ -17,6 +18,7 @@ import com.cmc.purithm.feature.feed.adapter.FeedAdapter
 import com.cmc.purithm.feature.feed.databinding.FragmentFeedBinding
 import com.cmc.purithm.feature.feed.dialog.FeedSortBottomDialog
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -31,14 +33,26 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.state.collect { state ->
+                    viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: list = ${state.data}")
                         if (state.loading) {
                             showLoadingDialog()
                         } else {
                             dismissLoadingDialog()
                         }
-                        feedAdapter.submitList(state.data)
+                        if(state.error != null){
+                            CommonDialogFragment.showDialog(
+                                content = getString(com.cmc.purithm.design.R.string.error_common),
+                                positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                positiveClickEvent = {
+                                    requireActivity().finish()
+                                },
+                                fragmentManager = childFragmentManager
+                            )
+                        }
+                        feedAdapter.submitList(state.data) {
+                            binding.listFeed.smoothScrollToPosition(0)
+                        }
                     }
                 }
 

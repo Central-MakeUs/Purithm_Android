@@ -11,7 +11,8 @@ data class FilterLikeUiModel(
     val photographerName: String,
     val likes: Int,
     val canAccess: Boolean,
-    var liked: Boolean
+    var liked: Boolean,
+    val viewOs : String
 ) {
     companion object {
         fun toUiModel(data: Filter) = FilterLikeUiModel(
@@ -22,7 +23,8 @@ data class FilterLikeUiModel(
             photographerName = data.photographerName,
             likes = data.likes,
             canAccess = data.canAccess,
-            liked = data.liked
+            liked = data.liked,
+            viewOs = data.viewOs
         )
 
         private fun generateMembership(membership: String) = when (membership) {

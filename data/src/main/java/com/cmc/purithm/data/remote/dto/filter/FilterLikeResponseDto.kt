@@ -16,5 +16,7 @@ internal data class FilterLikeResponseDto(
     @SerializedName("likes")
     val likes: Int,
     @SerializedName("canAccess")
-    val canAccess: Boolean
+    val canAccess: Boolean,
+    @SerializedName("os")
+    val os : String
 )

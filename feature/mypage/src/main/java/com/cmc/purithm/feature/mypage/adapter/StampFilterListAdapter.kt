@@ -32,7 +32,8 @@ class StampFilterListAdapter(
             binding.data = item
             binding.imgFilterThumbnail.setOnClickListener {
                 historyClickEvent.onStampThumbClick(
-                    filterId = item.filterId
+                    filterId = item.filterId,
+                    os = item.viewOs
                 )
             }
             binding.tvReviewHistory.setOnClickListener {

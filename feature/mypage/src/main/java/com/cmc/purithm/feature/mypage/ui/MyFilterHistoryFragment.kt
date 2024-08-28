@@ -37,8 +37,8 @@ class MyFilterHistoryFragment : BaseFragment<FragmentFilterHistoryBinding>() {
                 viewModel.clickReviewHistory(filterId, reviewId, thumbnail, filterName)
             }
 
-            override fun onStampThumbClick(filterId: Long) {
-                viewModel.clickFilterThumbnail(filterId)
+            override fun onStampThumbClick(filterId: Long, os : String) {
+                viewModel.clickFilterThumbnail(filterId, os)
             }
 
         }, filterHistoryClickListener = object : FilterHistoryClickListener {
@@ -46,8 +46,8 @@ class MyFilterHistoryFragment : BaseFragment<FragmentFilterHistoryBinding>() {
                 viewModel.clickFilterWriteReview(filterId, thumbnail, filterName)
             }
 
-            override fun onFilterValueClick(filterId: Long) {
-                viewModel.clickFilterValue(filterId)
+            override fun onFilterValueClick(filterId: Long, os : String) {
+                viewModel.clickFilterValue(filterId, os)
             }
         })
     }
@@ -110,6 +110,8 @@ class MyFilterHistoryFragment : BaseFragment<FragmentFilterHistoryBinding>() {
                                 sideEffect.filterId,
                                 sideEffect.thumbnail,
                             )
+
+                            FilterHistorySideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, getString(R.string.content_os_not_match))
                         }
                     }
                 }

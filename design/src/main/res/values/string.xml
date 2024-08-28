@@ -18,7 +18,7 @@
     <string name="content_edit_text_single_status">/%d</string>
 
     <!-- common -->
-    <string name="error_common">잘못된 접근입니다.</string>
+    <string name="error_common">오류가 발생했습니다.</string>
     <string name="content_cancel">취소</string>
     <string name="content_confirm">확인</string>
 

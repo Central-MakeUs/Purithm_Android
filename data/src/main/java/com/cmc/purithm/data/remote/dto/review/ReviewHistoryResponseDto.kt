@@ -22,5 +22,7 @@ internal data class ReviewHistoryResponseDto(
     @SerializedName("pictures")
     val pictures: List<String>,
     @SerializedName("filterThumbnail")
-    val filterThumbnail: String
+    val filterThumbnail: String,
+    @SerializedName("os")
+    val os : String
 )

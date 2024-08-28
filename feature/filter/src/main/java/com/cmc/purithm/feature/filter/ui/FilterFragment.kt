@@ -140,12 +140,8 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 likeClickListener = {
                     if (viewModel.state.value.data?.liked == true) {
                         viewModel.deleteFilterLike(filterId)
-                        setLikeCnt(likeCnt - 1)
-                        setLikeState(false)
                     } else {
                         viewModel.requestFilterLike(filterId)
-                        setLikeCnt(likeCnt + 1)
-                        setLikeState(true)
                     }
                 }
             )

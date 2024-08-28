@@ -74,7 +74,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginHorizontal="@dimen/margin_screen_side"
-            android:layout_marginTop="40dp"
             android:orientation="vertical"
             android:scrollbars="none"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -85,6 +84,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
 
                 <com.cmc.purithm.design.component.view.FilterValueView

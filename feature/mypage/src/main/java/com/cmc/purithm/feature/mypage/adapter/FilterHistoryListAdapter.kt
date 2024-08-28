@@ -47,7 +47,8 @@ class FilterHistoryListAdapter(
                 Log.d(TAG, "bind: filterName : ${item.filterName}")
                 imgFilterThumbnail.setOnClickListener {
                     historyClickListener.onStampThumbClick(
-                        filterId = item.filterId
+                        filterId = item.filterId,
+                        item.viewOs
                     )
                 }
 
@@ -74,7 +75,7 @@ class FilterHistoryListAdapter(
                     }
                 }
                 tvFilterValue.setOnClickListener {
-                    filterHistoryClickListener.onFilterValueClick(item.filterId)
+                    filterHistoryClickListener.onFilterValueClick(item.filterId, item.viewOs)
                 }
             }
         }

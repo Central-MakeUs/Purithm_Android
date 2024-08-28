@@ -48,9 +48,13 @@ class StampHistoryViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterThumbnail(filterId: Long) {
+    fun clickFilterThumbnail(filterId: Long, os : String) {
         viewModelScope.launch {
-            _sideEffects.emit(StampSideEffects.NavigateFilter(filterId))
+            if(os == "AOS"){
+                _sideEffects.emit(StampSideEffects.NavigateFilter(filterId))
+            } else {
+                _sideEffects.emit(StampSideEffects.ShowOsNotMatchSnackBar)
+            }
         }
     }
 
@@ -95,4 +99,5 @@ sealed interface StampSideEffects {
     data class NavigateFilter(
         val filterId: Long
     ) : StampSideEffects
+    data object ShowOsNotMatchSnackBar : StampSideEffects
 }

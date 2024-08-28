@@ -67,9 +67,13 @@ class FilterLikeViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterItem(filterId : Long){
+    fun clickFilterItem(filterId : Long, os : String){
         viewModelScope.launch {
-            _sideEffects.emit(FilterLikeSideEffects.NavigateFilter(filterId))
+            if(os == "AOS"){
+                _sideEffects.emit(FilterLikeSideEffects.NavigateFilter(filterId))
+            } else {
+                _sideEffects.emit(FilterLikeSideEffects.ShowOsNotMatchSnackBar)
+            }
         }
     }
 }
@@ -86,4 +90,5 @@ sealed interface FilterLikeState {
 
 sealed interface FilterLikeSideEffects {
     data class NavigateFilter(val id: Long) : FilterLikeSideEffects
+    data object ShowOsNotMatchSnackBar : FilterLikeSideEffects
 }

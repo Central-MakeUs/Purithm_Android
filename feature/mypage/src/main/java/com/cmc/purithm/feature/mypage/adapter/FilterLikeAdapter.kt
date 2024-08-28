@@ -54,7 +54,7 @@ class FilterLikeAdapter(private val viewModel: FilterLikeViewModel) :
                     Log.d(TAG, "bind: result = $likeState")
                 }
                 root.setOnClickListener {
-                    viewModel.clickFilterItem(item.id)
+                    viewModel.clickFilterItem(item.id, item.viewOs)
                 }
             }
         }

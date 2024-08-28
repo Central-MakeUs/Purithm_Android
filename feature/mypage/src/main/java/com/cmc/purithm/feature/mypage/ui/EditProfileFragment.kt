@@ -67,7 +67,10 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
                                     type = "image/*"
                                 }, REQUEST_IMG_CODE)
                             }
-                            EditProfileSideEffects.Success -> (activity as NavigationAction).popBackStackAfterProfileEdit()
+                            EditProfileSideEffects.Success -> {
+                                (activity as NavigationAction).popBackStackAfterProfileEdit()
+                                showSnackBar(binding.root, getString(R.string.content_success_update_profile))
+                            }
                             EditProfileSideEffects.ShowSetProfileImgDialog -> {
                                 SetProfileImgDialog(
                                     clickEvent = { type ->

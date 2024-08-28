@@ -53,7 +53,6 @@ object ImageBindingAdapters {
             .load(imageGifRes)
             .diskCacheStrategy(DiskCacheStrategy.ALL) // 디스크 캐시 설정
             .skipMemoryCache(false) // 메모리 캐시 사용 여부
-            .apply(RequestOptions().override(180, 180)) // 해상도 조절
             .into(this)
     }
 

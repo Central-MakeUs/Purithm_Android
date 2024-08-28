@@ -41,8 +41,8 @@ class StampHistoryFragment : BaseFragment<FragmentStampHistoryBinding>() {
                 )
             }
 
-            override fun onStampThumbClick(filterId: Long) {
-                viewModel.clickFilterThumbnail(filterId)
+            override fun onStampThumbClick(filterId: Long, os : String) {
+                viewModel.clickFilterThumbnail(filterId, os)
             }
         })
     }
@@ -100,6 +100,8 @@ class StampHistoryFragment : BaseFragment<FragmentStampHistoryBinding>() {
                             is StampSideEffects.NavigateFilter -> {
                                 (activity as NavigationAction).navigateFilterItem(sideEffects.filterId, false)
                             }
+
+                            StampSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match))
                         }
                     }
                 }

@@ -17,6 +17,7 @@ data class HistoryUiModel(
             val filterName: String,
             val artistName: String,
             val reviewId: Long,
+            val viewOs : String,
             val thumbnail: String,
         )
     }
@@ -36,7 +37,8 @@ data class HistoryUiModel(
                                 artistName = item.photographerName,
                                 reviewId = item.userMetaData.writeReviewId,
                                 thumbnail = item.thumbnail,
-                                filterId = item.id
+                                filterId = item.id,
+                                viewOs = item.viewOs
                             )
                         }
                     )

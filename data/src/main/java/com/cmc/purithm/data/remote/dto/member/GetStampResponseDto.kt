@@ -28,7 +28,9 @@ internal data class GetStampResponseDto(
             @SerializedName("membership")
             val membership: String,
             @SerializedName("reviewId")
-            val reviewId: Long
+            val reviewId: Long,
+            @SerializedName("os")
+            val os : String
         )
     }
 }

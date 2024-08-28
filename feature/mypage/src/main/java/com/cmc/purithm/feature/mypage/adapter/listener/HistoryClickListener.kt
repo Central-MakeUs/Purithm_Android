@@ -8,6 +8,6 @@ interface HistoryClickListener {
         thumbnail: String
     )
 
-    fun onStampThumbClick(filterId: Long)
+    fun onStampThumbClick(filterId: Long, os : String)
 }
 

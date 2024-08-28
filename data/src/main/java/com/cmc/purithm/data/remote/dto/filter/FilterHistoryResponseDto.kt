@@ -30,7 +30,9 @@ internal data class FilterHistoryResponseDto(
             @SerializedName("hasReview")
             val hasReview : Boolean,
             @SerializedName("reviewId")
-            val reviewId : Long?
+            val reviewId : Long?,
+            @SerializedName("os")
+            val os : String
         )
     }
 }

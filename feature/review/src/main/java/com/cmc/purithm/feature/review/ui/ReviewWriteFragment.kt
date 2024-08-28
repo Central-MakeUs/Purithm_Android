@@ -175,7 +175,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                         scrollMain.post {
                             scrollMain.smoothScrollTo(
                                 0,
-                                editReview.top + scrollMain.scrollY
+                                editReview.top
                             )
                         }
                     }

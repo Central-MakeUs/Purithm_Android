@@ -19,5 +19,6 @@ data class Filter(
     val pictures: List<FilterImg> = emptyList(),
     val filterIntroduction: List<FilterIntroduction> = emptyList(),
     val description: String = "",
+    val viewOs : String = "",
     val tag: List<String> = emptyList()
 )

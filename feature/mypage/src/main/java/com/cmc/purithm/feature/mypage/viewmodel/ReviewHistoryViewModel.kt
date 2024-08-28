@@ -40,9 +40,13 @@ class ReviewHistoryViewModel @Inject constructor(
         }
     }
 
-    fun clickFilter(filterId : Long) {
+    fun clickFilter(filterId : Long, os : String) {
         viewModelScope.launch {
-            _sideEffects.emit(ReviewHistorySideEffects.NavigateFilter(filterId))
+            if(os == "AOS"){
+                _sideEffects.emit(ReviewHistorySideEffects.NavigateFilter(filterId))
+            } else {
+                _sideEffects.emit(ReviewHistorySideEffects.ShowOsNotMatchSnackBar)
+            }
         }
     }
 
@@ -83,4 +87,5 @@ sealed interface ReviewHistorySideEffects {
     data class NavigateFilter(val filterId : Long) : ReviewHistorySideEffects
     data object SuccessDeleteReview : ReviewHistorySideEffects
     data class ShowDeleteReviewDialog(val reviewId : Long) : ReviewHistorySideEffects
+    data object ShowOsNotMatchSnackBar : ReviewHistorySideEffects
 }

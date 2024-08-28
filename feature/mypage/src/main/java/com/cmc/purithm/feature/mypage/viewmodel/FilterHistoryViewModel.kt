@@ -35,15 +35,23 @@ class FilterHistoryViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterThumbnail(filterId: Long) {
+    fun clickFilterThumbnail(filterId: Long, os : String) {
         viewModelScope.launch {
-            _sideEffects.emit(FilterHistorySideEffects.NavigateFilter(filterId))
+            if(os == "AOS"){
+                _sideEffects.emit(FilterHistorySideEffects.NavigateFilter(filterId))
+            } else {
+                _sideEffects.emit(FilterHistorySideEffects.ShowOsNotMatchSnackBar)
+            }
         }
     }
 
-    fun clickFilterValue(filterId : Long){
+    fun clickFilterValue(filterId : Long, os : String){
         viewModelScope.launch {
-            _sideEffects.emit(FilterHistorySideEffects.NavigateFilterValue(filterId))
+            if(os == "AOS"){
+                _sideEffects.emit(FilterHistorySideEffects.NavigateFilterValue(filterId))
+            } else {
+                _sideEffects.emit(FilterHistorySideEffects.ShowOsNotMatchSnackBar)
+            }
         }
     }
 
@@ -101,4 +109,5 @@ sealed interface FilterHistorySideEffects {
         val thumbnail: String,
         val filterName: String
     ) : FilterHistorySideEffects
+    data object ShowOsNotMatchSnackBar : FilterHistorySideEffects
 }

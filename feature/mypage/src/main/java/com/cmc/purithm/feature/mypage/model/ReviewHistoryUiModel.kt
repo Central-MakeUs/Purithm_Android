@@ -11,7 +11,8 @@ data class ReviewHistoryUiModel(
     val pureDegree: Int,
     val userProfile: String,
     val userName: String,
-    val content: String
+    val content: String,
+    val viewOs : String
 ) {
     companion object {
         fun toUiModel(data: ReviewItem): ReviewHistoryUiModel {
@@ -24,7 +25,8 @@ data class ReviewHistoryUiModel(
                 userProfile = data.userProfile,
                 userName = data.userName,
                 content = data.content,
-                pictures = data.pictures ?: emptyList()
+                pictures = data.pictures ?: emptyList(),
+                viewOs = data.viewOs
             )
         }
     }

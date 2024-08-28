@@ -88,6 +88,8 @@ class MyFavoriteFilterFragment : BaseFragment<FragmentFavoriteFilterBinding>() {
                                 sideEffect.id,
                                 false
                             )
+
+                            FilterLikeSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, getString(R.string.content_os_not_match))
                         }
                     }
                 }

@@ -10,5 +10,6 @@ data class ReviewItem(
     val userName: String = "",
     val userProfile : String = "",
     val pictures: List<String>? = emptyList(),
-    val createdAt: String = ""
+    val createdAt: String = "",
+    val viewOs : String = ""
 )

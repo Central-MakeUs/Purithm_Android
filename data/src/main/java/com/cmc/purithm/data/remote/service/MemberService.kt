@@ -45,7 +45,5 @@ internal interface MemberService {
     suspend fun getLikedFilters() : BaseResponse<List<FilterLikeResponseDto>>
 
     @GET("/api/users/history")
-    suspend fun getFilterHistory(
-        @Query("os") os: String = "AOS"
-    ) : BaseResponse<FilterHistoryResponseDto>
+    suspend fun getFilterHistory() : BaseResponse<FilterHistoryResponseDto>
 }

@@ -136,11 +136,6 @@ class ArtistFilterViewModel @Inject constructor(
 
     private fun getFilterByArtist() {
         viewModelScope.launch {
-            _state.update {
-                it.copy(
-                    loading = true
-                )
-            }
             runCatching {
                 getFilterByArtistUseCase(
                     artistId = state.value.artistId,
@@ -159,7 +154,6 @@ class ArtistFilterViewModel @Inject constructor(
                     .collect {
                         _state.update { state ->
                             state.copy(
-                                loading = false,
                                 dataList = it.map { filter ->
                                     ArtistFilterUiModel.toUiModel(filter)
                                 }
@@ -169,7 +163,6 @@ class ArtistFilterViewModel @Inject constructor(
             }.onFailure { exception ->
                 _state.update { state ->
                     state.copy(
-                        loading = false,
                         error = exception
                     )
                 }

@@ -9,7 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey_100">
+        android:background="@color/black_trans60">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/view_loading"

@@ -59,7 +59,7 @@
             android:id="@+id/img_filter_loading_icon"
             android:layout_width="180dp"
             android:layout_height="180dp"
-            android:scaleType="fitCenter"
+            android:scaleType="centerInside"
             android:layout_marginBottom="-48dp"
             app:imageGifRes="@{R.raw.ic_filter_loading}"
             app:layout_constraintBottom_toTopOf="@id/layout_filter_loading_description"

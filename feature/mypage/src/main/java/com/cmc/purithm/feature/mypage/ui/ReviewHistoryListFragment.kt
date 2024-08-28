@@ -69,7 +69,7 @@ class ReviewHistoryListFragment : BaseFragment<FragmentReviewHistoryListBinding>
                             )
 
                             ReviewHistorySideEffects.SuccessDeleteReview -> {
-                                showSnackBar(binding.root, message = "삭제되었습니다.")
+                                showSnackBar(binding.root, message = getString(R.string.content_delete_review_success))
                                 viewModel.init()
                             }
 
@@ -86,6 +86,8 @@ class ReviewHistoryListFragment : BaseFragment<FragmentReviewHistoryListBinding>
                                 },
                                 fragmentManager = childFragmentManager
                             )
+
+                            ReviewHistorySideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match))
                         }
                     }
                 }

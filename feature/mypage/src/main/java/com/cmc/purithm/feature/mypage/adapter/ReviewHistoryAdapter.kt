@@ -58,7 +58,7 @@ class ReviewHistoryAdapter(
                 }
                 viewReviewIntensity.setReviewIntensity(data.pureDegree)
                 viewFilterChip.setInitInfo(data.filterThumbnail, data.filterName, clickEvent = {
-                    viewModel.clickFilter(data.filterId)
+                    viewModel.clickFilter(data.filterId, data.viewOs)
                 })
             }
         }

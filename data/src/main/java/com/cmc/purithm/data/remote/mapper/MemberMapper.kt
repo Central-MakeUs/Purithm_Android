@@ -50,6 +50,7 @@ internal fun BaseResponse<GetStampResponseDto>.toDomain(): FilterHistory {
                         name = stampItem.filterName,
                         photographerName = stampItem.photographer,
                         thumbnail = stampItem.thumbnail,
+                        viewOs = stampItem.os,
                         memberShip = stampItem.membership,
                         userMetaData = MemberMetaData(
                             hasViewed = true,
@@ -78,6 +79,7 @@ internal fun BaseResponse<FilterHistoryResponseDto>.toDomain(): FilterHistory {
                         photographerName = item.photographer,
                         thumbnail = item.thumbnail,
                         memberShip = item.membership,
+                        viewOs = item.os,
                         userMetaData = MemberMetaData(
                             hasViewed = true,
                             hasReview = item.hasReview,
@@ -102,6 +104,7 @@ internal fun BaseResponse<List<ReviewHistoryResponseDto>>.toDomain(): List<Revie
             pureDegree = it.pureDegree,
             userProfile = it.profile ?: "",
             content = it.content,
+            viewOs = it.os,
             userName = it.writer,
             pictures = it.pictures,
         )
@@ -119,6 +122,7 @@ internal fun BaseResponse<List<FilterLikeResponseDto>>.toDomain(): List<Filter> 
             thumbnail = it.thumbnail,
             memberShip = it.membership,
             liked = true,
+            viewOs = it.os,
             likes = it.likes,
             canAccess = it.canAccess
         )
