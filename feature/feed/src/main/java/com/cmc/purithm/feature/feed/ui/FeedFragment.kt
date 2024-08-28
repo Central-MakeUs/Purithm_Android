@@ -50,8 +50,9 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
                                 fragmentManager = childFragmentManager
                             )
                         }
-                        feedAdapter.submitList(state.data) {
-                            binding.listFeed.smoothScrollToPosition(0)
+                        feedAdapter.submitList(state.data)
+                        binding.listFeed.post {
+                            binding.listFeed.scrollToPosition(0)
                         }
                     }
                 }

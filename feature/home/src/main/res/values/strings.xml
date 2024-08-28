@@ -3,8 +3,8 @@
     <string name="title_appbar">Filters</string>
     <string name="title_filter_premium_lock">잠금은 어떻게 푸나요?</string>
 
-    <string name="category_filter_sort_popular">인기순</string>
-    <string name="category_filter_sort_latest">최신순</string>
+    <string name="category_filter_sort_popular">이름순</string>
+    <string name="category_filter_sort_latest">멤버십 낮은순</string>
     <string name="category_filter_sort_review">퓨어지수 높은순</string>
     <string name="category_filter_keyword_all">전체</string>
     <string name="category_filter_keyword_spring">화사한 봄날</string>
@@ -32,12 +32,12 @@
     <string name="content_filter_premium_lock">필터를 사용해보고 후기를 남기면 스탬프가 찍히고,\n일정 개수를 모으면 프리미엄 필터를 열람할 수 있어요.</string>
     <string name="content_filter_premium_lock_description_start">스탬프&#160;</string>
     <string name="content_filter_premium_lock_description_end">&#160;쌓이면 볼 수 있어요</string>
-    <string name="content_filter_premium_lock_description">8개 이상</string>
-    <string name="content_filter_premium_plus_lock_description">16개 이상</string>
+    <string name="content_filter_premium_lock_description">4개 이상</string>
+    <string name="content_filter_premium_plus_lock_description">8개 이상</string>
     <string name="content_premium_filter">Premium Filter</string>
     <string name="content_premium_plus_filter">Premium+ Filter</string>
-    <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
-    <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
+    <string name="content_premium_filter_stamp">누적 스탬프 4개 +</string>
+    <string name="content_premium_plus_filter_stamp">누적 스탬프 8개 +</string>
     <string name="content_confirm">확인</string>
     <string name="content_item_empty">아직 준비중이에요</string>
 

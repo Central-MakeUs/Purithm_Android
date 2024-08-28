@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import androidx.paging.log
 import androidx.paging.map
 import com.cmc.purithm.domain.usecase.filter.DeleteFilterLikeUseCase
 import com.cmc.purithm.domain.usecase.filter.GetFilterItemsUseCase
@@ -14,24 +13,18 @@ import com.cmc.purithm.domain.usecase.filter.SetFilterLikeUseCase
 import com.cmc.purithm.feature.home.adpater.HomeFilterAdapter
 import com.cmc.purithm.feature.home.model.HomeFilterUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.onCompletion
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -55,29 +48,32 @@ class HomeViewModel @Inject constructor(
     private suspend fun getFilters() {
         Log.d(TAG, "getFilters: start")
         viewModelScope.launch {
-
+            _state.update {
+                it.copy(
+                    loading = true
+                )
+            }
             runCatching {
                 getFilterItemsUseCase(state.value.tag, convertSortedBy(state.value.sortedBy))
             }.onSuccess { filters ->
                 filters.cachedIn(viewModelScope)
                     .distinctUntilChanged()
-                    /* 스켈레톤에서 추가 */
-//                    .onCompletion {
-//                        Log.d(TAG, "getFilters: onCompletion")
-//                        _state.update {
-//                            it.copy(
-//                                loading = false
-//                            )
-//                        }
-//                    }
-//                    .onStart {
-//                        Log.d(TAG, "getFilters: onStart")
-//                        _state.update {
-//                            it.copy(
-//                                loading = true
-//                            )
-//                        }
-//                    }
+                    .onCompletion {
+                        Log.d(TAG, "getFilters: onCompletion")
+                        _state.update {
+                            it.copy(
+                                loading = false
+                            )
+                        }
+                    }
+                    .onStart {
+                        Log.d(TAG, "getFilters: onStart")
+                        _state.update {
+                            it.copy(
+                                loading = true
+                            )
+                        }
+                    }
                     .collectLatest { result ->
                         Log.d(TAG, "getFilters: collectLatest")
                         _state.update { state ->
@@ -216,8 +212,24 @@ class HomeViewModel @Inject constructor(
      * */
     fun setPageAdapterLoadStateListener(adapter: HomeFilterAdapter) {
         adapter.addLoadStateListener { loadState ->
-            val isError = loadState.refresh is LoadState.Error || loadState.append is LoadState.Error
+            val isError =
+                loadState.refresh is LoadState.Error || loadState.append is LoadState.Error
+            val isLoading =
+                loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading
+            val isNothing =
+                (loadState.refresh is LoadState.NotLoading) && adapter.itemCount == 0
 
+            Log.d(TAG, "setPageAdapterLoadStateListener: isError = $isError")
+            Log.d(TAG, "setPageAdapterLoadStateListener: isNothing = $isNothing")
+            Log.d(TAG, "setPageAdapterLoadStateListener: isLoading = $isLoading")
+            viewModelScope.launch {
+                _state.emit(
+                    state.value.copy(
+                        isEmpty = isNothing,
+                        loading = isLoading
+                    )
+                )
+            }
             if (isError) {
                 val errorState = loadState.refresh as? LoadState.Error
                     ?: loadState.append as? LoadState.Error
@@ -228,13 +240,12 @@ class HomeViewModel @Inject constructor(
                     )
                 }
             }
-
         }
     }
 
     private fun convertSortedBy(sortedBy: String) = when (sortedBy) {
-        "인기순" -> "popular"
-        "최신순" -> "latest"
+        "이름순" -> "name"
+        "멤버십 낮은순" -> "membership"
         "퓨어지수 높은순" -> "pure"
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }
@@ -254,7 +265,8 @@ sealed interface HomeSideEffect {
 data class HomeState(
     val loading: Boolean = false,
     val error: Throwable? = null,
+    val isEmpty: Boolean = false,
     val filterList: PagingData<HomeFilterUiModel> = PagingData.empty(),
-    val sortedBy: String = "인기순",
+    val sortedBy: String = "이름순",
     val tag: String = "",
 )

@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.splash
 
+import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
 import androidx.fragment.app.viewModels
@@ -12,10 +13,10 @@ import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.feature.splash.databinding.FragmentSplashBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
-// TODO : 최소 딜레이 1초로 설정
 @AndroidEntryPoint
 class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     private val viewModel: SplashViewModel by viewModels()
@@ -26,7 +27,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.state.collect { state ->
+                    viewModel.state.collectLatest { state ->
                         when (state) {
                             is SplashState.Error -> {
                                 dismissLoadingDialog()
@@ -42,10 +43,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> {
-                                delay(1000)
-                                viewModel.checkFirstRun()
-                            }
+                            SplashState.Initialize -> {}
                             else -> {}
                         }
                     }
@@ -67,11 +65,10 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun initBinding() {}
 
     override fun initView() {
-
+        viewModel.checkFirstRun()
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        //
+    
+    companion object {
+        private const val TAG = "SplashFragment"
     }
 }

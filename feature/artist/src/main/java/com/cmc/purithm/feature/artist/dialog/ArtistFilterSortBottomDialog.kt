@@ -23,11 +23,11 @@ class ArtistFilterSortBottomDialog : BaseBottomSheetDialogFragment<DialogArtistI
 
         with(binding) {
             tvFilterView.setOnClickListener {
-                viewModel.updateArtistSortedBy("조회순")
+                viewModel.updateArtistSortedBy("멤버십 낮은순")
                 dismissAllowingStateLoss()
             }
             tvArtistFilterLatest.setOnClickListener {
-                viewModel.updateArtistSortedBy("최신순")
+                viewModel.updateArtistSortedBy("이름순")
                 dismissAllowingStateLoss()
             }
             tvFilterReviewPure.setOnClickListener {
@@ -42,8 +42,8 @@ class ArtistFilterSortBottomDialog : BaseBottomSheetDialogFragment<DialogArtistI
     }
 
     private fun getCurrentSortedByTextView(sortedBy: String) = when (sortedBy) {
-        "최신순" -> binding.tvArtistFilterLatest
-        "조회순" -> binding.tvFilterView
+        "이름순" -> binding.tvArtistFilterLatest
+        "멤버십 낮은순" -> binding.tvFilterView
         "퓨어지수 높은순" -> binding.tvFilterReviewPure
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }

@@ -135,10 +135,22 @@
                         android:src="@drawable/ic_arrow_bottom_grey" />
                 </LinearLayout>
 
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/view_loading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/list_artist_filter"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:lottie_autoPlay="true"
+                    app:lottie_fileName="lottie_loading.json"
+                    app:lottie_loop="true"/>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_artist_filter"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/margin_screen_side"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="7dp"

@@ -323,7 +323,7 @@
             android:layout_marginTop="40dp"
             android:layout_marginBottom="@dimen/margin_bottom_button_bottom"
             android:background="@drawable/shape_button_solid_primary_lg"
-            android:enabled="@{(vm.state.pureDegree > 19 &amp;&amp; vm.state.agree &amp;&amp; vm.state.introduceAgree &amp;&amp; vm.state.content.length() > 20 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
+            android:enabled="@{(vm.state.pureDegree > 19 &amp;&amp; vm.state.agree &amp;&amp; vm.state.introduceAgree &amp;&amp; vm.state.content.length() > 19 &amp;&amp; vm.state.pictures.size() > 0) ? true : false}"
             android:gravity="center"
             android:paddingVertical="18dp"
             android:text="@string/content_upload"

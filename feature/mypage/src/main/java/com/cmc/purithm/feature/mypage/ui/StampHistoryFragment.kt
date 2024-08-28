@@ -101,7 +101,7 @@ class StampHistoryFragment : BaseFragment<FragmentStampHistoryBinding>() {
                                 (activity as NavigationAction).navigateFilterItem(sideEffects.filterId, false)
                             }
 
-                            StampSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match))
+                            StampSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match), topVisible = true)
                         }
                     }
                 }

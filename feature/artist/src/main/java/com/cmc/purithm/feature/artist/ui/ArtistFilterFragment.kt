@@ -1,5 +1,6 @@
 package com.cmc.purithm.feature.artist.ui
 
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -36,9 +37,9 @@ class ArtistFilterFragment : BaseFragment<FragmentArtistFilterBinding>() {
                 launch {
                     viewModel.state.collectLatest { state ->
                         if (state.loading) {
-                            showLoadingDialog()
+                            binding.viewLoading.visibility = View.VISIBLE
                         } else {
-                            dismissLoadingDialog()
+                            binding.viewLoading.visibility = View.GONE
                         }
                         if (state.error != null) {
                             CommonDialogFragment.showDialog(

@@ -22,9 +22,12 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onCompletion
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -53,7 +56,7 @@ class ArtistFilterViewModel @Inject constructor(
         }
     }
 
-    fun getArtist(artistId : Long){
+    fun getArtist(artistId: Long) {
         viewModelScope.launch {
             _state.update {
                 it.copy(
@@ -151,9 +154,24 @@ class ArtistFilterViewModel @Inject constructor(
             }.onSuccess { data ->
                 data.cachedIn(viewModelScope)
                     .distinctUntilChanged()
-                    .collect {
+                    .onCompletion {
+                        _state.update {
+                            it.copy(
+                                loading = false
+                            )
+                        }
+                    }
+                    .onStart {
+                        _state.update {
+                            it.copy(
+                                loading = true
+                            )
+                        }
+                    }
+                    .collectLatest {
                         _state.update { state ->
                             state.copy(
+                                loading = false,
                                 dataList = it.map { filter ->
                                     ArtistFilterUiModel.toUiModel(filter)
                                 }
@@ -175,18 +193,28 @@ class ArtistFilterViewModel @Inject constructor(
      * */
     fun setPageAdapterLoadStateListener(adapter: ArtistFilterAdapter) {
         adapter.addLoadStateListener { loadState ->
-            val errorState = when {
-                loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
-                loadState.append is LoadState.Error -> loadState.append as LoadState.Error
-                loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-                else -> null
-            }
+            val isError =
+                loadState.refresh is LoadState.Error || loadState.append is LoadState.Error
+            val isLoading =
+                loadState.refresh is LoadState.Loading || loadState.append is LoadState.Loading
+            val isNothing =
+                (loadState.refresh is LoadState.NotLoading || loadState.append is LoadState.NotLoading) && adapter.itemCount == 0
 
-            if (errorState != null) {
+            viewModelScope.launch {
+                _state.emit(
+                    state.value.copy(
+                        isEmpty = isNothing,
+                        loading = isLoading
+                    )
+                )
+            }
+            if (isError) {
+                val errorState = loadState.refresh as? LoadState.Error
+                    ?: loadState.append as? LoadState.Error
                 _state.update {
                     it.copy(
                         loading = false,
-                        error = errorState.error
+                        error = errorState?.error
                     )
                 }
             }
@@ -221,8 +249,8 @@ class ArtistFilterViewModel @Inject constructor(
     }
 
     private fun convertSortedBy(sortedBy: String) = when (sortedBy) {
-        "조회순" -> "views"
-        "최신순" -> "latest"
+        "이름순" -> "name"
+        "멤버십 낮은순" -> "membership"
         "퓨어지수 높은순" -> "pure"
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }
@@ -238,8 +266,9 @@ data class ArtistFilterState(
     val loading: Boolean = false,
     val artistId: Long = 0L,
     val error: Throwable? = null,
-    val artist : ArtistUiModel? = null,
+    val isEmpty: Boolean = false,
+    val artist: ArtistUiModel? = null,
     val dataList: PagingData<ArtistFilterUiModel> = PagingData.empty(),
-    val sortedBy: String = "최신순",
+    val sortedBy: String = "이름순",
     val filterSize: Int = 0
 )

@@ -4,6 +4,11 @@ import android.os.Looper
 import com.cmc.purithm.common.R
 import com.cmc.purithm.common.base.BaseDialogFragment
 import com.cmc.purithm.common.databinding.DialogLoadingBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.logging.Handler
 
 /**
@@ -21,11 +26,12 @@ class LoadingDialogFragment : BaseDialogFragment<DialogLoadingBinding>() {
     override fun initDataBinding() {}
     override fun initView() {
         // 최대 시간 3초
-        android.os.Handler(Looper.getMainLooper()).postDelayed({
-            if(isVisible) {
+        CoroutineScope(Dispatchers.Main).launch {
+            withContext(Dispatchers.Main){
+                delay(MAX_TIME)
                 dismissAllowingStateLoss()
             }
-        }, MAX_TIME)
+        }
     }
 
     companion object {

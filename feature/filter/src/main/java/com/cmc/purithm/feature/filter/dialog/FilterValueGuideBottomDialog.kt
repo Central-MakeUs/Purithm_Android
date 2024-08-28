@@ -9,6 +9,7 @@ class FilterValueGuideBottomDialog : BaseBottomSheetDialogFragment<DialogFilterG
         get() = R.layout.dialog_filter_guide
 
     override fun initView() {
+        setExpandedDialog()
         setTopMargin(40)
 
         binding.btnConfirm.setOnClickListener {

@@ -2,13 +2,16 @@ package com.cmc.purithm.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 import com.cmc.purithm.common.R
+import com.cmc.purithm.common.bindingAdapters.ViewBindingAdapters.setTouchEventListener
 import com.cmc.purithm.common.util.getColorResource
 import com.cmc.purithm.design.util.Util.dp
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -50,13 +53,12 @@ abstract class BaseBottomSheetDialogFragment<T : ViewDataBinding> : BottomSheetD
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
-        setExpandedDialog()
     }
 
     /**
      * BottomSheetDialog를 전체 화면으로 설정
      * */
-    private fun setExpandedDialog() {
+    protected fun setExpandedDialog() {
         val bottomSheet =
             dialog?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
         if (bottomSheet != null) {

@@ -8,6 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import com.cmc.purithm.feature.mypage.R
 import com.cmc.purithm.feature.mypage.databinding.ViewStampBinding
+import kotlin.math.max
+import kotlin.math.min
 
 class StampView @JvmOverloads constructor(
     context: Context,
@@ -22,11 +24,10 @@ class StampView @JvmOverloads constructor(
         R.drawable.ic_stamp_flower_unlock,
         R.drawable.ic_stamp_cloud_unlock,
         R.drawable.ic_stamp_glow_unlock,
-        R.drawable.ic_stamp_clover_unlock,
+        R.drawable.ic_stamp_premium_unlock,
         R.drawable.ic_stamp_heart_unlock,
         R.drawable.ic_stamp_star_unlock,
         R.drawable.ic_stamp_flower2_unlock,
-        R.drawable.ic_stamp_premium_unlock,
         R.drawable.ic_stamp_premium_plus_unlock
     )
 
@@ -41,27 +42,11 @@ class StampView @JvmOverloads constructor(
 
     fun setStampCount(stampCount: Int) {
         binding.stampCount = stampCount
-        /*
-        * isCurrentPremium value
-        *
-        * 0 -> 프리미엄 필요
-        * 1 -> 프리미엄+ 필요
-        * 2 -> 프리미엄+ 상태
-        * */
-        val isCurrentPremium = stampCount / STAMP_COUNT
-        var repeatCnt = (stampCount % STAMP_COUNT)
-        // 모든 도장을 모은 경우 (16개)
-        if(isCurrentPremium == 2){
-            repeatCnt += STAMP_COUNT
-        }
+        val repeatCount = min(stampCount, STAMP_COUNT)
         // 이미지를 unlock 상태로 변경
-        for (i in 0 until repeatCnt) {
+        for (i in 0 until repeatCount) {
             val view = findViewById<ImageView>(getImageView(i + 1))
             view.setImageResource(unlockImgList[i])
-        }
-        // 만약 프리미엄+ 상태라면 마지막 이미지 변경
-        if(isCurrentPremium == 2){
-            binding.img8.setImageResource(unlockImgList[8])
         }
     }
 

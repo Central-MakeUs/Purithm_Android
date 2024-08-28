@@ -27,11 +27,11 @@ class HomeItemFilterDialogFragment(
 
         with(binding){
             tvFilterPopular.setOnClickListener {
-                viewModel.updateFilterSortedBy("인기순")
+                viewModel.updateFilterSortedBy("이름순")
                 dismissAllowingStateLoss()
             }
             tvFilterLatest.setOnClickListener {
-                viewModel.updateFilterSortedBy("최신순")
+                viewModel.updateFilterSortedBy("멤버십 낮은순")
                 dismissAllowingStateLoss()
             }
             tvFilterReviewHigh.setOnClickListener {
@@ -42,8 +42,8 @@ class HomeItemFilterDialogFragment(
     }
 
     private fun getCurrentSortedByTextView(sortedBy : String) = when(sortedBy){
-        "인기순" -> binding.tvFilterPopular
-        "최신순" -> binding.tvFilterLatest
+        "이름순" -> binding.tvFilterPopular
+        "멤버십 낮은 순" -> binding.tvFilterLatest
         "퓨어지수 높은순" -> binding.tvFilterReviewHigh
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }

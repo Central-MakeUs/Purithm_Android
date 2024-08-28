@@ -28,7 +28,6 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
 
     private val viewModel: SettingViewModel by viewModels()
     private val navArgs by navArgs<SettingFragmentArgs>()
-    private val userId by lazy { navArgs.id }
     private val username by lazy { navArgs.username }
     private val profile by lazy { navArgs.profile }
 
@@ -38,8 +37,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                 launch {
                     viewModel.state.collect { state ->
                         when (state) {
-                            is SettingState.SuccessDeleteAccount -> {}
-                            is SettingState.Error -> {}
+                            is SettingState.SuccessDeleteAccount -> {
+                                dismissLoadingDialog()
+                                (activity as NavigationAction).navigateOnBoarding()
+                            }
+                            is SettingState.Error -> {
+                                dismissLoadingDialog()
+                                CommonDialogFragment.showDialog(
+                                    content = getString(com.cmc.purithm.design.R.string.error_common),
+                                    positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                    positiveClickEvent = {
+                                        requireActivity().finish()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
+                            }
                             SettingState.Loading -> showLoadingDialog()
                             is SettingState.SuccessLogout -> {
                                 (activity as NavigationAction).navigateOnBoarding()
@@ -52,7 +64,21 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>() {
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
                         when (sideEffect) {
-                            SettingSideEffects.DeleteAccount -> {}
+                            SettingSideEffects.DeleteAccount -> {
+                                CommonDialogFragment.showDialog(
+                                    content = "정말 탈퇴할까요?",
+                                    description = "탈퇴하면 모든 회원 정보가 사라집니다.",
+                                    positiveText = "탈퇴",
+                                    negativeText = "취소",
+                                    positiveClickEvent = {
+                                        viewModel.deleteMember()
+                                    },
+                                    negativeClickEvent = {
+                                        CommonDialogFragment.dismissDialog()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
+                            }
                             SettingSideEffects.Logout -> {
                                 CommonDialogFragment.showDialog(
                                     content = "로그아웃 하시겠습니까?",

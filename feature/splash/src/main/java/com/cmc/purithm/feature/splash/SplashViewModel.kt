@@ -7,6 +7,7 @@ import com.cmc.purithm.domain.exception.MemberException
 import com.cmc.purithm.domain.usecase.auth.CheckAccessTokenUseCase
 import com.cmc.purithm.domain.usecase.member.CheckFirstRunUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -28,8 +29,8 @@ class SplashViewModel @Inject constructor(
     private val _sideEffect : MutableSharedFlow<SplashSideEffect> = MutableSharedFlow()
     val sideEffect : SharedFlow<SplashSideEffect> get() = _sideEffect.asSharedFlow()
 
-    suspend fun checkFirstRun() {
-        viewModelScope.launch {
+    fun checkFirstRun() {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 checkFirstRunUseCase()
             }.onSuccess {isFirstRun ->
@@ -46,7 +47,7 @@ class SplashViewModel @Inject constructor(
     }
 
     private suspend fun checkAccessToken(){
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             runCatching {
                 checkAccessTokenUseCase()
             }.onSuccess {

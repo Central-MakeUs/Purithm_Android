@@ -15,6 +15,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.cmc.purithm.common.R
 
 /**
  * DialogFragment Base 코드
@@ -31,6 +32,11 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
 
     abstract fun initDataBinding()
     abstract fun initView()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        isCancelable = false
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,14 +60,14 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
         initView()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setDialogType(dialogType)
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setDialogType(dialogType)
     }
 
     private fun setDialogType(type: BaseDialogType) {

@@ -6,7 +6,6 @@ import androidx.navigation.NavController
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-// FIXME : backstack 관리가 필요함
 class PurithmBottomNavigation: BottomNavigationView {
     constructor(context: Context): super(context, null)
     constructor(context: Context, attrs: AttributeSet?): super(context, attrs, com.google.android.material.R.attr.bottomNavigationStyle)

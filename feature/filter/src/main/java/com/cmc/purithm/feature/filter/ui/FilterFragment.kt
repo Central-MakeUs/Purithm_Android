@@ -41,6 +41,11 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                 launch {
                     viewModel.state.collectLatest { state ->
                         Log.d(TAG, "initObserving: start")
+                        if(state.loading){
+                            showLoadingDialog()
+                        } else {
+                            dismissLoadingDialog()
+                        }
                         if (state.data != null) {
                             initAppBar(state.data.name, state.data.liked, state.data.likes)
                             likeCnt = state.data.likes

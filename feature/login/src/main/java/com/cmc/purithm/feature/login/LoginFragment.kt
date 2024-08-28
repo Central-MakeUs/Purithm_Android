@@ -79,6 +79,18 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>() {
                             LoginState.Loading -> {
                                 showLoadingDialog()
                             }
+
+                            is LoginState.RejoinError -> {
+                                dismissLoadingDialog()
+                                CommonDialogFragment.showDialog(
+                                    content = "탈퇴 후 7일이 지나지 않아 이용할 수 없습니다.",
+                                    positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                    positiveClickEvent = {
+                                        CommonDialogFragment.dismissDialog()
+                                    },
+                                    fragmentManager = childFragmentManager
+                                )
+                            }
                         }
                     }
                 }

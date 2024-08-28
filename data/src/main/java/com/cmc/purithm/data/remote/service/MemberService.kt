@@ -46,4 +46,7 @@ internal interface MemberService {
 
     @GET("/api/users/history")
     suspend fun getFilterHistory() : BaseResponse<FilterHistoryResponseDto>
+
+    @DELETE("/api/users")
+    suspend fun deleteMember() : BaseResponse<Unit?>
 }

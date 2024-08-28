@@ -129,9 +129,10 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
         view: View,
         message: String,
         actionString: String = "",
-        action: (() -> Unit)? = null
+        action: (() -> Unit)? = null,
+        topVisible : Boolean = false
     ) {
-        showPurithmSnackBar(view, message, actionString, action)
+        showPurithmSnackBar(view, message, actionString, action, topVisible)
     }
 
     companion object {

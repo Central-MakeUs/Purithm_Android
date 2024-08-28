@@ -41,7 +41,11 @@ class LoginViewModel @Inject constructor(
             }.onSuccess { serviceAccessToken ->
                 checkAccessToken(serviceAccessToken)
             }.onFailure { exception ->
-                _state.emit(LoginState.Error(exception.message))
+                if(exception is MemberException.RejoinRestrictedException){
+                    _state.emit(LoginState.RejoinError(exception.message))
+                } else {
+                    _state.emit(LoginState.Error(exception.message))
+                }
             }
         }
     }
@@ -53,7 +57,6 @@ class LoginViewModel @Inject constructor(
     }
 
     private suspend fun checkAccessToken(serviceAccessToken: String) {
-        // FIXME : kakao 로그인 시, 토큰을 헤더에 넣어 다시 serviceAccessToken으로 덮어야함
         setAccessTokenUseCase(serviceAccessToken)
         kotlin.runCatching {
             // 인메모리에 저장된 토큰 유효성 검사
@@ -96,6 +99,7 @@ sealed interface LoginAction {
 sealed interface LoginState {
     data object Initial : LoginState
     data class Error(val message: String?) : LoginState
+    data class RejoinError(val message : String?) : LoginState
     data object Loading : LoginState
     data object Success : LoginState
 }

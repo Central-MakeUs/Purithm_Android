@@ -8,6 +8,7 @@ import com.cmc.purithm.common.databinding.DialogCommonBinding
 
 class CommonDialogFragment(
     private val content: String,
+    private val description: String? = null,
     private val negativeText: String? = null,
     private val positiveText: String? = null,
     private val negativeClickEvent: (() -> Unit)?,
@@ -28,6 +29,12 @@ class CommonDialogFragment(
     override fun initView() {
         isCancelable = false
         with(binding) {
+            if (description == null) {
+                tvDescription.visibility = View.GONE
+            } else {
+                tvDescription.visibility = View.VISIBLE
+                tvDescription.text = description
+            }
             if (negativeClickEvent != null && negativeText != null) {
                 tvNegativeButton.text = negativeText
                 tvNegativeButton.visibility = View.VISIBLE
@@ -47,24 +54,31 @@ class CommonDialogFragment(
     }
 
     companion object {
-        private var INSTANCE : CommonDialogFragment? = null
+        private var INSTANCE: CommonDialogFragment? = null
         fun showDialog(
             content: String,
+            description: String? = null,
             negativeText: String? = null,
             positiveText: String? = null,
             negativeClickEvent: (() -> Unit)? = null,
             positiveClickEvent: (() -> Unit)? = null,
-            fragmentManager : FragmentManager
+            fragmentManager: FragmentManager
         ) {
             dismissDialog()
             INSTANCE = CommonDialogFragment(
-                content, negativeText, positiveText, negativeClickEvent, positiveClickEvent
+                content,
+                description,
+                negativeText,
+                positiveText,
+                negativeClickEvent,
+                positiveClickEvent
             ).apply {
                 show(fragmentManager, CommonDialogFragment::class.java.simpleName)
             }
         }
+
         fun dismissDialog() {
-            if(INSTANCE != null && INSTANCE?.isAdded == true) {
+            if (INSTANCE != null && INSTANCE?.isAdded == true) {
                 INSTANCE?.dismissAllowingStateLoss()
             }
             INSTANCE = null

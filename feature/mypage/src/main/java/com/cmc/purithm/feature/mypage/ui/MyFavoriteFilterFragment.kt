@@ -89,7 +89,7 @@ class MyFavoriteFilterFragment : BaseFragment<FragmentFavoriteFilterBinding>() {
                                 false
                             )
 
-                            FilterLikeSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, getString(R.string.content_os_not_match))
+                            FilterLikeSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match), topVisible = true)
                         }
                     }
                 }

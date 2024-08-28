@@ -51,12 +51,9 @@ class ArtistFragment : BaseFragment<FragmentArtistBinding>() {
                                 fragmentManager = childFragmentManager
                             )
                         }
-                        if(state.data != artistAdapter.currentList){
-                            Log.d(TAG, "initObserving: update")
-                            // 리스트가 다를때만 업데이트 하도록 변경
-                            artistAdapter.submitList(state.data) {
-                                binding.listArtist.smoothScrollToPosition(0)
-                            }
+                        artistAdapter.submitList(state.data)
+                        binding.listArtist.post {
+                            binding.listArtist.scrollToPosition(0)
                         }
                     }
                 }

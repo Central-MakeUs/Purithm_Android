@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.home
 
 import android.util.Log
+import android.view.View
 import android.widget.RadioButton
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
@@ -36,13 +37,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collectLatest { state ->
-                        Log.d(TAG, "initObserving: state update")
                         if (state.loading) {
-                            Log.d(TAG, "initObserving: loading true")
-                            showLoadingDialog()
+                            binding.viewLoading.visibility = View.VISIBLE
                         } else {
-                            Log.d(TAG, "initObserving: loading false")
-                            dismissLoadingDialog()
+                            binding.viewLoading.visibility = View.GONE
+                        }
+                        if(state.isEmpty){
+                            binding.layoutEmptyView.visibility = View.VISIBLE
+                        } else {
+                            binding.layoutEmptyView.visibility = View.GONE
                         }
                         if (state.error != null) {
                             Log.e(TAG, "initObserving: error = ${state.error.message}")

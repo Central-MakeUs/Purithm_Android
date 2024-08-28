@@ -69,4 +69,8 @@ internal class MemberRepositoryImpl @Inject constructor(
     override suspend fun getFilterLike(): List<Filter> {
         return HandleApi.callApi { memberService.getLikedFilters().toDomain() }
     }
+
+    override suspend fun deleteMember() {
+        HandleApi.callApi { memberService.deleteMember() }
+    }
 }

@@ -87,7 +87,7 @@ class ReviewHistoryListFragment : BaseFragment<FragmentReviewHistoryListBinding>
                                 fragmentManager = childFragmentManager
                             )
 
-                            ReviewHistorySideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match))
+                            ReviewHistorySideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match), topVisible = true)
                         }
                     }
                 }

@@ -25,6 +25,6 @@
     <!-- filter -->
     <string name="content_premium_filter">Premium Filter</string>
     <string name="content_premium_plus_filter">Premium+ Filter</string>
-    <string name="content_premium_filter_stamp">누적 스탬프 8개 +</string>
-    <string name="content_premium_plus_filter_stamp">누적 스탬프 16개 +</string>
+    <string name="content_premium_filter_stamp">누적 스탬프 4개 +</string>
+    <string name="content_premium_plus_filter_stamp">누적 스탬프 8개 +</string>
 </resources>

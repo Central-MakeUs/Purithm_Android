@@ -21,4 +21,5 @@ interface MemberRepository {
     suspend fun getFilterHistory() : FilterHistory
     suspend fun getReviewHistory() : List<ReviewItem>
     suspend fun getFilterLike() : List<Filter>
+    suspend fun deleteMember()
 }

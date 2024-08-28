@@ -8,6 +8,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.base.NavigationAction
 import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.domain.entity.filter.FilterValue
@@ -90,8 +91,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
                                     message = "찜 목록에 담겼어요",
                                     actionString = "찜 목록 보기",
                                     action = {
-                                        Log.d(TAG, "initObserving: snackbar on!")
-                                        // TODO : Navigate 추가해야함
+                                        (activity as NavigationAction).navigateMyFavoriteFilter()
                                     }
                                 )
                             }

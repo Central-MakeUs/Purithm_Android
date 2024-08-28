@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tv_message"
             style="@style/kr_body_2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
@@ -30,6 +30,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="텍스트" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            style="@style/kr_body_4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_400"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_message" />
 
         <TextView
             android:id="@+id/tv_negative_button"
@@ -44,7 +58,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/tv_positive_button"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_message"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
             tools:text="button"
             tools:visibility="visible" />
 
@@ -61,7 +75,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/tv_negative_button"
-            app:layout_constraintTop_toBottomOf="@id/tv_message"
+            app:layout_constraintTop_toBottomOf="@id/tv_description"
             tools:text="button"
             tools:visibility="visible" />
 
