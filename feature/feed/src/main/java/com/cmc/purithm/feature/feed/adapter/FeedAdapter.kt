@@ -49,7 +49,7 @@ class FeedAdapter(
                 }
                 viewReviewIntensity.setReviewIntensity(data.pureDegree)
                 viewFilterChip.setInitInfo(data.filterThumbnail, data.filterName, clickEvent = {
-                    viewModel.clickFeedFilter(data.filterId)
+                    viewModel.clickFeedFilter(data.filterId, data.canAccess)
                 })
             }
         }

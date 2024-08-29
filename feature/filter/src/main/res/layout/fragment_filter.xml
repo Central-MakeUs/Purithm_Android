@@ -32,24 +32,12 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:visibility="gone"
-            app:clickEvent="@{() -> vm.setFilterFirstRun(false)}"
             app:guideVisibility="@{vm.state.isFirst}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/vp_picture" />
 
-        <ImageView
-            android:id="@+id/img_guide_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black_trans40"
-            android:visibility="gone"
-            app:guideVisibility="@{vm.state.isFirst}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/layout_filter_satisfaction"
@@ -172,6 +160,10 @@
             android:gravity="center"
             android:paddingHorizontal="12dp"
             android:paddingVertical="10dp"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
             android:text="@string/content_original"
             android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@id/btn_no_text"
@@ -193,6 +185,10 @@
             android:drawableStart="@drawable/selector_eye"
             android:drawablePadding="6dp"
             android:gravity="center"
+            android:shadowColor="#80000000"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="3"
             android:paddingHorizontal="12dp"
             android:paddingVertical="10dp"
             android:text="@string/content_text"
@@ -222,6 +218,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:noTextVisibility="@{vm.state.noText}" />
+
+        <ImageView
+            android:id="@+id/img_guide_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/black_trans80"
+            android:visibility="gone"
+            app:clickEvent="@{() -> vm.setFilterFirstRun(false)}"
+            app:guideVisibility="@{vm.state.isFirst}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

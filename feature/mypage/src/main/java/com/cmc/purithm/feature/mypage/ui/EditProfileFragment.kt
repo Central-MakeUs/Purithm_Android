@@ -3,6 +3,7 @@ package com.cmc.purithm.feature.mypage.ui
 import android.content.Intent
 import android.net.Uri
 import android.provider.OpenableColumns
+import android.util.Log
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.core.view.get
@@ -39,16 +40,16 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
 
     override fun initObserving() {
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collect { state ->
-                        if(state.loading){
+                        if (state.loading) {
                             showLoadingDialog()
                         } else {
                             dismissLoadingDialog()
                         }
-                        if(state.profileUrl.isEmpty()){
-                            with(binding.imgProfile){
+                        if (state.profileUrl.isEmpty()) {
+                            with(binding.imgProfile) {
                                 setImageResource(com.cmc.purithm.design.R.drawable.ic_profile_default_img)
                                 scaleType = android.widget.ImageView.ScaleType.FIT_CENTER
                                 layoutParams = FrameLayout.LayoutParams(
@@ -62,20 +63,25 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
                 }
                 launch {
                     viewModel.sideEffects.collect { sideEffect ->
-                        when(sideEffect){
+                        when (sideEffect) {
                             EditProfileSideEffects.StartGallery -> {
                                 startActivityForResult(Intent(Intent.ACTION_PICK).apply {
                                     type = "image/*"
                                 }, REQUEST_IMG_CODE)
                             }
+
                             EditProfileSideEffects.Success -> {
                                 (activity as NavigationAction).popBackStackAfterProfileEdit()
-                                showSnackBar(binding.root, getString(R.string.content_success_update_profile))
+                                showSnackBar(
+                                    binding.root,
+                                    getString(R.string.content_success_update_profile)
+                                )
                             }
+
                             EditProfileSideEffects.ShowSetProfileImgDialog -> {
                                 SetProfileImgDialog(
                                     clickEvent = { type ->
-                                        if(type == "clear"){
+                                        if (type == "clear") {
                                             viewModel.clearProfile()
                                         } else {
                                             viewModel.startGallery()
@@ -91,7 +97,7 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
     }
 
     override fun initBinding() {
-        with(binding){
+        with(binding) {
             vm = viewModel
         }
     }
@@ -105,12 +111,14 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
                 content = "등록",
                 contentClickListener = {
                     val originalSize = editNickname.getText().length
-                    val afterTrimSize = editNickname.getText().trim().length
-                    if(editNickname.getText().isEmpty() || editNickname.getText().length > 20 || originalSize != afterTrimSize){
-                        showSnackBar(binding.root, "닉네임을 확인해주세요")
-                        return@setAppBar
+                    val afterTrimSize = editNickname.getText().replace(" ", "").length
+                    if (editNickname.getText().isEmpty()) {
+                        showSnackBar(binding.root, "닉네임을 입력해주세요")
+                    }  else if (originalSize != afterTrimSize) {
+                        showSnackBar(binding.root, "닉네임에 공백이 존재합니다")
+                    } else {
+                        viewModel.updateProfile()
                     }
-                    viewModel.updateProfile()
                 },
                 backClickListener = {
                     findNavController().popBackStack()
@@ -184,6 +192,8 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
     }
 
     companion object {
+        private const val TAG = "EditProfileFragment"
+
         private const val USER_NAME_MAX_SIZE = 20
         private const val USER_NAME_MIN_SIZE = 1
         private const val REQUEST_IMG_CODE = 1

@@ -21,7 +21,7 @@
             android:layout_weight="1"
             app:navGraph="@navigation/nav_main" />
 
-        <com.cmc.purithm.common.view.PurithmBottomNavigation
+        <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bnv_main"
             style="@style/style_bottom_navigation"
             android:layout_width="match_parent"

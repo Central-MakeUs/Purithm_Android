@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:overScrollMode="never"
             app:layout_constraintVertical_chainStyle="packed"
             android:scrollbars="none"
             app:layout_constraintBottom_toTopOf="@id/btn_confirm"

@@ -18,6 +18,7 @@ internal fun BaseResponse<List<GetFeedResponseDto>>.toDomain(): List<ReviewItem>
             content = it.content,
             userName = it.writer,
             pictures = it.pictures,
+            canAccess = it.canAccess
         )
     }
 }

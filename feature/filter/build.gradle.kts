@@ -10,3 +10,7 @@ android {
         renderscriptSupportModeEnabled = true
     }
 }
+
+dependencies {
+    implementation("jp.wasabeef:blurry:4.0.1")
+}

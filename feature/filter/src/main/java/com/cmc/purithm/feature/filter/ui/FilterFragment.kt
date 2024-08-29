@@ -16,7 +16,7 @@ import com.cmc.purithm.domain.entity.filter.FilterImg
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.adapter.FilterPictureAdapter
 import com.cmc.purithm.feature.filter.databinding.FragmentFilterBinding
-import com.cmc.purithm.feature.filter.util.BlurUtil.blurBitmap
+
 import com.cmc.purithm.feature.filter.viewmodel.FilterSideEffects
 import com.cmc.purithm.feature.filter.viewmodel.FilterViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,12 +62,6 @@ class FilterFragment : BaseFragment<FragmentFilterBinding>() {
                                 },
                                 fragmentManager = childFragmentManager
                             )
-                        }
-                        if(state.isFirst){
-                            binding.layoutMain.post {
-                                val blurBitmap = requireContext().blurBitmap(binding.layoutMain)
-                                binding.viewGuide.imgBlurBackground.setImageBitmap(blurBitmap)
-                            }
                         }
                     }
                 }

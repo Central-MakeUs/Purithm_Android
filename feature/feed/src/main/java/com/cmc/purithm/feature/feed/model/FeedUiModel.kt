@@ -11,7 +11,8 @@ data class FeedUiModel(
     val pureDegree: Int,
     val userProfile: String,
     val userName: String,
-    val content: String
+    val content: String,
+    val canAccess : Boolean
 ) {
     companion object {
         fun toUiModel(data: ReviewItem): FeedUiModel {
@@ -24,7 +25,8 @@ data class FeedUiModel(
                 userProfile = data.userProfile,
                 userName = data.userName,
                 content = data.content,
-                pictures = data.pictures ?: emptyList()
+                pictures = data.pictures ?: emptyList(),
+                canAccess = data.canAccess
             )
         }
     }

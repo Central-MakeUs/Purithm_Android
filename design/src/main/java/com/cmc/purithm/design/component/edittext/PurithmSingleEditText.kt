@@ -71,8 +71,6 @@ class PurithmSingleEditText @JvmOverloads constructor(
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     Log.d(TAG, "onTextChanged: on")
-                    tvCount.text = "${s.length}"
-                    textChangeListener(s.toString())
                     if (s.isEmpty()) {
                         editMain.setBackgroundResource(R.drawable.bg_edit_text_default)
                         tvDesc.visibility = View.GONE
@@ -88,18 +86,11 @@ class PurithmSingleEditText @JvmOverloads constructor(
                         }
                         setDefault(description)
                     }
+                    tvCount.text = "${s.length}"
+                    textChangeListener(s.toString())
                 }
 
-                override fun afterTextChanged(s: Editable?) {
-                    Log.d(TAG, "afterTextChanged: on")
-                    // 공백을 제거한 텍스트를 EditText에 설정
-                    editMain.removeTextChangedListener(this) // 무한 루프 방지
-                    val filteredText = s.toString().replace(" ", "")
-                    editMain.setText(filteredText)
-                    Log.d(TAG, "afterTextChanged: filteredText size = ${filteredText.length}")
-                    editMain.setSelection(filteredText.length) // 커서를 마지막으로 이동
-                    editMain.addTextChangedListener(this)
-                }
+                override fun afterTextChanged(s: Editable?) {}
             })
         }
     }

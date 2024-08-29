@@ -22,5 +22,7 @@ internal data class GetFeedResponseDto(
     @SerializedName("createdAt")
     val createdAt : String,
     @SerializedName("pictures")
-    val pictures : List<String>
+    val pictures : List<String>,
+    @SerializedName("canAccess")
+    val canAccess : Boolean
 )

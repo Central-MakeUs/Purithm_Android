@@ -68,6 +68,10 @@ class FeedFragment : BaseFragment<FragmentFeedBinding>() {
                                 childFragmentManager,
                                 null
                             )
+
+                            FeedSideEffects.ShowDeniedAccessSnackBar -> {
+                                showSnackBar(binding.root, "현재 확인할 수 없는 필터입니다")
+                            }
                         }
                     }
                 }

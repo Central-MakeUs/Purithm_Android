@@ -58,9 +58,13 @@ class FeedViewModel @Inject constructor(
         }
     }
 
-    fun clickFeedFilter(filterId: Long) {
+    fun clickFeedFilter(filterId: Long, canAccess : Boolean) {
         viewModelScope.launch {
-            _sideEffects.emit(FeedSideEffects.NavigateFilter(filterId))
+            if(canAccess){
+                _sideEffects.emit(FeedSideEffects.NavigateFilter(filterId))
+            } else {
+                _sideEffects.emit(FeedSideEffects.ShowDeniedAccessSnackBar)
+            }
         }
     }
 
@@ -100,4 +104,5 @@ data class FeedState(
 sealed interface FeedSideEffects {
     data object ShowFeedSortBottomDialog : FeedSideEffects
     class NavigateFilter(val filterId: Long) : FeedSideEffects
+    data object ShowDeniedAccessSnackBar : FeedSideEffects
 }

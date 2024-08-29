@@ -69,7 +69,7 @@
                 android:src="@drawable/ic_arrow_bottom_grey" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cmc.purithm.design.component.view.PurithmRecyclerView
             android:id="@+id/list_artist"
             android:layout_width="match_parent"
             android:layout_height="0dp"

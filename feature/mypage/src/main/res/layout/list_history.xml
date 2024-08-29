@@ -28,7 +28,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="2024.07.10" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cmc.purithm.design.component.view.PurithmRecyclerView
             android:id="@+id/list_stamp_filter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

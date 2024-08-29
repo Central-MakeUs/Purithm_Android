@@ -10,17 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/black_trans60">
-
-        <ImageView
-            android:id="@+id/img_blur_background"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent">
 
         <!-- 가이드에 표시할 버튼 등 -->
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,6 +142,7 @@
                 android:paddingHorizontal="12dp"
                 android:paddingVertical="10dp"
                 android:text="@string/content_text"
+                android:clickable="false"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toTopOf="@id/btn_guide_confirm"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -162,6 +153,7 @@
                 android:id="@+id/btn_guide_confirm"
                 style="@style/kr_body_3"
                 android:layout_width="match_parent"
+                android:clickable="false"
                 android:layout_height="@dimen/size_bottom_button"
                 android:layout_marginHorizontal="@dimen/margin_screen_side"
                 android:layout_marginBottom="@dimen/margin_bottom_button_bottom"

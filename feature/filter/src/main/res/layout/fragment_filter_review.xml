@@ -142,7 +142,7 @@
                     app:reviewCount="@{vm.state.data.reviews.size()}"
                     tools:text="100명이 후기를 남겼어요" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
                     android:id="@+id/list_review"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

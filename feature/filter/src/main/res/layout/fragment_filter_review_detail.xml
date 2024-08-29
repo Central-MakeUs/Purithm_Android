@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <com.cmc.purithm.design.component.view.PurithmRecyclerView
             android:id="@+id/list_review_detail"
             android:layout_width="match_parent"
             android:layout_height="0dp"

@@ -109,7 +109,7 @@
                     app:layout_constraintTop_toBottomOf="@id/view_profile"
                     tools:text="싱그러운 4월의 봄과 잘 어울리는 필터입니다. 새학기를 시작하는 기분, 4월의 분위기를 느끼고 싶으시다면 Spring01 필터를 사용해보세요." />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
                     android:id="@+id/list_filter_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

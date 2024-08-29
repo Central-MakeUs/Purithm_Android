@@ -140,6 +140,10 @@ class FilterViewModel @Inject constructor(
     }
 
     fun clickFilterImgType(currentFilterType: FilterImgType) {
+        if(state.value.isFirst){
+            setFilterFirstRun(false)
+            return
+        }
         viewModelScope.launch {
             _state.update {
                 it.copy(

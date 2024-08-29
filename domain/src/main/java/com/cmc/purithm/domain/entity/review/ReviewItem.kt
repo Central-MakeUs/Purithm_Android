@@ -11,5 +11,6 @@ data class ReviewItem(
     val userProfile : String = "",
     val pictures: List<String>? = emptyList(),
     val createdAt: String = "",
-    val viewOs : String = ""
+    val viewOs : String = "",
+    val canAccess : Boolean = false
 )

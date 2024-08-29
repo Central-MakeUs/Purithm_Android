@@ -4,7 +4,7 @@
 
     <corners android:radius="99dp" />
 
-    <solid android:color="@color/white_trans20" />
+    <solid android:color="@color/color_button_trans_primary_s" />
 
     <stroke
         android:width="1dp"

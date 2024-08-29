@@ -147,7 +147,7 @@
                     app:lottie_fileName="lottie_loading.json"
                     app:lottie_loop="true"/>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
                     android:id="@+id/list_artist_filter"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

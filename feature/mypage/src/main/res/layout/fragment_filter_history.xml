@@ -80,7 +80,7 @@
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="총 12개" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
                     android:id="@+id/list_filter_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

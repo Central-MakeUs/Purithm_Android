@@ -207,7 +207,7 @@
                         tools:text="premium+까지 4개 남음" />
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.cmc.purithm.design.component.view.PurithmRecyclerView
                     android:id="@+id/list_stamp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

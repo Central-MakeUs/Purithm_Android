@@ -11,11 +11,11 @@ class FilterReviewGuideBottomDialog :
 
     override fun initView() {
         with(binding){
-            viewRatingOutstanding.setReviewIntensity(100)
-            viewRatingGood.setReviewIntensity(80)
+            viewRatingOutstanding.setReviewIntensity(20)
+            viewRatingGood.setReviewIntensity(40)
             viewRatingSatisfactory.setReviewIntensity(60)
-            viewRatingNeedImprovement.setReviewIntensity(40)
-            viewRatingPoor.setReviewIntensity(20)
+            viewRatingNeedImprovement.setReviewIntensity(80)
+            viewRatingPoor.setReviewIntensity(100)
 
             btnConfirm.setOnClickListener {
                 dismissAllowingStateLoss()
