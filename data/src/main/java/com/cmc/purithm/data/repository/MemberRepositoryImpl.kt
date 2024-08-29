@@ -1,5 +1,6 @@
 package com.cmc.purithm.data.repository
 
+import android.util.Log
 import com.cmc.purithm.data.local.datasource.MemberDataStore
 import com.cmc.purithm.data.remote.HandleApi
 import com.cmc.purithm.data.remote.dto.member.ProfileUpdateRequestDto
@@ -18,10 +19,12 @@ internal class MemberRepositoryImpl @Inject constructor(
     private val memberDataStore: MemberDataStore
 ) : MemberRepository {
     override suspend fun getFirstRun(): Boolean {
+        Log.d(TAG, "getFirstRun: start")
         return memberDataStore.getFirstRun()
     }
 
     override suspend fun setFirstRun(flag: Boolean) {
+        Log.d(TAG, "setFirstRun: start")
         return memberDataStore.setFirstRun(flag)
     }
 
@@ -72,5 +75,9 @@ internal class MemberRepositoryImpl @Inject constructor(
 
     override suspend fun deleteMember() {
         HandleApi.callApi { memberService.deleteMember() }
+    }
+
+    companion object {
+        private const val TAG = "MemberRepositoryImpl"
     }
 }

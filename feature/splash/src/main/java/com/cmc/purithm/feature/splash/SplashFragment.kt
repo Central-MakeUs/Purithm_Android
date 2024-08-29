@@ -43,13 +43,16 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> {}
+                            SplashState.Initialize -> {
+                                viewModel.checkFirstRun()
+                            }
                             else -> {}
                         }
                     }
                 }
                 launch {
                     viewModel.sideEffect.collect { action ->
+                        delay(1000)
                         when (action) {
                             SplashSideEffect.NavigateToLogin -> (activity as NavigationAction).navigateLogin()
                             SplashSideEffect.NavigateToHome -> (activity as NavigationAction).navigateHome()
@@ -64,9 +67,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
     override fun initBinding() {}
 
-    override fun initView() {
-        viewModel.checkFirstRun()
-    }
+    override fun initView() {}
     
     companion object {
         private const val TAG = "SplashFragment"

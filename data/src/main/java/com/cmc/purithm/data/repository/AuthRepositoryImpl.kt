@@ -14,6 +14,7 @@ internal class AuthRepositoryImpl @Inject constructor(
     private val authDataStore: AuthDataStore
 ) : AuthRepository {
     override suspend fun joinMember(accessToken: String) : String {
+        Log.d(TAG, "joinMember: start")
         /*
         * Header에 항상 카카오 토큰이 들어가야함
         * Response에서 토큰이 정상적으로 들어온다면 업데이트 하는 방식으로 변경
@@ -27,6 +28,7 @@ internal class AuthRepositoryImpl @Inject constructor(
     }
 
     override suspend fun checkAccessToken() {
+        Log.d(TAG, "checkAccessToken: start")
         // 서버에 response 없음
         HandleApi.callApi { authService.checkAccessToken() }
     }

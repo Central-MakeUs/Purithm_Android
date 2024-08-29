@@ -13,6 +13,7 @@ internal object HandleApi {
     inline fun <T> callApi(
         mapper: () -> T
     ): T {
+        Log.d(TAG, "callApi: start")
         return try {
             mapper.invoke()
         } catch (e: HttpException) {

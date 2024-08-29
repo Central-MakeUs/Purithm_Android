@@ -10,6 +10,7 @@ import dagger.hilt.android.HiltAndroidApp
 class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
+        Log.d(TAG, "onCreate: start")
         KakaoSdk.init(this, BuildConfig.KAKAO_NATIVE_APP_KEY)
     }
 

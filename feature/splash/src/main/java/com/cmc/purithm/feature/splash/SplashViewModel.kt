@@ -30,7 +30,7 @@ class SplashViewModel @Inject constructor(
     val sideEffect : SharedFlow<SplashSideEffect> get() = _sideEffect.asSharedFlow()
 
     fun checkFirstRun() {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             runCatching {
                 checkFirstRunUseCase()
             }.onSuccess {isFirstRun ->
@@ -47,7 +47,7 @@ class SplashViewModel @Inject constructor(
     }
 
     private suspend fun checkAccessToken(){
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch{
             runCatching {
                 checkAccessTokenUseCase()
             }.onSuccess {

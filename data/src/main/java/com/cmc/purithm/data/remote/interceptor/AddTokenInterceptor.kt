@@ -12,12 +12,13 @@ internal class AddTokenInterceptor @Inject constructor(
     private val authDataStore: AuthDataStore
 ) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
+        Log.d(TAG, "intercept: start")
         val builder = chain.request().newBuilder()
-
         if(ApiConfig.ACCESS_TOKEN.isEmpty()){
+            Log.d(TAG, "intercept: accessToken is empty in ApiConfig")
             runBlocking {
                 val accessToken = authDataStore.getAccessToken()
-                Log.d(TAG, "intercept: accessToken is empty in ApiConfig, setting value = $accessToken")
+                Log.d(TAG, "setting value = $accessToken")
                 ApiConfig.ACCESS_TOKEN = accessToken
             }
         }
