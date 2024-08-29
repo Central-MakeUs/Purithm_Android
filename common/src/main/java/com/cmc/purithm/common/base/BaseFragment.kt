@@ -44,7 +44,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
      * */
     abstract fun initView()
 
-    private val mLoadingDialog = LoadingDialogFragment()
+    private val mLoadingDialog = LoadingDialogFragment.getInstant()
 
     private var mToast: Toast? = null
     private var mCommonDialog: CommonDialogFragment? = null
@@ -93,7 +93,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     protected fun showLoadingDialog() {
         Log.d(TAG, "showLoadingDialog: start")
         Log.d(TAG, "showLoadingDialog: isVisible = ${mLoadingDialog.isVisible}")
-        if (!mLoadingDialog.isVisible) {
+        if (!mLoadingDialog.isAdded) {
             mLoadingDialog.show(childFragmentManager, mLoadingDialog.tag)
         }
     }

@@ -16,15 +16,15 @@
 
         <EditText
             android:id="@+id/edit_main"
-            android:textColorHint="@color/grey_200"
             style="@style/kr_body_4"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/shape_white_trasn_60_background"
+            android:background="@drawable/shape_white_trans_60_background"
             android:gravity="start"
             android:inputType="textMultiLine"
             android:textColor="@color/grey_500"
+            android:textColorHint="@color/grey_200"
             app:layout_constraintBottom_toTopOf="@id/tv_error_msg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

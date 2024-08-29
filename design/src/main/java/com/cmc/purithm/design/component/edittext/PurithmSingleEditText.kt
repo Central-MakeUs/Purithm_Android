@@ -71,10 +71,8 @@ class PurithmSingleEditText @JvmOverloads constructor(
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     Log.d(TAG, "onTextChanged: on")
-                    Log.d(TAG, "onTextChanged: trim Data = ${s.toString().trim()}")
-                    val spaceRemoveText = s.toString().trim()
-                    textChangeListener(spaceRemoveText)
-                    tvCount.text = "${spaceRemoveText.length}"
+                    tvCount.text = "${s.length}"
+                    textChangeListener(s.toString())
                     if (s.isEmpty()) {
                         editMain.setBackgroundResource(R.drawable.bg_edit_text_default)
                         tvDesc.visibility = View.GONE

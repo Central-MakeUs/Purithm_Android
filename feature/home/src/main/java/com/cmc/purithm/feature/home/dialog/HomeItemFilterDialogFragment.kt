@@ -43,7 +43,7 @@ class HomeItemFilterDialogFragment(
 
     private fun getCurrentSortedByTextView(sortedBy : String) = when(sortedBy){
         "이름순" -> binding.tvFilterPopular
-        "멤버십 낮은 순" -> binding.tvFilterLatest
+        "멤버십 낮은순" -> binding.tvFilterLatest
         "퓨어지수 높은순" -> binding.tvFilterReviewHigh
         else -> throw IllegalArgumentException("Invalid sortedBy")
     }

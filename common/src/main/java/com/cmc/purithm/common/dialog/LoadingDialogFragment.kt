@@ -27,14 +27,23 @@ class LoadingDialogFragment : BaseDialogFragment<DialogLoadingBinding>() {
     override fun initView() {
         // 최대 시간 3초
         CoroutineScope(Dispatchers.Main).launch {
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 delay(MAX_TIME)
-                dismissAllowingStateLoss()
+                if (isVisible) {
+                    dismissAllowingStateLoss()
+                }
             }
         }
     }
 
     companion object {
         private const val MAX_TIME = 3000L
+        private var INSTANT: LoadingDialogFragment? = null
+        fun getInstant(): LoadingDialogFragment {
+            if (INSTANT == null) {
+                INSTANT = LoadingDialogFragment()
+            }
+            return INSTANT!!
+        }
     }
 }

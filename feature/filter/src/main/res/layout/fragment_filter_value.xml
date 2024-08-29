@@ -85,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:layout_marginBottom="56dp"
                 android:orientation="vertical">
 
                 <com.cmc.purithm.design.component.view.FilterValueView
@@ -150,9 +151,7 @@
                 <com.cmc.purithm.design.component.view.FilterValueView
                     android:id="@+id/view_clarity"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="48dp" />
-
+                    android:layout_height="wrap_content" />
             </LinearLayout>
         </ScrollView>
 

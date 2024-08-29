@@ -115,8 +115,8 @@
                         android:id="@+id/img_profile"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:scaleType="fitCenter"
                         android:layout_gravity="center"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/ic_profile_default_small_img"
                         app:profile="@{data.userProfile}" />
                 </androidx.cardview.widget.CardView>
@@ -124,12 +124,16 @@
                 <TextView
                     android:id="@+id/tv_reviewer"
                     style="@style/kr_title_3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="@{data.userName}"
                     android:textColor="@color/grey_500"
                     app:layout_constraintBottom_toBottomOf="@id/view_profile"
+                    app:layout_constraintEnd_toStartOf="@id/layout_review_satisfactory"
                     app:layout_constraintStart_toEndOf="@id/view_profile"
                     app:layout_constraintTop_toTopOf="@id/view_profile"
                     tools:text="Greta" />

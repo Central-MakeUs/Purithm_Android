@@ -5,6 +5,7 @@ import android.net.Uri
 import android.provider.OpenableColumns
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -103,6 +104,12 @@ class EditProfileFragment : BaseFragment<FragmentEditProfileBinding>() {
                 title = "프로필 편집",
                 content = "등록",
                 contentClickListener = {
+                    val originalSize = editNickname.getText().length
+                    val afterTrimSize = editNickname.getText().trim().length
+                    if(editNickname.getText().isEmpty() || editNickname.getText().length > 20 || originalSize != afterTrimSize){
+                        showSnackBar(binding.root, "닉네임을 확인해주세요")
+                        return@setAppBar
+                    }
                     viewModel.updateProfile()
                 },
                 backClickListener = {

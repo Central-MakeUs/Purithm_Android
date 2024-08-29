@@ -1,24 +1,16 @@
 package com.cmc.purithm.design.component.edittext
 
 import android.content.Context
-import android.content.Context.INPUT_METHOD_SERVICE
-import android.content.SharedPreferences.Editor
-import android.graphics.Rect
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat.getSystemService
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewEditTextMultipleBinding
 import com.cmc.purithm.design.util.Util.getColorResource
-import kotlin.math.max
 
 class PurithmMultipleEditText @JvmOverloads constructor(
     context: Context,
@@ -99,7 +91,7 @@ class PurithmMultipleEditText @JvmOverloads constructor(
 
                     if (s.isEmpty()) {    // 입력된 텍스트가 없을 경우 background 변경
                         layoutMain.setBackgroundResource(R.drawable.bg_edit_text_default)
-                        editMain.setBackgroundResource(R.drawable.shape_white_trasn_60_background)
+                        editMain.setBackgroundResource(R.drawable.shape_white_trans_60_background)
                         return
                     }
                     if (s.length < minSize){ // 최소 입력이 안됐을 때

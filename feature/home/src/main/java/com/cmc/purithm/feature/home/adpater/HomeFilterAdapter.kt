@@ -30,7 +30,7 @@ class HomeFilterAdapter(
                     }
 
                     btnLike.setOnClickListener {
-                        if (data.liked) {
+                        if (likeState) {
                             viewModel.deleteFilterLike(data.id)
                             btnLike.setImageResource(com.cmc.purithm.design.R.drawable.ic_like_unpressed)
                             tvLikeCnt.text = (tvLikeCnt.text.toString().toInt() - 1).toString()

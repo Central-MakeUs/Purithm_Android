@@ -43,9 +43,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
 
                             SplashState.Loading -> showLoadingDialog()
                             SplashState.Success -> dismissLoadingDialog()
-                            SplashState.Initialize -> {
-                                viewModel.checkFirstRun()
-                            }
+                            SplashState.Initialize -> {}
                             else -> {}
                         }
                     }
@@ -68,7 +66,12 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>() {
     override fun initBinding() {}
 
     override fun initView() {}
-    
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.checkFirstRun()
+    }
+
     companion object {
         private const val TAG = "SplashFragment"
     }
