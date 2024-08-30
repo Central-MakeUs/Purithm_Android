@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
 import com.cmc.purithm.common.base.NavigationAction
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.filter.R
 import com.cmc.purithm.feature.filter.adapter.FilterReviewListAdapter
@@ -45,6 +46,17 @@ class FilterReviewFragment : BaseFragment<FragmentFilterReviewBinding>() {
                             showLoadingDialog()
                         } else {
                             dismissLoadingDialog()
+                        }
+
+                        if(state.error != null){
+                            CommonDialogFragment.showDialog(
+                                content = getString(com.cmc.purithm.design.R.string.error_common),
+                                positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                positiveClickEvent = {
+                                    requireActivity().finish()
+                                },
+                                fragmentManager = childFragmentManager
+                            )
                         }
 
                         if (state.data != null) {

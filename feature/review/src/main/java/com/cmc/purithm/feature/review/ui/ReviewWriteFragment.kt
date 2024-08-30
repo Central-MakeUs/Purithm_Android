@@ -23,6 +23,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.cmc.purithm.common.base.BaseFragment
+import com.cmc.purithm.common.dialog.CommonDialogFragment
 import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.design.util.Util.dp
 import com.cmc.purithm.feature.review.R
@@ -60,6 +61,18 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>() {
                         } else {
                             dismissLoadingDialog()
                         }
+
+                        if(state.error != null){
+                            CommonDialogFragment.showDialog(
+                                content = getString(com.cmc.purithm.design.R.string.error_common),
+                                positiveText = getString(com.cmc.purithm.design.R.string.content_confirm),
+                                positiveClickEvent = {
+                                    requireActivity().finish()
+                                },
+                                fragmentManager = childFragmentManager
+                            )
+                        }
+
                         state.pictures.forEachIndexed { index, s ->
                             // 이미 추가된 리스트는 더 추가하지 않음
                             if (registeredPictureList.contains(s)) {

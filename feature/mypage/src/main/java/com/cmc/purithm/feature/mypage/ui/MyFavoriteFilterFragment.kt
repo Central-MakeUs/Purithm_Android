@@ -56,7 +56,7 @@ class MyFavoriteFilterFragment : BaseFragment<FragmentFavoriteFilterBinding>() {
                                 )
                             }
 
-                            FilterLikeState.Initialized -> viewModel.getFilterLike()
+                            FilterLikeState.Initialized -> {}
                             FilterLikeState.Loading -> showLoadingDialog()
                             FilterLikeState.SetLikeSuccess -> {
                                 dismissLoadingDialog()
@@ -102,6 +102,8 @@ class MyFavoriteFilterFragment : BaseFragment<FragmentFavoriteFilterBinding>() {
     }
 
     override fun initView() {
+        viewModel.getFilterLike()
+
         with(binding) {
             listFilterLike.adapter = filterLikeAdapter
             viewAppbar.setAppBar(

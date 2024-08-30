@@ -27,3 +27,27 @@
 -dontwarn org.bouncycastle.jsse.**
 -dontwarn org.conscrypt.*
 -dontwarn org.openjsse.**
+
+# Prevent proguard from stripping interface information from TypeAdapter, TypeAdapterFactory,
+# JsonSerializer, JsonDeserializer instances (so they can be used in @JsonAdapter)
+-keep class * extends com.google.gson.TypeAdapter
+-keep class * implements com.google.gson.TypeAdapterFactory
+-keep class * implements com.google.gson.JsonSerializer
+-keep class * implements com.google.gson.JsonDeserializer
+# Prevent R8 from leaving Data object members always null
+-keepclasseswithmembers class * {
+    <init>(...);
+    @com.google.gson.annotations.SerializedName <fields>;
+}
+# Retain generic signatures of TypeToken and its subclasses with R8 version 3.0 and higher.
+-keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
+-keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
+
+-keep class com.cmc.purithm.data.remote.dto.*
+-keep class com.cmc.purithm.feature.filter.model.*
+-keep class com.cmc.purithm.feature.home.model.*
+-keep class com.cmc.purithm.feature.mypage.model.*
+-keep class com.cmc.purithm.feature.review.model.*
+-keep class com.cmc.purithm.feature.artist.model.*
+-keep class com.cmc.purithm.feature.feed.model.*
+-keep class com.cmc.purithm.domain.entity.*.*

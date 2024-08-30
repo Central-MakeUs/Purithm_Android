@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.artist.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
@@ -23,6 +24,13 @@ class ArtistFilterAdapter (
                     model = data
                     root.setOnClickListener {
                         viewModel.clickFilterItem(data.id, data.canAccess)
+                    }
+
+                    if(data.canAccess){
+                        viewFilterPremium.visibility = View.GONE
+                    } else {
+                        viewFilterPremium.visibility = View.VISIBLE
+                        viewFilterPremium.setViewType(data.membership)
                     }
 
                     btnLike.setOnClickListener {

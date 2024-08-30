@@ -1,5 +1,6 @@
 package com.cmc.purithm.design.component.appbar
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import com.cmc.purithm.design.R
 import com.cmc.purithm.design.databinding.ViewAppbarBinding
 import com.cmc.purithm.design.util.Util.dp
+import com.cmc.purithm.design.util.Util.getColorResource
 
 class PurithmAppbar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
@@ -22,6 +24,21 @@ class PurithmAppbar @JvmOverloads constructor(
     private fun initView(context: Context): ViewAppbarBinding {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         return ViewAppbarBinding.inflate(inflater, this, true)
+    }
+
+    fun changeBackground(transform : Boolean) {
+        val colorFrom = context.getColorResource(R.color.grey_100)
+        val colorTo = context.getColorResource(R.color.transparent)
+        val colorAnimate = if(transform) {
+            ValueAnimator.ofArgb(colorFrom, colorTo)
+        } else {
+            ValueAnimator.ofArgb(colorTo, colorFrom)
+        }
+        colorAnimate.duration = 1000
+        colorAnimate.addUpdateListener { animator ->
+            binding.layoutMain.setBackgroundColor(animator.animatedValue as Int)
+        }
+        colorAnimate.start()
     }
 
     fun setAppBar(

@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.home.adpater
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.paging.PagingDataAdapter
@@ -41,6 +42,13 @@ class HomeFilterAdapter(
                         }
                         likeState = !likeState
                     }
+
+                    if(data.canAccess){
+                        binding.viewFilterPremium.visibility = View.GONE
+                    }else{
+                        binding.viewFilterPremium.visibility = View.VISIBLE
+                        binding.viewFilterPremium.setViewType(data.membership)
+                    }
                 }
             }
         }
@@ -71,5 +79,8 @@ class HomeFilterAdapter(
             return oldItem == newItem
         }
 
+    }
+    companion object {
+        private const val TAG = "HomeFilterAdapter"
     }
 }

@@ -41,10 +41,11 @@ class FilterReviewViewModel @Inject constructor(
                         data = FilterReviewListUiModel.toUiModel(data)
                     )
                 )
-            }.onFailure {
+            }.onFailure { exception ->
                 _state.emit(
                     _state.value.copy(
-                        loading = false
+                        loading = false,
+                        error = exception
                     )
                 )
             }
@@ -97,6 +98,7 @@ class FilterReviewViewModel @Inject constructor(
 data class FilterReviewState(
     val loading: Boolean = false,
     val data: FilterReviewListUiModel? = null,
+    val error : Throwable? = null
 )
 
 sealed interface FilterReviewSideEffects {

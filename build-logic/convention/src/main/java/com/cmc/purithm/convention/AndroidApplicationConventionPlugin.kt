@@ -44,8 +44,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 defaultConfig {
                     applicationId = "com.cmc.purithm"
-                    versionCode = 13
-                    versionName = "1.0.7"
+                    versionCode = 14
+                    versionName = "1.0.8"
 
                     setProperty("archivesBaseName", "purithm_v$versionName(${LocalDate.now()})")
 
@@ -77,7 +77,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
 
                 buildTypes {
                     release {
-                        isMinifyEnabled = false
+                        isMinifyEnabled = true
                         isDebuggable = false
                         signingConfig = signingConfigs.getByName("release")
                         proguardFiles(

@@ -8,10 +8,6 @@
         <variable
             name="model"
             type="com.cmc.purithm.feature.home.model.HomeFilterUiModel" />
-
-        <variable
-            name="lottieView"
-            type="com.airbnb.lottie.LottieAnimationView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,12 +55,11 @@
             android:id="@+id/view_filter_premium"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:canAccess="@{model.canAccess}"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/view_card"
             app:layout_constraintEnd_toEndOf="@id/view_card"
             app:layout_constraintStart_toStartOf="@id/view_card"
-            app:layout_constraintTop_toTopOf="@id/view_card"
-            app:membership="@{model.membership}" />
+            app:layout_constraintTop_toTopOf="@id/view_card" />
 
         <TextView
             android:id="@+id/tv_filter_title"

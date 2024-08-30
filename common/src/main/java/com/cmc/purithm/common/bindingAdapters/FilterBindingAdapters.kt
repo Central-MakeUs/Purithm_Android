@@ -13,11 +13,10 @@ object FilterBindingAdapters {
         membership: FilterPremiumView.FilterMembership,
         canAccess: Boolean
     ) {
-        if (canAccess) {
-            visibility = View.GONE
-            return
+        if (!canAccess) {
+            visibility = View.VISIBLE
+            setViewType(membership)
         }
-        setViewType(membership)
     }
 
     @BindingAdapter("reviewBackground")
