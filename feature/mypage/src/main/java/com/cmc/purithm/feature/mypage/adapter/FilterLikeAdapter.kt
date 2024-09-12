@@ -2,6 +2,7 @@ package com.cmc.purithm.feature.mypage.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -35,6 +36,12 @@ class FilterLikeAdapter(private val viewModel: FilterLikeViewModel) :
         fun bind(item: FilterLikeUiModel) {
             with(binding) {
                 model = item
+                if(item.canAccess) {
+                    viewFilterPremium.visibility = View.GONE
+                } else {
+                    viewFilterPremium.visibility = View.VISIBLE
+                    viewFilterPremium.setViewType(item.membership)
+                }
                 likeState = item.liked
                 Log.d(TAG, "bind: likeState = ${likeState}")
                 btnLike.setOnClickListener {
@@ -54,7 +61,7 @@ class FilterLikeAdapter(private val viewModel: FilterLikeViewModel) :
                     Log.d(TAG, "bind: result = $likeState")
                 }
                 root.setOnClickListener {
-                    viewModel.clickFilterItem(item.id, item.viewOs)
+                    viewModel.clickFilterItem(item.id, item.viewOs, item.canAccess)
                 }
             }
         }

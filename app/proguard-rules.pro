@@ -51,3 +51,4 @@
 -keep class com.cmc.purithm.feature.artist.model.*
 -keep class com.cmc.purithm.feature.feed.model.*
 -keep class com.cmc.purithm.domain.entity.*.*
+-keep class com.cmc.purithm.design.component.view.*

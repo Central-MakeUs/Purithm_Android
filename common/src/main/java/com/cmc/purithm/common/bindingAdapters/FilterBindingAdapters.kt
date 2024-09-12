@@ -16,6 +16,8 @@ object FilterBindingAdapters {
         if (!canAccess) {
             visibility = View.VISIBLE
             setViewType(membership)
+        } else {
+            visibility = View.GONE
         }
     }
 

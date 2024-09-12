@@ -66,6 +66,12 @@ class FilterValueViewModel @Inject constructor(
             _sideEffect.emit(FilterValueSideEffects.ShowFilterGuideDialog)
         }
     }
+
+    fun clear(){
+        viewModelScope.launch {
+            _state.emit(FilterValueState.Initialize)
+        }
+    }
 }
 
 sealed interface FilterValueState {

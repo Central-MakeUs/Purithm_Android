@@ -1,7 +1,13 @@
 package com.cmc.purithm.data.remote
 
+import com.cmc.purithm.data.BuildConfig
+
 internal object ApiConfig {
-    const val BASE_URL = "https://purithm.shop/"
+    var BASE_URL = if(BuildConfig.DEBUG) {
+        "https://purithm.shop:8081/"
+    } else {
+        "https://purithm.shop/"
+    }
     const val PAGE_SIZE = 16
 
     var ACCESS_TOKEN = ""

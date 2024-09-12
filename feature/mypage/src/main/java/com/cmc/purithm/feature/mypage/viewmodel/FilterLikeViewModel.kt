@@ -67,12 +67,16 @@ class FilterLikeViewModel @Inject constructor(
         }
     }
 
-    fun clickFilterItem(filterId : Long, os : String){
+    fun clickFilterItem(filterId : Long, os : String, canAccess : Boolean){
         viewModelScope.launch {
-            if(os == "AOS"){
-                _sideEffects.emit(FilterLikeSideEffects.NavigateFilter(filterId))
+            if(canAccess){
+                if(os == "AOS"){
+                    _sideEffects.emit(FilterLikeSideEffects.NavigateFilter(filterId))
+                } else {
+                    _sideEffects.emit(FilterLikeSideEffects.ShowOsNotMatchSnackBar)
+                }
             } else {
-                _sideEffects.emit(FilterLikeSideEffects.ShowOsNotMatchSnackBar)
+                _sideEffects.emit(FilterLikeSideEffects.ShowFilterLockDialog)
             }
         }
     }
@@ -91,4 +95,5 @@ sealed interface FilterLikeState {
 sealed interface FilterLikeSideEffects {
     data class NavigateFilter(val id: Long) : FilterLikeSideEffects
     data object ShowOsNotMatchSnackBar : FilterLikeSideEffects
+    data object ShowFilterLockDialog : FilterLikeSideEffects
 }

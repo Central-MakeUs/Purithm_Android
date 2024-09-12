@@ -143,6 +143,9 @@ class MainActivity : AppCompatActivity(), NavigationAction,
     }
 
     override fun navigateMyFavoriteFilter() {
+        if(navHostFragment.navController.currentDestination?.id == com.cmc.purithm.feature.mypage.R.id.myFavoriteFilterFragment){
+            return
+        }
         with(navHostFragment.navController) {
             deepLinkNavigate("purithm://mypage/favorite")
         }

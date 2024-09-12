@@ -12,6 +12,7 @@ import com.cmc.purithm.design.component.appbar.PurithmAppbar
 import com.cmc.purithm.feature.mypage.R
 import com.cmc.purithm.feature.mypage.adapter.FilterLikeAdapter
 import com.cmc.purithm.feature.mypage.databinding.FragmentFavoriteFilterBinding
+import com.cmc.purithm.feature.mypage.dialog.FilterLockGuideDialog
 import com.cmc.purithm.feature.mypage.viewmodel.FilterLikeSideEffects
 import com.cmc.purithm.feature.mypage.viewmodel.FilterLikeState
 import com.cmc.purithm.feature.mypage.viewmodel.FilterLikeViewModel
@@ -90,6 +91,9 @@ class MyFavoriteFilterFragment : BaseFragment<FragmentFavoriteFilterBinding>() {
                             )
 
                             FilterLikeSideEffects.ShowOsNotMatchSnackBar -> showSnackBar(binding.root, message = getString(R.string.content_os_not_match), topVisible = true)
+                            FilterLikeSideEffects.ShowFilterLockDialog -> {
+                                FilterLockGuideDialog().show(childFragmentManager, null)
+                            }
                         }
                     }
                 }

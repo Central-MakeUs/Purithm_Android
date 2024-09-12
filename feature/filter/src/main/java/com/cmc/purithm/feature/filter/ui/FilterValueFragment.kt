@@ -1,6 +1,7 @@
 package com.cmc.purithm.feature.filter.ui
 
 import android.util.Log
+import android.view.WindowManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -108,7 +109,10 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
         }
     }
 
-    override fun initView() {}
+    override fun initView() {
+        requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+//        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
+    }
 
     private fun setFilterValue(filterValue: FilterValue) {
         with(binding) {
@@ -139,7 +143,12 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
             }
         )
     }
-    
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.clear()
+    }
+
     companion object{
         private const val TAG = "FilterValueFragment"
     }
