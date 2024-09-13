@@ -27,4 +27,29 @@
     <string name="content_premium_plus_filter">Premium+ Filter</string>
     <string name="content_premium_filter_stamp">누적 스탬프 4개 +</string>
     <string name="content_premium_plus_filter_stamp">누적 스탬프 8개 +</string>
+    
+    <!-- filter value -->
+    <string name="category_filter_value_lightBalance">lightBalance</string>
+    <string name="category_filter_value_brightness">brightness</string>
+    <string name="category_filter_value_exposure">exposure</string>
+    <string name="category_filter_value_contrast">contrast</string>
+    <string name="category_filter_value_highlight">highlight</string>
+    <string name="category_filter_value_shadow">shadow</string>
+    <string name="category_filter_value_saturation">saturation</string>
+    <string name="category_filter_value_tint">tint</string>
+    <string name="category_filter_value_temperature">temperature</string>
+    <string name="category_filter_value_clear">clear</string>
+    <string name="category_filter_value_clarity">clarity</string>
+
+    <string name="content_filter_value_lightBalance">라이트밸런스</string>
+    <string name="content_filter_value_brightness">밝기</string>
+    <string name="content_filter_value_exposure">노출</string>
+    <string name="content_filter_value_contrast">대비</string>
+    <string name="content_filter_value_highlight">하이라이트</string>
+    <string name="content_filter_value_shadow">그림자</string>
+    <string name="content_filter_value_saturation">채도</string>
+    <string name="content_filter_value_tint">틴트</string>
+    <string name="content_filter_value_temperature">색온도</string>
+    <string name="content_filter_value_clear">선명도</string>
+    <string name="content_filter_value_clarity">명료도</string>
 </resources>

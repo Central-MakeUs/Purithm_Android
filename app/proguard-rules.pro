@@ -34,6 +34,7 @@
 -keep class * implements com.google.gson.TypeAdapterFactory
 -keep class * implements com.google.gson.JsonSerializer
 -keep class * implements com.google.gson.JsonDeserializer
+
 # Prevent R8 from leaving Data object members always null
 -keepclasseswithmembers class * {
     <init>(...);
@@ -43,12 +44,15 @@
 -keep,allowobfuscation,allowshrinking class com.google.gson.reflect.TypeToken
 -keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
 
--keep class com.cmc.purithm.data.remote.dto.*
--keep class com.cmc.purithm.feature.filter.model.*
--keep class com.cmc.purithm.feature.home.model.*
--keep class com.cmc.purithm.feature.mypage.model.*
--keep class com.cmc.purithm.feature.review.model.*
--keep class com.cmc.purithm.feature.artist.model.*
--keep class com.cmc.purithm.feature.feed.model.*
--keep class com.cmc.purithm.domain.entity.*.*
--keep class com.cmc.purithm.design.component.view.*
+# entity
+-keep class com.cmc.purithm.data.remote.dto.* { <fields>; }
+-keep class com.cmc.purithm.feature.filter.model.* { <fields>; }
+-keep class com.cmc.purithm.feature.home.model.* { <fields>; }
+-keep class com.cmc.purithm.feature.mypage.model.* { <fields>; }
+-keep class com.cmc.purithm.feature.review.model.* { <fields>; }
+-keep class com.cmc.purithm.feature.artist.model.* { <fields>; }
+-keep class com.cmc.purithm.feature.feed.model.* { <fields>; }
+-keep class com.cmc.purithm.domain.entity.*.* { <fields>; }
+
+# databinding
+-keep class * extends androidx.databinding.ViewDataBinding

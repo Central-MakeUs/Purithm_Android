@@ -111,10 +111,10 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
 
     override fun initView() {
         requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
-//        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 
     private fun setFilterValue(filterValue: FilterValue) {
+        Log.d(TAG, "setFilterValue: value = $filterValue")
         with(binding) {
             viewLightbalance.setFilterValue("lightBalance", filterValue.lightBalance)
             viewLightness.setFilterValue("brightness", filterValue.brightness)
@@ -147,6 +147,7 @@ class FilterValueFragment : BaseFragment<FragmentFilterValueBinding>() {
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.clear()
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
 
     companion object{

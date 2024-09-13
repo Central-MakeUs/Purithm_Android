@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.drawable.BitmapDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -24,6 +25,7 @@ class FilterValueView @JvmOverloads constructor(
 
     @SuppressLint("UseCompatLoadingForDrawables")
     fun setFilterValue(name: String, value: Int) {
+        Log.d("TAG", "setFilterValue: value = $value")
         val (filterName, filterImgRes) = getFilterRes(name)
         val imgDrawable = resources.getDrawable(filterImgRes, null)
         with(binding.tvFilterValueName) {
@@ -33,17 +35,17 @@ class FilterValueView @JvmOverloads constructor(
     }
 
     private fun getFilterRes(name: String) = when (name) {
-        "lightBalance" -> "라이트밸런스" to R.drawable.ic_lightbalance
-        "brightness" -> "밝기" to R.drawable.ic_lightness
-        "exposure" -> "노출" to R.drawable.ic_exposure
-        "contrast" -> "대비" to R.drawable.ic_contrast
-        "highlight" -> "하이라이트" to R.drawable.ic_highlight
-        "shadow" -> "그림자" to R.drawable.ic_shadow
-        "saturation" -> "채도" to R.drawable.ic_saturation
-        "tint" -> "틴트" to R.drawable.ic_tint
-        "temperature" -> "색온도" to R.drawable.ic_warming
-        "clear" -> "선명도" to R.drawable.ic_sharpness
-        "clarity" -> "명료도" to R.drawable.ic_clarity
+        context.getString(R.string.category_filter_value_lightBalance) ->  context.getString(R.string.content_filter_value_lightBalance) to R.drawable.ic_lightbalance
+        context.getString(R.string.category_filter_value_brightness) ->  context.getString(R.string.content_filter_value_brightness) to R.drawable.ic_lightness
+        context.getString(R.string.category_filter_value_exposure) ->  context.getString(R.string.content_filter_value_exposure) to R.drawable.ic_exposure
+        context.getString(R.string.category_filter_value_contrast) ->  context.getString(R.string.content_filter_value_contrast) to R.drawable.ic_contrast
+        context.getString(R.string.category_filter_value_highlight) ->  context.getString(R.string.content_filter_value_highlight) to R.drawable.ic_highlight
+        context.getString(R.string.category_filter_value_shadow) ->  context.getString(R.string.content_filter_value_shadow) to R.drawable.ic_shadow
+        context.getString(R.string.category_filter_value_saturation) ->  context.getString(R.string.content_filter_value_saturation) to R.drawable.ic_saturation
+        context.getString(R.string.category_filter_value_tint) ->  context.getString(R.string.content_filter_value_tint) to R.drawable.ic_tint
+        context.getString(R.string.category_filter_value_temperature) ->  context.getString(R.string.content_filter_value_temperature) to R.drawable.ic_warming
+        context.getString(R.string.category_filter_value_clear) ->  context.getString(R.string.content_filter_value_clear) to R.drawable.ic_sharpness
+        context.getString(R.string.category_filter_value_clarity) -> context.getString(R.string.content_filter_value_clarity) to R.drawable.ic_clarity
         else -> throw IllegalArgumentException("$name is not supported")
     }
 }

@@ -87,7 +87,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     }
 
                     debug {
-                        isMinifyEnabled = false
+                        isMinifyEnabled = true
                         isDebuggable = true
                         proguardFiles(
                             getDefaultProguardFile("proguard-android-optimize.txt"),
