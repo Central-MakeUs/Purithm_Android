@@ -67,7 +67,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 }
 
                 signingConfigs {
-                    create("release") {
+                    create("purithm") {
                         storeFile = file(properties["PURITHM_STORE_FILE"].toString())
                         storePassword = properties["PURITHM_STORE_PASSWORD"].toString()
                         keyAlias = properties["PUTITHM_KEY_ALIAS"].toString()
@@ -79,7 +79,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     release {
                         isMinifyEnabled = true
                         isDebuggable = false
-                        signingConfig = signingConfigs.getByName("release")
+                        signingConfig = signingConfigs.getByName("purithm")
                         proguardFiles(
                             getDefaultProguardFile("proguard-android-optimize.txt"),
                             "proguard-rules.pro"
@@ -89,6 +89,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     debug {
                         isMinifyEnabled = true
                         isDebuggable = true
+                        signingConfig = signingConfigs.getByName("purithm")
                         proguardFiles(
                             getDefaultProguardFile("proguard-android-optimize.txt"),
                             "proguard-rules.pro"
